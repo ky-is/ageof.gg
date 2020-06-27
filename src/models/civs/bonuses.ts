@@ -1,4 +1,4 @@
-import { BonusType, Building, Focus, Strength }  from '../types'
+import { BonusType, Building, Focus, Strength } from '../types'
 
 export default [
 	{
