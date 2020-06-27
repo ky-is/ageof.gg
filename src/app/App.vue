@@ -1,8 +1,10 @@
 <template>
-	<header>
+	<header class="h-10 bg-gray-900 text-white">
 		<h1>AgeOf</h1>
 	</header>
-	<CompBuilder />
+	<main class="h-full text-gray-100">
+		<CompBuilder />
+	</main>
 </template>
 
 <script lang="ts">

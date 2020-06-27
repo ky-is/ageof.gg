@@ -1,5 +1,5 @@
 <template>
-	<div class="flex">
+	<div class="h-full  flex">
 		<CivilizationsList />
 		<TeamComposition />
 	</div>
