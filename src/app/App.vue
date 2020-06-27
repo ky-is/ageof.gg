@@ -8,11 +8,13 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 import CompBuilder from '../views/pages/CompBuilder.vue'
 
-export default {
+export default defineComponent({
 	components: {
 		CompBuilder,
 	},
-}
+})
 </script>

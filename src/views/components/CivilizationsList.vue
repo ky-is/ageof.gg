@@ -12,14 +12,16 @@
 </template>
 
 <script lang="ts">
+import { defineComponent, computed, ref } from 'vue'
+
 import civBonuses from '../../models/civs/bonuses'
 
-export default {
+export default defineComponent({
 	components: {
 	},
 
 	setup () {
 		return { civBonuses }
 	},
-}
+})
 </script>
