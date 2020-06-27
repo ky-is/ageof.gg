@@ -1,6 +1,22 @@
 import { BonusType, Building, Focus, Strength } from '../types'
 
-export default [
+interface CivilizationBonusesEntry {
+	name: string
+	focuses: Focus[]
+	bonuses: CivilizationBonus[]
+}
+
+interface CivilizationBonus {
+	team?: boolean
+	type?: BonusType
+	building?: Building
+	name?: string
+	description: string
+	strengthByAge?: Strength[]
+	focuses: Focus[]
+}
+
+const civilizationBonuses: CivilizationBonusesEntry[] = [
 	{
 		name: 'Aztecs',
 		focuses: [Focus.Monk, Focus.Infantry],
@@ -103,3 +119,5 @@ export default [
 		],
 	},
 ]
+
+export default civilizationBonuses
