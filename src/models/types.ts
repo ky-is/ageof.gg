@@ -1,4 +1,4 @@
-export const enum Focus {
+export enum Focus {
 	Archer = "archer",
 	ArcherAnti = "anti-archer",
 	Cavalry = "cavalry",
