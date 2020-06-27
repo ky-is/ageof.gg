@@ -3,10 +3,12 @@ dependencies:
   vue: 3.0.0-beta.15
 devDependencies:
   '@ky-is/eslint-config': 2.1.0_eslint@7.3.1
+  '@types/node': 14.0.14
   '@vue/compiler-sfc': 3.0.0-beta.15_vue@3.0.0-beta.15
   autoprefixer: 9.8.4
   eslint: 7.3.1
   eslint-plugin-vue: 7.0.0-alpha.6_eslint@7.3.1
+  typescript: 3.9.5
   vite: 1.0.0-beta.8
 lockfileVersion: 5.1
 packages:
@@ -2717,6 +2719,13 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==
+  /typescript/3.9.5:
+    dev: true
+    engines:
+      node: '>=4.2.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-hSAifV3k+i6lEoCJ2k6R2Z/rp/H3+8sdmcn5NrS3/3kE7+RyZXm9aqvxWqjEXHAd8b0pShatpcdMTvEdvAJltQ==
   /unicode-canonical-property-names-ecmascript/1.0.4:
     dev: true
     engines:
@@ -2919,10 +2928,12 @@ packages:
       integrity: sha512-faQrqNMzcPCHGVC2aaOINk13K+aaBDUPjGWl0teOXywElLjyVAB6Oe2jj62jHYtwsU49jXhScYbvPENK+6zAvQ==
 specifiers:
   '@ky-is/eslint-config': ^2.1.0
+  '@types/node': ^14.0.14
   '@vue/compiler-sfc': ^3.0.0-beta.15
   autoprefixer: ^9.8.4
   eslint: ^7.3.1
   eslint-plugin-vue: ^7.0.0-
   tailwindcss: ^1.4.6
+  typescript: ^3.9.5
   vite: ^1.0.0-beta.3
   vue: ^3.0.0-beta.15

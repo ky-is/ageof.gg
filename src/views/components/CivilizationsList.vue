@@ -24,8 +24,8 @@
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue'
 
-import { Focus } from '../../models/types'
-import civBonuses from '../../models/civs/bonuses'
+import { Focus } from '/@/models/types'
+import civBonuses from '/@/models/civs/bonuses'
 
 export default defineComponent({
 	components: {
