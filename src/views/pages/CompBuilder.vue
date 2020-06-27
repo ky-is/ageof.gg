@@ -5,7 +5,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import CivilizationsList from '../components/CivilizationsList.vue'
 import TeamComposition from '../components/TeamComposition.vue'
 

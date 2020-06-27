@@ -5,7 +5,7 @@
 	<CompBuilder />
 </template>
 
-<script>
+<script lang="ts">
 import CompBuilder from '../views/pages/CompBuilder.vue'
 
 export default {
