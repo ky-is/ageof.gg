@@ -1,19 +1,18 @@
 import { reactive, computed } from "vue"
 import { CivilizationBonusesEntry } from "./civs/bonuses"
 
-interface StoreState {
-	selectedCiv: {
-		hovered: CivilizationBonusesEntry | null
-		clicked: CivilizationBonusesEntry | null
-	}
-}
-
-function createState(): StoreState {
+function createState() {
 	return {
 		selectedCiv: {
-			hovered: null,
-			clicked: null,
+			hovered: null as CivilizationBonusesEntry | null,
+			clicked: null as CivilizationBonusesEntry | null,
 		},
+		teamCivs: [
+			null as CivilizationBonusesEntry | null,
+			null as CivilizationBonusesEntry | null,
+			null as CivilizationBonusesEntry | null,
+			null as CivilizationBonusesEntry | null,
+		],
 	}
 }
 
