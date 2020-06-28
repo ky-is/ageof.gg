@@ -59,6 +59,7 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 				building: Building.Castle,
 				name: 'Atlatl',
 				description: 'Skirmisher attack/range +1',
+				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Weak],
 				focuses: [Focus.ArcherAnti],
 			},
 			{
@@ -66,6 +67,7 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 				building: Building.Castle,
 				name: 'Garland Wars',
 				description: 'Infantry attack +4',
+				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Unavailable, Strength.Strong],
 				focuses: [Focus.Infantry],
 
 			},
@@ -113,8 +115,119 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 				type: BonusType.Tech,
 				building: Building.Castle,
 				name: 'Kasbah',
+				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Strong],
 				description: 'Castle production +25%',
 				focuses: [Focus.UniqueUnits],
+			},
+			{
+				type: BonusType.Tech,
+				building: Building.Castle,
+				name: 'Maghrebi Camels',
+				description: 'Camel units regenerate',
+				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Unavailable, Strength.Strong],
+				focuses: [Focus.Cavalry, Focus.UniqueUnits],
+			},
+		],
+	},
+
+	{
+		name: 'Britons',
+		focuses: [Focus.Archer],
+		bonuses: [
+			// Traits
+			{
+				team: true,
+				building: Building.ArcheryRange,
+				description: 'Archery Ranges production +20%',
+				focuses: [Focus.Archer],
+			},
+			{
+				description: 'Town Centers wood cost -50%',
+				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Medium, Strength.Weak],
+				focuses: [Focus.Resources],
+			},
+			{
+				description: 'Shepherds gathering speed +25%',
+				strengthByAge: [Strength.Strong, Strength.Weak, Strength.Unavailable, Strength.Unavailable],
+				focuses: [Focus.Resources, Focus.ResourceFood],
+			},
+			{
+				description: 'Foot archers (not Skirmishers) range +1 Castle/+1 Imperial',
+				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Strong],
+				focuses: [Focus.Archer],
+			},
+			// Uniques
+			{
+				type: BonusType.Unit,
+				building: Building.Castle,
+				name: 'Longbowman',
+				description: 'Long-ranged archer',
+				focuses: [Focus.Archer],
+			},
+			{
+				type: BonusType.Tech,
+				building: Building.Castle,
+				name: 'Yeoman',
+				description: 'Foot archer range +1',
+				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Weak],
+				focuses: [Focus.Archer, Focus.ArcherAnti],
+			},
+			{
+				type: BonusType.Tech,
+				building: Building.Castle,
+				name: 'Warwolf',
+				description: 'Trebuchets do blast damage',
+				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Unavailable, Strength.Strong],
+				focuses: [Focus.Siege],
+			},
+		],
+	},
+
+	{
+		name: 'Bulgarians',
+		focuses: [Focus.Infantry, Focus.Cavalry],
+		bonuses: [
+			// Traits
+			{
+				team: true,
+				description: 'Blacksmith researches +50%',
+				focuses: [Focus.Military],
+			},
+			{
+				description: 'Militia-line upgrades free',
+				focuses: [Focus.Infantry],
+			},
+			{
+				description: 'Town Center cost -50% stone',
+				focuses: [Focus.Resources, Focus.ResourceStone],
+			},
+			{
+				description: 'Krepost enabled',
+				focuses: [Focus.Defense],
+			},
+			// Uniques
+			{
+				type: BonusType.Unit,
+				building: Building.Castle,
+				name: 'Konnik',
+				description: 'Cavalry that fights on as infantry when felled.',
+				focuses: [Focus.Cavalry, Focus.Infantry],
+			},
+			{
+				type: BonusType.Tech,
+				building: Building.Castle,
+				name: 'Stirrups',
+				description: 'Cavalry attack speed +25%',
+				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Strong],
+				focuses: [Focus.Cavalry],
+			},
+			{
+				type: BonusType.Tech,
+				building: Building.Castle,
+				name: 'Bagains',
+				description: 'Militia-line armor +5',
+				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Unavailable, Strength.Strong],
+				focuses: [Focus.Infantry],
 			},
 		],
 	},

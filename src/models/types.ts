@@ -3,6 +3,7 @@ export enum Focus {
 	ArcherAnti = "anti-archer",
 	Cavalry = "cavalry",
 	CavalryAnti = "anti-cavalry",
+	Defense = "defense",
 	Infantry = "infantry",
 	InfantryAnti = "anti-infantry",
 	Military = "military",
@@ -11,6 +12,8 @@ export enum Focus {
 	Resources = "resources",
 	ResourceFood = "food",
 	ResourceGold = "gold",
+	ResourceStone = "stone",
+	Siege = "siege",
 	UniqueUnits = "unique unit",
 }
 
@@ -33,6 +36,7 @@ export const enum BonusType {
 }
 
 export const enum Building {
+	ArcheryRange,
 	Castle,
 	Dock,
 	Monastery,
