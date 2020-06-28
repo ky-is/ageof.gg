@@ -1,7 +1,7 @@
 <template>
 	<div class="w-full bg-gray-700">
 		<div v-if="civ" class="m-4">
-			<div class="flex">
+			<div class="flex flex-wrap">
 				<CivIcon :civ="civ" class="w-24 h-24 -ml-2" />
 				<div class="ml-1 leading-tight">
 					<h2 class="text-2xl font-light">{{ civ.name }}</h2>
@@ -10,6 +10,9 @@
 						<FocusRow title="minor" color="text-secondary" :focuses="minorFocuses" />
 						<FocusRow title="team" color="text-pink-500" :focuses="teamFocuses" />
 					</table>
+				</div>
+				<div class="ml-4  flex justify-center items-center">
+					<button class="ui-button my-2" @click="commit.addTeamCiv(civ)">+ to team</button>
 				</div>
 			</div>
 			<ul class="mt-2 list-disc list-inside">
@@ -53,6 +56,7 @@ export default defineComponent({
 			civ,
 			minorFocuses,
 			teamFocuses,
+			commit: store.commit,
 		}
 	},
 })

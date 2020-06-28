@@ -25,6 +25,21 @@ const store = {
 		selectedCiv (type: 'hovered' | 'clicked', civ: CivilizationBonusesEntry | null) {
 			state.selectedCiv[type] = civ
 		},
+
+		addTeamCiv (teamCiv: CivilizationBonusesEntry | null) {
+			for (const civ of state.teamCivs) {
+				if (civ === teamCiv) {
+					return
+				}
+			}
+			for (const index in state.teamCivs) {
+				const civ = state.teamCivs[index]
+				if (civ === null) {
+					state.teamCivs[index] = teamCiv
+					break
+				}
+			}
+		},
 	},
 
 	getters: {
