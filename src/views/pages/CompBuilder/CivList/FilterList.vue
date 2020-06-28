@@ -1,6 +1,6 @@
 <template>
 	<div class="mt-1">
-		<h3 class="text-lg text-secondary smallcaps">{{ header }}</h3>
+		<h3 v-if="isFiltered" class="text-lg text-secondary smallcaps">{{ header }}</h3>
 		<div
 			v-for="civ in civs" :key="civ.name"
 			class="py-1  flex items-start"
@@ -35,6 +35,10 @@ export default defineComponent({
 		},
 		civs: {
 			type: Array as () => CivilizationBonusesEntry[][],
+			required: true,
+		},
+		isFiltered: {
+			type: Boolean,
 			required: true,
 		},
 	},

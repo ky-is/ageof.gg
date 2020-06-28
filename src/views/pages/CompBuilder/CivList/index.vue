@@ -4,8 +4,8 @@
 		<div class="mt-2  flex items-center">
 			<FilterFocus v-model:selected="filterFocus" />
 		</div>
-		<FilterList v-if="filteredCivs[0].length" header="primary" :civs="filteredCivs[0]" />
-		<FilterList v-if="filteredCivs[1].length" header="secondary" :civs="filteredCivs[1]" />
+		<FilterList v-if="filteredCivs[0].length" header="primary" :civs="filteredCivs[0]" :isFiltered="!!filterFocus" />
+		<FilterList v-if="filteredCivs[1].length" header="secondary" :civs="filteredCivs[1]" :isFiltered="!!filterFocus" />
 	</div>
 </template>
 
