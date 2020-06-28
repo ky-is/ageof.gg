@@ -40,6 +40,16 @@ const store = {
 				}
 			}
 		},
+		removeTeamCiv (teamCiv: CivilizationBonusesEntry) {
+			state.selectedCiv.hovered = null
+			for (const index in state.teamCivs) {
+				const civ = state.teamCivs[index]
+				if (civ === teamCiv) {
+					state.teamCivs[index] = null
+					break
+				}
+			}
+		},
 	},
 
 	getters: {
