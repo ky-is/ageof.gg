@@ -1,0 +1,37 @@
+<template>
+	<select v-model="value" class="bg-black capitalize" name="Filter focus">
+		<option value="" disabled>Filter by:</option>
+		<option value="" class="text-gray-500">None</option>
+		<option disabled>—</option>
+		<option v-for="[key, focus] in focusFilters" :key="key" :value="key">
+			{{ focus }}
+		</option>
+	</select>
+</template>
+
+<script>
+import { defineComponent, computed } from 'vue'
+
+import { Focus } from '/@/models/types'
+
+export default defineComponent({
+	props: {
+		selected: {
+			type: String,
+			required: true,
+		},
+	},
+
+	setup (props, { emit }) {
+		const focusFilters = Object.entries(Focus)
+		const value = computed({
+			get: () => props.selected,
+			set: (newValue) => emit('update:selected', newValue),
+		})
+		return {
+			focusFilters,
+			value,
+		}
+	},
+})
+</script>

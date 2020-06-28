@@ -1,6 +1,6 @@
 <template>
 	<div class="h-full  flex">
-		<CivilizationsList />
+		<CivList />
 		<TeamComposition />
 	</div>
 </template>
@@ -8,12 +8,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
-import CivilizationsList from '/@/views/components/CivilizationsList.vue'
-import TeamComposition from '/@/views/components/TeamComposition.vue'
+import CivList from './CivList/index.vue'
+import TeamComposition from './TeamComposition.vue'
 
 export default defineComponent({
 	components: {
-		CivilizationsList,
+		CivList,
 		TeamComposition,
 	},
 })

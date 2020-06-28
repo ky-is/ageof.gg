@@ -10,7 +10,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
-import CompBuilder from '/@/views/pages/CompBuilder.vue'
+import CompBuilder from '/@/views/pages/CompBuilder/index.vue'
 
 export default defineComponent({
 	components: {
