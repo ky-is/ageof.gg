@@ -1,5 +1,5 @@
 <template>
-	<div class="w-full bg-gray-700">
+	<div class="bg-gray-900">
 		<h2>Composition</h2>
 	</div>
 </template>

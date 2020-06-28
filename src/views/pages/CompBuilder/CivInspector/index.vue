@@ -12,7 +12,7 @@
 					</table>
 				</div>
 			</div>
-			<ul class="mt-2">
+			<ul class="mt-2 list-disc list-inside">
 				<li v-for="bonus in civ.bonuses" :key="bonus.description">
 					{{ bonus.description }}
 				</li>
