@@ -1,5 +1,5 @@
 <template>
-	<select v-model="value" class="bg-black capitalize" name="Filter focus">
+	<select v-model="value" class="bg-transparent rounded border-2 border-gray-900 capitalize" name="Filter focus">
 		<option value="" disabled>Filter by:</option>
 		<template v-if="selected">
 			<option value="" class="text-gray-500">None</option>

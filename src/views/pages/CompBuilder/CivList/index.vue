@@ -1,10 +1,11 @@
 <template>
-	<div class="w-64 h-full bg-gray-800">
-		<h2>Civilizations</h2>
+	<div class="w-96 h-full bg-gray-800">
+		<h2 v-show="false">Civilizations</h2>
 		<div>
 			<FilterFocus v-model:selected="filterFocus" />
 		</div>
-		<FilterList :civs="filteredCivs" />
+		<FilterList v-if="filteredCivs[0].length" header="Primary" :civs="filteredCivs[0]" />
+		<FilterList v-if="filteredCivs[1].length" header="Secondary" :civs="filteredCivs[1]" />
 	</div>
 </template>
 
@@ -15,7 +16,27 @@ import FilterFocus from './FilterFocus.vue'
 import FilterList from './FilterList.vue'
 
 import { Focus } from '/@/models/types'
-import civBonuses from '/@/models/civs/bonuses'
+import { civsBonuses, CivilizationBonusesEntry } from '/@/models/civs/bonuses'
+
+function getCivsForFilter (focusFilter: Focus): [CivilizationBonusesEntry[], CivilizationBonusesEntry[]] {
+	let primaryCivs: CivilizationBonusesEntry[] = [], secondaryCivs: CivilizationBonusesEntry[] = []
+	if (!focusFilter) {
+		primaryCivs = civsBonuses
+	} else {
+		for (const civ of civsBonuses) {
+			if (civ.focuses.includes(focusFilter)) {
+				primaryCivs.push(civ)
+			} else {
+				for (const bonus of civ.bonuses) {
+					if (bonus.focuses.includes(focusFilter)) {
+						secondaryCivs.push(civ)
+					}
+				}
+			}
+		}
+	}
+	return [primaryCivs, secondaryCivs]
+}
 
 export default defineComponent({
 	components: {
@@ -28,7 +49,7 @@ export default defineComponent({
 		const filteredCivs = computed(() => {
 			const focusKey = <keyof typeof Focus>filterFocus.value
 			const selectedFilterFocus = Focus[focusKey]
-			return !selectedFilterFocus ? civBonuses : civBonuses.filter(civ => civ.focuses.includes(selectedFilterFocus))
+			return getCivsForFilter(selectedFilterFocus)
 		})
 		return {
 			filteredCivs,
