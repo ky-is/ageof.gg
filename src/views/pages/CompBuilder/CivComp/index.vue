@@ -13,16 +13,7 @@
 				v-for="index in teamSize" :key="index"
 				class="flex justify-center flex-shrink-0" :class="index <= 2 ? 'w-1/2' : 'w-1/5'"
 			>
-				<div class="w-24 h-24">
-					<div v-if="teamCivs[index - 1]">
-						<CivIcon :civ="teamCivs[index - 1]" />
-					</div>
-					<div v-else class="p-2 w-full h-full">
-						<div class="w-full h-full border border-secondary text-secondary rounded-full text-3xl font-thin  flex justify-center items-center">
-							?
-						</div>
-					</div>
-				</div>
+				<TeamCivEntry :civ="teamCivs[index - 1]" />
 			</div>
 		</div>
 	</div>
@@ -31,13 +22,13 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 
-import CivIcon from '/@/views/components/CivIcon.vue'
+import TeamCivEntry from './TeamCivEntry.vue'
 
 import { useStore } from '/@/models/store'
 
 export default defineComponent({
 	components: {
-		CivIcon,
+		TeamCivEntry,
 	},
 
 	setup () {
