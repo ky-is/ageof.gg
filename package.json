@@ -12,7 +12,10 @@
 	"devDependencies": {
 		"@ky-is/eslint-config": "^2.1.0",
 		"@types/node": "^14.0.14",
+		"@typescript-eslint/eslint-plugin": "^3.4.0",
+		"@typescript-eslint/parser": "^3.4.0",
 		"@vue/compiler-sfc": "^3.0.0-beta.15",
+		"@vue/eslint-config-typescript": "^5.0.2",
 		"autoprefixer": "^9.8.4",
 		"eslint": "^7.3.1",
 		"eslint-plugin-vue": "^7.0.0-",
@@ -20,8 +23,9 @@
 		"vite": "^1.0.0-beta.3"
 	},
 	"eslintConfig": {
-		"extends": "@ky-is/eslint-config/vue",
+		"extends": "@ky-is/eslint-config/vue-typescript",
 		"rules": {
+			"no-unused-vars": "off",
 			"vue/comment-directive": "off"
 		}
 	},
