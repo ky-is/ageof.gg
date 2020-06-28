@@ -7,6 +7,12 @@
 					{{ size }}
 				</option>
 			</select>
+			<label for="mapStyle" class="text-secondary"> Map style:</label>
+			<select id="mapStyle" v-model="mapStyle" class="ui-select">
+				<option v-for="map in mapStyles" :key="map" :value="map" class="ui-option">
+					{{ map }}
+				</option>
+			</select>
 		</div>
 		<div class="flex flex-wrap justify-center">
 			<div
@@ -33,10 +39,14 @@ export default defineComponent({
 
 	setup () {
 		const teamSize = ref(1)
+		const mapStyles = ['open', 'closed', 'water', 'hybrid']
+		const mapStyle = ref(mapStyles[0])
 		const store = useStore()
 		const teamCivs = store.state.teamCivs
 		return {
 			teamSize,
+			mapStyles,
+			mapStyle,
 			teamCivs,
 		}
 	},
