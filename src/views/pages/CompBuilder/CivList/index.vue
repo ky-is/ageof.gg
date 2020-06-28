@@ -15,11 +15,12 @@ import { defineComponent, computed, ref } from 'vue'
 import FilterFocus from './FilterFocus.vue'
 import FilterList from './FilterList.vue'
 
-import { Focus } from '/@/models/types'
+import { getFocus, Focus } from '/@/models/types'
 import { civsBonuses, CivilizationBonusesEntry } from '/@/models/civs/bonuses'
 
 function getCivsForFilter (focusFilter: Focus): [CivilizationBonusesEntry[], CivilizationBonusesEntry[]] {
-	let primaryCivs: CivilizationBonusesEntry[] = [], secondaryCivs: CivilizationBonusesEntry[] = []
+	let primaryCivs: CivilizationBonusesEntry[] = []
+	const secondaryCivs: CivilizationBonusesEntry[] = []
 	if (!focusFilter) {
 		primaryCivs = civsBonuses
 	} else {
@@ -47,9 +48,7 @@ export default defineComponent({
 	setup () {
 		const filterFocus = ref('')
 		const filteredCivs = computed(() => {
-			const focusKey = <keyof typeof Focus>filterFocus.value
-			const selectedFilterFocus = Focus[focusKey]
-			return getCivsForFilter(selectedFilterFocus)
+			return getCivsForFilter(getFocus(filterFocus.value))
 		})
 		return {
 			filteredCivs,
