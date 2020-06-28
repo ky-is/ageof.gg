@@ -1,11 +1,11 @@
 <template>
-	<select v-model="value" class="h-8 -mx-px px-1 bg-transparent rounded border-2 border-gray-900 capitalize" name="Filter focus">
-		<option value="" disabled>Filter by:</option>
+	<select v-model="value" class="ui-select -mx-px" name="Filter focus">
+		<option value="" disabled class="ui-option">Filter by:</option>
 		<template v-if="selected">
-			<option value="" class="text-secondary">None</option>
-			<option disabled>—</option>
+			<option value="" class="ui-option text-secondary">None</option>
+			<option disabled class="ui-option">—</option>
 		</template>
-		<option v-for="[key, focus] in focusFilters" :key="key" :value="key">
+		<option v-for="[key, focus] in focusFilters" :key="key" :value="key" class="ui-option">
 			{{ focus }}
 		</option>
 	</select>

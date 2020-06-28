@@ -1,9 +1,9 @@
 <template>
 	<div class="bg-gray-900">
 		<div class="px-4">
-			<label for="teamSize">Team size:</label>
-			<select id="teamSize" v-model="teamSize" class="h-8 -mx-px px-1 bg-transparent rounded border-2 border-gray-900 capitalize">
-				<option v-for="size in 4" :key="size" :value="size">
+			<label for="teamSize" class="text-secondary">Team size:</label>
+			<select id="teamSize" v-model="teamSize" class="ui-select">
+				<option v-for="size in 4" :key="size" :value="size" class="ui-option">
 					{{ size }}
 				</option>
 			</select>
