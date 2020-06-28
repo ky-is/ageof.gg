@@ -1,5 +1,5 @@
 <template>
-	<div class="w-96 h-full px-4 bg-gray-800">
+	<div class="w-64 h-full px-4 bg-gray-800">
 		<h2 v-show="false">Civilizations</h2>
 		<div class="mt-2  flex items-center">
 			<FilterFocus v-model:selected="filterFocus" />
