@@ -1,8 +1,8 @@
 <template>
-	<select v-model="value" class="bg-transparent rounded border-2 border-gray-900 capitalize" name="Filter focus">
+	<select v-model="value" class="h-8 -mx-px px-1 bg-transparent rounded border-2 border-gray-900 capitalize" name="Filter focus">
 		<option value="" disabled>Filter by:</option>
 		<template v-if="selected">
-			<option value="" class="text-gray-500">None</option>
+			<option value="" class="text-secondary">None</option>
 			<option disabled>—</option>
 		</template>
 		<option v-for="[key, focus] in focusFilters" :key="key" :value="key">

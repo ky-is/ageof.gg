@@ -1,11 +1,11 @@
 <template>
-	<div class="w-96 h-full bg-gray-800">
+	<div class="w-96 h-full px-4 bg-gray-800">
 		<h2 v-show="false">Civilizations</h2>
-		<div>
+		<div class="mt-2  flex items-center">
 			<FilterFocus v-model:selected="filterFocus" />
 		</div>
-		<FilterList v-if="filteredCivs[0].length" header="Primary" :civs="filteredCivs[0]" />
-		<FilterList v-if="filteredCivs[1].length" header="Secondary" :civs="filteredCivs[1]" />
+		<FilterList v-if="filteredCivs[0].length" header="primary" :civs="filteredCivs[0]" />
+		<FilterList v-if="filteredCivs[1].length" header="secondary" :civs="filteredCivs[1]" />
 	</div>
 </template>
 

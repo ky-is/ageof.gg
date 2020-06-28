@@ -1,6 +1,6 @@
 <template>
-	<header class="h-10 bg-gray-900 text-white">
-		<h1>AgeOf</h1>
+	<header class="h-12 px-4 bg-gray-900 text-white  flex items-center">
+		<h1 class="-mt-1 text-2xl font-thin ">ageof.gg</h1>
 	</header>
 	<main class="h-full text-gray-100">
 		<CompBuilder />
