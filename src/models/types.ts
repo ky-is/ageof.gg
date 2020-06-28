@@ -1,6 +1,6 @@
 export enum Focus {
-	Archer = "archer",
-	ArcherAnti = "anti-archer",
+	Archery = "archery",
+	ArcheryAnti = "anti-archery",
 	Cavalry = "cavalry",
 	CavalryAnti = "anti-cavalry",
 	Defense = "defense",

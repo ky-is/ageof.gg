@@ -60,7 +60,7 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 				name: 'Atlatl',
 				description: 'Skirmisher attack/range +1',
 				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Weak],
-				focuses: [Focus.ArcherAnti],
+				focuses: [Focus.ArcheryAnti],
 			},
 			{
 				type: BonusType.Tech,
@@ -100,7 +100,7 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 				building: Building.Castle,
 				name: 'Camel Archer',
 				description: 'Cavalry archer',
-				focuses: [Focus.Archer, Focus.Cavalry],
+				focuses: [Focus.Archery, Focus.Cavalry],
 			},
 			{
 				team: true,
@@ -108,7 +108,7 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 				building: Building.Castle,
 				name: 'Genitour',
 				description: 'Mounted skirmisher',
-				focuses: [Focus.Cavalry, Focus.ArcherAnti],
+				focuses: [Focus.Cavalry, Focus.ArcheryAnti],
 			},
 			{
 				team: true,
@@ -132,14 +132,14 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 
 	{
 		name: 'Britons',
-		focuses: [Focus.Archer],
+		focuses: [Focus.Archery],
 		bonuses: [
 			// Traits
 			{
 				team: true,
 				building: Building.ArcheryRange,
 				description: 'Archery Ranges production +20%',
-				focuses: [Focus.Archer],
+				focuses: [Focus.Archery],
 			},
 			{
 				description: 'Town Centers wood cost -50%',
@@ -154,7 +154,7 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 			{
 				description: 'Foot archers (not Skirmishers) range +1 Castle/+1 Imperial',
 				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Strong],
-				focuses: [Focus.Archer],
+				focuses: [Focus.Archery],
 			},
 			// Uniques
 			{
@@ -162,7 +162,7 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 				building: Building.Castle,
 				name: 'Longbowman',
 				description: 'Long-ranged archer',
-				focuses: [Focus.Archer],
+				focuses: [Focus.Archery],
 			},
 			{
 				type: BonusType.Tech,
@@ -170,7 +170,7 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 				name: 'Yeoman',
 				description: 'Foot archer range +1',
 				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Weak],
-				focuses: [Focus.Archer, Focus.ArcherAnti],
+				focuses: [Focus.Archery, Focus.ArcheryAnti],
 			},
 			{
 				type: BonusType.Tech,
