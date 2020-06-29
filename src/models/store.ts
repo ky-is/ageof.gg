@@ -26,7 +26,7 @@ const store = {
 			state.selectedCiv[type] = civ
 		},
 
-		addTeamCiv (teamCiv: CivilizationBonusesEntry | null) {
+		addTeamCiv (teamCiv: CivilizationBonusesEntry) {
 			for (const civ of state.teamCivs) {
 				if (civ === teamCiv) {
 					return
