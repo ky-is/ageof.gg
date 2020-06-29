@@ -175,7 +175,7 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 			// Traits
 			{
 				team: true,
-				description: 'Blacksmith researches +50%',
+				description: 'Blacksmith research speed +50%',
 				focuses: [Focus.Military],
 			},
 			{
@@ -183,7 +183,7 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 				focuses: [Focus.Infantry],
 			},
 			{
-				description: 'Town Center cost -50% stone',
+				description: 'Town Center costs -50% stone',
 				focuses: [Focus.Resources, Focus.ResourceStone],
 			},
 			{
