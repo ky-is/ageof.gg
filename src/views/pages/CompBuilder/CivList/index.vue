@@ -31,6 +31,7 @@ function getCivsForFilter (focusFilter: Focus): [CivilizationBonusesEntry[], Civ
 				for (const bonus of civ.bonuses) {
 					if (bonus.focuses.includes(focusFilter)) {
 						secondaryCivs.push(civ)
+						break
 					}
 				}
 			}
