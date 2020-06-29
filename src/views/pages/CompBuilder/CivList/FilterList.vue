@@ -6,7 +6,7 @@
 			direction="row" alignment="start" class="py-1"
 			@click="commit.selectedCiv('clicked', civ)" @mouseenter="commit.selectedCiv('hovered', civ)" @mouseleave="commit.selectedCiv('hovered', null)"
 		>
-			<CivIcon :civ="civ" class="w-10 -ml-1 mr-1" />
+			<CivIcon :civ="civ" dragAction="copy" class="w-10 -ml-1 mr-1" />
 			<div class="leading-tight">
 				<h3 class="text-lg">{{ civ.name }}</h3>
 				<div class="text-sm text-secondary">{{ civ.focuses.join(' + ') }}</div>

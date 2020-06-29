@@ -18,10 +18,10 @@
 			</div>
 			<UIStack direction="row" justification="center" wrap class="flex-grow">
 				<div
-					v-for="index in teamSize" :key="index"
-					class="center-center  flex-shrink-0" :class="index <= 2 ? 'w-1/2' : 'w-1/5'"
+					v-for="size in teamSize" :key="size"
+					class="center-center  flex-shrink-0" :class="size <= 2 ? 'w-1/2' : 'w-1/5'"
 				>
-					<TeamCivEntry :civ="teamCivs[index - 1]" />
+					<TeamCivEntry :index="size - 1" :civ="teamCivs[size - 1]" />
 				</div>
 			</UIStack>
 		</UIStack>

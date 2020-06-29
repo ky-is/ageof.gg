@@ -2,7 +2,7 @@
 	<div class="w-full bg-gray-700">
 		<div v-if="civ" class="mx-4 my-2  group">
 			<UIStack direction="row" wrap>
-				<CivIcon :civ="civ" class="w-24 h-24 -ml-2" />
+				<CivIcon :civ="civ" dragAction="copy" class="w-24 h-24 -ml-2" />
 				<div class="ml-1 leading-tight">
 					<h2 class="text-2xl font-light">{{ civ.name }}</h2>
 					<table>

@@ -41,11 +41,15 @@ const store = {
 				}
 			}
 		},
+		setTeamCivAt (index: 0 | 1 | 2 | 3, teamCiv: CivilizationBonusesEntry) {
+			store.commit.removeTeamCiv(teamCiv)
+			state.teamCivs[index] = teamCiv
+		},
 		removeTeamCiv (teamCiv: CivilizationBonusesEntry) {
 			state.selectedCiv.hovered = null
 			for (const index in state.teamCivs) {
 				const civ = state.teamCivs[index]
-				if (civ === teamCiv) {
+				if (civ && civ.name === teamCiv.name) {
 					state.teamCivs[index] = null
 					break
 				}
