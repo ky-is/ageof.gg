@@ -10,6 +10,7 @@ export interface CivilizationBonus {
 	building?: Building
 	name?: string
 	description: string
+	clarification?: string
 	strengthByAge?: Strength[]
 	focuses: Focus[]
 }

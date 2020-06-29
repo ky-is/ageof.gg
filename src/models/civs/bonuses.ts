@@ -136,7 +136,8 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 				focuses: [Focus.Resources, Focus.ResourceFood],
 			},
 			{
-				description: 'Foot archers (not Skirmishers) range +1 Castle/+1 Imperial',
+				description: 'Foot archers range +1 Castle/+1 Imperial',
+				clarification: 'except Skirmishers',
 				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Strong],
 				focuses: [Focus.Archery],
 			},
