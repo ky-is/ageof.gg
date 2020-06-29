@@ -20,10 +20,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
-import CivIcon from '/@/views/components/CivIcon.vue'
-
 import { CivilizationBonusesEntry } from '/@/models/types'
 import { useStore } from '/@/models/store'
+
+import CivIcon from '/@/views/components/CivIcon.vue'
 
 export default defineComponent({
 	components: {

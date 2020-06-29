@@ -1,15 +1,17 @@
 <template>
-	<div class="h-full  flex">
+	<UIStack direction="row" class="h-full">
 		<CivList />
-		<div class="flex flex-col flex-grow">
+		<UIStack direction="col" class="flex-grow">
 			<CivInspector class="flex-1" />
 			<CivComp class="flex-1" />
-		</div>
-	</div>
+		</UIStack>
+	</UIStack>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+
+import UIStack from '/@/views/ui/Stack.vue'
 
 import CivList from './CivList/index.vue'
 import CivComp from './CivComp/index.vue'
@@ -20,6 +22,7 @@ export default defineComponent({
 		CivInspector,
 		CivList,
 		CivComp,
+		UIStack,
 	},
 })
 </script>

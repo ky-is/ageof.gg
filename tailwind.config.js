@@ -16,9 +16,15 @@ module.exports = {
 		flex: ['responsive'],
 	},
 	plugins: [],
-	purge: [
-		'./index.html',
-		'./src/**/*.vue',
-		'./src/**/*.ts',
-	],
+	purge: {
+		content: [
+			'./index.html',
+			'./src/**/*.vue',
+			'./src/**/*.ts',
+		],
+		options: {
+			whitelist: ['flex-row', 'flex-col'],
+			whitelistPatterns: [/^items-(start|center|end)$/, /^justify-(start|center|end)$/],
+		},
+	},
 }

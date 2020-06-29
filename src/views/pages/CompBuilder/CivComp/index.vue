@@ -1,7 +1,7 @@
 <template>
 	<div class="bg-gray-900">
 		<h2 v-show="false">Team composition</h2>
-		<div class="flex  flex-col lg:flex-row">
+		<UIStack direction="col" switchAt="lg">
 			<div class="px-4">
 				<label for="teamSize" class="text-secondary">Team size:</label>
 				<select id="teamSize" v-model="teamSize" class="ui-select">
@@ -16,28 +16,31 @@
 					</option>
 				</select>
 			</div>
-			<div class="flex flex-wrap justify-center flex-grow">
+			<UIStack direction="row" justification="center" wrap class="flex-grow">
 				<div
 					v-for="index in teamSize" :key="index"
 					class="center-center  flex-shrink-0" :class="index <= 2 ? 'w-1/2' : 'w-1/5'"
 				>
 					<TeamCivEntry :civ="teamCivs[index - 1]" />
 				</div>
-			</div>
-		</div>
+			</UIStack>
+		</UIStack>
 	</div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 
-import TeamCivEntry from './TeamCivEntry.vue'
-
 import { useStore } from '/@/models/store'
+
+import UIStack from '/@/views/ui/Stack.vue'
+
+import TeamCivEntry from './TeamCivEntry.vue'
 
 export default defineComponent({
 	components: {
 		TeamCivEntry,
+		UIStack,
 	},
 
 	setup () {
