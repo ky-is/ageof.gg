@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 
 import { useStore } from '/@/models/store'
 import { CivilizationBonusesEntry } from '/@/models/types'
@@ -36,7 +36,7 @@ export default defineComponent({
 			required: true,
 		},
 		civs: {
-			type: Array as () => CivilizationBonusesEntry[][],
+			type: Array as PropType<CivilizationBonusesEntry[][]>,
 			required: true,
 		},
 		isFiltered: {

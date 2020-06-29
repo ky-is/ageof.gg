@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 
 import { CivilizationBonusesEntry } from '/@/models/types'
 import { useStore } from '/@/models/store'
@@ -32,7 +32,7 @@ export default defineComponent({
 
 	props: {
 		civ: {
-			type: Object as () => CivilizationBonusesEntry | null,
+			type: Object as PropType<CivilizationBonusesEntry | null>,
 			default: null,
 		},
 	},

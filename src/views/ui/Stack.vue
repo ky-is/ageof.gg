@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
 	name: 'UIStack',
@@ -16,7 +16,7 @@ export default defineComponent({
 			default: 'div',
 		},
 		direction: {
-			type: String as () => 'row' | 'col',
+			type: String as PropType<'row' | 'col'>,
 			required: true,
 		},
 		// reverse: {
@@ -24,15 +24,15 @@ export default defineComponent({
 		// 	default: false,
 		// },
 		switchAt: {
-			type: String as () => 'sm' | 'md' | 'lg' | 'xl' | null,
+			type: String as PropType<'sm' | 'md' | 'lg' | 'xl' | null>,
 			default: null,
 		},
 		alignment: {
-			type: String as () => 'start' | 'center' | 'end' | null,
+			type: String as PropType<'start' | 'center' | 'end' | null>,
 			default: null,
 		},
 		justification: {
-			type: String as () => 'start' | 'center' | 'end' | null,
+			type: String as PropType<'start' | 'center' | 'end' | null>,
 			default: null,
 		},
 		wrap: {
