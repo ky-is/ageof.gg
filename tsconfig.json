@@ -1,12 +1,17 @@
 {
 	"compilerOptions": {
 		"strict": true,
+		"isolatedModules": true,
+		"skipLibCheck": true,
 		"lib": [
 			"es2019"
 		],
 		"baseUrl": ".",
 		"paths": {
 			"/@/*": ["src/*"],
-		}
-	}
+		},
+	},
+	"include": [
+		"./src/**/*",
+	],
 }
