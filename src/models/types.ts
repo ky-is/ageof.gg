@@ -34,15 +34,14 @@ export enum Focus {
 	UniqueUnits = 'unique unit',
 }
 
-export function getFocus(value: string): Focus {
-	const focusKey = <keyof typeof Focus>value
-	return Focus[focusKey]
+export function getFocus(value: keyof typeof Focus): Focus {
+	return Focus[value]
 }
 
 export const enum Strength {
 	Unavailable,
 	Weak,
-	Medium,
+	Normal,
 	Strong,
 }
 

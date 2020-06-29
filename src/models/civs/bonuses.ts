@@ -27,7 +27,7 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 			},
 			{
 				description: 'Start with +50 gold',
-				strengthByAge: [Strength.Unavailable, Strength.Medium, Strength.Weak, Strength.Unavailable],
+				strengthByAge: [Strength.Unavailable, Strength.Normal, Strength.Weak, Strength.Unavailable],
 				focuses: [Focus.Resources],
 			},
 			// Uniques
@@ -71,7 +71,7 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 				building: Building.Stable,
 				description: 'Stable unit cost -10% Castle, -20% Imperial',
 				focuses: [Focus.Cavalry],
-				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Medium, Strength.Strong],
+				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Normal, Strength.Strong],
 			},
 			{
 				building: Building.Dock,
@@ -127,7 +127,7 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 			},
 			{
 				description: 'Town Centers wood cost -50%',
-				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Medium, Strength.Weak],
+				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Normal, Strength.Weak],
 				focuses: [Focus.Resources],
 			},
 			{
@@ -187,7 +187,8 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 				focuses: [Focus.Resources, Focus.ResourceStone],
 			},
 			{
-				description: 'Krepost enabled',
+				description: 'Krepost can be built',
+				strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Normal],
 				focuses: [Focus.Defense],
 			},
 			// Uniques
