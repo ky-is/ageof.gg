@@ -6,9 +6,9 @@
 				<div class="ml-1 leading-tight">
 					<h2 class="text-2xl font-light">{{ civ.name }}</h2>
 					<table>
-						<FocusRow title="major" color="text-gray-900" :focuses="civ.focuses" />
-						<FocusRow title="minor" color="text-secondary" :focuses="minorFocuses" />
-						<FocusRow title="team" color="text-pink-500" :focuses="teamFocuses" />
+						<FocusRow title="major" color="text-bonus-major" :focuses="civ.focuses" />
+						<FocusRow title="minor" color="text-bonus-general" :focuses="minorFocuses" />
+						<FocusRow title="team" color="text-bonus-team" :focuses="teamFocuses" />
 					</table>
 				</div>
 				<div class="ml-4  flex justify-center items-center">
