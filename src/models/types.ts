@@ -1,3 +1,19 @@
+export interface CivilizationBonusesEntry {
+	name: string
+	focuses: Focus[]
+	bonuses: CivilizationBonus[]
+}
+
+export interface CivilizationBonus {
+	team?: boolean
+	type?: BonusType
+	building?: Building
+	name?: string
+	description: string
+	strengthByAge?: Strength[]
+	focuses: Focus[]
+}
+
 export enum Focus {
 	Archery = "archery",
 	ArcheryAnti = "anti-archery",

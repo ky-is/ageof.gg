@@ -5,7 +5,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
-import { CivilizationBonusesEntry } from '/@/models/civs/bonuses'
+import { CivilizationBonusesEntry } from '/@/models/types'
 
 export default defineComponent({
 	props: {

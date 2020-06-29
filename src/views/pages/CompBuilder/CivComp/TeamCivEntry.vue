@@ -22,7 +22,7 @@ import { defineComponent } from 'vue'
 
 import CivIcon from '/@/views/components/CivIcon.vue'
 
-import { CivilizationBonusesEntry } from '/@/models/civs/bonuses'
+import { CivilizationBonusesEntry } from '/@/models/types'
 import { useStore } from '/@/models/store'
 
 export default defineComponent({

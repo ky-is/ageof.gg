@@ -21,7 +21,7 @@ import { defineComponent } from 'vue'
 import CivIcon from '/@/views/components/CivIcon.vue'
 
 import { useStore } from '/@/models/store'
-import { CivilizationBonusesEntry } from '/@/models/civs/bonuses'
+import { CivilizationBonusesEntry } from '/@/models/types'
 
 export default defineComponent({
 	components: {

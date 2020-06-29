@@ -1,20 +1,4 @@
-import { BonusType, Building, Focus, Strength } from '/@/models/types'
-
-export interface CivilizationBonusesEntry {
-	name: string
-	focuses: Focus[]
-	bonuses: CivilizationBonus[]
-}
-
-export interface CivilizationBonus {
-	team?: boolean
-	type?: BonusType
-	building?: Building
-	name?: string
-	description: string
-	strengthByAge?: Strength[]
-	focuses: Focus[]
-}
+import { BonusType, Building, Focus, Strength, CivilizationBonusesEntry } from '/@/models/types'
 
 export const civsBonuses: CivilizationBonusesEntry[] = [
 	{

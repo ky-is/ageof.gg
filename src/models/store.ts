@@ -1,5 +1,6 @@
-import { reactive, computed } from "vue"
-import { CivilizationBonusesEntry } from "./civs/bonuses"
+import { reactive, computed } from 'vue'
+
+import { CivilizationBonusesEntry } from '/@/models/types'
 
 function createState() {
 	return {

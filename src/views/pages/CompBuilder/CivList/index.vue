@@ -15,8 +15,8 @@ import { defineComponent, computed, ref } from 'vue'
 import FilterFocus from './FilterFocus.vue'
 import FilterList from './FilterList.vue'
 
-import { getFocus, Focus } from '/@/models/types'
-import { civsBonuses, CivilizationBonusesEntry } from '/@/models/civs/bonuses'
+import { getFocus, Focus, CivilizationBonusesEntry } from '/@/models/types'
+import { civsBonuses } from '/@/models/civs/bonuses'
 
 function getCivsForFilter (focusFilter: Focus): [CivilizationBonusesEntry[], CivilizationBonusesEntry[]] {
 	let primaryCivs: CivilizationBonusesEntry[] = []
