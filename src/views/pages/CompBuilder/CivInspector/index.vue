@@ -1,6 +1,6 @@
 <template>
 	<div class="w-full bg-gray-700">
-		<div v-if="civ" class="m-4">
+		<div v-if="civ" class="m-4  group">
 			<div class="flex flex-wrap">
 				<CivIcon :civ="civ" class="w-24 h-24 -ml-2" />
 				<div class="ml-1 leading-tight">
@@ -19,7 +19,9 @@
 				<div v-for="[label, bonuses] in bonusGroups" :key="label">
 					<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
 					<li v-for="bonus in bonuses" :key="bonus.description">
+						<span v-if="bonus.name" class="text-secondary text-bold">{{ bonus.name }}: </span>
 						<span>{{ bonus.description }}</span>
+						<span v-if="bonus.clarification" class="text-secondary  hidden group-hover:inline"> ({{ bonus.clarification }})</span>
 					</li>
 				</div>
 			</ul>
