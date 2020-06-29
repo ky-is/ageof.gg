@@ -19,7 +19,7 @@
 			<div class="flex flex-wrap justify-center flex-grow">
 				<div
 					v-for="index in teamSize" :key="index"
-					class="flex justify-center flex-shrink-0" :class="index <= 2 ? 'w-1/2' : 'w-1/5'"
+					class="center-center  flex-shrink-0" :class="index <= 2 ? 'w-1/2' : 'w-1/5'"
 				>
 					<TeamCivEntry :civ="teamCivs[index - 1]" />
 				</div>
