@@ -13,6 +13,7 @@ module.exports = {
 	},
 	variants: {
 		display: ['group-hover'],
+		flex: ['responsive'],
 	},
 	plugins: [],
 	purge: [
