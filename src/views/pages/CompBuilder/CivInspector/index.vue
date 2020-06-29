@@ -16,9 +16,12 @@
 				</div>
 			</div>
 			<ul class="mt-2 list-disc list-inside">
-				<li v-for="bonus in civ.bonuses" :key="bonus.description">
-					{{ bonus.description }}
-				</li>
+				<div v-for="[label, bonuses] in bonusGroups" :key="label">
+					<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
+					<li v-for="bonus in bonuses" :key="bonus.description">
+						<span>{{ bonus.description }}</span>
+					</li>
+				</div>
 			</ul>
 		</div>
 	</div>
@@ -30,6 +33,7 @@ import { defineComponent, computed } from 'vue'
 import FocusRow from './FocusRow.vue'
 import CivIcon from '/@/views/components/CivIcon.vue'
 
+import { BonusType, CivilizationBonus } from '/@/models/types'
 import { useStore } from '/@/models/store'
 
 export default defineComponent({
@@ -41,6 +45,7 @@ export default defineComponent({
 	setup () {
 		const store = useStore()
 		const civ = store.getters.selectedCiv
+
 		const minorFocuses = computed(() => {
 			const civilization = civ.value
 			if (!civilization) {
@@ -52,10 +57,31 @@ export default defineComponent({
 			return civ.value?.bonuses.filter(bonus => bonus.team).flatMap(bonus => bonus.focuses)
 		})
 
+		const bonusGroups = computed(() => {
+			const civilization = civ.value
+			if (!civilization) {
+				return []
+			}
+			const bonusGroups: [string, CivilizationBonus[]][] = [['team', []], ['general', []], ['castle', []]]
+			for (const bonus of civilization.bonuses) {
+				let group
+				if (bonus.team) {
+					group = bonusGroups[0]
+				} else if (bonus.type !== undefined && bonus.type !== BonusType.Trait) {
+					group = bonusGroups[2]
+				} else {
+					group = bonusGroups[1]
+				}
+				group[1].push(bonus)
+			}
+			return bonusGroups
+		})
+
 		return {
 			civ,
 			minorFocuses,
 			teamFocuses,
+			bonusGroups,
 			commit: store.commit,
 		}
 	},
