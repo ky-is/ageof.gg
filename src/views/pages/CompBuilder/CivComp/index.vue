@@ -1,5 +1,6 @@
 <template>
 	<div class="bg-gray-900">
+		<h2 v-show="false">Team composition</h2>
 		<div class="px-4">
 			<label for="teamSize" class="text-secondary">Team size:</label>
 			<select id="teamSize" v-model="teamSize" class="ui-select">
