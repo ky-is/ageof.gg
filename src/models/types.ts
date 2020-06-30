@@ -84,6 +84,7 @@ export enum Focus {
 	ResourceGold = 'gold',
 	ResourceStone = 'stone',
 	ResourceWood = 'wood',
+	Relic = 'relic',
 	Siege = 'siege',
 	Trash = 'trash',
 	UniqueUnits = 'unique unit',

@@ -7,7 +7,7 @@ export const civsBonuses: CivBonusesEntry[] = [
 			team: true,
 			building: Building.Monastery,
 			description: 'Relic gold generation +33%',
-			focuses: [Focus.Resources, Focus.ResourceGold],
+			focuses: [Focus.Relic],
 		},
 		{
 			description: 'Villager carry capacity +5',
