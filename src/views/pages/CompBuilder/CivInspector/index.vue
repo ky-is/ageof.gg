@@ -1,5 +1,5 @@
 <template>
-	<div class="bg-gray-700">
+	<div class="bg-gray-800">
 		<UIStack v-if="civ" direction="col" class="mx-4 my-2  group">
 			<UIStack direction="row" wrap>
 				<CivIcon :civ="civ" dragAction="copy" class="w-24 h-24 -ml-2" />

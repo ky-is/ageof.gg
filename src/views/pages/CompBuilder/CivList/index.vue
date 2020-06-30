@@ -1,5 +1,5 @@
 <template>
-	<UIStack direction="col" class="w-64 px-4 bg-gray-800">
+	<UIStack direction="col" class="w-64 px-4 bg-gray-850">
 		<h2 v-show="false">Civilizations</h2>
 		<UIStack direction="row" alignment="center" class="mt-2">
 			<FilterFocus v-model:selected="filterFocus" />
