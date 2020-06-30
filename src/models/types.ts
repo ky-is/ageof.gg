@@ -1,10 +1,16 @@
-export interface CivilizationBonusesEntry {
+export class CivilizationBonusesEntry {
 	name: string
 	focuses: Focus[]
 	bonuses: CivilizationBonus[]
+
+	constructor (name: string, focuses: Focus[], bonuses: CivilizationBonusOptions[]) {
+		this.name = name
+		this.focuses = focuses
+		this.bonuses = bonuses.map(options => new CivilizationBonus(options))
+	}
 }
 
-export interface CivilizationBonus {
+interface CivilizationBonusOptions {
 	team?: boolean
 	type?: BonusType
 	building?: Building
@@ -13,6 +19,28 @@ export interface CivilizationBonus {
 	clarification?: string
 	strengthByAge?: Strength[]
 	focuses: Focus[]
+}
+
+export class CivilizationBonus {
+	team?: boolean
+	type?: BonusType
+	building?: Building
+	name?: string
+	description: string
+	clarification?: string
+	strengthByAge?: Strength[]
+	focuses: Focus[]
+
+	constructor ({ team, type, building, name, description, clarification, strengthByAge, focuses }: CivilizationBonusOptions) {
+		this.team = team
+		this.type = type
+		this.building = building
+		this.name = name
+		this.description = description
+		this.clarification = clarification
+		this.strengthByAge = strengthByAge
+		this.focuses = focuses
+	}
 }
 
 export enum Focus {
