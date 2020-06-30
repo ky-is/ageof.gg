@@ -28,11 +28,11 @@ export default defineComponent({
 			default: null,
 		},
 		alignment: {
-			type: String as PropType<'start' | 'center' | 'end' | null>,
+			type: String as PropType<'start' | 'center' | 'baseline' | 'end' | null>,
 			default: null,
 		},
 		justification: {
-			type: String as PropType<'start' | 'center' | 'end' | null>,
+			type: String as PropType<'start' | 'center' | 'baseline' | 'end' | null>,
 			default: null,
 		},
 		wrap: {

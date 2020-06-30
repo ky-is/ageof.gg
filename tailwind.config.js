@@ -24,7 +24,7 @@ module.exports = {
 		],
 		options: {
 			whitelist: ['flex-row', 'flex-col'],
-			whitelistPatterns: [/^items-(start|center|end)$/, /^justify-(start|center|end)$/],
+			whitelistPatterns: [/^items-(start|center|baseline|end)$/, /^justify-(start|center|end)$/],
 		},
 	},
 }
