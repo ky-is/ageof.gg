@@ -10,9 +10,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from 'vue'
+import { defineComponent, computed, ref, Ref } from 'vue'
 
-import { getFocus, Focus, CivBonusesEntry } from '/@/models/types'
+import { Focus, CivBonusesEntry } from '/@/models/types'
 import { civsBonuses } from '/@/models/civs/bonuses'
 
 import UIStack from '/@/views/ui/Stack.vue'
@@ -20,7 +20,7 @@ import UIStack from '/@/views/ui/Stack.vue'
 import FilterFocus from './FilterFocus.vue'
 import FilterList from './FilterList.vue'
 
-function getCivsForFilter (focusFilter: Focus): [CivBonusesEntry[], CivBonusesEntry[]] {
+function getCivsForFilter (focusFilter: Focus | null): [CivBonusesEntry[], CivBonusesEntry[]] {
 	let primaryCivs: CivBonusesEntry[] = []
 	const secondaryCivs: CivBonusesEntry[] = []
 	if (!focusFilter) {
@@ -50,9 +50,9 @@ export default defineComponent({
 	},
 
 	setup () {
-		const filterFocus = ref('')
+		const filterFocus: Ref<keyof typeof Focus | ''> = ref('')
 		const filteredCivs = computed(() => {
-			return getCivsForFilter(getFocus(filterFocus.value))
+			return getCivsForFilter(filterFocus.value ? Focus[filterFocus.value] : null)
 		})
 		return {
 			filteredCivs,
