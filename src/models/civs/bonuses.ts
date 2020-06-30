@@ -203,7 +203,7 @@ export const civsBonuses: CivBonusesEntry[] = [
 		},
 	]),
 
-	new CivBonusesEntry('Burmese', [Focus.Monk, Focus.Elephant], [
+	new CivBonusesEntry('Burmese', [Focus.Monk, Focus.Elephantry], [
 		// Traits
 		{
 			team: true,
@@ -240,7 +240,7 @@ export const civsBonuses: CivBonusesEntry[] = [
 			name: 'Howdah',
 			description: '+1 armor and +1 pierce armor to Battle Elephants',
 			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Strong],
-			focuses: [Focus.Elephant],
+			focuses: [Focus.Elephantry],
 		},
 		{
 			type: BonusType.Tech,
