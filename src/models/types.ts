@@ -67,11 +67,13 @@ export class CivBonus {
 }
 
 export enum Focus {
+	// NOTE: Should these be plural or singular?
 	Archery = 'archery',
 	ArcheryAnti = 'anti-archery',
 	Cavalry = 'cavalry',
 	CavalryAnti = 'anti-cavalry',
 	Defense = 'defense',
+	Elephant = 'elephant',
 	Infantry = 'infantry',
 	InfantryAnti = 'anti-infantry',
 	Military = 'military',
@@ -81,7 +83,9 @@ export enum Focus {
 	ResourceFood = 'food',
 	ResourceGold = 'gold',
 	ResourceStone = 'stone',
+	ResourceWood = 'wood',
 	Siege = 'siege',
+	Trash = 'trash',
 	UniqueUnits = 'unique unit',
 }
 

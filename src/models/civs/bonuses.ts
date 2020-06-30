@@ -24,7 +24,7 @@ export const civsBonuses: CivBonusesEntry[] = [
 		},
 		{
 			description: 'Start with +50 gold',
-			strengthByAge: [Strength.Unavailable, Strength.Normal, Strength.Weak, Strength.Unavailable],
+			strengthByAge: [Strength.Strong, Strength.Normal, Strength.Weak, Strength.Weak],
 			focuses: [Focus.Resources],
 		},
 		// Uniques
@@ -40,7 +40,7 @@ export const civsBonuses: CivBonusesEntry[] = [
 			building: Building.Castle,
 			name: 'Atlatl',
 			description: 'Skirmisher attack/range +1',
-			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Weak],
+			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Normal],
 			focuses: [Focus.ArcheryAnti],
 		},
 		{
@@ -50,7 +50,6 @@ export const civsBonuses: CivBonusesEntry[] = [
 			description: 'Infantry attack +4',
 			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Unavailable, Strength.Strong],
 			focuses: [Focus.Infantry],
-
 		},
 	]),
 
@@ -112,11 +111,11 @@ export const civsBonuses: CivBonusesEntry[] = [
 			team: true,
 			building: Building.ArcheryRange,
 			description: 'Archery Ranges production +20%',
-			focuses: [Focus.Archery],
+			focuses: [Focus.Archery, Focus.ArcheryAnti],
 		},
 		{
 			description: 'Town Centers wood cost -50%',
-			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Normal, Strength.Weak],
+			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Normal],
 			focuses: [Focus.Resources],
 		},
 		{
@@ -166,10 +165,12 @@ export const civsBonuses: CivBonusesEntry[] = [
 		{
 			description: 'Militia-line upgrades free',
 			focuses: [Focus.Infantry],
+			strengthByAge: [Strength.Unavailable, Strength.Strong, Strength.Normal, Strength.Normal],
 		},
 		{
 			description: 'Town Center costs -50% stone',
 			focuses: [Focus.Resources, Focus.ResourceStone],
+			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Normal],
 		},
 		{
 			description: 'Krepost can be built',
@@ -199,6 +200,114 @@ export const civsBonuses: CivBonusesEntry[] = [
 			description: 'Militia-line armor +5',
 			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Unavailable, Strength.Strong],
 			focuses: [Focus.Infantry],
+		},
+	]),
+
+	new CivBonusesEntry('Burmese', [Focus.Monk, Focus.Elephant], [
+		// Traits
+		{
+			team: true,
+			description: 'Relics are visible on the map from the game start',
+			focuses: [Focus.Monk, Focus.ResourceGold],
+		},
+		{
+			description: 'Lumber Camp technologies are free',
+			focuses: [Focus.Resources, Focus.ResourceWood],
+			strengthByAge: [Strength.Unavailable, Strength.Strong, Strength.Normal, Strength.Normal],
+		},
+		{
+			description: 'Infantry has +1/+2/+3 attack in the Feudal/Castle/Imperial Age',
+			focuses: [Focus.Infantry],
+			strengthByAge: [Strength.Unavailable, Strength.Normal, Strength.Strong, Strength.Strong],
+		},
+		{
+			building: Building.Monastery,
+			description: 'Monastery technologies are 50% cheaper',
+			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Normal, Strength.Strong],
+			focuses: [Focus.Monk],
+		},
+		// Uniques
+		{
+			type: BonusType.Unit,
+			building: Building.Castle,
+			name: 'Arambai',
+			description: 'Cavalry archer with a small attack bonus against rams.',
+			focuses: [Focus.Cavalry, Focus.Archery],
+		},
+		{
+			type: BonusType.Tech,
+			building: Building.Castle,
+			name: 'Howdah',
+			description: '+1 armor and +1 pierce armor to Battle Elephants',
+			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Strong],
+			focuses: [Focus.Elephant],
+		},
+		{
+			type: BonusType.Tech,
+			building: Building.Castle,
+			name: 'Manipur Cavalry',
+			description: 'Arambai and cavalry +3 attack against buildings and standard buildings',
+			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Unavailable, Strength.Strong],
+			focuses: [Focus.Cavalry],
+		},
+	]),
+
+	new CivBonusesEntry('Byzantines', [Focus.Defense], [
+		// Traits
+		{
+			team: true,
+			description: 'Monks heal 50% faster',
+			focuses: [Focus.Monk],
+		},
+		{
+			description: 'Buildings have +10%/+20%/+30%/+40% HP in the Dark/Feudal/Castle/Imperial Age',
+			focuses: [Focus.Defense],
+			strengthByAge: [Strength.Weak, Strength.Normal, Strength.Normal, Strength.Strong],
+		},
+		{
+			description: 'Camel Riders, Skirmishers, and the Spearman lines are 25% cheaper',
+			focuses: [Focus.Cavalry, Focus.Trash],
+			strengthByAge: [Strength.Unavailable, Strength.Strong, Strength.Strong, Strength.Strong],
+		},
+		{
+			building: Building.Dock,
+			description: 'Fire Ships attack 20% faster',
+			strengthByAge: [Strength.Unavailable, Strength.Strong, Strength.Normal, Strength.Normal],
+			focuses: [Focus.Navy],
+		},
+		{
+			description: 'Advancing to the Imperial Age is 33% cheaper',
+			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Unavailable],
+			focuses: [Focus.Resources, Focus.ResourceGold, Focus.ResourceFood],
+		},
+		{
+			description: 'Town Watch is free',
+			strengthByAge: [Strength.Unavailable, Strength.Strong, Strength.Unavailable, Strength.Unavailable],
+			focuses: [Focus.Resources, Focus.Defense, Focus.ResourceFood],
+		},
+		// Uniques
+		{
+			type: BonusType.Unit,
+			building: Building.Castle,
+			name: 'Cataphract',
+			description: 'Heavy cavalry unit that excels at combat against infantry.',
+			focuses: [Focus.Cavalry],
+		},
+		{
+			type: BonusType.Tech,
+			building: Building.Castle,
+			name: 'Greek Fire',
+			description: 'Increases the range of Fire Ships by +1',
+			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Strong],
+			focuses: [Focus.Navy],
+		},
+		{
+			type: BonusType.Tech,
+			building: Building.Castle,
+			name: 'Logistica',
+			description: 'Cataphracts cause trample damage, +6 attack vs infantry',
+			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Unavailable, Strength.Strong],
+			focuses: [Focus.Cavalry],
 		},
 	]),
 ]
