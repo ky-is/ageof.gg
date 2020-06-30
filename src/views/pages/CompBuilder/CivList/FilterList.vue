@@ -3,7 +3,7 @@
 		<h3 v-if="isFiltered" class="text-lg text-secondary smallcaps">{{ header }}</h3>
 		<UIStack
 			v-for="civ in civs" :key="civ.name"
-			direction="row" alignment="start" class="py-1"
+			direction="row" alignment="start" class="py-2"
 			@click="commit.selectedCiv('clicked', civ)" @mouseenter="commit.selectedCiv('hovered', civ)" @mouseleave="commit.selectedCiv('hovered', null)"
 		>
 			<CivIcon :civ="civ" dragAction="copy" class="w-10 -ml-1 mr-1" />

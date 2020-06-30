@@ -19,8 +19,8 @@
 				<UIStack v-for="[label, bonuses] in civ.getGroupedBonuses()" :key="label" direction="col">
 					<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
 					<li v-for="bonus in bonuses" :key="bonus.description">
-						<img :src="`/images/ages/${bonus.getFirstAvailableAge()}.png`" class="inline w-5 h-5">
-						<img v-if="bonus.getBonusTechIcon()" :src="`/images/techs/${bonus.getBonusTechIcon()}.png`" class="inline w-5 h-5">
+						<img :src="`/images/ages/${bonus.getFirstAvailableAge()}.png`" class="bonus-icon">
+						<img v-if="bonus.getBonusTechIcon()" :src="`/images/techs/${bonus.getBonusTechIcon()}.png`" class="bonus-icon">
 						<span v-if="bonus.name" class="text-secondary text-bold">{{ bonus.name }}: </span>
 						<span>{{ bonus.description }}</span>
 						<span v-if="bonus.clarification" class="text-secondary  hidden group-hover:inline"> ({{ bonus.clarification }})</span>
@@ -60,3 +60,9 @@ export default defineComponent({
 	},
 })
 </script>
+
+<style lang="postcss" scoped>
+.bonus-icon {
+	@apply inline w-5 h-5 mr-px;
+}
+</style>
