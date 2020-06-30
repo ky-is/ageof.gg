@@ -1,5 +1,5 @@
 <template>
-	<UIStack direction="row" class="h-full">
+	<UIStack direction="row">
 		<CivList />
 		<UIStack direction="col" class="flex-grow">
 			<CivInspector class="flex-1" />
