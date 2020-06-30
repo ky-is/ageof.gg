@@ -19,8 +19,8 @@
 				<UIStack v-for="[label, bonuses] in bonusGroups" :key="label" direction="col">
 					<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
 					<li v-for="bonus in bonuses" :key="bonus.description">
+						<img :src="`/images/ages/${bonus.getFirstAvailableAge()}.png`" class="inline w-5 h-5">
 						<img v-if="bonus.getBonusTechIcon()" :src="`/images/techs/${bonus.getBonusTechIcon()}.png`" class="inline w-5 h-5">
-						<img v-if="bonus.strengthByAge" :src="`/images/ages/${bonus.getFirstAvailableAge()}.png`" class="inline w-5 h-5">
 						<span v-if="bonus.name" class="text-secondary text-bold">{{ bonus.name }}: </span>
 						<span>{{ bonus.description }}</span>
 						<span v-if="bonus.clarification" class="text-secondary  hidden group-hover:inline"> ({{ bonus.clarification }})</span>

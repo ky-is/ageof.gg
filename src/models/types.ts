@@ -43,7 +43,10 @@ export class CivBonus {
 	}
 
 	getFirstAvailableAge (): CivAge {
-		if (!this.strengthByAge || this.strengthByAge[0] !== Strength.Unavailable) {
+		if (!this.strengthByAge) {
+			return this.building?.age ?? CivAge.Dark
+		}
+		if (this.strengthByAge[0] !== Strength.Unavailable) {
 			return CivAge.Dark
 		}
 		if (this.strengthByAge[1] !== Strength.Unavailable) {
