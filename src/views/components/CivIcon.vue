@@ -9,13 +9,13 @@
 <script lang="ts">
 import { defineComponent, PropType, ref, watch } from 'vue'
 
-import { CivilizationBonusesEntry } from '/@/models/types'
+import { CivBonusesEntry } from '/@/models/types'
 import { useStore } from '/@/models/store'
 
 export default defineComponent({
 	props: {
 		civ: {
-			type: Object as PropType<CivilizationBonusesEntry>,
+			type: Object as PropType<CivBonusesEntry>,
 			required: true,
 		},
 		dragAction: {

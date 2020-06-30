@@ -1,16 +1,16 @@
-export class CivilizationBonusesEntry {
+export class CivBonusesEntry {
 	name: string
 	focuses: Focus[]
-	bonuses: CivilizationBonus[]
+	bonuses: CivBonus[]
 
-	constructor (name: string, focuses: Focus[], bonuses: CivilizationBonusOptions[]) {
+	constructor (name: string, focuses: Focus[], bonuses: CivBonusOptions[]) {
 		this.name = name
 		this.focuses = focuses
-		this.bonuses = bonuses.map(options => new CivilizationBonus(options))
+		this.bonuses = bonuses.map(options => new CivBonus(options))
 	}
 }
 
-interface CivilizationBonusOptions {
+interface CivBonusOptions {
 	team?: boolean
 	type?: BonusType
 	building?: Building
@@ -21,7 +21,7 @@ interface CivilizationBonusOptions {
 	focuses: Focus[]
 }
 
-export class CivilizationBonus {
+export class CivBonus {
 	team?: boolean
 	type?: BonusType
 	building?: Building
@@ -31,7 +31,7 @@ export class CivilizationBonus {
 	strengthByAge?: Strength[]
 	focuses: Focus[]
 
-	constructor ({ team, type, building, name, description, clarification, strengthByAge, focuses }: CivilizationBonusOptions) {
+	constructor ({ team, type, building, name, description, clarification, strengthByAge, focuses }: CivBonusOptions) {
 		this.team = team
 		this.type = type
 		this.building = building

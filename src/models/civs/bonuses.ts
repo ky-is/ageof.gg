@@ -1,7 +1,7 @@
-import { BonusType, Building, Focus, Strength, CivilizationBonusesEntry } from '/@/models/types'
+import { BonusType, Building, Focus, Strength, CivBonusesEntry } from '/@/models/types'
 
-export const civsBonuses: CivilizationBonusesEntry[] = [
-	new CivilizationBonusesEntry('Aztecs', [Focus.Monk, Focus.Infantry], [
+export const civsBonuses: CivBonusesEntry[] = [
+	new CivBonusesEntry('Aztecs', [Focus.Monk, Focus.Infantry], [
 		// Traits
 		{
 			team: true,
@@ -54,7 +54,7 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 		},
 	]),
 
-	new CivilizationBonusesEntry('Berbers', [Focus.Cavalry, Focus.Navy], [
+	new CivBonusesEntry('Berbers', [Focus.Cavalry, Focus.Navy], [
 		// Traits
 		{
 			description: 'Villager move speed +10%',
@@ -106,7 +106,7 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 		},
 	]),
 
-	new CivilizationBonusesEntry('Britons', [Focus.Archery], [
+	new CivBonusesEntry('Britons', [Focus.Archery], [
 		// Traits
 		{
 			team: true,
@@ -156,7 +156,7 @@ export const civsBonuses: CivilizationBonusesEntry[] = [
 		},
 	]),
 
-	new CivilizationBonusesEntry('Bulgarians', [Focus.Infantry, Focus.Cavalry], [
+	new CivBonusesEntry('Bulgarians', [Focus.Infantry, Focus.Cavalry], [
 		// Traits
 		{
 			team: true,

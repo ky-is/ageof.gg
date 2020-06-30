@@ -19,7 +19,7 @@
 import { defineComponent, PropType } from 'vue'
 
 import { useStore } from '/@/models/store'
-import { CivilizationBonusesEntry } from '/@/models/types'
+import { CivBonusesEntry } from '/@/models/types'
 
 import UIStack from '/@/views/ui/Stack.vue'
 import CivIcon from '/@/views/components/CivIcon.vue'
@@ -36,7 +36,7 @@ export default defineComponent({
 			required: true,
 		},
 		civs: {
-			type: Array as PropType<CivilizationBonusesEntry[][]>,
+			type: Array as PropType<CivBonusesEntry[][]>,
 			required: true,
 		},
 		isFiltered: {

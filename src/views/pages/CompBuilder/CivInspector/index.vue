@@ -34,7 +34,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 
-import { BonusType, CivilizationBonus, Strength } from '/@/models/types'
+import { BonusType, CivBonus, Strength } from '/@/models/types'
 import { useStore } from '/@/models/store'
 
 import UIStack from '/@/views/ui/Stack.vue'
@@ -42,7 +42,7 @@ import CivIcon from '/@/views/components/CivIcon.vue'
 
 import FocusRow from './FocusRow.vue'
 
-function firstAgeFor (bonus: CivilizationBonus) {
+function firstAgeFor (bonus: CivBonus) {
 	const strengthByAge = bonus.strengthByAge
 	if (!strengthByAge || strengthByAge[0] !== Strength.Unavailable) {
 		return 'dark'
@@ -56,7 +56,7 @@ function firstAgeFor (bonus: CivilizationBonus) {
 	return 'imperial'
 }
 
-function getBonusTechIcon (bonus: CivilizationBonus) {
+function getBonusTechIcon (bonus: CivBonus) {
 	if (!bonus.strengthByAge || bonus.type !== BonusType.Tech) {
 		return null
 	}
@@ -90,7 +90,7 @@ export default defineComponent({
 			if (!civilization) {
 				return []
 			}
-			const bonusGroups: [string, CivilizationBonus[]][] = [['team', []], ['general', []], ['castle', []]]
+			const bonusGroups: [string, CivBonus[]][] = [['team', []], ['general', []], ['castle', []]]
 			for (const bonus of civilization.bonuses) {
 				let group
 				if (bonus.team) {

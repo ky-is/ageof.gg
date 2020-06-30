@@ -21,7 +21,7 @@
 <script lang="ts">
 import { defineComponent, PropType, ref, watch } from 'vue'
 
-import { CivilizationBonusesEntry } from '/@/models/types'
+import { CivBonusesEntry } from '/@/models/types'
 import { civsBonuses } from '/@/models/civs/bonuses'
 import { useStore } from '/@/models/store'
 
@@ -38,7 +38,7 @@ export default defineComponent({
 			required: true,
 		},
 		civ: {
-			type: Object as PropType<CivilizationBonusesEntry | null>,
+			type: Object as PropType<CivBonusesEntry | null>,
 			default: null,
 		},
 	},
