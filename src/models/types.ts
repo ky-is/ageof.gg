@@ -8,6 +8,32 @@ export class CivBonusesEntry {
 		this.focuses = focuses
 		this.bonuses = bonuses.map(options => new CivBonus(options))
 	}
+
+	getTeamFocuses () {
+		return this.bonuses.filter(bonus => bonus.team).flatMap(bonus => bonus.focuses)
+	}
+
+	getMinorFocuses () {
+		const majorFocuses = this.focuses
+		const bonuses = this.bonuses
+		return Array.from(new Set(bonuses.filter(bonus => !bonus.team).flatMap(bonus => bonus.focuses).filter(focus => !majorFocuses.includes(focus))))
+	}
+
+	getGroupedBonuses () {
+		const groupedBonuses: [string, CivBonus[]][] = [['team', []], ['general', []], ['castle', []]]
+		for (const bonus of this.bonuses) {
+			let group
+			if (bonus.team) {
+				group = groupedBonuses[0]
+			} else if (bonus.type !== undefined && bonus.type !== BonusType.Trait) {
+				group = groupedBonuses[2]
+			} else {
+				group = groupedBonuses[1]
+			}
+			group[1].push(bonus)
+		}
+		return groupedBonuses
+	}
 }
 
 interface CivBonusOptions {
