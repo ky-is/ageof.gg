@@ -19,8 +19,8 @@
 				<div v-for="[label, bonuses] in bonusGroups" :key="label">
 					<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
 					<li v-for="bonus in bonuses" :key="bonus.description">
-						<img v-if="getBonusTechIcon(bonus)" :src="`/images/techs/${getBonusTechIcon(bonus)}.png`" class="inline w-5 h-5">
-						<img v-if="bonus.strengthByAge" :src="`/images/ages/${firstAgeFor(bonus)}.png`" class="inline w-5 h-5">
+						<img v-if="bonus.getBonusTechIcon()" :src="`/images/techs/${bonus.getBonusTechIcon()}.png`" class="inline w-5 h-5">
+						<img v-if="bonus.strengthByAge" :src="`/images/ages/${bonus.getFirstAvailableAge()}.png`" class="inline w-5 h-5">
 						<span v-if="bonus.name" class="text-secondary text-bold">{{ bonus.name }}: </span>
 						<span>{{ bonus.description }}</span>
 						<span v-if="bonus.clarification" class="text-secondary  hidden group-hover:inline"> ({{ bonus.clarification }})</span>
@@ -34,34 +34,13 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 
-import { BonusType, CivBonus, Strength } from '/@/models/types'
+import { BonusType, CivBonus } from '/@/models/types'
 import { useStore } from '/@/models/store'
 
 import UIStack from '/@/views/ui/Stack.vue'
 import CivIcon from '/@/views/components/CivIcon.vue'
 
 import FocusRow from './FocusRow.vue'
-
-function firstAgeFor (bonus: CivBonus) {
-	const strengthByAge = bonus.strengthByAge
-	if (!strengthByAge || strengthByAge[0] !== Strength.Unavailable) {
-		return 'dark'
-	}
-	if (strengthByAge[1] !== Strength.Unavailable) {
-		return 'feudal'
-	}
-	if (strengthByAge[2] !== Strength.Unavailable) {
-		return 'castle'
-	}
-	return 'imperial'
-}
-
-function getBonusTechIcon (bonus: CivBonus) {
-	if (!bonus.strengthByAge || bonus.type !== BonusType.Tech) {
-		return null
-	}
-	return `unique-${bonus.strengthByAge[2] === Strength.Unavailable ? 2 : 1}`
-}
 
 export default defineComponent({
 	components: {
@@ -111,8 +90,6 @@ export default defineComponent({
 			teamFocuses,
 			bonusGroups,
 			commit: store.commit,
-			firstAgeFor,
-			getBonusTechIcon,
 		}
 	},
 })

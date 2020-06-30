@@ -41,6 +41,26 @@ export class CivBonus {
 		this.strengthByAge = strengthByAge
 		this.focuses = focuses
 	}
+
+	getFirstAvailableAge () {
+		if (!this.strengthByAge || this.strengthByAge[0] !== Strength.Unavailable) {
+			return 'dark'
+		}
+		if (this.strengthByAge[1] !== Strength.Unavailable) {
+			return 'feudal'
+		}
+		if (this.strengthByAge[2] !== Strength.Unavailable) {
+			return 'castle'
+		}
+		return 'imperial'
+	}
+
+	getBonusTechIcon () {
+		if (!this.strengthByAge || this.type !== BonusType.Tech) {
+			return null
+		}
+		return `unique-${this.strengthByAge[2] === Strength.Unavailable ? 2 : 1}`
+	}
 }
 
 export enum Focus {
