@@ -42,17 +42,17 @@ export class CivBonus {
 		this.focuses = focuses
 	}
 
-	getFirstAvailableAge () {
+	getFirstAvailableAge (): CivAge {
 		if (!this.strengthByAge || this.strengthByAge[0] !== Strength.Unavailable) {
-			return 'dark'
+			return CivAge.Dark
 		}
 		if (this.strengthByAge[1] !== Strength.Unavailable) {
-			return 'feudal'
+			return CivAge.Feudal
 		}
 		if (this.strengthByAge[2] !== Strength.Unavailable) {
-			return 'castle'
+			return CivAge.Castle
 		}
-		return 'imperial'
+		return CivAge.Imperial
 	}
 
 	getBonusTechIcon () {
@@ -95,10 +95,31 @@ export const enum BonusType {
 	Tech,
 }
 
-export const enum Building {
-	ArcheryRange,
-	Castle,
-	Dock,
-	Monastery,
-	Stable,
+export const enum CivAge {
+	Dark = 'dark',
+	Feudal = 'feudal',
+	Castle = 'castle',
+	Imperial = 'imperial',
+}
+
+interface Building {
+	age: CivAge
+}
+
+export const Building = {
+	ArcheryRange: {
+		age: CivAge.Feudal,
+	},
+	Dock: {
+		age: CivAge.Dark,
+	},
+	Castle: {
+		age: CivAge.Castle,
+	},
+	Monastery: {
+		age: CivAge.Castle,
+	},
+	Stable: {
+		age: CivAge.Feudal,
+	},
 }
