@@ -2,7 +2,7 @@
 	<img
 		:src="`/images/civs/${civ.name.toLowerCase()}.png`"
 		class="inline-block" :class="dragging ? (dragAction === 'move' ? 'opacity-0' : 'opacity-50') : null"
-		@dragstart="onDragStart" @dragend="onDragEnd"
+		@dragstart="onDragStart" @dragend="onDragEnd" @dblclick="commit.addTeamCiv(civ)"
 	>
 </template>
 
@@ -10,6 +10,7 @@
 import { defineComponent, PropType, ref, watch } from 'vue'
 
 import { CivilizationBonusesEntry } from '/@/models/types'
+import { useStore } from '/@/models/store'
 
 export default defineComponent({
 	props: {
@@ -24,6 +25,7 @@ export default defineComponent({
 	},
 
 	setup (props, context) {
+		const store = useStore()
 		const dragging = ref(false)
 		watch(dragging, (dragging) => {
 			context.emit('dragging', dragging)
@@ -43,6 +45,7 @@ export default defineComponent({
 		}
 
 		return {
+			commit: store.commit,
 			dragging,
 			onDragStart,
 			onDragEnd,
