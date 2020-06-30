@@ -208,7 +208,7 @@ export const civsBonuses: CivBonusesEntry[] = [
 		{
 			team: true,
 			description: 'Relics are visible on the map from the game start',
-			focuses: [Focus.Monk, Focus.ResourceGold],
+			focuses: [Focus.Relic],
 		},
 		{
 			description: 'Lumber Camp technologies are free',
