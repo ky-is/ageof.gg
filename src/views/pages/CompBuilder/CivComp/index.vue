@@ -1,21 +1,23 @@
 <template>
-	<div class="bg-gray-900">
+	<UIStack direction="col" class="bg-gray-900">
 		<h2 v-show="false">Team composition</h2>
 		<UIStack direction="col" switchAt="lg">
-			<div class="px-4">
-				<label for="teamSize" class="text-secondary">Team size:</label>
-				<select id="teamSize" v-model="teamSize" class="ui-select">
-					<option v-for="size in 4" :key="size" :value="size" class="ui-option">
-						{{ size }}
-					</option>
-				</select>
-				<label for="mapStyle" class="text-secondary"> Map style:</label>
-				<select id="mapStyle" v-model="mapStyle" class="ui-select">
-					<option v-for="map in mapStyles" :key="map" :value="map" class="ui-option">
-						{{ map }}
-					</option>
-				</select>
-			</div>
+			<UIStack direction="col">
+				<UIStack direction="row" alignment="baseline" class="px-4">
+					<label for="teamSize" class="text-secondary">Team size:</label>
+					<select id="teamSize" v-model="teamSize" class="ui-select">
+						<option v-for="size in 4" :key="size" :value="size" class="ui-option">
+							{{ size }}
+						</option>
+					</select>
+					<label for="mapStyle" class="text-secondary"> Map style:</label>
+					<select id="mapStyle" v-model="mapStyle" class="ui-select">
+						<option v-for="map in mapStyles" :key="map" :value="map" class="ui-option">
+							{{ map }}
+						</option>
+					</select>
+				</UIStack>
+			</UIStack>
 			<UIStack direction="row" justification="center" wrap class="flex-grow">
 				<div
 					v-for="size in teamSize" :key="size"
@@ -25,7 +27,7 @@
 				</div>
 			</UIStack>
 		</UIStack>
-	</div>
+	</UIStack>
 </template>
 
 <script lang="ts">

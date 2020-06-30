@@ -1,22 +1,22 @@
 <template>
-	<div class="w-full bg-gray-700">
-		<div v-if="civ" class="mx-4 my-2  group">
+	<div class="bg-gray-700">
+		<UIStack v-if="civ" direction="col" class="mx-4 my-2  group">
 			<UIStack direction="row" wrap>
 				<CivIcon :civ="civ" dragAction="copy" class="w-24 h-24 -ml-2" />
-				<div class="ml-1 leading-tight">
+				<UIStack direction="col" class="ml-1">
 					<h2 class="text-2xl font-light">{{ civ.name }}</h2>
-					<table>
+					<table class="leading-tight">
 						<FocusRow title="major" color="text-bonus-major" :focuses="civ.focuses" />
 						<FocusRow title="minor" color="text-bonus-general" :focuses="minorFocuses" />
 						<FocusRow title="team" color="text-bonus-team" :focuses="teamFocuses" />
 					</table>
-				</div>
+				</UIStack>
 				<UIStack direction="row" alignment="center" justification="center" class="ml-4">
 					<button class="ui-button my-2" @click="commit.addTeamCiv(civ)">+ to team</button>
 				</UIStack>
 			</UIStack>
 			<ul class="mt-2 list-disc list-inside">
-				<div v-for="[label, bonuses] in bonusGroups" :key="label">
+				<UIStack v-for="[label, bonuses] in bonusGroups" :key="label" direction="col">
 					<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
 					<li v-for="bonus in bonuses" :key="bonus.description">
 						<img v-if="bonus.getBonusTechIcon()" :src="`/images/techs/${bonus.getBonusTechIcon()}.png`" class="inline w-5 h-5">
@@ -25,9 +25,9 @@
 						<span>{{ bonus.description }}</span>
 						<span v-if="bonus.clarification" class="text-secondary  hidden group-hover:inline"> ({{ bonus.clarification }})</span>
 					</li>
-				</div>
+				</UIStack>
 			</ul>
-		</div>
+		</UIStack>
 	</div>
 </template>
 

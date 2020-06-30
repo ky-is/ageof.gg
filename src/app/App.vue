@@ -3,9 +3,9 @@
 		<UIStack tag="header" direction="row" alignment="center" class="h-12 px-4 bg-gray-900 text-white">
 			<h1 class="-mt-1 text-2xl font-thin ">ageof.gg</h1>
 		</UIStack>
-		<main class="text-gray-100 flex-grow">
 			<CompBuilder />
-		</main>
+		<UIStack tag="main" direction="col" class="flex-grow  text-gray-100">
+		</UIStack>
 	</UIStack>
 </template>
 

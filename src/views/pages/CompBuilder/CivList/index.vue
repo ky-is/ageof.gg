@@ -1,12 +1,12 @@
 <template>
-	<div class="w-64 h-full px-4 bg-gray-800">
+	<UIStack direction="col" class="w-64 px-4 bg-gray-800">
 		<h2 v-show="false">Civilizations</h2>
 		<UIStack direction="row" alignment="center" class="mt-2">
 			<FilterFocus v-model:selected="filterFocus" />
 		</UIStack>
 		<FilterList v-if="filteredCivs[0].length" header="primary" :civs="filteredCivs[0]" :isFiltered="!!filterFocus" />
 		<FilterList v-if="filteredCivs[1].length" header="secondary" :civs="filteredCivs[1]" :isFiltered="!!filterFocus" />
-	</div>
+	</UIStack>
 </template>
 
 <script lang="ts">
