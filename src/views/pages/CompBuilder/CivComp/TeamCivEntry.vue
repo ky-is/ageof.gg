@@ -1,5 +1,5 @@
 <template>
-	<div class="w-24 h-24 relative" @dragover.prevent @drop="onDrop">
+	<div class="w-24 h-24 relative" @dragover.prevent @drop.prevent="onDrop">
 		<div v-if="civ" class="absolute group" @mouseenter="commit.selectedCiv('hovered', civ)" @mouseleave="commit.selectedCiv('hovered', null)">
 			<CivIcon :civ="civ" dragAction="move" @click="commit.selectedCiv('clicked', civ)" @dragging="isDragging = $event" />
 			<button
