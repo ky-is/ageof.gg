@@ -3,14 +3,15 @@
 		<div v-if="civ" class="absolute group" @mouseenter="commit.selectedCiv('hovered', civ)" @mouseleave="commit.selectedCiv('hovered', null)">
 			<CivIcon :civ="civ" dragAction="move" @click="commit.selectedCiv('clicked', civ)" @dragging="isDragging = $event" />
 			<button
-				class="center-center  absolute left-0 top-0 w-8 h-8 bg-black opacity-50 rounded-full   hidden group-hover:block"
+				v-if="!isDragging"
+				class="center-center hidden group-hover:flex  absolute left-0 top-0 w-8 h-8 bg-black opacity-50 rounded-full"
 				@click="commit.removeTeamCiv(civ)"
 			>
 				╳
 			</button>
 		</div>
 		<div class="p-2 w-full h-full">
-			<div class="center-center  w-full h-full border-secondary text-secondary rounded-full text-3xl font-thin" :class="!civ || isDragging ? 'border' : null">
+			<div class="center-center flex  w-full h-full border-secondary text-secondary rounded-full text-3xl font-thin" :class="!civ || isDragging ? 'border' : null">
 				？
 			</div>
 		</div>

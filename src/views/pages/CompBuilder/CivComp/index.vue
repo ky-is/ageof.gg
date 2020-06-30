@@ -19,7 +19,7 @@
 			<UIStack direction="row" justification="center" wrap class="flex-grow">
 				<div
 					v-for="size in teamSize" :key="size"
-					class="center-center  flex-shrink-0" :class="size <= 2 ? 'w-1/2' : 'w-1/5'"
+					class="center-center flex  flex-shrink-0" :class="size <= 2 ? 'w-1/2' : 'w-1/5'"
 				>
 					<TeamCivEntry :index="size - 1" :civ="teamCivs[size - 1]" />
 				</div>
