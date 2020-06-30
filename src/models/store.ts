@@ -1,4 +1,4 @@
-import { reactive, computed } from 'vue'
+import { computed, reactive, readonly } from 'vue'
 
 import { CivilizationBonusesEntry } from '/@/models/types'
 
@@ -20,7 +20,7 @@ function createState() {
 const state = reactive(createState())
 
 const store = {
-	state,
+	state: readonly(state),
 
 	commit: {
 		selectedCiv (type: 'hovered' | 'clicked', civ: CivilizationBonusesEntry | null) {
