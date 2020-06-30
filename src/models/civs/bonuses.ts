@@ -310,4 +310,57 @@ export const civsBonuses: CivBonusesEntry[] = [
 			focuses: [Focus.Cavalry],
 		},
 	]),
+
+	new CivBonusesEntry('Celts', [Focus.Infantry, Focus.Siege], [
+		// Traits
+		{
+			team: true,
+			description: 'Siege Workshops work 20% faster.',
+			focuses: [Focus.Siege],
+		},
+		{
+			description: 'Infantry move 15% faster',
+			focuses: [Focus.Infantry],
+			strengthByAge: [Strength.Normal, Strength.Normal, Strength.Normal, Strength.Strong],
+		},
+		{
+			description: 'Lumberjacks work 15% faster',
+			focuses: [Focus.Resources, Focus.ResourceWood],
+			strengthByAge: [Strength.Normal, Strength.Strong, Strength.Normal, Strength.Normal],
+		},
+		{
+			description: 'Siege weapons fire +20% faster',
+			focuses: [Focus.Siege],
+			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Normal, Strength.Normal],
+		},
+		{
+			description: 'Enemy herdables can be converted regardless of enemy units next to them',
+			focuses: [Focus.Resources, Focus.ResourceFood],
+			strengthByAge: [Strength.Normal, Strength.Weak, Strength.Weak, Strength.Weak],
+		},
+		// Uniques
+		{
+			type: BonusType.Unit,
+			building: Building.Castle,
+			name: 'Woad Raider',
+			description: 'Quick infantry unit with an attack bonus against standard buildings',
+			focuses: [Focus.Infantry],
+		},
+		{
+			type: BonusType.Tech,
+			building: Building.Castle,
+			name: 'Stronghold',
+			description: 'Castles and towers fire 25% faster',
+			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Strong],
+			focuses: [Focus.Defense],
+		},
+		{
+			type: BonusType.Tech,
+			building: Building.Castle,
+			name: 'Furor Celtica',
+			description: 'Siege Workshop units +40% HP',
+			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Unavailable, Strength.Strong],
+			focuses: [Focus.Siege],
+		},
+	]),
 ]
