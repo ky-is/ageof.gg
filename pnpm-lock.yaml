@@ -1,12 +1,12 @@
 dependencies:
   tailwindcss: 1.4.6
-  vue: 3.0.0-beta.16
+  vue: 3.0.0-beta.17
 devDependencies:
   '@ky-is/eslint-config': 2.1.0_eslint@7.3.1
   '@types/node': 14.0.14
   '@typescript-eslint/eslint-plugin': 3.5.0_65f44fdb31e331ad1d8edb13f8ed8a6c
   '@typescript-eslint/parser': 3.5.0_eslint@7.3.1+typescript@3.9.5
-  '@vue/compiler-sfc': 3.0.0-beta.16_vue@3.0.0-beta.16
+  '@vue/compiler-sfc': 3.0.0-beta.17_vue@3.0.0-beta.17
   '@vue/eslint-config-typescript': 5.0.2_1570e69ad655193ee29a266da8280234
   autoprefixer: 9.8.4
   eslint: 7.3.1
@@ -374,14 +374,31 @@ packages:
       '@vue/shared': 3.0.0-beta.16
       estree-walker: 0.8.1
       source-map: 0.6.1
+    dev: true
     resolution:
       integrity: sha512-VheMwTReuptHLWGNiFFRXYk8bvESwxWB/X/Si8Gz3XitxR/d8bNqEdGBE1HchXggb2oFrtz/Qd8aNeLDk4MUcA==
+  /@vue/compiler-core/3.0.0-beta.17:
+    dependencies:
+      '@babel/parser': 7.10.4
+      '@babel/types': 7.10.4
+      '@vue/shared': 3.0.0-beta.17
+      estree-walker: 0.8.1
+      source-map: 0.6.1
+    resolution:
+      integrity: sha512-UHv7YFUremfSXf3CAeEoRZOX+n26IZQxFRwREw55spoMRjjpNIH+sSLQz3pwgTnClm90GlzRMzOFYTOQrzAnfQ==
   /@vue/compiler-dom/3.0.0-beta.16:
     dependencies:
       '@vue/compiler-core': 3.0.0-beta.16
       '@vue/shared': 3.0.0-beta.16
+    dev: true
     resolution:
       integrity: sha512-2tI3wYN6ntJ78WbMURZ6A4CMXpeRUb90AIQBvt/eHCAgmNz6M8QwJJdZ+XrgjLRzWB/NJlm0V+d5phcNTOIT5Q==
+  /@vue/compiler-dom/3.0.0-beta.17:
+    dependencies:
+      '@vue/compiler-core': 3.0.0-beta.17
+      '@vue/shared': 3.0.0-beta.17
+    resolution:
+      integrity: sha512-wj4egu6KzsJy1EG/MHgbEVfVH8oMIGoFqjwkbCyqE5G0uRPAPi0WYHY5lyjAU2gI7cfGxIcFx7UsWT5D9XH0/g==
   /@vue/compiler-sfc/3.0.0-beta.16_vue@3.0.0-beta.16:
     dependencies:
       '@vue/compiler-core': 3.0.0-beta.16
@@ -402,6 +419,26 @@ packages:
       vue: 3.0.0-beta.16
     resolution:
       integrity: sha512-VTDi9A8tQaB7BjzVDcSPKp2z8/u3XcrkFYaTv/FxdVqr9Vpu7IN4ioPochQhB+Fpg07udhJzUP0dCei6xdG//g==
+  /@vue/compiler-sfc/3.0.0-beta.17_vue@3.0.0-beta.17:
+    dependencies:
+      '@vue/compiler-core': 3.0.0-beta.17
+      '@vue/compiler-dom': 3.0.0-beta.17
+      '@vue/compiler-ssr': 3.0.0-beta.17
+      '@vue/shared': 3.0.0-beta.17
+      consolidate: 0.15.1
+      hash-sum: 2.0.0
+      lru-cache: 5.1.1
+      merge-source-map: 1.1.0
+      postcss: 7.0.32
+      postcss-modules: 3.2.0
+      postcss-selector-parser: 6.0.2
+      source-map: 0.6.1
+      vue: 3.0.0-beta.17
+    dev: true
+    peerDependencies:
+      vue: 3.0.0-beta.17
+    resolution:
+      integrity: sha512-MpU0rtDNzSWyhoLCqcov8XyrXIO8lqwA8Nlt7uy/EWndZv/Vw2VQVQYmfQQZzv2fDQ39f4s7LYcgEM5prRHX1Q==
   /@vue/compiler-ssr/3.0.0-beta.16:
     dependencies:
       '@vue/compiler-dom': 3.0.0-beta.16
@@ -409,6 +446,13 @@ packages:
     dev: true
     resolution:
       integrity: sha512-2dI26Iefhz7kDNUzdlIeX/jhttctQ2RjLMM8yoKIMLoBXOqanog5xpAD8asKrnqbuvFpbHbVqGaid+BSHU4AaA==
+  /@vue/compiler-ssr/3.0.0-beta.17:
+    dependencies:
+      '@vue/compiler-dom': 3.0.0-beta.17
+      '@vue/shared': 3.0.0-beta.17
+    dev: true
+    resolution:
+      integrity: sha512-iXL/xhb2q9NQgzvIVuwgqJVnaeTNgg2YGGkmajW4KGVEfwcYOqIr8hg2RpEDeTQrHZwIpL6umqTER5cXYgYoew==
   /@vue/eslint-config-typescript/5.0.2_1570e69ad655193ee29a266da8280234:
     dependencies:
       '@typescript-eslint/eslint-plugin': 3.5.0_65f44fdb31e331ad1d8edb13f8ed8a6c
@@ -427,24 +471,49 @@ packages:
   /@vue/reactivity/3.0.0-beta.16:
     dependencies:
       '@vue/shared': 3.0.0-beta.16
+    dev: true
     resolution:
       integrity: sha512-T8iceLcl0ZYulnUvUR/c6LZAGssR1PowHM9VsJvS4QmR3NMm67bGR/drlYUN4pJ4Wd3zPkoO6e9bSOf5g/uk2Q==
+  /@vue/reactivity/3.0.0-beta.17:
+    dependencies:
+      '@vue/shared': 3.0.0-beta.17
+    resolution:
+      integrity: sha512-LPpRAEljlrZjTwTmIxZNMePwTOapWXfAcDRMyFJ/L1MGumfyPl1jHflE8upcUKtUWpXt18+MpNywXwskpr4+4w==
   /@vue/runtime-core/3.0.0-beta.16:
     dependencies:
       '@vue/reactivity': 3.0.0-beta.16
       '@vue/shared': 3.0.0-beta.16
+    dev: true
     resolution:
       integrity: sha512-l1XepDGO3RTsM5LyOsTIhFe5Mk+ULVMsN9fJqdnecyIc4tOhos/z1V75QTipGf89FSxqgG2rKaF+wdDWwQT+oA==
+  /@vue/runtime-core/3.0.0-beta.17:
+    dependencies:
+      '@vue/reactivity': 3.0.0-beta.17
+      '@vue/shared': 3.0.0-beta.17
+    resolution:
+      integrity: sha512-HOud3nuNAxBPPM66Mj4NRomdbeqIdR5ofSB+JgRHn/gS+7C13A/ww1XsKkjN6IzE8VgeJ3XHEBHrtDvBRYPfcg==
   /@vue/runtime-dom/3.0.0-beta.16:
     dependencies:
       '@vue/runtime-core': 3.0.0-beta.16
       '@vue/shared': 3.0.0-beta.16
       csstype: 2.6.10
+    dev: true
     resolution:
       integrity: sha512-F1KHj6nQ+1k8CmU/fHzmsypsCI4qEH2MnxL87gbybs+HCnYNPITetlTEHS28OZh1ZO8i1vTwA6QlHH6QZ9dUSQ==
+  /@vue/runtime-dom/3.0.0-beta.17:
+    dependencies:
+      '@vue/runtime-core': 3.0.0-beta.17
+      '@vue/shared': 3.0.0-beta.17
+      csstype: 2.6.10
+    resolution:
+      integrity: sha512-FPV3fT8AFRQHuvjQ5/QxifU3LlMnyg1FzMHENedcu6lRrmUpnttexkOa51nZOrlFPI+Tz3mk297lohCp1QCMEA==
   /@vue/shared/3.0.0-beta.16:
+    dev: true
     resolution:
       integrity: sha512-WnRIlzyim1ImEyhhPBc4p8PeZjdEhbMBhvxP9mcS2h6jiM0QELEOO+Ek5hNGuNJ8nhurtfGt0igILhxxQRbXtA==
+  /@vue/shared/3.0.0-beta.17:
+    resolution:
+      integrity: sha512-4vqmNjeY3prPbH2K9hKmXnzfU34ytT+Az971Ybc5WcjG6Vu+gEkXLHAQvQIoi9AYhCCuunvUi1r5IWFhGSHLww==
   /accepts/1.3.7:
     dependencies:
       mime-types: 2.1.27
@@ -2879,8 +2948,16 @@ packages:
       '@vue/compiler-dom': 3.0.0-beta.16
       '@vue/runtime-dom': 3.0.0-beta.16
       '@vue/shared': 3.0.0-beta.16
+    dev: true
     resolution:
       integrity: sha512-RbaoKHX+egACIfIW76py/0+xtCj/Iol9ggmHPovXf92vJlI3PlLMkiOHdCiB5V8Yq3vLNmnakrM0x+k7pgcomw==
+  /vue/3.0.0-beta.17:
+    dependencies:
+      '@vue/compiler-dom': 3.0.0-beta.17
+      '@vue/runtime-dom': 3.0.0-beta.17
+      '@vue/shared': 3.0.0-beta.17
+    resolution:
+      integrity: sha512-FrqKMCFbs3FHnYHf2uX7hkk0DKX+14SixX1vV5to8pwA97A55mrMmm+VqywRbPWfS2If9OByvhwuRL1+HRLY8g==
   /wcwidth/1.0.1:
     dependencies:
       defaults: 1.0.3
@@ -2948,7 +3025,7 @@ specifiers:
   '@types/node': ^14.0.14
   '@typescript-eslint/eslint-plugin': ^3.5.0
   '@typescript-eslint/parser': ^3.5.0
-  '@vue/compiler-sfc': ^3.0.0-beta.16
+  '@vue/compiler-sfc': ^3.0.0-beta.17
   '@vue/eslint-config-typescript': ^5.0.2
   autoprefixer: ^9.8.4
   eslint: ^7.3.1
@@ -2956,4 +3033,4 @@ specifiers:
   tailwindcss: ^1.4.6
   typescript: ^3.9.5
   vite: ^1.0.0-beta.8
-  vue: ^3.0.0-beta.16
+  vue: ^3.0.0-beta.17
