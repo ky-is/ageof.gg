@@ -19,8 +19,15 @@
 				<UIStack v-for="[label, bonuses] in civ.getGroupedBonuses()" :key="label" direction="col">
 					<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
 					<li v-for="bonus in bonuses" :key="bonus.description">
-						<img :src="`/images/ages/${bonus.getFirstAvailableAge()}.png`" class="bonus-icon">
-						<img v-if="bonus.getBonusTechIcon()" :src="`/images/techs/${bonus.getBonusTechIcon()}.png`" class="bonus-icon">
+						<img
+							:src="`/images/ages/${bonus.getFirstAvailableAge()}.png`" :alt="bonus.getFirstAvailableAge() + ' age'"
+							class="bonus-icon"
+						>
+						<img
+							v-if="bonus.getBonusTechAge()"
+							:src="`/images/techs/unique-${bonus.getBonusTechAge()}.png`" :alt="`${bonus.getBonusTechAge()} age unique tech`"
+							class="bonus-icon"
+						>
 						<span v-if="bonus.name" class="text-secondary text-bold">{{ bonus.name }}: </span>
 						<span>{{ bonus.description }}</span>
 						<span v-if="bonus.clarification" class="text-secondary  hidden group-hover:inline"> ({{ bonus.clarification }})</span>

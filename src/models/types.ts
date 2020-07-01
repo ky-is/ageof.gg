@@ -84,11 +84,11 @@ export class CivBonus {
 		return CivAge.Imperial
 	}
 
-	getBonusTechIcon () {
+	getBonusTechAge (): CivAge | null {
 		if (!this.strengthByAge || this.type !== BonusType.Tech) {
 			return null
 		}
-		return `unique-${this.strengthByAge[2] === Strength.Unavailable ? 2 : 1}`
+		return this.strengthByAge[2] === Strength.Unavailable ? CivAge.Imperial : CivAge.Castle
 	}
 }
 

@@ -1,6 +1,6 @@
 <template>
 	<img
-		:src="`/images/civs/${civ.name.toLowerCase()}.png`"
+		:src="`/images/civs/${civ.name.toLowerCase()}.png`" :alt="civ.name"
 		class="inline-block" :class="dragging ? (dragAction === 'move' ? 'opacity-0' : 'opacity-50') : null"
 		@dragstart="onDragStart" @dragend="onDragEnd" @dblclick="commit.addTeamCiv(civ)"
 	>
