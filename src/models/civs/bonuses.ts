@@ -182,7 +182,7 @@ export const civsBonuses: CivBonusesEntry[] = [
 			type: BonusType.Unit,
 			building: Building.Castle,
 			name: 'Konnik',
-			description: 'Cavalry that fights on as infantry when felled.',
+			description: 'Cavalry that fights on as infantry when felled',
 			focuses: [Focus.Cavalry, Focus.Infantry],
 		},
 		{
@@ -231,7 +231,7 @@ export const civsBonuses: CivBonusesEntry[] = [
 			type: BonusType.Unit,
 			building: Building.Castle,
 			name: 'Arambai',
-			description: 'Cavalry archer with a small attack bonus against rams.',
+			description: 'Cavalry archer with a small attack bonus against rams',
 			focuses: [Focus.Cavalry, Focus.Archery],
 		},
 		{
@@ -290,7 +290,7 @@ export const civsBonuses: CivBonusesEntry[] = [
 			type: BonusType.Unit,
 			building: Building.Castle,
 			name: 'Cataphract',
-			description: 'Heavy cavalry unit that excels at combat against infantry.',
+			description: 'Heavy cavalry unit that excels at combat against infantry',
 			focuses: [Focus.Cavalry, Focus.InfantryAnti],
 		},
 		{
@@ -305,7 +305,7 @@ export const civsBonuses: CivBonusesEntry[] = [
 			type: BonusType.Tech,
 			building: Building.Castle,
 			name: 'Logistica',
-			description: 'Cataphracts cause trample damage, +6 attack vs infantry',
+			description: 'Cataphracts cause trample damage, attack vs infantry +6',
 			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Unavailable, Strength.Strong],
 			focuses: [Focus.Cavalry],
 		},
@@ -319,7 +319,7 @@ export const civsBonuses: CivBonusesEntry[] = [
 			focuses: [Focus.Siege],
 		},
 		{
-			description: 'Infantry move 15% faster',
+			description: 'Infantry move speed +15%',
 			focuses: [Focus.Infantry],
 			strengthByAge: [Strength.Normal, Strength.Normal, Strength.Normal, Strength.Strong],
 		},
