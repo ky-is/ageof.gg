@@ -28,8 +28,11 @@ module.exports = {
 			'./src/**/*.ts',
 		],
 		options: {
-			whitelist: ['flex-row', 'flex-col'],
-			whitelistPatterns: [/^items-(start|center|baseline|end)$/, /^justify-(start|center|end)$/],
+			whitelistPatterns: [
+				/flex-(row|col)$/,
+				/^items-(start|center|baseline|end)$/,
+				/^justify-(start|center|end)$/,
+			],
 		},
 	},
 }
