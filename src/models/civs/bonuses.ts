@@ -92,14 +92,14 @@ export const civsBonuses: CivBonusesEntry[] = [
 			building: Building.Castle,
 			name: 'Kasbah',
 			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Strong],
-			description: 'Castle production +25%',
+			description: 'Castle work speed +25%',
 			focuses: [Focus.UniqueUnits],
 		},
 		{
 			type: BonusType.Tech,
 			building: Building.Castle,
 			name: 'Maghrebi Camels',
-			description: 'Camel units regenerate',
+			description: 'Camel units regenerate HP',
 			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Unavailable, Strength.Strong],
 			focuses: [Focus.Cavalry, Focus.UniqueUnits],
 		},
@@ -115,7 +115,7 @@ export const civsBonuses: CivBonusesEntry[] = [
 		{
 			team: true,
 			building: Building.ArcheryRange,
-			description: 'Archery Ranges production +20%',
+			description: 'Archery Range work speed +20%',
 			focuses: [Focus.Archery, Focus.ArcheryAnti],
 		},
 		{
