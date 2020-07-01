@@ -10,6 +10,11 @@ export const civsBonuses: CivBonusesEntry[] = [
 			focuses: [Focus.Relic],
 		},
 		{
+			description: 'Start with +50 gold',
+			strengthByAge: [Strength.Strong, Strength.Normal, Strength.Weak, Strength.Weak],
+			focuses: [Focus.Resources],
+		},
+		{
 			description: 'Villager carry capacity +5',
 			focuses: [Focus.Resources],
 		},
@@ -21,11 +26,6 @@ export const civsBonuses: CivBonusesEntry[] = [
 			building: Building.Monastery,
 			description: 'Monk hitpoints +5 _per_ Monastery technology',
 			focuses: [Focus.Monk],
-		},
-		{
-			description: 'Start with +50 gold',
-			strengthByAge: [Strength.Strong, Strength.Normal, Strength.Weak, Strength.Weak],
-			focuses: [Focus.Resources],
 		},
 		// Uniques
 		{
@@ -60,15 +60,15 @@ export const civsBonuses: CivBonusesEntry[] = [
 			focuses: [Focus.Resources],
 		},
 		{
+			building: Building.Dock,
+			description: 'Ship move speed +10%',
+			focuses: [Focus.Navy],
+		},
+		{
 			building: Building.Stable,
 			description: 'Stable unit cost -10% Castle, -20% Imperial',
 			focuses: [Focus.Cavalry],
 			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Normal, Strength.Strong],
-		},
-		{
-			building: Building.Dock,
-			description: 'Ship move speed +10%',
-			focuses: [Focus.Navy],
 		},
 		// Uniques
 		{
@@ -108,6 +108,11 @@ export const civsBonuses: CivBonusesEntry[] = [
 	new CivBonusesEntry('Britons', [Focus.Archery], [
 		// Traits
 		{
+			description: 'Shepherds gathering speed +25%',
+			strengthByAge: [Strength.Strong, Strength.Weak, Strength.Unavailable, Strength.Unavailable],
+			focuses: [Focus.Resources, Focus.ResourceFood],
+		},
+		{
 			team: true,
 			building: Building.ArcheryRange,
 			description: 'Archery Ranges production +20%',
@@ -117,11 +122,6 @@ export const civsBonuses: CivBonusesEntry[] = [
 			description: 'Town Centers wood cost -50%',
 			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Normal],
 			focuses: [Focus.Resources],
-		},
-		{
-			description: 'Shepherds gathering speed +25%',
-			strengthByAge: [Strength.Strong, Strength.Weak, Strength.Unavailable, Strength.Unavailable],
-			focuses: [Focus.Resources, Focus.ResourceFood],
 		},
 		{
 			description: 'Foot archers range +1 Castle/+1 Imperial',
@@ -207,7 +207,7 @@ export const civsBonuses: CivBonusesEntry[] = [
 		// Traits
 		{
 			team: true,
-			description: 'Relics are visible on the map from the game start',
+			description: 'Relics visible on the map from the game start',
 			focuses: [Focus.Relic],
 		},
 		{
@@ -216,13 +216,13 @@ export const civsBonuses: CivBonusesEntry[] = [
 			strengthByAge: [Strength.Unavailable, Strength.Strong, Strength.Normal, Strength.Normal],
 		},
 		{
-			description: 'Infantry has +1/+2/+3 attack in the Feudal/Castle/Imperial Age',
+			description: 'Infantry attack +1 Feudal/+2 Castle/+3 Imperial Age',
 			focuses: [Focus.Infantry],
 			strengthByAge: [Strength.Unavailable, Strength.Normal, Strength.Strong, Strength.Strong],
 		},
 		{
 			building: Building.Monastery,
-			description: 'Monastery technologies are 50% cheaper',
+			description: 'Monastery technology cost -50%',
 			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Normal, Strength.Strong],
 			focuses: [Focus.Monk],
 		},
@@ -238,7 +238,7 @@ export const civsBonuses: CivBonusesEntry[] = [
 			type: BonusType.Tech,
 			building: Building.Castle,
 			name: 'Howdah',
-			description: '+1 armor and +1 pierce armor to Battle Elephants',
+			description: 'Battle Elephants +1 armor/pierce armor',
 			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Strong],
 			focuses: [Focus.Elephantry],
 		},
@@ -246,7 +246,7 @@ export const civsBonuses: CivBonusesEntry[] = [
 			type: BonusType.Tech,
 			building: Building.Castle,
 			name: 'Manipur Cavalry',
-			description: 'Arambai and cavalry +3 attack against buildings and standard buildings',
+			description: 'Arambai and cavalry +3 attack against buildings',
 			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Unavailable, Strength.Strong],
 			focuses: [Focus.Cavalry],
 		},
@@ -256,34 +256,34 @@ export const civsBonuses: CivBonusesEntry[] = [
 		// Traits
 		{
 			team: true,
-			description: 'Monks heal 50% faster',
+			description: 'Monks heal speed +50%',
 			focuses: [Focus.Monk],
 		},
 		{
-			description: 'Buildings have +10%/+20%/+30%/+40% HP in the Dark/Feudal/Castle/Imperial Age',
+			description: 'Building HP +10% Dark/+20% Feudal/+30% Castle/+40% Imperial Age',
 			focuses: [Focus.Defense],
 			strengthByAge: [Strength.Weak, Strength.Normal, Strength.Normal, Strength.Strong],
 		},
 		{
-			description: 'Camel Riders, Skirmishers, and the Spearman lines are 25% cheaper',
-			focuses: [Focus.Cavalry, Focus.Trash],
+			description: 'Camel Rider/Skirmisher/Spearman lines cost -25%',
+			focuses: [Focus.Trash, Focus.ArcheryAnti, Focus.CavalryAnti],
 			strengthByAge: [Strength.Unavailable, Strength.Strong, Strength.Strong, Strength.Strong],
 		},
 		{
 			building: Building.Dock,
-			description: 'Fire Ships attack 20% faster',
+			description: 'Fire Ship attack speed +20%',
 			strengthByAge: [Strength.Unavailable, Strength.Strong, Strength.Normal, Strength.Normal],
 			focuses: [Focus.Navy],
 		},
 		{
-			description: 'Advancing to the Imperial Age is 33% cheaper',
-			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Unavailable],
-			focuses: [Focus.Resources, Focus.ResourceGold, Focus.ResourceFood],
-		},
-		{
-			description: 'Town Watch is free',
+			description: 'Town Watch research free',
 			strengthByAge: [Strength.Unavailable, Strength.Strong, Strength.Unavailable, Strength.Unavailable],
 			focuses: [Focus.Resources, Focus.Defense, Focus.ResourceFood],
+		},
+		{
+			description: 'Imperial Age cost -33%',
+			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Unavailable],
+			focuses: [Focus.Resources, Focus.ResourceGold, Focus.ResourceFood],
 		},
 		// Uniques
 		{
@@ -291,13 +291,13 @@ export const civsBonuses: CivBonusesEntry[] = [
 			building: Building.Castle,
 			name: 'Cataphract',
 			description: 'Heavy cavalry unit that excels at combat against infantry.',
-			focuses: [Focus.Cavalry],
+			focuses: [Focus.Cavalry, Focus.InfantryAnti],
 		},
 		{
 			type: BonusType.Tech,
 			building: Building.Castle,
 			name: 'Greek Fire',
-			description: 'Increases the range of Fire Ships by +1',
+			description: 'Fire Ship range +1',
 			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Strong],
 			focuses: [Focus.Navy],
 		},
@@ -315,7 +315,7 @@ export const civsBonuses: CivBonusesEntry[] = [
 		// Traits
 		{
 			team: true,
-			description: 'Siege Workshops work 20% faster.',
+			description: 'Siege Workshops work speed +20%',
 			focuses: [Focus.Siege],
 		},
 		{
@@ -324,19 +324,19 @@ export const civsBonuses: CivBonusesEntry[] = [
 			strengthByAge: [Strength.Normal, Strength.Normal, Strength.Normal, Strength.Strong],
 		},
 		{
-			description: 'Lumberjacks work 15% faster',
+			description: 'Lumberjacks work speed +15%',
 			focuses: [Focus.Resources, Focus.ResourceWood],
 			strengthByAge: [Strength.Normal, Strength.Strong, Strength.Normal, Strength.Normal],
-		},
-		{
-			description: 'Siege weapons fire +20% faster',
-			focuses: [Focus.Siege],
-			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Normal, Strength.Normal],
 		},
 		{
 			description: 'Enemy herdables can be converted regardless of enemy units next to them',
 			focuses: [Focus.Resources, Focus.ResourceFood],
 			strengthByAge: [Strength.Normal, Strength.Weak, Strength.Weak, Strength.Weak],
+		},
+		{
+			description: 'Siege weapon attack speed +20%',
+			focuses: [Focus.Siege],
+			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Normal, Strength.Normal],
 		},
 		// Uniques
 		{
@@ -350,7 +350,7 @@ export const civsBonuses: CivBonusesEntry[] = [
 			type: BonusType.Tech,
 			building: Building.Castle,
 			name: 'Stronghold',
-			description: 'Castles and towers fire 25% faster',
+			description: 'Castles/towers attack speed +25%',
 			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Strong, Strength.Strong],
 			focuses: [Focus.Defense],
 		},
@@ -358,7 +358,7 @@ export const civsBonuses: CivBonusesEntry[] = [
 			type: BonusType.Tech,
 			building: Building.Castle,
 			name: 'Furor Celtica',
-			description: 'Siege Workshop units +40% HP',
+			description: 'Siege Workshop units HP +40%',
 			strengthByAge: [Strength.Unavailable, Strength.Unavailable, Strength.Unavailable, Strength.Strong],
 			focuses: [Focus.Siege],
 		},
