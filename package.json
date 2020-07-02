@@ -3,7 +3,8 @@
 	"version": "0.1.0",
 	"scripts": {
 		"dev": "vite",
-		"build": "vite build"
+		"build": "vite build",
+		"generate:techtree": "node scripts/techTree.js"
 	},
 	"dependencies": {
 		"tailwindcss": "^1.4.6",
