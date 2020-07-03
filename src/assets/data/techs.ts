@@ -9,7 +9,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 755, 1, -1, 0 ],
 		],
 	},
@@ -23,7 +23,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 755, 757, -1, 0 ],
 			[ 3, 886, 887, -1, 0 ],
 		],
@@ -38,7 +38,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 4, -1, 0, 12, 1 ],
 			[ 4, -1, 0, 1, 1 ],
 			[ 4, -1, 0, 23, 1 ],
@@ -57,7 +57,7 @@ export default [
 		],
 		"time": 70,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, 751, -1, 0, 40 ],
 			[ 4, 752, -1, 0, 40 ],
 			[ 4, 753, -1, 0, 40 ],
@@ -73,7 +73,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 5, 35, -1, 0, 1.4 ],
 			[ 5, 280, -1, 0, 1.4 ],
 			[ 5, 542, -1, 0, 1.4 ],
@@ -99,7 +99,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 5, -1, 13, 5, 1.5 ],
 			[ 5, -1, 55, 5, 1.5 ],
 		],
@@ -114,7 +114,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 5, 558, -1, 5, 1.3 ],
 			[ 5, 239, -1, 5, 1.3 ],
 			[ 5, 1132, -1, 5, 1.3 ],
@@ -130,7 +130,7 @@ export default [
 		],
 		"time": 25,
 		"icon": 69,
-		"effects": [
+		"commands": [
 			[ 4, -1, 3, 1, 4 ],
 			[ 4, -1, 52, 1, 4 ],
 		],
@@ -145,7 +145,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, 282, -1, 0, 30 ],
 			[ 4, 556, -1, 0, 30 ],
 			[ 4, 329, -1, 0, 30 ],
@@ -166,7 +166,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, 236, -1, 12, 2 ],
 			[ 4, 236, -1, 1, 2 ],
 			[ 4, 236, -1, 23, 2 ],
@@ -191,7 +191,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 1, 194, 0, -1, 1 ],
 			[ 4, 82, -1, 12, 3 ],
 			[ 4, 82, -1, 23, 3 ],
@@ -208,7 +208,7 @@ export default [
 		],
 		"time": 70,
 		"icon": 0,
-		"effects": [
+		"commands": [
 			[ 1, 36, 1, -1, 175 ],
 		],
 	},
@@ -222,7 +222,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 1,
-		"effects": [
+		"commands": [
 			[ 1, 36, 1, -1, 125 ],
 			[ 5, 259, -1, 13, 1 ],
 			[ 5, 214, -1, 13, 1 ],
@@ -240,7 +240,7 @@ export default [
 		],
 		"time": 20,
 		"icon": 2,
-		"effects": [
+		"commands": [
 			[ 1, 36, 1, -1, 75 ],
 			[ 5, 259, -1, 13, 1 ],
 			[ 5, 214, -1, 13, 1 ],
@@ -256,7 +256,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 58,
-		"effects": [
+		"commands": [
 			[ 1, 78, 0, -1, 0.15 ],
 		],
 	},
@@ -270,7 +270,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Banking",
@@ -282,7 +282,7 @@ export default [
 		],
 		"time": 70,
 		"icon": 3,
-		"effects": [
+		"commands": [
 			[ 1, 46, 0, -1, 0 ],
 		],
 	},
@@ -293,7 +293,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 759, 1, -1, 0 ],
 		],
 	},
@@ -307,7 +307,7 @@ export default [
 		],
 		"time": 1,
 		"icon": 4,
-		"effects": [
+		"commands": [
 			[ 1, 50, 1, -1, 1 ],
 		],
 	},
@@ -322,7 +322,7 @@ export default [
 		],
 		"time": 0,
 		"icon": 0,
-		"effects": [
+		"commands": [
 			[ 4, 448, -1, 1, 2 ],
 			[ 4, 546, -1, 1, 2 ],
 			[ 4, 448, -1, 5, 0.35 ],
@@ -345,7 +345,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 1, 196, 1, -1, 1000 ],
 			[ 1, 197, 0, -1, 1 ],
 		],
@@ -359,7 +359,7 @@ export default [
 		],
 		"time": 25,
 		"icon": 6,
-		"effects": [
+		"commands": [
 			[ 4, -1, 4, 0, 15 ],
 			[ 4, -1, 4, 8, 1025 ],
 			[ 4, -1, 4, 8, 770 ],
@@ -375,7 +375,7 @@ export default [
 		],
 		"time": 70,
 		"icon": 7,
-		"effects": [
+		"commands": [
 			[ 1, 46, 0, -1, 0.2 ],
 		],
 	},
@@ -389,7 +389,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, -1, 6, 9, 1028 ],
 		],
 	},
@@ -400,7 +400,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 101, 1, -1, 0 ],
 		],
 	},
@@ -411,7 +411,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 763, 1, -1, 0 ],
 		],
 	},
@@ -425,7 +425,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 763, 765, -1, 0 ],
 		],
 	},
@@ -438,7 +438,7 @@ export default [
 		],
 		"time": 5,
 		"icon": 827,
-		"effects": [
+		"commands": [
 			[ -1, -1, -1, -1, 0 ],
 			[ -1, -1, -1, -1, 0 ],
 		],
@@ -450,7 +450,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 18, 0, 5 ],
 			[ 4, -1, 43, 0, 5 ],
 		],
@@ -462,7 +462,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 18, 0, 5 ],
 			[ 4, -1, 43, 0, 5 ],
 		],
@@ -474,7 +474,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 18, 0, 5 ],
 			[ 4, -1, 43, 0, 5 ],
 		],
@@ -486,7 +486,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 18, 0, 5 ],
 			[ 4, -1, 43, 0, 5 ],
 		],
@@ -498,7 +498,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 18, 0, 5 ],
 			[ 4, -1, 43, 0, 5 ],
 		],
@@ -513,7 +513,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 8,
-		"effects": [
+		"commands": [
 			[ 3, 539, 21, -1, 0 ],
 			[ 3, 1103, 529, -1, 0 ],
 			[ 3, 1104, 527, -1, 0 ],
@@ -529,7 +529,7 @@ export default [
 		],
 		"time": 65,
 		"icon": 59,
-		"effects": [
+		"commands": [
 			[ 3, 539, 442, -1, 0 ],
 			[ 3, 21, 442, -1, 0 ],
 		],
@@ -541,7 +541,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 18, 0, 5 ],
 			[ 4, -1, 43, 0, 5 ],
 		],
@@ -556,7 +556,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 9,
-		"effects": [
+		"commands": [
 			[ 2, 420, 1, -1, 0 ],
 		],
 	},
@@ -567,7 +567,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 18, 0, 5 ],
 			[ 4, -1, 43, 0, 5 ],
 		],
@@ -581,7 +581,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 10,
-		"effects": [
+		"commands": [
 			[ 5, -1, 47, 5, 1.1 ],
 			[ 5, -1, 36, 5, 1.1 ],
 			[ 5, -1, 12, 5, 1.1 ],
@@ -597,7 +597,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 18, 0, 5 ],
 			[ 4, -1, 43, 0, 5 ],
 		],
@@ -609,7 +609,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 18, 0, 5 ],
 			[ 4, -1, 43, 0, 5 ],
 		],
@@ -621,7 +621,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "C-Bonus, +1 inf attk",
@@ -630,7 +630,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "C-Bonus, +1 inf attk",
@@ -639,7 +639,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Faith",
@@ -651,7 +651,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 11,
-		"effects": [
+		"commands": [
 			[ 1, 77, 1, -1, 3 ],
 			[ 1, 178, 1, -1, 2 ],
 			[ 1, 179, 1, -1, 4 ],
@@ -666,7 +666,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 845,
-		"effects": [
+		"commands": [
 			[ -1, -1, -1, -1, 0 ],
 			[ -1, -1, -1, -1, 0 ],
 		],
@@ -681,7 +681,7 @@ export default [
 		],
 		"time": 100,
 		"icon": 12,
-		"effects": [
+		"commands": [
 			[ 3, 363, 466, -1, 0 ],
 			[ 3, 364, 375, -1, 0 ],
 			[ 3, 365, 376, -1, 0 ],
@@ -763,7 +763,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 113,
-		"effects": [
+		"commands": [
 			[ 5, 17, -1, 5, 1.5 ],
 			[ 5, 17, -1, 13, 1.5 ],
 			[ 5, 128, -1, 5, 1.5 ],
@@ -784,7 +784,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 6, 96, 0, -1, 0.5 ],
 		],
 	},
@@ -798,7 +798,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 13,
-		"effects": [
+		"commands": [
 			[ 5, -1, 3, 0, 1.1 ],
 			[ 4, -1, 3, 8, 1025 ],
 			[ 4, -1, 3, 8, 769 ],
@@ -821,7 +821,7 @@ export default [
 		],
 		"time": 70,
 		"icon": 14,
-		"effects": [
+		"commands": [
 			[ 5, -1, 3, 0, 1.1 ],
 			[ 4, -1, 3, 8, 1025 ],
 			[ 4, -1, 3, 8, 769 ],
@@ -844,7 +844,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, 542, -1, 9, 772 ],
 			[ 4, 279, -1, 9, 772 ],
 			[ 4, 73, -1, 9, 770 ],
@@ -860,7 +860,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 4, -1, 100, 0.889 ],
 			[ 5, 24, -1, 100, 0.89 ],
 			[ 5, 492, -1, 100, 0.89 ],
@@ -878,7 +878,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 60,
-		"effects": [
+		"commands": [
 			[ 5, 212, -1, 13, 1.2 ],
 			[ 5, 118, -1, 13, 1.2 ],
 		],
@@ -893,7 +893,7 @@ export default [
 		],
 		"time": 30,
 		"icon": 15,
-		"effects": [
+		"commands": [
 			[ 5, 581, -1, 13, 1.15 ],
 			[ 5, 579, -1, 13, 1.15 ],
 		],
@@ -905,7 +905,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 4, -1, 100, 0.875 ],
 			[ 5, 24, -1, 100, 0.88 ],
 			[ 5, 492, -1, 100, 0.88 ],
@@ -920,7 +920,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": 0,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Conquistador (make avail)",
@@ -929,7 +929,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 771, 1, -1, 0 ],
 		],
 	},
@@ -943,7 +943,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 5, 42, -1, 13, 4 ],
 			[ 5, 42, -1, 10, 0.75 ],
 		],
@@ -958,7 +958,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 771, 773, -1, 0 ],
 		],
 	},
@@ -972,7 +972,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, 40, -1, 22, 0.5 ],
 			[ 4, 553, -1, 22, 0.5 ],
 			[ 4, 40, -1, 9, 262 ],
@@ -990,7 +990,7 @@ export default [
 		],
 		"time": 75,
 		"icon": 16,
-		"effects": [
+		"commands": [
 			[ 3, 79, 235, -1, 0 ],
 			[ 3, 234, 235, -1, 0 ],
 			[ 4, 505, -1, 9, 4097 ],
@@ -1011,7 +1011,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 47,
-		"effects": [
+		"commands": [
 			[ 2, 236, 1, -1, 0 ],
 			[ 4, 54, -1, 9, 768.5 ],
 			[ 4, 328, -1, 9, 768.5 ],
@@ -1027,7 +1027,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 41,
-		"effects": [
+		"commands": [
 			[ 5, 13, -1, 13, 1.25 ],
 		],
 	},
@@ -1041,7 +1041,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 17,
-		"effects": [
+		"commands": [
 			[ 4, -1, 6, 9, 1025 ],
 			[ 4, -1, 45, 9, 1025 ],
 			[ 4, -1, 12, 9, 1025 ],
@@ -1062,7 +1062,7 @@ export default [
 		],
 		"time": 75,
 		"icon": 18,
-		"effects": [
+		"commands": [
 			[ 4, -1, 6, 9, 1025 ],
 			[ 4, -1, 12, 9, 1025 ],
 			[ 4, -1, 45, 9, 1025 ],
@@ -1080,7 +1080,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 83, -1, 9, 3614 ],
 			[ 4, 293, -1, 9, 3614 ],
 		],
@@ -1092,7 +1092,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Walls HP castle age",
@@ -1101,7 +1101,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 117, -1, 0, 2 ],
 			[ 5, 64, -1, 0, 2 ],
 			[ 5, 78, -1, 0, 2 ],
@@ -1128,7 +1128,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	null,
 	{
@@ -1140,7 +1140,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 63,
-		"effects": [
+		"commands": [
 			[ 4, -1, 6, 8, 1025 ],
 			[ 4, -1, 6, 8, 769 ],
 		],
@@ -1155,7 +1155,7 @@ export default [
 		],
 		"time": 100,
 		"icon": 21,
-		"effects": [
+		"commands": [
 			[ 4, -1, 6, 9, 1026 ],
 			[ 4, -1, 12, 9, 1026 ],
 			[ 4, -1, 45, 9, 1026 ],
@@ -1176,7 +1176,7 @@ export default [
 		],
 		"time": 55,
 		"icon": 22,
-		"effects": [
+		"commands": [
 			[ 4, -1, 6, 8, 1025 ],
 			[ 4, -1, 6, 8, 769 ],
 		],
@@ -1191,7 +1191,7 @@ export default [
 		],
 		"time": 70,
 		"icon": 64,
-		"effects": [
+		"commands": [
 			[ 4, -1, 6, 8, 1025 ],
 			[ 4, -1, 6, 8, 770 ],
 		],
@@ -1208,7 +1208,7 @@ export default [
 		],
 		"time": 75,
 		"icon": 65,
-		"effects": [
+		"commands": [
 			[ 4, -1, 12, 8, 1025 ],
 			[ 4, -1, 12, 8, 770 ],
 			[ 4, -1, 47, 8, 1025 ],
@@ -1224,7 +1224,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 66,
-		"effects": [
+		"commands": [
 			[ 4, -1, 12, 8, 1025 ],
 			[ 4, -1, 12, 8, 769 ],
 			[ 4, -1, 47, 8, 1025 ],
@@ -1241,7 +1241,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 23,
-		"effects": [
+		"commands": [
 			[ 4, -1, 12, 8, 1025 ],
 			[ 4, -1, 12, 8, 769 ],
 			[ 4, -1, 47, 8, 1025 ],
@@ -1258,7 +1258,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, 281, -1, 12, 1 ],
 			[ 4, 281, -1, 23, 1 ],
 			[ 4, 281, -1, 1, 1 ],
@@ -1274,7 +1274,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 775, 1, -1, 0 ],
 		],
 	},
@@ -1285,7 +1285,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 5, 1, -1, 0 ],
 		],
 	},
@@ -1297,7 +1297,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 93, 1, -1, 0 ],
 		],
 	},
@@ -1310,7 +1310,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": 67,
-		"effects": [
+		"commands": [
 			[ 4, -1, 6, 1, 2 ],
 			[ 4, -1, 6, 23, 2 ],
 		],
@@ -1327,7 +1327,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 25,
-		"effects": [
+		"commands": [
 			[ 0, 363, -1, 19, 1 ],
 			[ 0, 364, -1, 19, 1 ],
 			[ 0, 477, -1, 19, 1 ],
@@ -1403,7 +1403,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 279, 1, -1, 0 ],
 		],
 	},
@@ -1414,7 +1414,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Capped Ram",
@@ -1425,7 +1425,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 27,
-		"effects": [
+		"commands": [
 			[ 3, 1258, 422, -1, 0 ],
 			[ 3, 35, 422, -1, 0 ],
 		],
@@ -1441,7 +1441,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 28,
-		"effects": [
+		"commands": [
 			[ 3, 7, 6, -1, 0 ],
 		],
 	},
@@ -1452,7 +1452,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 7, 1, -1, 0 ],
 		],
 	},
@@ -1466,7 +1466,7 @@ export default [
 		],
 		"time": 35,
 		"icon": 29,
-		"effects": [
+		"commands": [
 			[ 3, 4, 24, -1, 0 ],
 		],
 	},
@@ -1479,7 +1479,7 @@ export default [
 		],
 		"time": 130,
 		"icon": 30,
-		"effects": [
+		"commands": [
 			[ 1, 6, 0, -1, 1 ],
 			[ 3, 109, 71, -1, 0 ],
 			[ 3, 618, 614, -1, 0 ],
@@ -1508,7 +1508,7 @@ export default [
 		],
 		"time": 160,
 		"icon": 31,
-		"effects": [
+		"commands": [
 			[ 1, 6, 0, -1, 2 ],
 			[ 3, 87, 10, -1, 0 ],
 			[ 3, 12, 132, -1, 0 ],
@@ -1547,7 +1547,7 @@ export default [
 		],
 		"time": 190,
 		"icon": 32,
-		"effects": [
+		"commands": [
 			[ 1, 6, 0, -1, 3 ],
 			[ 3, 109, 142, -1, 0 ],
 			[ 3, 618, 611, -1, 0 ],
@@ -1591,7 +1591,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 6, 0, -1, 0 ],
 			[ 1, 67, 0, -1, 0 ],
 			[ 1, 66, 0, -1, 1 ],
@@ -1605,7 +1605,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Shadow Church -- Age One",
@@ -1614,7 +1614,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Shadow Dock -- Age One",
@@ -1623,7 +1623,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Farm -- Age One",
@@ -1632,7 +1632,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Shadow Mill -- Age One",
@@ -1641,7 +1641,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Camelry",
@@ -1653,7 +1653,7 @@ export default [
 		],
 		"time": 40,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Fishing Ship",
@@ -1662,7 +1662,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	null,
 	{
@@ -1672,7 +1672,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	null,
 	{
@@ -1682,7 +1682,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Palisade Wall",
@@ -1691,7 +1691,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "TC -- Age One",
@@ -1700,7 +1700,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	null,
 	{
@@ -1710,7 +1710,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	null,
 	{
@@ -1720,7 +1720,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Shadow Blacksmith -- Age Two",
@@ -1729,7 +1729,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Shadow Church -- Age Two",
@@ -1738,7 +1738,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Shadow Dock -- Age Two",
@@ -1747,7 +1747,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Shadow Farm -- Age Two",
@@ -1756,7 +1756,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Watch Tower (make avail)",
@@ -1765,7 +1765,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 79, 1, -1, 0 ],
 			[ 2, 785, 1, -1, 0 ],
 		],
@@ -1777,7 +1777,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 103, 19, -1, 0, 0 ],
 		],
 	},
@@ -1788,7 +1788,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Stable -- Age Two",
@@ -1797,7 +1797,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Shadow Trade Wksp -- Age Two",
@@ -1806,7 +1806,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Shadow Archery Rg -- Age Two",
@@ -1815,7 +1815,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	null,
 	{
@@ -1825,7 +1825,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": 8133,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Shadow Node for Age Three",
@@ -1834,7 +1834,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	null,
 	{
@@ -1844,7 +1844,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 82, 1, -1, 0 ],
 		],
 	},
@@ -1855,7 +1855,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	null,
 	{
@@ -1868,7 +1868,7 @@ export default [
 		],
 		"time": 30,
 		"icon": 76,
-		"effects": [
+		"commands": [
 			[ 3, 79, 234, -1, 0 ],
 			[ 4, 505, -1, 9, 770 ],
 			[ 4, 505, -1, 9, 4098 ],
@@ -1886,7 +1886,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Shadow Tower -- Age Four",
@@ -1897,7 +1897,7 @@ export default [
 		],
 		"time": 100,
 		"icon": 8142,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Wonder Plans",
@@ -1906,7 +1906,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": 77,
-		"effects": [
+		"commands": [
 			[ 2, 276, 1, -1, 0 ],
 		],
 	},
@@ -1918,7 +1918,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "ARRG (make avail)",
@@ -1927,7 +1927,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 87, 1, -1, 0 ],
 		],
 	},
@@ -1938,7 +1938,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 84, 1, -1, 0 ],
 		],
 	},
@@ -1949,7 +1949,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 49, 1, -1, 0 ],
 		],
 	},
@@ -1960,7 +1960,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 209, 1, -1, 0 ],
 		],
 	},
@@ -1971,7 +1971,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 4, 1, -1, 0 ],
 		],
 	},
@@ -1986,7 +1986,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Monk (make avail)",
@@ -1995,7 +1995,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 125, 1, -1, 0 ],
 		],
 	},
@@ -2006,7 +2006,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	null,
 	{
@@ -2016,7 +2016,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Trade Cart (make avail)",
@@ -2025,7 +2025,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 128, 1, -1, 0 ],
 		],
 	},
@@ -2036,7 +2036,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1258, 1, -1, 0 ],
 		],
 	},
@@ -2050,7 +2050,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 38, 1, -1, 0 ],
 		],
 	},
@@ -2066,7 +2066,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	null,
 	{
@@ -2076,7 +2076,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Paladin (make avail)",
@@ -2085,7 +2085,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	null,
 	null,
@@ -2096,7 +2096,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	null,
 	{
@@ -2106,7 +2106,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 17, 1, -1, 0 ],
 		],
 	},
@@ -2121,7 +2121,7 @@ export default [
 		],
 		"time": 75,
 		"icon": 62,
-		"effects": [
+		"commands": [
 			[ 5, 579, -1, 13, 1.15 ],
 			[ 5, 581, -1, 13, 1.15 ],
 		],
@@ -2136,7 +2136,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 3, 74, 77, -1, 0 ],
 			[ 3, 75, 77, -1, 0 ],
 		],
@@ -2148,7 +2148,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 621, 1, -1, 0 ],
 		],
 	},
@@ -2159,7 +2159,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 36, 1, -1, 0 ],
 		],
 	},
@@ -2170,7 +2170,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 117, 1, -1, 0 ],
 			[ 2, 487, 1, -1, 0 ],
 			[ 2, 490, 1, -1, 0 ],
@@ -2187,7 +2187,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": 819,
-		"effects": [
+		"commands": [
 			[ 2, 39, 1, -1, 0 ],
 		],
 	},
@@ -2202,7 +2202,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 46,
-		"effects": [
+		"commands": [
 			[ 3, 117, 155, -1, 0 ],
 			[ 3, 64, 63, -1, 0 ],
 			[ 3, 78, 67, -1, 0 ],
@@ -2234,7 +2234,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 36,
-		"effects": [
+		"commands": [
 			[ 3, 93, 358, -1, 0 ],
 		],
 	},
@@ -2249,7 +2249,7 @@ export default [
 		],
 		"time": 30,
 		"icon": 34,
-		"effects": [
+		"commands": [
 			[ 4, -1, 0, 9, 769 ],
 			[ 4, -1, 36, 9, 769 ],
 			[ 4, -1, 0, 1, 1 ],
@@ -2355,7 +2355,7 @@ export default [
 		],
 		"time": 35,
 		"icon": 35,
-		"effects": [
+		"commands": [
 			[ 4, -1, 0, 9, 769 ],
 			[ 4, -1, 36, 9, 769 ],
 			[ 4, -1, 0, 1, 1 ],
@@ -2461,7 +2461,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 37,
-		"effects": [
+		"commands": [
 			[ 4, -1, 0, 9, 769 ],
 			[ 4, -1, 36, 9, 769 ],
 			[ 4, -1, 0, 12, 1 ],
@@ -2567,7 +2567,7 @@ export default [
 		],
 		"time": 25,
 		"icon": 70,
-		"effects": [
+		"commands": [
 			[ 5, 218, -1, 13, 1.2 ],
 			[ 5, 123, -1, 13, 1.2 ],
 		],
@@ -2582,7 +2582,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 71,
-		"effects": [
+		"commands": [
 			[ 5, 218, -1, 13, 1.2 ],
 			[ 5, 123, -1, 13, 1.2 ],
 			[ 4, 218, -1, 14, 0 ],
@@ -2596,7 +2596,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 448, 1, -1, 0 ],
 		],
 	},
@@ -2612,7 +2612,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 48,
-		"effects": [
+		"commands": [
 			[ 3, 74, 77, -1, 0 ],
 			[ 3, 75, 77, -1, 0 ],
 		],
@@ -2628,7 +2628,7 @@ export default [
 		],
 		"time": 100,
 		"icon": 78,
-		"effects": [
+		"commands": [
 			[ 3, 38, 283, -1, 0 ],
 		],
 	},
@@ -2639,7 +2639,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 104, 1, -1, 0 ],
 		],
 	},
@@ -2652,7 +2652,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 49,
-		"effects": [
+		"commands": [
 			[ 4, -1, 0, 8, 1025 ],
 			[ 4, -1, 36, 8, 1025 ],
 			[ 4, -1, 0, 8, 769 ],
@@ -2675,7 +2675,7 @@ export default [
 		],
 		"time": 55,
 		"icon": 50,
-		"effects": [
+		"commands": [
 			[ 4, -1, 0, 8, 1025 ],
 			[ 4, -1, 36, 8, 1025 ],
 			[ 4, -1, 0, 8, 769 ],
@@ -2698,7 +2698,7 @@ export default [
 		],
 		"time": 75,
 		"icon": 79,
-		"effects": [
+		"commands": [
 			[ 5, -1, 4, 5, 1.1 ],
 			[ 5, -1, 4, 14, 1.25 ],
 		],
@@ -2713,7 +2713,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 80,
-		"effects": [
+		"commands": [
 			[ 5, -1, 6, 5, 1.1 ],
 		],
 	},
@@ -2724,7 +2724,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 50, 1, -1, 0 ],
 			[ 2, 1187, 1, -1, 0 ],
 		],
@@ -2739,7 +2739,7 @@ export default [
 		],
 		"time": 75,
 		"icon": 53,
-		"effects": [
+		"commands": [
 			[ 3, 74, 473, -1, 0 ],
 			[ 3, 75, 473, -1, 0 ],
 			[ 3, 77, 473, -1, 0 ],
@@ -2755,7 +2755,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 52,
-		"effects": [
+		"commands": [
 			[ 3, 39, 474, -1, 0 ],
 		],
 	},
@@ -2769,7 +2769,7 @@ export default [
 		],
 		"time": 70,
 		"icon": 51,
-		"effects": [
+		"commands": [
 			[ 4, -1, 0, 8, 1025 ],
 			[ 4, -1, 36, 8, 1025 ],
 			[ 4, -1, 0, 8, 770 ],
@@ -2789,7 +2789,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 12, 1, -1, 0 ],
 		],
 	},
@@ -2803,7 +2803,7 @@ export default [
 		],
 		"time": 100,
 		"icon": 81,
-		"effects": [
+		"commands": [
 			[ 5, 123, -1, 13, 1.1 ],
 			[ 5, 218, -1, 13, 1.1 ],
 		],
@@ -2818,7 +2818,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 85,
-		"effects": [
+		"commands": [
 			[ 3, 74, 75, -1, 0 ],
 		],
 	},
@@ -2838,7 +2838,7 @@ export default [
 		],
 		"time": 55,
 		"icon": 82,
-		"effects": [
+		"commands": [
 			[ 4, -1, 18, 12, 3 ],
 			[ 4, -1, 18, 1, 3 ],
 			[ 4, -1, 43, 12, 3 ],
@@ -2856,7 +2856,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 83,
-		"effects": [
+		"commands": [
 			[ 4, -1, 18, 0, 15 ],
 			[ 4, -1, 43, 0, 15 ],
 		],
@@ -2871,7 +2871,7 @@ export default [
 		],
 		"time": 65,
 		"icon": 84,
-		"effects": [
+		"commands": [
 			[ 1, 35, 0, -1, 3 ],
 		],
 	},
@@ -2882,7 +2882,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 67, 0, -1, 1 ],
 		],
 	},
@@ -2893,7 +2893,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 329, 1, -1, 0 ],
 		],
 	},
@@ -2907,7 +2907,7 @@ export default [
 		],
 		"time": 105,
 		"icon": 55,
-		"effects": [
+		"commands": [
 			[ 3, 329, 330, -1, 0 ],
 		],
 	},
@@ -2921,7 +2921,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 54,
-		"effects": [
+		"commands": [
 			[ 3, 4, 492, -1, 0 ],
 			[ 3, 24, 492, -1, 0 ],
 		],
@@ -2937,7 +2937,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 38,
-		"effects": [
+		"commands": [
 			[ 3, 279, 542, -1, 0 ],
 			[ 4, 378, -1, 9, 772 ],
 			[ 4, 367, -1, 9, 772 ],
@@ -2952,7 +2952,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 539, 1, -1, 0 ],
 		],
 	},
@@ -2964,7 +2964,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Make Fire Galley Avail",
@@ -2973,7 +2973,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 529, 1, -1, 0 ],
 		],
 	},
@@ -2987,7 +2987,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 39,
-		"effects": [
+		"commands": [
 			[ 3, 527, 528, -1, 0 ],
 			[ 3, 1104, 528, -1, 0 ],
 		],
@@ -3003,7 +3003,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 40,
-		"effects": [
+		"commands": [
 			[ 3, 529, 532, -1, 0 ],
 			[ 3, 1103, 532, -1, 0 ],
 		],
@@ -3020,7 +3020,7 @@ export default [
 		],
 		"time": 55,
 		"icon": 42,
-		"effects": [
+		"commands": [
 			[ 5, -1, 4, 14, 1.5 ],
 			[ 5, -1, 4, 5, 1.1 ],
 		],
@@ -3036,7 +3036,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 73,
-		"effects": [
+		"commands": [
 			[ 5, -1, 18, 5, 1.15 ],
 			[ 5, -1, 43, 5, 1.15 ],
 			[ 5, -1, -1, 5, 1.1 ],
@@ -3053,7 +3053,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 43,
-		"effects": [
+		"commands": [
 			[ 3, 448, 546, -1, 0 ],
 		],
 	},
@@ -3066,7 +3066,7 @@ export default [
 		],
 		"time": 75,
 		"icon": 86,
-		"effects": [
+		"commands": [
 			[ 3, 1258, 548, -1, 0 ],
 			[ 3, 35, 548, -1, 0 ],
 			[ 3, 422, 548, -1, 0 ],
@@ -3079,7 +3079,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": 56,
-		"effects": [
+		"commands": [
 			[ 2, 331, 1, -1, 0 ],
 		],
 	},
@@ -3093,7 +3093,7 @@ export default [
 		],
 		"time": 75,
 		"icon": 57,
-		"effects": [
+		"commands": [
 			[ 3, 280, 550, -1, 0 ],
 		],
 	},
@@ -3104,7 +3104,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	null,
 	null,
@@ -3115,7 +3115,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 545, 1, -1, 0 ],
 		],
 	},
@@ -3126,7 +3126,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 291, 1, -1, 0 ],
 		],
 	},
@@ -3137,7 +3137,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 8, 1, -1, 0 ],
 		],
 	},
@@ -3151,7 +3151,7 @@ export default [
 		],
 		"time": 100,
 		"icon": 44,
-		"effects": [
+		"commands": [
 			[ 3, 74, 567, -1, 0 ],
 			[ 3, 75, 567, -1, 0 ],
 			[ 3, 473, 567, -1, 0 ],
@@ -3168,7 +3168,7 @@ export default [
 		],
 		"time": 170,
 		"icon": 45,
-		"effects": [
+		"commands": [
 			[ 3, 38, 569, -1, 0 ],
 			[ 3, 283, 569, -1, 0 ],
 		],
@@ -3180,7 +3180,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Cataphract (make avail)",
@@ -3189,7 +3189,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 40, 1, -1, 0 ],
 		],
 	},
@@ -3200,7 +3200,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 73, 1, -1, 0 ],
 		],
 	},
@@ -3211,7 +3211,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 282, 1, -1, 0 ],
 		],
 	},
@@ -3222,7 +3222,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Jannisary (make avail)",
@@ -3231,7 +3231,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 46, 1, -1, 0 ],
 		],
 	},
@@ -3242,7 +3242,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 250, 1, -1, 0 ],
 		],
 	},
@@ -3253,7 +3253,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 11, 1, -1, 0 ],
 		],
 	},
@@ -3264,7 +3264,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 239, 1, -1, 0 ],
 		],
 	},
@@ -3275,7 +3275,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 281, 1, -1, 0 ],
 		],
 	},
@@ -3286,7 +3286,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 25, 1, -1, 0 ],
 		],
 	},
@@ -3297,7 +3297,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 232, 1, -1, 0 ],
 		],
 	},
@@ -3311,7 +3311,7 @@ export default [
 		],
 		"time": 30,
 		"icon": 87,
-		"effects": [
+		"commands": [
 			[ 5, 124, -1, 13, 1.15 ],
 			[ 5, 220, -1, 13, 1.15 ],
 		],
@@ -3326,7 +3326,7 @@ export default [
 		],
 		"time": 75,
 		"icon": 88,
-		"effects": [
+		"commands": [
 			[ 5, 220, -1, 13, 1.15 ],
 			[ 5, 124, -1, 13, 1.15 ],
 		],
@@ -3341,7 +3341,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 89,
-		"effects": [
+		"commands": [
 			[ 4, -1, 52, 1, 4 ],
 			[ 4, -1, 3, 1, 4 ],
 		],
@@ -3353,7 +3353,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 103, 1, -1, 0 ],
 		],
 	},
@@ -3364,7 +3364,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "C-Bonus, Building HP x1.5",
@@ -3373,7 +3373,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 3, 0, 1.1 ],
 			[ 5, -1, 27, 0, 1.1 ],
 			[ 5, -1, 52, 0, 1.1 ],
@@ -3388,7 +3388,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 7, -1, 100, 0.75 ],
 			[ 5, 329, -1, 100, 0.75 ],
 			[ 5, 93, -1, 100, 0.75 ],
@@ -3406,7 +3406,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "C-Bonus, Unit Cost 2",
@@ -3415,7 +3415,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 420, -1, 0, 1.25 ],
 			[ 5, 691, -1, 0, 1.25 ],
 		],
@@ -3427,7 +3427,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "C-Bonus, Free Farming 2",
@@ -3436,7 +3436,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "C-Bonus, Free Farming 3",
@@ -3445,7 +3445,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "C-Bonus, Cavalry +20% HP",
@@ -3454,7 +3454,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 12, 0, 1.2 ],
 			[ 5, -1, 23, 0, 1.2 ],
 			[ 5, -1, 47, 0, 1.2 ],
@@ -3468,7 +3468,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 6, 100, 0.5 ],
 		],
 	},
@@ -3479,7 +3479,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "C-Bonus, Cog+Fish Ship Speed",
@@ -3488,7 +3488,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 13, -1, 5, 1.2 ],
 			[ 5, 17, -1, 5, 1.2 ],
 		],
@@ -3500,7 +3500,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 77, 0, -1, 2 ],
 		],
 	},
@@ -3511,7 +3511,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	null,
 	null,
@@ -3524,7 +3524,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 579, -1, 13, 1.2 ],
 			[ 5, 581, -1, 13, 1.2 ],
 		],
@@ -3536,7 +3536,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 5, -1, 0, 1.25 ],
 			[ 5, 36, -1, 0, 1.25 ],
 			[ 5, 46, -1, 0, 1.25 ],
@@ -3550,7 +3550,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 3, 890, 1642, -1, 0 ],
 		],
 	},
@@ -3562,7 +3562,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 85, 0, -1, 1 ],
 		],
 	},
@@ -3574,7 +3574,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 21, 0, 2 ],
 			[ 5, -1, 21, 13, 1.05 ],
 			[ 4, -1, 21, 8, 770 ],
@@ -3592,7 +3592,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 36, 9, 5378 ],
 			[ 4, 4, -1, 9, 5377 ],
 			[ 4, 24, -1, 9, 5377 ],
@@ -3606,7 +3606,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": 0,
-		"effects": [
+		"commands": [
 			[ 102, -1, -1, -1, 318 ],
 			[ 102, -1, -1, -1, 348 ],
 			[ 102, -1, -1, -1, 378 ],
@@ -3619,7 +3619,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 50, -1, 100, 0.6 ],
 			[ 5, 1187, -1, 100, 0.6 ],
 		],
@@ -3634,7 +3634,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 91,
-		"effects": [
+		"commands": [
 			[ 5, 87, -1, 13, 1.33 ],
 			[ 5, 12, -1, 13, 1.33 ],
 			[ 5, 101, -1, 13, 1.33 ],
@@ -3658,7 +3658,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 92,
-		"effects": [
+		"commands": [
 			[ 1, 28, 0, -1, 1 ],
 		],
 	},
@@ -3669,7 +3669,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 87, 0, -1, 1 ],
 		],
 	},
@@ -3680,7 +3680,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": 0,
-		"effects": [
+		"commands": [
 			[ 2, 1570, 1, -1, 0 ],
 		],
 	},
@@ -3693,7 +3693,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 93,
-		"effects": [
+		"commands": [
 			[ 1, 27, 0, -1, 1 ],
 		],
 	},
@@ -3707,7 +3707,7 @@ export default [
 		],
 		"time": 150,
 		"icon": 96,
-		"effects": [
+		"commands": [
 			[ 3, 280, 588, -1, 0 ],
 			[ 3, 550, 588, -1, 0 ],
 		],
@@ -3722,7 +3722,7 @@ export default [
 		],
 		"time": 10,
 		"icon": 5,
-		"effects": [
+		"commands": [
 			[ 4, -1, 4, 9, 2831 ],
 			[ 4, -1, 4, 9, 3343 ],
 		],
@@ -3737,7 +3737,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 61,
-		"effects": [
+		"commands": [
 			[ 4, 79, -1, 20, -1 ],
 			[ 4, 234, -1, 20, -1 ],
 			[ 4, 235, -1, 20, -1 ],
@@ -3756,7 +3756,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 82, -1, 100, 0.75 ],
 		],
 	},
@@ -3768,7 +3768,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 6, 9, 5377 ],
 		],
 	},
@@ -3779,7 +3779,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 6, 9, 5377 ],
 		],
 	},
@@ -3790,7 +3790,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 6, 9, 5377 ],
 		],
 	},
@@ -3802,7 +3802,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 70, -1, 100, 0.33 ],
 			[ 5, 70, -1, 101, 0.33 ],
 			[ 5, 463, -1, 100, 0.33 ],
@@ -3820,7 +3820,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 598, 1, -1, 0 ],
 		],
 	},
@@ -3831,7 +3831,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "C-Bonus, Inf Cav +1 armor Age3",
@@ -3840,7 +3840,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 93, -1, 8, 1025 ],
 			[ 4, 358, -1, 8, 1025 ],
 			[ 4, 359, -1, 8, 1025 ],
@@ -3876,7 +3876,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 93, -1, 8, 1025 ],
 			[ 4, 358, -1, 8, 1025 ],
 			[ 4, 359, -1, 8, 1025 ],
@@ -3912,7 +3912,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 109, -1, 2, 10 ],
 			[ 4, 71, -1, 2, 10 ],
 			[ 4, 141, -1, 2, 10 ],
@@ -3930,7 +3930,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 545, -1, 0, 2 ],
 			[ 5, 545, -1, 2, 2 ],
 		],
@@ -3942,7 +3942,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 0, -1, 0, 11, 87 ],
 		],
 	},
@@ -3953,7 +3953,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "C-Bonus, Gather Price",
@@ -3962,7 +3962,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 68, -1, 100, 0.5 ],
 			[ 5, 562, -1, 100, 0.5 ],
 			[ 5, 584, -1, 100, 0.5 ],
@@ -3984,7 +3984,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 6, 10, 0.75 ],
 		],
 	},
@@ -3995,7 +3995,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 109, -1, 0, 2 ],
 			[ 5, 618, -1, 0, 2 ],
 			[ 5, 619, -1, 0, 2 ],
@@ -4025,7 +4025,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 103, 22, -1, 0, 0 ],
 			[ 101, 22, 3, 0, 0 ],
 		],
@@ -4037,7 +4037,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 6, 100, 0.8 ],
 		],
 	},
@@ -4048,7 +4048,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "C-Bonus, Unit Cost 50%",
@@ -4057,7 +4057,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "C-Bonus, Monk Heal Range",
@@ -4066,7 +4066,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 90, 0, -1, 8 ],
 		],
 	},
@@ -4077,7 +4077,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": 0,
-		"effects": [
+		"commands": [
 			[ 2, 1570, 1, -1, 0 ],
 		],
 	},
@@ -4088,7 +4088,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 45, -1, 0, 2 ],
 			[ 5, 133, -1, 0, 2 ],
 			[ 5, 47, -1, 0, 2 ],
@@ -4106,7 +4106,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 85, 0, -1, 0.9 ],
 		],
 	},
@@ -4117,7 +4117,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 85, 0, -1, 0.85 ],
 		],
 	},
@@ -4128,7 +4128,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 85, 0, -1, 0.8 ],
 		],
 	},
@@ -4139,7 +4139,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 52, 2, 5 ],
 			[ 4, -1, 52, 107, 4 ],
 		],
@@ -4151,7 +4151,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 82, 1, -1, 0 ],
 		],
 	},
@@ -4162,7 +4162,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 78, 0, -1, 0.05 ],
 			[ 4, 84, -1, 104, -100 ],
 			[ 4, 116, -1, 104, -100 ],
@@ -4176,7 +4176,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Fish Trap (make avail)",
@@ -4185,7 +4185,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 199, 1, -1, 0 ],
 		],
 	},
@@ -4196,7 +4196,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 280, 1, -1, 0 ],
 		],
 	},
@@ -4207,7 +4207,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Elite Longbowman",
@@ -4219,7 +4219,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 8, 530, -1, 0 ],
 		],
 	},
@@ -4233,7 +4233,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 40, 553, -1, 0 ],
 		],
 	},
@@ -4247,7 +4247,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 73, 559, -1, 0 ],
 		],
 	},
@@ -4261,7 +4261,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 281, 531, -1, 0 ],
 		],
 	},
@@ -4275,7 +4275,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 25, 554, -1, 0 ],
 		],
 	},
@@ -4289,7 +4289,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 41, 555, -1, 0 ],
 			[ 3, 759, 761, -1, 0 ],
 		],
@@ -4304,7 +4304,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 291, 560, -1, 0 ],
 		],
 	},
@@ -4318,7 +4318,7 @@ export default [
 		],
 		"time": 75,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 239, 558, -1, 0 ],
 		],
 	},
@@ -4332,7 +4332,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 282, 556, -1, 0 ],
 		],
 	},
@@ -4346,7 +4346,7 @@ export default [
 		],
 		"time": 55,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 46, 557, -1, 0 ],
 		],
 	},
@@ -4360,7 +4360,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 232, 534, -1, 0 ],
 		],
 	},
@@ -4374,7 +4374,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 11, 561, -1, 0 ],
 		],
 	},
@@ -4388,7 +4388,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 250, 533, -1, 0 ],
 		],
 	},
@@ -4402,7 +4402,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 97,
-		"effects": [
+		"commands": [
 			[ 5, -1, 21, 104, 0.8 ],
 			[ 5, -1, 22, 104, 0.8 ],
 			[ 5, -1, 2, 104, 0.8 ],
@@ -4423,7 +4423,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 98,
-		"effects": [
+		"commands": [
 			[ 4, -1, 20, 2, 5 ],
 			[ 4, -1, 21, 8, 769 ],
 			[ 4, -1, 2, 8, 769 ],
@@ -4441,7 +4441,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 99,
-		"effects": [
+		"commands": [
 			[ 5, -1, 20, 5, 1.15 ],
 			[ 4, -1, 20, 2, 10 ],
 			[ 5, -1, 21, 5, 1.15 ],
@@ -4460,7 +4460,7 @@ export default [
 		],
 		"time": 30,
 		"icon": 100,
-		"effects": [
+		"commands": [
 			[ 3, 420, 691, -1, 0 ],
 			[ 3, 768, 770, -1, 0 ],
 		],
@@ -4475,7 +4475,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 101,
-		"effects": [
+		"commands": [
 			[ 5, -1, 13, 9, 2936 ],
 			[ 4, -1, 13, 12, 1 ],
 			[ 4, -1, 13, 23, 1 ],
@@ -4515,7 +4515,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": 0,
-		"effects": [
+		"commands": [
 			[ 2, 1570, 1, -1, 0 ],
 		],
 	},
@@ -4529,7 +4529,7 @@ export default [
 		],
 		"time": 75,
 		"icon": 103,
-		"effects": [
+		"commands": [
 			[ 5, 82, -1, 0, 1.21 ],
 		],
 	},
@@ -4543,7 +4543,7 @@ export default [
 		],
 		"time": 30,
 		"icon": 104,
-		"effects": [
+		"commands": [
 			[ 5, -1, 52, 9, 4321 ],
 			[ 4, 82, -1, 9, 4100 ],
 			[ 4, 1251, -1, 9, 4100 ],
@@ -4563,7 +4563,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 621, -1, 104, 0.5 ],
 			[ 5, 617, -1, 104, 0.5 ],
 			[ 5, 484, -1, 104, 0.5 ],
@@ -4577,7 +4577,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 0, 12, 1 ],
 			[ 4, -1, 0, 1, 1 ],
 			[ 4, -1, 0, 23, 1 ],
@@ -4599,7 +4599,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 592, -1, 13, 1.25 ],
 			[ 5, 590, -1, 13, 1.25 ],
 		],
@@ -4614,7 +4614,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 75,
-		"effects": [
+		"commands": [
 			[ 3, 751, 753, -1, 0 ],
 		],
 	},
@@ -4625,7 +4625,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 123, -1, 13, 1.15 ],
 			[ 5, 218, -1, 13, 1.15 ],
 		],
@@ -4637,7 +4637,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 13, 10, 0.8 ],
 			[ 5, -1, 55, 10, 0.8 ],
 			[ 5, -1, 54, 10, 0.8 ],
@@ -4650,7 +4650,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 751, -1, 9, 1027 ],
 			[ 4, 751, -1, 9, 2050 ],
 			[ 4, 751, -1, 9, 4097 ],
@@ -4666,7 +4666,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 546, -1, 0, 1.3 ],
 			[ 5, 441, -1, 0, 1.3 ],
 			[ 5, 1370, -1, 0, 1.3 ],
@@ -4680,7 +4680,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 216, -1, 13, 1.4 ],
 			[ 5, 122, -1, 13, 1.4 ],
 		],
@@ -4692,7 +4692,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 0, 104, 0.85 ],
 			[ 5, -1, 6, 104, 0.85 ],
 			[ 5, -1, 12, 104, 0.85 ],
@@ -4707,7 +4707,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 6, 0, 1.05 ],
 		],
 	},
@@ -4718,7 +4718,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "None",
@@ -4727,7 +4727,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 6, 5, 1.15 ],
 		],
 	},
@@ -4738,7 +4738,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 36, 10, 0.8 ],
 		],
 	},
@@ -4749,7 +4749,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 53, 100, 0.85 ],
 			[ 5, -1, 20, 100, 0.85 ],
 			[ 5, -1, 22, 100, 0.85 ],
@@ -4762,7 +4762,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 527, -1, 0, 1.5 ],
 			[ 5, 528, -1, 0, 1.5 ],
 			[ 5, 1104, -1, 0, 1.5 ],
@@ -4775,7 +4775,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 529, -1, 10, 0.8 ],
 			[ 5, 532, -1, 10, 0.8 ],
 			[ 5, 529, -1, 9, 4196 ],
@@ -4800,7 +4800,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 692, 694, -1, 0 ],
 		],
 	},
@@ -4811,7 +4811,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 692, 1, -1, 0 ],
 		],
 	},
@@ -4822,7 +4822,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "C-Bonus, +15% farmers",
@@ -4831,7 +4831,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "C-Bonus, +3 vs Wild Boar",
@@ -4840,7 +4840,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 122, -1, 9, 6149 ],
 			[ 4, 216, -1, 9, 6149 ],
 			[ 4, 122, -1, 14, 15 ],
@@ -4854,7 +4854,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 0, 12, 1 ],
 			[ 4, -1, 0, 1, 1 ],
 			[ 4, -1, 0, 23, 1 ],
@@ -4876,7 +4876,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 539, -1, 10, 0.8 ],
 			[ 5, 21, -1, 10, 0.8 ],
 			[ 5, 442, -1, 10, 0.8 ],
@@ -4889,7 +4889,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 97, 0, -1, 1 ],
 		],
 	},
@@ -4900,7 +4900,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 32, 1, -1, 10 ],
 		],
 	},
@@ -4911,7 +4911,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 90, 0, -1, 4 ],
 		],
 	},
@@ -4924,7 +4924,7 @@ export default [
 		],
 		"time": 1,
 		"icon": 19,
-		"effects": [
+		"commands": [
 			[ 1, 183, 0, -1, 1 ],
 		],
 	},
@@ -4935,7 +4935,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 109, -1, 13, 1 ],
 			[ 5, 71, -1, 13, 1.1 ],
 			[ 5, 141, -1, 13, 1.15 ],
@@ -4949,7 +4949,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "C-Bonus, TC +20%",
@@ -4958,7 +4958,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "C-Bonus, Dock +10%",
@@ -4967,7 +4967,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 45, -1, 13, 1 ],
 			[ 5, 133, -1, 13, 1.1 ],
 			[ 5, 47, -1, 13, 1.15 ],
@@ -4981,7 +4981,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "C-Bonus, Dock +20%",
@@ -4990,7 +4990,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "C-Bonus, +15%HP",
@@ -4999,7 +4999,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 6, 0, 1.04 ],
 		],
 	},
@@ -5010,7 +5010,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 6, 0, 1.1 ],
 		],
 	},
@@ -5021,7 +5021,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 3, 0, 1.0909 ],
 			[ 5, -1, 27, 0, 1.0909 ],
 			[ 5, -1, 52, 0, 1.0909 ],
@@ -5036,7 +5036,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 3, 0, 1.0833 ],
 			[ 5, -1, 27, 0, 1.0833 ],
 			[ 5, -1, 52, 0, 1.0833 ],
@@ -5051,7 +5051,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 3, 0, 1.0769 ],
 			[ 5, -1, 27, 0, 1.0769 ],
 			[ 5, -1, 52, 0, 1.0769 ],
@@ -5066,7 +5066,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "C-Bonus",
@@ -5075,7 +5075,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "C-Bonus",
@@ -5084,7 +5084,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 21, 13, 1.0476 ],
 		],
 	},
@@ -5095,7 +5095,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 21, 13, 1.0454 ],
 		],
 	},
@@ -5106,7 +5106,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 21, 13, 1.0434 ],
 		],
 	},
@@ -5117,7 +5117,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 0, 109, -1, 21, 10 ],
 			[ 0, 71, -1, 21, 10 ],
 			[ 0, 141, -1, 21, 10 ],
@@ -5140,7 +5140,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 440, 1, -1, 0 ],
 		],
 	},
@@ -5151,7 +5151,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Hussar",
@@ -5163,7 +5163,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 122,
-		"effects": [
+		"commands": [
 			[ 3, 448, 441, -1, 0 ],
 			[ 3, 546, 441, -1, 0 ],
 		],
@@ -5178,7 +5178,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 106,
-		"effects": [
+		"commands": [
 			[ 3, 93, 359, -1, 0 ],
 			[ 3, 358, 359, -1, 0 ],
 		],
@@ -5193,7 +5193,7 @@ export default [
 		],
 		"time": 45,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Jaguar Man",
@@ -5202,7 +5202,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 725, 1, -1, 0 ],
 		],
 	},
@@ -5216,7 +5216,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 725, 726, -1, 0 ],
 		],
 	},
@@ -5227,7 +5227,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 751, 1, -1, 0 ],
 		],
 	},
@@ -5241,7 +5241,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 115,
-		"effects": [
+		"commands": [
 			[ 3, 751, 752, -1, 0 ],
 			[ 3, 753, 752, -1, 0 ],
 		],
@@ -5256,7 +5256,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 110,
-		"effects": [
+		"commands": [
 			[ 4, -1, 47, 0, 20 ],
 			[ 4, -1, 12, 0, 20 ],
 			[ 4, -1, 36, 0, 20 ],
@@ -5275,7 +5275,7 @@ export default [
 		],
 		"time": 65,
 		"icon": 111,
-		"effects": [
+		"commands": [
 			[ 4, 39, -1, 8, 1025 ],
 			[ 4, 39, -1, 8, 770 ],
 			[ 4, 474, -1, 8, 1025 ],
@@ -5324,7 +5324,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 112,
-		"effects": [
+		"commands": [
 			[ 0, -1, 0, 11, 100 ],
 			[ 0, -1, 36, 11, 100 ],
 			[ 5, 4, -1, 10, 0.85 ],
@@ -5366,7 +5366,7 @@ export default [
 		],
 		"time": 75,
 		"icon": 109,
-		"effects": [
+		"commands": [
 			[ 1, 193, 0, -1, 1 ],
 		],
 	},
@@ -5379,7 +5379,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 108,
-		"effects": [
+		"commands": [
 			[ 1, 192, 0, -1, 1 ],
 		],
 	},
@@ -5393,7 +5393,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, -1, 4, 9, 1030 ],
 			[ 4, -1, 4, 0, 40 ],
 			[ 4, -1, 4, 8, 1026 ],
@@ -5409,7 +5409,7 @@ export default [
 		],
 		"time": 35,
 		"icon": 114,
-		"effects": [
+		"commands": [
 			[ 5, -1, 52, 108, 6 ],
 			[ 5, -1, 3, 108, 6 ],
 		],
@@ -5421,7 +5421,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 3, 79, 234, -1, 0 ],
 			[ 4, 505, -1, 9, 770 ],
 			[ 4, 505, -1, 9, 4098 ],
@@ -5438,7 +5438,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 3, 79, 235, -1, 0 ],
 			[ 3, 234, 235, -1, 0 ],
 			[ 4, 505, -1, 9, 4097 ],
@@ -5456,7 +5456,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 236, 1, -1, 0 ],
 			[ 4, 54, -1, 9, 768.5 ],
 			[ 4, 328, -1, 9, 768.5 ],
@@ -5472,7 +5472,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, 280, -1, 12, 1 ],
 			[ 4, 280, -1, 1, 1 ],
 			[ 4, 280, -1, 23, 1 ],
@@ -5491,7 +5491,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 41, 1, -1, 0 ],
 		],
 	},
@@ -5502,7 +5502,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 831, 1, -1, 0 ],
 		],
 	},
@@ -5516,7 +5516,7 @@ export default [
 		],
 		"time": 65,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 831, 832, -1, 0 ],
 		],
 	},
@@ -5527,7 +5527,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 827, 1, -1, 0 ],
 		],
 	},
@@ -5541,7 +5541,7 @@ export default [
 		],
 		"time": 75,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 827, 829, -1, 0 ],
 		],
 	},
@@ -5552,7 +5552,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Tower Range +2",
@@ -5561,7 +5561,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 79, -1, 12, 1 ],
 			[ 4, 79, -1, 1, 1 ],
 			[ 4, 79, -1, 23, 1 ],
@@ -5580,7 +5580,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 79, -1, 12, 1 ],
 			[ 4, 79, -1, 1, 1 ],
 			[ 4, 79, -1, 23, 1 ],
@@ -5601,7 +5601,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 18, 0, 5 ],
 			[ 4, -1, 43, 0, 5 ],
 		],
@@ -5616,7 +5616,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 5, 12, -1, 13, 2 ],
 		],
 	},
@@ -5627,7 +5627,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 36, 100, 0.9 ],
 		],
 	},
@@ -5638,7 +5638,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 36, 100, 0.888889 ],
 		],
 	},
@@ -5652,7 +5652,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 4, 6, -1, 9, 769 ],
 			[ 4, 7, -1, 9, 769 ],
 			[ 4, 6, -1, 1, 1 ],
@@ -5689,7 +5689,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, 42, -1, 22, 0.5 ],
 			[ 0, 42, -1, 11, 100 ],
 		],
@@ -5704,7 +5704,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 5, -1, 27, 0, 1.3 ],
 			[ 5, -1, 39, 0, 1.3 ],
 			[ 5, 79, -1, 0, 1.3 ],
@@ -5723,7 +5723,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 4, -1, 6, 9, 2053 ],
 			[ 4, -1, 6, 9, 7684 ],
 		],
@@ -5738,7 +5738,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 4, 529, -1, 12, 1 ],
 			[ 4, 532, -1, 12, 1 ],
 			[ 4, 1103, -1, 12, 1 ],
@@ -5751,7 +5751,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "C-Bonus Free War Galley",
@@ -5760,7 +5760,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Genoese Bow (make avail)",
@@ -5769,7 +5769,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 866, 1, -1, 0 ],
 		],
 	},
@@ -5783,7 +5783,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 866, 868, -1, 0 ],
 		],
 	},
@@ -5799,7 +5799,7 @@ export default [
 		],
 		"time": 0,
 		"icon": 0,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Magyar Huszar (make avail)",
@@ -5808,7 +5808,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 869, 1, -1, 0 ],
 		],
 	},
@@ -5822,7 +5822,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 869, 871, -1, 0 ],
 		],
 	},
@@ -5833,7 +5833,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 448, -1, 103, 0.85 ],
 			[ 5, 546, -1, 103, 0.85 ],
 			[ 5, 441, -1, 103, 0.85 ],
@@ -5846,7 +5846,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 4, 9, 1025 ],
 		],
 	},
@@ -5857,7 +5857,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 4, 9, 1025 ],
 		],
 	},
@@ -5868,7 +5868,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 4, 9, 1026 ],
 		],
 	},
@@ -5879,7 +5879,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 4, 8, 1025 ],
 			[ 4, -1, 4, 8, 769 ],
 		],
@@ -5891,7 +5891,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 4, 8, 1025 ],
 			[ 4, -1, 4, 8, 769 ],
 		],
@@ -5903,7 +5903,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 4, 8, 1025 ],
 			[ 4, -1, 4, 8, 770 ],
 		],
@@ -5915,7 +5915,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 873, 1, -1, 0 ],
 		],
 	},
@@ -5929,7 +5929,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 873, 875, -1, 0 ],
 		],
 	},
@@ -5943,7 +5943,7 @@ export default [
 		],
 		"time": 30,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 5, 82, -1, 10, 0.8 ],
 			[ 5, 79, -1, 10, 0.8 ],
 			[ 5, 234, -1, 10, 0.8 ],
@@ -5961,7 +5961,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 2, 886, 1, -1, 0 ],
 		],
 	},
@@ -5975,7 +5975,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 4, 79, -1, 102, 2 ],
 			[ 4, 79, -1, 107, 2 ],
 			[ 4, 234, -1, 102, 2 ],
@@ -5996,7 +5996,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 4, 4, -1, 9, 5382 ],
 			[ 4, 4, -1, 9, 3334 ],
 			[ 4, 24, -1, 9, 5382 ],
@@ -6015,7 +6015,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 5, 831, -1, 5, 1.15 ],
 			[ 5, 832, -1, 5, 1.15 ],
 		],
@@ -6030,7 +6030,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 3, 70, 191, 1, 5 ],
 			[ 3, 463, 191, 1, 5 ],
 			[ 3, 464, 191, 1, 5 ],
@@ -6046,7 +6046,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 4, 4, -1, 105, -45 ],
 			[ 4, 24, -1, 105, -45 ],
 			[ 4, 492, -1, 105, -45 ],
@@ -6065,7 +6065,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 4, -1, 13, 8, 1028 ],
 			[ 4, -1, 51, 8, 1028 ],
 			[ 4, -1, 54, 8, 1028 ],
@@ -6082,7 +6082,7 @@ export default [
 		],
 		"time": 30,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 3, 134, 412, 104, 0 ],
 		],
 	},
@@ -6096,7 +6096,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 4, -1, 36, 0, 20 ],
 		],
 	},
@@ -6110,7 +6110,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 1, 176, 1, 9, -1 ],
 			[ 1, 177, 1, 9, -1 ],
 			[ 1, 180, 1, 9, -5 ],
@@ -6128,7 +6128,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 5, 101, -1, 13, 1.4 ],
 			[ 5, 86, -1, 13, 1.4 ],
 			[ 5, 153, -1, 13, 1.4 ],
@@ -6144,7 +6144,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 4, 4, -1, 8, 769 ],
 			[ 4, 24, -1, 8, 769 ],
 			[ 4, 492, -1, 8, 769 ],
@@ -6164,7 +6164,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 70, -1, 21, 5 ],
 			[ 4, 463, -1, 21, 5 ],
 			[ 4, 464, -1, 21, 5 ],
@@ -6186,7 +6186,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 83, -1, 100, 0.9 ],
 			[ 5, 293, -1, 100, 0.9 ],
 		],
@@ -6198,7 +6198,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 83, -1, 100, 0.9444 ],
 			[ 5, 293, -1, 100, 0.9444 ],
 		],
@@ -6210,7 +6210,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 83, -1, 100, 0.941176 ],
 			[ 5, 293, -1, 100, 0.941176 ],
 		],
@@ -6225,7 +6225,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 5, 128, -1, 100, 0.5 ],
 			[ 5, 204, -1, 100, 0.5 ],
 			[ 5, 17, -1, 100, 0.5 ],
@@ -6239,7 +6239,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 5, -1, 100, 0.8 ],
 			[ 5, 36, -1, 100, 0.8 ],
 			[ 5, 420, -1, 100, 0.8 ],
@@ -6253,7 +6253,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 53, 100, 1 ],
 			[ 5, -1, 20, 100, 1 ],
 			[ 5, -1, 22, 100, 1 ],
@@ -6266,7 +6266,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 53, 100, 0.94117 ],
 			[ 5, -1, 20, 100, 0.94117 ],
 			[ 5, -1, 22, 100, 0.94117 ],
@@ -6279,7 +6279,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 876, 1, -1, 0 ],
 		],
 	},
@@ -6293,7 +6293,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 876, 878, -1, 0 ],
 		],
 	},
@@ -6304,7 +6304,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 329, -1, 8, 769 ],
 			[ 4, 330, -1, 8, 769 ],
 			[ 4, 207, -1, 8, 769 ],
@@ -6320,7 +6320,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 5, 579, -1, 13, 1.1 ],
 			[ 5, 581, -1, 13, 1.1 ],
 			[ 5, 17, -1, 13, 1.1 ],
@@ -6339,7 +6339,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, 5, -1, 1, 1 ],
 			[ 4, 5, -1, 23, 1 ],
 			[ 4, 5, -1, 12, 1 ],
@@ -6352,7 +6352,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 879, 1, -1, 0 ],
 		],
 	},
@@ -6366,7 +6366,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 879, 881, -1, 0 ],
 		],
 	},
@@ -6377,7 +6377,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "C-Bonus, Siege Units Cheaper",
@@ -6386,7 +6386,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 13, 100, 0.85 ],
 			[ 5, -1, 55, 100, 0.85 ],
 		],
@@ -6401,7 +6401,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 4, -1, 18, 8, 771 ],
 			[ 4, -1, 18, 8, 1027 ],
 			[ 4, 286, -1, 8, 771 ],
@@ -6418,7 +6418,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, -1, 6, 22, 0.5 ],
 			[ 4, 281, -1, 22, -0.5 ],
 			[ 4, 531, -1, 22, -0.5 ],
@@ -6442,7 +6442,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 0, 869, -1, 105, 0 ],
 			[ 0, 871, -1, 105, 0 ],
 		],
@@ -6457,7 +6457,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, -1, 36, 1, 1 ],
 			[ 4, -1, 36, 23, 1 ],
 			[ 4, -1, 36, 12, 1 ],
@@ -6512,7 +6512,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 0, 6, -1, 20, 0 ],
 			[ 0, 7, -1, 20, 0 ],
 			[ 0, 185, -1, 20, 0 ],
@@ -6532,7 +6532,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, 751, -1, 8, 770 ],
 			[ 4, 752, -1, 8, 770 ],
 			[ 4, 753, -1, 8, 770 ],
@@ -6554,7 +6554,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 56, -1, 13, 1.1 ],
 			[ 5, 57, -1, 13, 1.1 ],
 		],
@@ -6566,7 +6566,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 3, 106, 0.85 ],
 			[ 5, -1, 52, 106, 0.85 ],
 			[ 5, -1, 27, 106, 0.85 ],
@@ -6580,7 +6580,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Imperial Camel Rider",
@@ -6592,7 +6592,7 @@ export default [
 		],
 		"time": 125,
 		"icon": 74,
-		"effects": [
+		"commands": [
 			[ 3, 329, 207, -1, 0 ],
 			[ 3, 330, 207, -1, 0 ],
 		],
@@ -6604,7 +6604,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 184, 1, -1, 0 ],
 		],
 	},
@@ -6615,7 +6615,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 792, 1, -1, 0 ],
 			[ 2, 796, 1, -1, 0 ],
 			[ 2, 800, 1, -1, 0 ],
@@ -6629,7 +6629,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 120, -1, 13, 1.25 ],
 			[ 5, 354, -1, 13, 1.25 ],
 		],
@@ -6643,7 +6643,7 @@ export default [
 		],
 		"time": 10,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 3, 72, 119, -1, 0 ],
 			[ 5, 789, -1, 0, 2 ],
 			[ 5, 790, -1, 0, 2 ],
@@ -6673,7 +6673,7 @@ export default [
 		],
 		"time": 15,
 		"icon": 94,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Fire Tower",
@@ -6684,7 +6684,7 @@ export default [
 		],
 		"time": 10,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 190, 1, -1, 0 ],
 		],
 	},
@@ -6695,7 +6695,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 185, 1, -1, 0 ],
 		],
 	},
@@ -6729,7 +6729,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "C-Bonus, Villager cost -25%",
@@ -6738,7 +6738,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 83, -1, 100, 0.9375 ],
 			[ 5, 293, -1, 100, 0.9375 ],
 		],
@@ -6750,7 +6750,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 3, 890, 1644, -1, 0 ],
 		],
 	},
@@ -6764,7 +6764,7 @@ export default [
 		],
 		"time": 15,
 		"icon": 94,
-		"effects": [
+		"commands": [
 			[ 2, 594, -1, 13, 0.85 ],
 		],
 	},
@@ -6778,7 +6778,7 @@ export default [
 		],
 		"time": 15,
 		"icon": 94,
-		"effects": [
+		"commands": [
 			[ 2, 305, -1, 13, 0.85 ],
 		],
 	},
@@ -6792,7 +6792,7 @@ export default [
 		],
 		"time": 15,
 		"icon": 94,
-		"effects": [
+		"commands": [
 			[ 2, 705, -1, 13, 0.85 ],
 		],
 	},
@@ -6806,7 +6806,7 @@ export default [
 		],
 		"time": 15,
 		"icon": 94,
-		"effects": [
+		"commands": [
 			[ 2, 833, -1, 13, 0.85 ],
 		],
 	},
@@ -6817,7 +6817,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 0, 105, 0.85 ],
 			[ 5, -1, 6, 105, 0.85 ],
 			[ 5, -1, 12, 105, 0.85 ],
@@ -6841,7 +6841,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 2, 0, 1.1 ],
 			[ 5, -1, 21, 0, 1.1 ],
 			[ 5, -1, 22, 0, 1.1 ],
@@ -6856,7 +6856,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Organ Gun (make avail)",
@@ -6865,7 +6865,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1001, 1, -1, 0 ],
 		],
 	},
@@ -6879,7 +6879,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 1001, 1003, -1, 0 ],
 		],
 	},
@@ -6890,7 +6890,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1007, 1, -1, 0 ],
 		],
 	},
@@ -6904,7 +6904,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 1007, 1009, -1, 0 ],
 		],
 	},
@@ -6915,7 +6915,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1013, 1, -1, 0 ],
 		],
 	},
@@ -6929,7 +6929,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 1013, 1015, -1, 0 ],
 		],
 	},
@@ -6940,7 +6940,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1016, 1, -1, 0 ],
 		],
 	},
@@ -6954,7 +6954,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 1016, 1018, -1, 0 ],
 		],
 	},
@@ -6965,7 +6965,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1021, 1, -1, 0 ],
 		],
 	},
@@ -6976,7 +6976,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Carrack",
@@ -6988,7 +6988,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 4, -1, 21, 8, 769 ],
 			[ 4, -1, 2, 8, 769 ],
 			[ 4, -1, 20, 8, 769 ],
@@ -7009,7 +7009,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, 380, -1, 5, 0.5 ],
 			[ 4, 368, -1, 5, 0.2 ],
 			[ 4, 506, -1, 5, 0.2 ],
@@ -7032,7 +7032,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 5, 1016, -1, 101, 0.5 ],
 			[ 5, 1018, -1, 101, 0.5 ],
 		],
@@ -7047,7 +7047,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, -1, 13, 22, 0.45 ],
 			[ 4, 35, -1, 22, 0.05 ],
 			[ 4, 422, -1, 22, 0.05 ],
@@ -7073,7 +7073,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 4, 109, -1, 102, 5 ],
 			[ 4, 71, -1, 102, 5 ],
 			[ 4, 141, -1, 102, 5 ],
@@ -7094,7 +7094,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, -1, 12, 9, 1029 ],
 			[ 4, -1, 47, 9, 1029 ],
 			[ 4, 1234, -1, 9, 7941 ],
@@ -7111,7 +7111,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 15, 82, -1, 13, 1.25 ],
 		],
 	},
@@ -7125,7 +7125,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, 1007, -1, 109, 1 ],
 			[ 4, 1009, -1, 109, 1 ],
 			[ 4, 329, -1, 109, 1 ],
@@ -7146,7 +7146,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 4, 5, 1.1 ],
 		],
 	},
@@ -7157,7 +7157,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 2, 5, 1.1 ],
 			[ 5, -1, 20, 5, 1.1 ],
 			[ 5, -1, 21, 5, 1.1 ],
@@ -7173,7 +7173,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 12, 100, 0.85 ],
 			[ 5, -1, 47, 100, 0.85 ],
 		],
@@ -7185,7 +7185,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 0, 1, 10, 100 ],
 			[ 1, 3, 1, 10, 100 ],
 		],
@@ -7197,7 +7197,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 0, 1, 10, 100 ],
 			[ 1, 3, 1, 10, 100 ],
 		],
@@ -7209,7 +7209,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 0, 1, 10, 100 ],
 			[ 1, 3, 1, 10, 100 ],
 		],
@@ -7221,7 +7221,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 101, 197, 0, 0, 0 ],
 			[ 101, 197, 3, 0, 0 ],
 			[ 103, 197, -1, 0, 0 ],
@@ -7234,7 +7234,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 93, -1, 8, 769 ],
 			[ 4, 358, -1, 8, 769 ],
 			[ 4, 359, -1, 8, 769 ],
@@ -7257,7 +7257,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 93, -1, 8, 769 ],
 			[ 4, 358, -1, 8, 769 ],
 			[ 4, 359, -1, 8, 769 ],
@@ -7280,7 +7280,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 93, -1, 8, 769 ],
 			[ 4, 358, -1, 8, 769 ],
 			[ 4, 359, -1, 8, 769 ],
@@ -7303,7 +7303,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 101, 55, 0, 0, 0 ],
 			[ 101, 55, 1, 0, 0 ],
 			[ 103, 55, -1, 0, 0 ],
@@ -7316,7 +7316,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 3, 104, 0.85 ],
 			[ 5, -1, 39, 104, 0.85 ],
 			[ 5, -1, 52, 104, 0.85 ],
@@ -7330,7 +7330,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1004, 1, -1, 0 ],
 		],
 	},
@@ -7344,7 +7344,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 1004, 1006, -1, 0 ],
 		],
 	},
@@ -7355,7 +7355,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Elite Genitour",
@@ -7367,7 +7367,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 1079, 1012, -1, 0 ],
 			[ 3, 1010, 1012, -1, 0 ],
 		],
@@ -7379,7 +7379,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 11, 50, 1, -1, 1 ],
 			[ 101, 19, 3, 0, 0 ],
 			[ 101, 19, 0, 0, 0 ],
@@ -7394,7 +7394,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1079, 1, -1, 0 ],
 		],
 	},
@@ -7408,7 +7408,7 @@ export default [
 		],
 		"time": 25,
 		"icon": 118,
-		"effects": [
+		"commands": [
 			[ 4, -1, 6, 9, 5378 ],
 		],
 	},
@@ -7419,7 +7419,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1105, 1, -1, 0 ],
 		],
 	},
@@ -7430,7 +7430,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1103, 1, -1, 0 ],
 		],
 	},
@@ -7441,7 +7441,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1104, 1, -1, 0 ],
 		],
 	},
@@ -7452,7 +7452,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 102, 1104, 1, -1, 599 ],
 		],
 	},
@@ -7463,7 +7463,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 4, -1, 10, 0.85 ],
 			[ 5, 24, -1, 10, 0.85 ],
 			[ 5, 492, -1, 10, 0.85 ],
@@ -7479,7 +7479,7 @@ export default [
 		],
 		"time": 25,
 		"icon": 119,
-		"effects": [
+		"commands": [
 			[ 4, 79, -1, 9, 769 ],
 			[ 4, 234, -1, 9, 769 ],
 			[ 4, 235, -1, 9, 769 ],
@@ -7495,7 +7495,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "Arrowslits (Guard tower)",
@@ -7504,7 +7504,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 79, -1, 9, 769 ],
 			[ 4, 234, -1, 9, 769 ],
 			[ 4, 235, -1, 9, 769 ],
@@ -7520,7 +7520,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 79, -1, 9, 769 ],
 			[ 4, 234, -1, 9, 769 ],
 			[ 4, 235, -1, 9, 769 ],
@@ -7536,7 +7536,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 0, 676, -1, 19, 1 ],
 		],
 	},
@@ -7547,7 +7547,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 12, 100, 0.941176 ],
 			[ 5, -1, 47, 100, 0.941176 ],
 		],
@@ -7559,7 +7559,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1120, 1, -1, 0 ],
 		],
 	},
@@ -7573,7 +7573,7 @@ export default [
 		],
 		"time": 70,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 1120, 1122, -1, 0 ],
 		],
 	},
@@ -7584,7 +7584,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1123, 1, -1, 0 ],
 		],
 	},
@@ -7598,7 +7598,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 1123, 1125, -1, 0 ],
 		],
 	},
@@ -7609,7 +7609,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1126, 1, -1, 0 ],
 		],
 	},
@@ -7623,7 +7623,7 @@ export default [
 		],
 		"time": 65,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 1126, 1128, -1, 0 ],
 		],
 	},
@@ -7634,7 +7634,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1129, 1, -1, 0 ],
 		],
 	},
@@ -7648,7 +7648,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 1129, 1131, -1, 0 ],
 		],
 	},
@@ -7662,7 +7662,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 4, 1132, -1, 9, 1027 ],
 			[ 4, 1134, -1, 9, 1027 ],
 			[ 4, 239, -1, 9, 1027 ],
@@ -7679,7 +7679,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, 542, -1, 107, 1 ],
 			[ 4, 279, -1, 107, 1 ],
 			[ 4, 1120, -1, 107, 1 ],
@@ -7700,7 +7700,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 3, 45, 1189, -1, 0 ],
 			[ 3, 51, 1189, -1, 0 ],
 			[ 3, 47, 1189, -1, 0 ],
@@ -7725,7 +7725,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, 74, -1, 105, -20 ],
 			[ 4, 75, -1, 105, -20 ],
 			[ 4, 77, -1, 105, -20 ],
@@ -7748,7 +7748,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 4, 1132, -1, 8, 1025 ],
 			[ 4, 1132, -1, 8, 769 ],
 			[ 4, 1134, -1, 8, 1025 ],
@@ -7769,7 +7769,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, -1, 12, 9, 5382 ],
 			[ 4, 1126, -1, 9, 5382 ],
 			[ 4, 1128, -1, 9, 5382 ],
@@ -7786,7 +7786,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 4, 1132, -1, 0, 50 ],
 			[ 4, 1134, -1, 0, 50 ],
 			[ 4, 239, -1, 0, 50 ],
@@ -7803,7 +7803,7 @@ export default [
 		],
 		"time": 60,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 11, 3, 1, 13, 500 ],
 		],
 	},
@@ -7814,7 +7814,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1132, 1, -1, 0 ],
 		],
 	},
@@ -7828,7 +7828,7 @@ export default [
 		],
 		"time": 100,
 		"icon": 121,
-		"effects": [
+		"commands": [
 			[ 3, 1132, 1134, -1, 0 ],
 		],
 	},
@@ -7839,7 +7839,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 4, -1, 0, 1.2 ],
 			[ 5, 24, -1, 0, 1.2 ],
 			[ 5, 492, -1, 0, 1.2 ],
@@ -7863,7 +7863,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "C-Bonus, Age up faster",
@@ -7872,7 +7872,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 103, 101, 0, 1, -52 ],
 			[ 103, 102, 0, 1, -64 ],
 			[ 103, 103, 0, 1, -76 ],
@@ -7885,7 +7885,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 199, -1, 100, 0.666667 ],
 		],
 	},
@@ -7896,7 +7896,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "C-Bonus, Infinite fish traps",
@@ -7905,7 +7905,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 88, 0, -1, 70000000000000 ],
 		],
 	},
@@ -7916,7 +7916,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Town Center Spawn",
@@ -7925,7 +7925,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Disable TC spawn",
@@ -7934,7 +7934,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 3, 1118, 889, -1, 0 ],
 			[ 3, 890, 889, -1, 0 ],
 			[ 3, 1642, 889, -1, 0 ],
@@ -7950,7 +7950,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 3, 70, 192, 1, 5 ],
 			[ 3, 463, 192, 1, 5 ],
 			[ 3, 464, 192, 1, 5 ],
@@ -7965,7 +7965,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "C-Bonus, +2% arc HP castle",
@@ -7974,7 +7974,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "C-Bonus, +2% arc HP imp",
@@ -7983,7 +7983,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "C-Bonus, free lumberjack upgra",
@@ -7992,7 +7992,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 101, 202, 0, 0, 0 ],
 			[ 101, 202, 1, 0, 0 ],
 			[ 103, 202, -1, 0, 0 ],
@@ -8011,7 +8011,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 6, 9, 1025 ],
 		],
 	},
@@ -8022,7 +8022,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 6, 9, 1025 ],
 		],
 	},
@@ -8033,7 +8033,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 6, 9, 1025 ],
 		],
 	},
@@ -8044,7 +8044,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 101, 45, 3, 1, -500 ],
 			[ 101, 45, 0, 1, -375 ],
 			[ 101, 230, 3, 1, -100 ],
@@ -8073,7 +8073,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 120,
-		"effects": [
+		"commands": [
 			[ 3, 7, 1155, -1, 0 ],
 			[ 3, 6, 1155, -1, 0 ],
 		],
@@ -8085,7 +8085,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 102, 1104, 1, -1, 655 ],
 		],
 	},
@@ -8096,7 +8096,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 70, -1, 2, 5 ],
 			[ 4, 463, -1, 2, 5 ],
 			[ 4, 464, -1, 2, 5 ],
@@ -8110,7 +8110,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 4, 1, -1, 2000 ],
 		],
 	},
@@ -8121,7 +8121,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Shadow Node+ for Age Three",
@@ -8130,7 +8130,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Shadow Node+ for Age Four",
@@ -8139,7 +8139,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "C-Bonus, Battle Ele cheaper",
@@ -8148,7 +8148,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 1132, -1, 100, 0.7 ],
 			[ 5, 1134, -1, 100, 0.7 ],
 		],
@@ -8160,7 +8160,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "C-Bonus, Archers +20% HP",
@@ -8169,7 +8169,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Vietnamese Vision",
@@ -8178,7 +8178,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 209, 0, -1, 5 ],
 		],
 	},
@@ -8189,7 +8189,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Shadow Node Barracks + Khmer",
@@ -8198,7 +8198,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Shadow Node Blacksmith + Khmer",
@@ -8207,7 +8207,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Thalassocracy + Fletching",
@@ -8216,7 +8216,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 1189, -1, 9, 769 ],
 			[ 4, 1189, -1, 1, 1 ],
 			[ 4, 1189, -1, 23, 1 ],
@@ -8246,7 +8246,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 1189, -1, 9, 769 ],
 			[ 4, 1189, -1, 1, 1 ],
 			[ 4, 1189, -1, 23, 1 ],
@@ -8276,7 +8276,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 1189, -1, 9, 769 ],
 			[ 4, 1189, -1, 1, 1 ],
 			[ 4, 1189, -1, 23, 1 ],
@@ -8306,7 +8306,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 1132, -1, 5, 1.15 ],
 			[ 5, 1134, -1, 5, 1.15 ],
 		],
@@ -8322,7 +8322,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1225, 1, -1, 0 ],
 			[ 2, 1254, 1, -1, 0 ],
 		],
@@ -8337,7 +8337,7 @@ export default [
 		],
 		"time": 70,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 1225, 1227, -1, 0 ],
 			[ 3, 1254, 1255, -1, 0 ],
 			[ 3, 1252, 1253, -1, 0 ],
@@ -8350,7 +8350,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1228, 1, -1, 0 ],
 		],
 	},
@@ -8364,7 +8364,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 1228, 1230, -1, 0 ],
 		],
 	},
@@ -8375,7 +8375,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1231, 1, -1, 0 ],
 		],
 	},
@@ -8389,7 +8389,7 @@ export default [
 		],
 		"time": 65,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 1231, 1233, -1, 0 ],
 		],
 	},
@@ -8400,7 +8400,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1234, 1, -1, 0 ],
 		],
 	},
@@ -8414,7 +8414,7 @@ export default [
 		],
 		"time": 45,
 		"icon": 105,
-		"effects": [
+		"commands": [
 			[ 3, 1234, 1236, -1, 0 ],
 		],
 	},
@@ -8428,7 +8428,7 @@ export default [
 		],
 		"time": 35,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 5, -1, 47, 10, 0.75 ],
 			[ 5, -1, 12, 10, 0.75 ],
 		],
@@ -8443,7 +8443,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, 74, -1, 8, 1029 ],
 			[ 4, 75, -1, 8, 1029 ],
 			[ 4, 77, -1, 8, 1029 ],
@@ -8461,7 +8461,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 4, 448, -1, 8, 769 ],
 			[ 4, 546, -1, 8, 769 ],
 			[ 4, 441, -1, 8, 769 ],
@@ -8480,7 +8480,7 @@ export default [
 		],
 		"time": 50,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, -1, 54, 12, 2 ],
 			[ 4, -1, 54, 23, 2 ],
 			[ 4, -1, 54, 1, 2 ],
@@ -8506,7 +8506,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 5, 448, -1, 101, 0.5 ],
 			[ 5, 546, -1, 101, 0.5 ],
 			[ 5, 441, -1, 101, 0.5 ],
@@ -8526,7 +8526,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 13, 1259, 1260, 8, 769 ],
 			[ 11, 214, -1, -1, 10 ],
 		],
@@ -8541,7 +8541,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 33,
-		"effects": [
+		"commands": [
 			[ 4, 109, -1, 1, 3 ],
 			[ 4, 109, -1, 12, 3 ],
 			[ 4, 109, -1, 23, 3 ],
@@ -8566,7 +8566,7 @@ export default [
 		],
 		"time": 40,
 		"icon": 107,
-		"effects": [
+		"commands": [
 			[ 4, 7, -1, 8, 770 ],
 			[ 4, 6, -1, 8, 770 ],
 			[ 4, 1155, -1, 8, 770 ],
@@ -8582,7 +8582,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 101, 222, 0, 0, 0 ],
 			[ 101, 222, 3, 0, 0 ],
 			[ 101, 207, 0, 0, 0 ],
@@ -8601,7 +8601,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 621, -1, 106, 0.5 ],
 			[ 5, 617, -1, 106, 0.5 ],
 			[ 5, 484, -1, 106, 0.5 ],
@@ -8615,7 +8615,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1251, 1, -1, 0 ],
 		],
 	},
@@ -8626,7 +8626,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 211, 1, -1, 0.25 ],
 			[ 1, 212, 1, -1, 0 ],
 		],
@@ -8638,7 +8638,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 91, 1, -1, 150 ],
 		],
 	},
@@ -8649,7 +8649,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 101, 436, 0, 0, 0 ],
 			[ 101, 436, 3, 0, 0 ],
 			[ 103, 436, -1, 0, 0 ],
@@ -8667,7 +8667,7 @@ export default [
 		],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 38, -1, 9, 1025 ],
 			[ 4, 283, -1, 9, 1025 ],
 			[ 4, 569, -1, 9, 1025 ],
@@ -8684,7 +8684,7 @@ export default [
 		],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 38, -1, 9, 1025 ],
 			[ 4, 283, -1, 9, 1025 ],
 			[ 4, 569, -1, 9, 1025 ],
@@ -8701,7 +8701,7 @@ export default [
 		],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 38, -1, 9, 1025 ],
 			[ 4, 283, -1, 9, 1025 ],
 			[ 4, 569, -1, 9, 1025 ],
@@ -8718,7 +8718,7 @@ export default [
 		],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 38, -1, 9, 1025 ],
 			[ 4, 283, -1, 9, 1025 ],
 			[ 4, 569, -1, 9, 1025 ],
@@ -8734,7 +8734,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 216, 0, -1, 1.57 ],
 			[ 5, 590, -1, 13, 0.637 ],
 			[ 5, 592, -1, 13, 0.637 ],
@@ -8747,7 +8747,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 49, 1, -1, 0 ],
 		],
 	},
@@ -8758,7 +8758,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 3, 1258, 35, -1, 0 ],
 			[ 3, 49, 150, -1, 0 ],
 		],
@@ -8770,7 +8770,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1259, 1, -1, 0 ],
 		],
 	},
@@ -8783,7 +8783,7 @@ export default [
 		],
 		"time": 0,
 		"icon": null,
-		"effects": [],
+		"commands": [],
 	},
 	{
 		"name": "C-Bonus, Feudal TC",
@@ -8792,7 +8792,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 621, 1, -1, 0 ],
 			[ 1, 218, -1, -1, -10000 ],
 		],
@@ -8804,7 +8804,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, 7, -1, 5, 1.1 ],
 			[ 5, 6, -1, 5, 1.1 ],
 			[ 5, 1155, -1, 5, 1.1 ],
@@ -8820,7 +8820,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 47, 5, 1.05 ],
 			[ 5, -1, 36, 5, 1.05 ],
 			[ 5, -1, 12, 5, 1.05 ],
@@ -8834,7 +8834,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 3, 1258, 35, -1, 0 ],
 			[ 3, 49, 150, -1, 0 ],
 		],
@@ -8846,7 +8846,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 0, 1090, -1, 50, 5223 ],
 			[ 0, 1218, -1, 50, 5223 ],
 			[ 0, 1219, -1, 50, 5223 ],
@@ -8915,7 +8915,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 2, 1370, 1, -1, 0 ],
 		],
 	},
@@ -8929,7 +8929,7 @@ export default [
 		],
 		"time": 55,
 		"icon": 123,
-		"effects": [
+		"commands": [
 			[ 3, 1370, 1372, -1, 0 ],
 		],
 	},
@@ -8943,7 +8943,7 @@ export default [
 		],
 		"time": 35,
 		"icon": 124,
-		"effects": [
+		"commands": [
 			[ 4, 74, -1, 103, -15 ],
 			[ 4, 75, -1, 103, -15 ],
 			[ 4, 77, -1, 103, -15 ],
@@ -8958,7 +8958,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": 0,
-		"effects": [
+		"commands": [
 			[ 0, 1370, -1, 43, 14 ],
 			[ 0, 1372, -1, 43, 14 ],
 		],
@@ -8970,7 +8970,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": 0,
-		"effects": [
+		"commands": [
 			[ 0, 886, -1, 43, 13 ],
 			[ 0, 887, -1, 43, 13 ],
 		],
@@ -8982,7 +8982,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": 0,
-		"effects": [
+		"commands": [
 			[ 0, 759, -1, 43, 14 ],
 			[ 0, 761, -1, 43, 14 ],
 		],
@@ -8994,7 +8994,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": 0,
-		"effects": [
+		"commands": [
 			[ 0, 185, -1, 43, 12 ],
 		],
 	},
@@ -9005,7 +9005,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 10, 12, -1, 21, 5 ],
 			[ 10, 20, -1, 21, 5 ],
 			[ 10, 132, -1, 21, 5 ],
@@ -9027,7 +9027,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": null,
+		"commands": null,
 	},
 	{
 		"name": "Change TC constr time1",
@@ -9036,7 +9036,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": 0,
-		"effects": [
+		"commands": [
 			[ 5, 621, -1, 101, 1.8 ],
 			[ 5, 617, -1, 101, 1.8 ],
 			[ 5, 484, -1, 101, 1.8 ],
@@ -9050,7 +9050,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": 0,
-		"effects": [
+		"commands": [
 			[ 5, 621, -1, 101, 0.55556 ],
 			[ 5, 617, -1, 101, 0.55556 ],
 			[ 5, 484, -1, 101, 0.55556 ],
@@ -9064,7 +9064,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 36, 9, 5377 ],
 			[ 4, 4, -1, 9, 5377 ],
 			[ 4, 24, -1, 9, 5377 ],
@@ -9078,7 +9078,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, -1, 36, 9, 5377 ],
 			[ 4, 4, -1, 9, 5377 ],
 			[ 4, 24, -1, 9, 5377 ],
@@ -9092,7 +9092,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 47, 5, 1.05 ],
 			[ 5, -1, 36, 5, 1.05 ],
 			[ 5, -1, 12, 5, 1.05 ],
@@ -9106,7 +9106,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 47, 5, 1.05 ],
 			[ 5, -1, 36, 5, 1.05 ],
 			[ 5, -1, 12, 5, 1.05 ],
@@ -9120,7 +9120,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 1, 221, 0, -1, 1 ],
 			[ 1, 222, 0, -1, 1 ],
 			[ 1, 223, 0, -1, 1 ],
@@ -9135,7 +9135,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 3, 890, 1118, -1, 0 ],
 		],
 	},
@@ -9146,7 +9146,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 6, 100, 0.9375 ],
 		],
 	},
@@ -9157,7 +9157,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 6, 100, 0.933333 ],
 		],
 	},
@@ -9168,7 +9168,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 5, -1, 6, 100, 0.928571 ],
 		],
 	},
@@ -9179,7 +9179,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 1189, -1, 9, 769 ],
 			[ 4, 45, -1, 9, 769 ],
 			[ 4, 47, -1, 9, 769 ],
@@ -9194,7 +9194,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 1189, -1, 20, -1 ],
 			[ 4, 45, -1, 20, -1 ],
 			[ 4, 47, -1, 20, -1 ],
@@ -9209,7 +9209,7 @@ export default [
 		"costs": [],
 		"time": 0,
 		"icon": null,
-		"effects": [
+		"commands": [
 			[ 4, 1189, -1, 9, 4100 ],
 			[ 4, 45, -1, 9, 4100 ],
 			[ 4, 47, -1, 9, 4100 ],

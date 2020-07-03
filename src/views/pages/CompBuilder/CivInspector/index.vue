@@ -7,8 +7,8 @@
 					<h2 class="text-2xl font-light">{{ civ.name }}</h2>
 					<table class="leading-tight">
 						<FocusRow title="major" color="text-bonus-major" :focuses="civ.focuses" />
-						<FocusRow title="minor" color="text-bonus-general" :focuses="civ.getMinorFocuses()" />
-						<FocusRow title="team" color="text-bonus-team" :focuses="civ.getTeamFocuses()" />
+						<FocusRow title="minor" color="text-bonus-general" :focuses="civ.getSecondaryFocuses()" />
+						<FocusRow title="team" color="text-bonus-team" :focuses="civ.teamBonus.focuses" />
 					</table>
 				</UIStack>
 				<UIStack direction="row" alignment="center" justification="center" class="ml-4">
@@ -16,7 +16,7 @@
 				</UIStack>
 			</UIStack>
 			<ul class="mt-2 list-disc list-inside">
-				<UIStack v-for="[label, bonuses] in civ.getGroupedBonuses()" :key="label" direction="col">
+				<UIStack v-for="[label, bonuses] in groupedBonuses" :key="label" direction="col">
 					<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
 					<li v-for="bonus in bonuses" :key="bonus.description">
 						<img
@@ -41,7 +41,8 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 
-import { BonusType, CivBonus } from '/@/models/types'
+import { BonusType } from '/@/models/types'
+import type { CivBonus } from '/@/models/civs'
 import { useStore } from '/@/models/store'
 
 import UIStack from '/@/views/ui/Stack.vue'
@@ -60,9 +61,26 @@ export default defineComponent({
 		const store = useStore()
 		const civ = store.getters.selectedCiv
 
+		const groupedBonuses = computed(() => {
+			const groupedBonuses: [string, CivBonus[]][] = [['team', []], ['general', []], ['castle', []]]
+			// for (const bonus of civ.value.bonuses) {
+			// 	let group
+			// 	if (bonus.team) {
+			// 		group = groupedBonuses[0]
+			// 	} else if (bonus.type !== undefined && bonus.type !== BonusType.Trait) {
+			// 		group = groupedBonuses[2]
+			// 	} else {
+			// 		group = groupedBonuses[1]
+			// 	}
+			// 	group[1].push(bonus)
+			// }
+			return groupedBonuses
+		})
+
 		return {
 			civ,
 			commit: store.commit,
+			groupedBonuses,
 		}
 	},
 })

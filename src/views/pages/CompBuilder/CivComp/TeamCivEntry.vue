@@ -21,8 +21,8 @@
 <script lang="ts">
 import { defineComponent, PropType, ref, watch } from 'vue'
 
-import { CivBonusesEntry } from '/@/models/types'
-import { civsBonuses } from '/@/models/civs/bonuses'
+import { civEntries } from '/@/models/civs'
+import type { CivEntry } from '/@/models/civs'
 import { useStore } from '/@/models/store'
 
 import CivIcon from '/@/views/components/CivIcon.vue'
@@ -38,7 +38,7 @@ export default defineComponent({
 			required: true,
 		},
 		civ: {
-			type: Object as PropType<CivBonusesEntry | null>,
+			type: Object as PropType<CivEntry | null>,
 			default: null,
 		},
 	},
@@ -53,7 +53,7 @@ export default defineComponent({
 
 		function onDrop (event: DragEvent) {
 			const civName = event.dataTransfer?.getData('text/civ')
-			const civ = civsBonuses.find(civ => civ.name === civName)
+			const civ = civEntries.find(civ => civ.name === civName)
 			if (!civ) {
 				return console.error('drop', civName, event)
 			}

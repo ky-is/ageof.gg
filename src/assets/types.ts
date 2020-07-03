@@ -1,12 +1,17 @@
-type CostData = [number, number, number]
-type EffectData = [number, number, number, number, number]
+export type CostData = [number, number, number]
+
+export type EffectCommandData = [number, number, number, number, number]
+export interface EffectData {
+	name: string
+	commands: EffectCommandData[]
+}
 
 export interface CivData {
 	name: string
 	remove: number[]
-	modify: number[][]
-	uniques: number[]
-	teamBonusEffects: EffectData[] | null
+	modify: EffectCommandData[]
+	uniqueTechs: number[]
+	teamBonuses: EffectCommandData[]
 }
 
 export interface TechData {
@@ -16,7 +21,7 @@ export interface TechData {
 	costs: CostData[]
 	time: number
 	icon: number | null
-	effects: EffectData[] | null
+	commands: EffectCommandData[] | null
 }
 
 export interface UnitData {
@@ -24,10 +29,9 @@ export interface UnitData {
 	icon: number | null
 }
 
-// const EffectType = {
-// 	UnitMultiplier: 5,
-// 	ModifyCost: 101,
-// 	ModifyTime: 103,
-// 	Remove: 102,
-// }
-// const EffectResources = [ 'Food', 'Wood', 'stone', 'gold' ]
+export const enum EffectType {
+	UnitMultiplier = 5,
+	ModifyCost = 101,
+	Remove = 102,
+	ModifyTime = 103,
+}

@@ -1,5 +1,5 @@
 <template>
-	<UIStack direction="col" class="mt-1">
+	<UIStack direction="col" class="mb-2">
 		<h3 v-if="isFiltered" class="text-lg text-secondary smallcaps">{{ header }}</h3>
 		<UIStack
 			v-for="civ in civs" :key="civ.name"
@@ -19,7 +19,7 @@
 import { defineComponent, PropType } from 'vue'
 
 import { useStore } from '/@/models/store'
-import { CivBonusesEntry } from '/@/models/types'
+import { CivEntry } from '/@/models/types'
 
 import UIStack from '/@/views/ui/Stack.vue'
 import CivIcon from '/@/views/components/CivIcon.vue'
@@ -36,7 +36,7 @@ export default defineComponent({
 			required: true,
 		},
 		civs: {
-			type: Array as PropType<CivBonusesEntry[][]>,
+			type: Array as PropType<CivEntry[][]>,
 			required: true,
 		},
 		isFiltered: {

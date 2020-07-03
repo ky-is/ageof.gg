@@ -58,8 +58,11 @@ for (const civKey in civs) {
 	})
 }
 
+function formatCommand (command) {
+	return [command.Type, command.A, command.B, command.C, command.D]
+}
 function getCommandsFrom (effect) {
-	return effect.EffectCommands.map(command => [command.Type, command.A, command.B, command.C, command.D])
+	return effect.EffectCommands.map(formatCommand)
 }
 
 for (const tech of techs) {
@@ -88,7 +91,7 @@ for (const tech of techs) {
 			costs,
 			time: tech.ResearchTime,
 			icon: iconID !== -1 ? iconID : null,
-			effects: effect ? getCommandsFrom(effect) : null,
+			commands: effect ? getCommandsFrom(effect) : null,
 		}
 	}
 
@@ -114,7 +117,7 @@ for (const civKey in civs) {
 	const treeEffects = effects[civ.TechTreeID]
 	const teamBonusEffect = effects[civ.TeamBonusID]
 	const output = outputCivs[civKey]
-	output.teamBonusEffects = teamBonusEffect ? getCommandsFrom(teamBonusEffect) : null
+	output.teamBonuses = teamBonusEffect ? getCommandsFrom(teamBonusEffect) : []
 	for (const treeEffect of treeEffects.EffectCommands) {
 		if (treeEffect.Type === EffectType.Remove) {
 			const techID = treeEffect.D
@@ -127,7 +130,7 @@ for (const civKey in civs) {
 				}
 			}
 		} else {
-			output.modify.push([treeEffect.Type, treeEffect.A, treeEffect.B, treeEffect.C, treeEffect.D])
+			output.modify.push(formatCommand(treeEffect))
 		}
 	}
 }

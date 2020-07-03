@@ -1,45 +1,42 @@
 <template>
-	<UIStack direction="col" class="w-64 px-4 bg-gray-850">
+	<UIStack direction="col" class="ui-sidebar w-64 bg-gray-850">
 		<h2 v-show="false">Civilizations</h2>
-		<UIStack direction="row" alignment="center" class="mt-2">
+		<UIStack direction="row" alignment="center" class="my-2 px-4">
 			<FilterFocus v-model:selected="filterFocus" />
 		</UIStack>
-		<FilterList v-if="filteredCivs[0].length" header="primary" :civs="filteredCivs[0]" :isFiltered="!!filterFocus" />
-		<FilterList v-if="filteredCivs[1].length" header="secondary" :civs="filteredCivs[1]" :isFiltered="!!filterFocus" />
+		<div class="w-full px-4 flex-gro overflow-y-scroll">
+			<FilterList v-if="filteredCivs[0].length" header="primary" :civs="filteredCivs[0]" :isFiltered="!!filterFocus" />
+			<FilterList v-if="filteredCivs[1].length" header="secondary" :civs="filteredCivs[1]" :isFiltered="!!filterFocus" />
+		</div>
 	</UIStack>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed, ref, Ref } from 'vue'
 
-import { Focus, CivBonusesEntry } from '/@/models/types'
-import { civsBonuses } from '/@/models/civs/bonuses'
+import { Focus } from '/@/models/types'
+import { civEntries, CivEntry } from '/@/models/civs'
 
 import UIStack from '/@/views/ui/Stack.vue'
 
 import FilterFocus from './FilterFocus.vue'
 import FilterList from './FilterList.vue'
 
-function getCivsForFilter (focusFilter: Focus | null): [CivBonusesEntry[], CivBonusesEntry[]] {
-	let primaryCivs: CivBonusesEntry[] = []
-	const secondaryCivs: CivBonusesEntry[] = []
+function getCivsForFilter (focusFilter: Focus | null): [CivEntry[], CivEntry[]] {
+	let primaryCivs: CivEntry[] = []
+	const secondaryCivs: CivEntry[] = []
 	if (!focusFilter) {
-		primaryCivs = civsBonuses
+		primaryCivs = civEntries.slice(1)
 	} else {
-		for (const civ of civsBonuses) {
+		for (const civ of civEntries) {
 			if (civ.focuses.includes(focusFilter)) {
 				primaryCivs.push(civ)
-			} else {
-				for (const bonus of civ.bonuses) {
-					if (bonus.focuses.includes(focusFilter)) {
-						secondaryCivs.push(civ)
-						break
-					}
-				}
+			} else if (civ.hasSecondaryFocus(focusFilter)) {
+				secondaryCivs.push(civ)
 			}
 		}
 	}
-	return [primaryCivs, secondaryCivs]
+	return [primaryCivs.sort(), secondaryCivs.sort()]
 }
 
 export default defineComponent({
@@ -61,3 +58,9 @@ export default defineComponent({
 	},
 })
 </script>
+
+<style lang="postcss" scoped>
+.ui-sidebar {
+	height: calc(100vh - 48px);
+}
+</style>

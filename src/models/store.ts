@@ -1,18 +1,18 @@
 import { computed, reactive, readonly } from 'vue'
 
-import { CivBonusesEntry } from '/@/models/types'
+import type { CivEntry } from '/@/models/civs'
 
 function createState() {
 	return {
 		selectedCiv: {
-			hovered: null as CivBonusesEntry | null,
-			clicked: null as CivBonusesEntry | null,
+			hovered: null as CivEntry | null,
+			clicked: null as CivEntry | null,
 		},
 		teamCivs: [
-			null as CivBonusesEntry | null,
-			null as CivBonusesEntry | null,
-			null as CivBonusesEntry | null,
-			null as CivBonusesEntry | null,
+			null as CivEntry | null,
+			null as CivEntry | null,
+			null as CivEntry | null,
+			null as CivEntry | null,
 		],
 	}
 }
@@ -23,11 +23,11 @@ const store = {
 	state: readonly(state),
 
 	commit: {
-		selectedCiv (type: 'hovered' | 'clicked', civ: CivBonusesEntry | null) {
+		selectedCiv (type: 'hovered' | 'clicked', civ: CivEntry | null) {
 			state.selectedCiv[type] = civ
 		},
 
-		addTeamCiv (teamCiv: CivBonusesEntry) {
+		addTeamCiv (teamCiv: CivEntry) {
 			for (const civ of state.teamCivs) {
 				if (civ === teamCiv) {
 					return
@@ -41,11 +41,11 @@ const store = {
 				}
 			}
 		},
-		setTeamCivAt (index: 0 | 1 | 2 | 3, teamCiv: CivBonusesEntry) {
+		setTeamCivAt (index: 0 | 1 | 2 | 3, teamCiv: CivEntry) {
 			store.commit.removeTeamCiv(teamCiv)
 			state.teamCivs[index] = teamCiv
 		},
-		removeTeamCiv (teamCiv: CivBonusesEntry) {
+		removeTeamCiv (teamCiv: CivEntry) {
 			state.selectedCiv.hovered = null
 			for (const index in state.teamCivs) {
 				const civ = state.teamCivs[index]
