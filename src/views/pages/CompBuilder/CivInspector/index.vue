@@ -20,16 +20,16 @@
 					<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
 					<li v-for="bonus in bonuses" :key="bonus.description">
 						<img
-							:src="`/images/ages/${bonus.getFirstAvailableAge()}.png`" :alt="bonus.getFirstAvailableAge() + ' age'"
+							:src="`/images/ages/${bonus.age}.png`" :alt="bonus.age + ' age'"
 							class="bonus-icon"
 						>
-						<img
+						<!-- <img
 							v-if="bonus.getBonusTechAge()"
 							:src="`/images/techs/unique-${bonus.getBonusTechAge()}.png`" :alt="`${bonus.getBonusTechAge()} age unique tech`"
 							class="bonus-icon"
-						>
+						> -->
 						<span v-if="bonus.name" class="text-secondary text-bold">{{ bonus.name }}: </span>
-						<span>{{ bonus.description }}</span>
+						<span>{{ bonus.text }}</span>
 						<span v-if="bonus.clarification" class="text-secondary  hidden group-hover:inline"> ({{ bonus.clarification }})</span>
 					</li>
 				</UIStack>
@@ -42,7 +42,7 @@
 import { defineComponent, computed } from 'vue'
 
 import { BonusType } from '/@/models/types'
-import type {  } from '/@/models/civs'
+import type { EffectDescription } from '/@/models/types'
 import { useStore } from '/@/models/store'
 
 import UIStack from '/@/views/ui/Stack.vue'
@@ -62,18 +62,14 @@ export default defineComponent({
 		const civ = store.getters.selectedCiv
 
 		const groupedBonuses = computed(() => {
-			const groupedBonuses: [string, string[]][] = [['team', []], ['general', []], ['castle', []]]
-			// for (const bonus of civ.value.bonuses) {
-			// 	let group
-			// 	if (bonus.team) {
-			// 		group = groupedBonuses[0]
-			// 	} else if (bonus.type !== undefined && bonus.type !== BonusType.Trait) {
-			// 		group = groupedBonuses[2]
-			// 	} else {
-			// 		group = groupedBonuses[1]
-			// 	}
-			// 	group[1].push(bonus)
-			// }
+			if (!civ.value) {
+				return []
+			}
+			const groupedBonuses: [string, EffectDescription[]][] = [
+				['team', civ.value.teamBonus.getDescriptions()],
+				['general', civ.value.uniqueBonus.getDescriptions()],
+				['castle', civ.value.uniqueTechs.map(tech => tech.getDescription())],
+			]
 			return groupedBonuses
 		})
 

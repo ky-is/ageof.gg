@@ -31,8 +31,12 @@ export interface UnitData {
 }
 
 export const enum EffectType {
+	ResourceModifier = 1,
+	UnitAvailable = 3,
+	UnitModifier = 4,
 	UnitMultiplier = 5,
-	ModifyCost = 101,
-	Remove = 102,
-	ModifyTime = 103,
+	ResourceMultiplier = 6,
+	ModifyTech = 101,
+	DisableTech = 102,
+	ModifyTechTime = 103,
 }
