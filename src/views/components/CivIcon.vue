@@ -9,7 +9,7 @@
 <script lang="ts">
 import { defineComponent, PropType, ref, watch } from 'vue'
 
-import { CivEntry } from '/@/models/types'
+import { CivEntry } from '/@/models/civs'
 import { useStore } from '/@/models/store'
 
 export default defineComponent({

@@ -19,7 +19,7 @@
 import { defineComponent, PropType } from 'vue'
 
 import { useStore } from '/@/models/store'
-import { CivEntry } from '/@/models/types'
+import type { CivEntry } from '/@/models/civs'
 
 import UIStack from '/@/views/ui/Stack.vue'
 import CivIcon from '/@/views/components/CivIcon.vue'

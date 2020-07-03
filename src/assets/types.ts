@@ -26,6 +26,7 @@ export interface TechData {
 
 export interface UnitData {
 	name: string
+	class: number
 	icon: number | null
 }
 

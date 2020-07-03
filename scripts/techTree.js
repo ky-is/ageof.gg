@@ -46,6 +46,7 @@ for (const unit of civs[0].Units) {
 		localizedName && icon !== -1
 			? {
 				name: localizedName,
+				class: unit.Class,
 				icon,
 			}
 			: null,
