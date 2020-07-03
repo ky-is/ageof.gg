@@ -49,3 +49,13 @@ html, body, #app {
 .text-bonus-castle {
 	@apply text-black;
 }
+
+#app {
+	--h-header: 48px;
+}
+.h-header {
+	height: var(--h-header);
+}
+.h-content {
+	height: calc(100vh - var(--h-header));
+}

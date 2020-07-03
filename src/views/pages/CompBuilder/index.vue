@@ -1,9 +1,9 @@
 <template>
 	<UIStack direction="row">
-		<CivList />
-		<UIStack direction="col" class="flex-grow">
-			<CivInspector class="flex-1" />
-			<CivComp class="flex-1" />
+		<CivList class="h-content" />
+		<UIStack direction="col" class="flex-grow h-content">
+			<CivInspector class="flex-grow" />
+			<CivComp class="flex-grow" />
 		</UIStack>
 	</UIStack>
 </template>

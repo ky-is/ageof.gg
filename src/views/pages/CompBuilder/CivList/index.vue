@@ -1,5 +1,5 @@
 <template>
-	<UIStack direction="col" class="ui-sidebar w-64 bg-gray-850">
+	<UIStack direction="col" class="w-64 bg-gray-850">
 		<h2 v-show="false">Civilizations</h2>
 		<UIStack direction="row" alignment="center" class="my-2 px-4">
 			<FilterFocus v-model:selected="filterFocus" />
@@ -62,9 +62,3 @@ export default defineComponent({
 	},
 })
 </script>
-
-<style lang="postcss" scoped>
-.ui-sidebar {
-	height: calc(100vh - 48px);
-}
-</style>
