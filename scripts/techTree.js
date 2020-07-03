@@ -3,6 +3,10 @@ const path = require('path')
 
 const tree = require('./data/full.json')
 
+const EffectType = {
+	Remove: 102,
+}
+
 const enStrings = {}
 {
 	const stringsPath = path.join(__dirname, 'data/key-value-strings-utf8.txt')
@@ -54,7 +58,7 @@ for (const civKey in civs) {
 		name: civ.Name,
 		remove: [],
 		modify: [],
-		uniques: [],
+		uniqueTechs: [],
 	})
 }
 
@@ -104,12 +108,8 @@ for (const tech of techs) {
 			console.error('Missing unique tech definition', tech)
 		}
 		const index = outputTechs.length - 2
-		outputCivs[tech.Civ].uniques.push(index)
+		outputCivs[tech.Civ].uniqueTechs.push(index)
 	}
-}
-
-const EffectType = {
-	Remove: 102,
 }
 
 for (const civKey in civs) {

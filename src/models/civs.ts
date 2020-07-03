@@ -1,8 +1,9 @@
-import type {  } from '/@/models/types'
 import { Focus } from '/@/models/types'
 
 import civs from '/@/assets/data/civs'
-import { EffectCommandData } from '/@/assets/types'
+import techs from '/@/assets/data/techs'
+
+import { EffectCommandData, TechData, CostData } from '/@/assets/types'
 import type { CivData, EffectData } from '/@/assets/types'
 
 const primaryFocuses: {[key: string]: Focus[]} = {
@@ -23,13 +24,11 @@ export class EffectCommand {
 	}
 }
 
-export class CivBonus {
-	team: boolean
+export class CommandList {
 	commands: EffectCommand[]
 	focuses: Focus[]
 
-	constructor ({ commands }: EffectData, forTeam: boolean) {
-		this.team = forTeam
+	constructor (commands: EffectCommandData[]) {
 		this.commands = commands.map(command => new EffectCommand(command))
 		this.focuses = []
 	}
@@ -39,18 +38,42 @@ export class CivBonus {
 	}
 }
 
+export class CivTech {
+	name: string
+	building: number | null
+	requirements: number[]
+	costs: CostData[]
+	time: number
+	icon: number | null
+	commands: CommandList
+
+	constructor ({ name, building, requires, costs, time, icon, commands }: TechData) {
+		this.name = name
+		this.building = building
+		this.requirements = requires
+		this.costs = costs
+		this.time = time
+		this.icon = icon
+		this.commands = new CommandList(commands ?? [])
+	}
+}
+
 export class CivEntry {
 	name: string
 	focuses: Focus[]
-	teamBonus: CivBonus
-	uniqueBonus: CivBonus
+	teamBonus: CommandList
+	uniqueBonus: CommandList
+	uniqueTechs: CivTech[]
 
 	constructor (data: CivData) {
 		const name = mapCivNames[data.name] ?? data.name
 		this.name = name
 		this.focuses = primaryFocuses[name] ?? []
-		this.teamBonus = new CivBonus({ name: '', commands: data.teamBonuses }, true)
-		this.uniqueBonus = new CivBonus({ name: '', commands: data.modify }, false)
+		this.teamBonus = new CommandList(data.teamBonuses)
+		this.uniqueBonus = new CommandList(data.modify)
+		this.uniqueTechs = data.uniqueTechs
+			.filter(techID => techs[techID])
+			.map(techID => new CivTech(techs[techID]))
 	}
 
 	getSecondaryFocuses () {

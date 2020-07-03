@@ -1,14 +1,3 @@
-interface CivBonusOptions {
-	team?: boolean
-	type?: BonusType
-	building?: Building
-	name?: string
-	description: string
-	clarification?: string
-	strengthByAge?: Strength[]
-	focuses: Focus[]
-}
-
 export enum Focus {
 	// NOTE: Should these be plural or singular?
 	Archery = 'archery',

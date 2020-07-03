@@ -42,7 +42,7 @@
 import { defineComponent, computed } from 'vue'
 
 import { BonusType } from '/@/models/types'
-import type { CivBonus } from '/@/models/civs'
+import type {  } from '/@/models/civs'
 import { useStore } from '/@/models/store'
 
 import UIStack from '/@/views/ui/Stack.vue'
@@ -62,7 +62,7 @@ export default defineComponent({
 		const civ = store.getters.selectedCiv
 
 		const groupedBonuses = computed(() => {
-			const groupedBonuses: [string, CivBonus[]][] = [['team', []], ['general', []], ['castle', []]]
+			const groupedBonuses: [string, string[]][] = [['team', []], ['general', []], ['castle', []]]
 			// for (const bonus of civ.value.bonuses) {
 			// 	let group
 			// 	if (bonus.team) {
