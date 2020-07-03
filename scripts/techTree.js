@@ -43,7 +43,7 @@ for (const unit of civs[0].Units) {
 	// }
 	const icon = unit.IconID
 	outputUnits.push(
-		localizedName && icon !== -1
+		localizedName
 			? {
 				name: localizedName,
 				class: unit.Class,
@@ -108,7 +108,7 @@ for (const tech of techs) {
 			}
 			console.error('Missing unique tech definition', tech)
 		}
-		const index = outputTechs.length - 2
+		const index = outputTechs.length - 1
 		outputCivs[tech.Civ].uniqueTechs.push(index)
 	}
 }
