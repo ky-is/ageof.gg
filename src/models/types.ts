@@ -1,9 +1,15 @@
 export interface EffectDescription {
 	text: string
-	modifyAge?: CivAge
+	modifyAge?: boolean
 	groupBy?: string
 	age: CivAge | null
 	icon?: number
+
+	type: number
+	a: number
+	b: number
+	c: number
+	d: number
 }
 
 export enum Focus {
@@ -115,6 +121,16 @@ export const ResourceFocus: {[id: string]: {name: string, requires: TechID[], fo
 	92: {
 		name: 'Starting Wood',
 		requires: [],
+		focuses: [Focus.ResourceWood],
+	},
+	94: {
+		name: 'Starting Gold',
+		requires: [],
+		focuses: [Focus.ResourceGold],
+	},
+	96: {
+		name: 'Berserker heal rate',
+		requires: [],
 		focuses: [],
 	},
 	191: {
@@ -129,16 +145,17 @@ export const ResourceFocus: {[id: string]: {name: string, requires: TechID[], fo
 	},
 }
 
-export const UnitAttribute: {[id: number]: string} = {
-	0: 'HP',
-	1: 'line of sight',
-	9: 'attack',
-	13: 'work rate',
-	23: 'line of sight', // search radius
-	100: 'costs',
-	101: 'build time',
+export const enum UnitAttribute {
+	HP = 0,
+	LineOfSight = 1,
+	Speed = 5,
+	Attack = 9,
+	WorkRate = 13,
+	CarryCapacity = 14,
+	SearchRadius = 23,
+	Cost = 100,
+	BuildTime = 101,
 }
-
 
 export const UnitClass: {[id: number]: {name: string, focuses: Focus[]}} = {
 	0: {

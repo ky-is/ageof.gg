@@ -73,7 +73,8 @@ function getCommandsFrom (effect) {
 for (const tech of techs) {
 	const name = tech.Name
 	let outputTech = null
-	if (name && name !== 'RESERVED' && name !== 'New Research') {
+	const hasEffect = tech.EffectID !== -1
+	if (hasEffect && name && name !== 'RESERVED' && name !== 'New Research') {
 		const costs = []
 		for (const resource of tech.ResourceCosts) {
 			const costIndex = resource.Type
@@ -101,11 +102,8 @@ for (const tech of techs) {
 	}
 
 	outputTechs.push(outputTech)
-	if (tech.Civ > 0) {
+	if (hasEffect && tech.Civ > 0) {
 		if (!outputTech) {
-			if (tech.EffectID === -1) {
-				continue
-			}
 			console.error('Missing unique tech definition', tech)
 		}
 		const index = outputTechs.length - 1

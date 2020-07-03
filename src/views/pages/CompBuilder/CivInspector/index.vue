@@ -68,7 +68,7 @@ export default defineComponent({
 			const groupedBonuses: [string, EffectDescription[]][] = [
 				['team', civ.value.teamBonus.getDescriptions()],
 				['general', civ.value.uniqueBonus.getDescriptions()],
-				['castle', civ.value.uniqueTechs.map(tech => tech.getDescription())],
+				['castle', civ.value.uniqueTechs.getDescriptions()],
 			]
 			return groupedBonuses
 		})

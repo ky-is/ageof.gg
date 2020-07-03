@@ -15,16 +15,12 @@
 import { defineComponent, computed, ref, Ref } from 'vue'
 
 import { Focus } from '/@/models/types'
-import { civEntries, CivEntry } from '/@/models/civs'
+import { civEntries, CivEntry, sortByName } from '/@/models/civs'
 
 import UIStack from '/@/views/ui/Stack.vue'
 
 import FilterFocus from './FilterFocus.vue'
 import FilterList from './FilterList.vue'
-
-function sortByName (a: CivEntry, b: CivEntry) {
-	return a.name.localeCompare(b.name)
-}
 
 function getCivsForFilter (focusFilter: Focus | null): [CivEntry[], CivEntry[]] {
 	let primaryCivs: CivEntry[] = []
