@@ -22,6 +22,10 @@ import UIStack from '/@/views/ui/Stack.vue'
 import FilterFocus from './FilterFocus.vue'
 import FilterList from './FilterList.vue'
 
+function sortByName (a: CivEntry, b: CivEntry) {
+	return a.name.localeCompare(b.name)
+}
+
 function getCivsForFilter (focusFilter: Focus | null): [CivEntry[], CivEntry[]] {
 	let primaryCivs: CivEntry[] = []
 	const secondaryCivs: CivEntry[] = []
@@ -36,7 +40,7 @@ function getCivsForFilter (focusFilter: Focus | null): [CivEntry[], CivEntry[]] 
 			}
 		}
 	}
-	return [primaryCivs.sort(), secondaryCivs.sort()]
+	return [primaryCivs.sort(sortByName), secondaryCivs.sort(sortByName)]
 }
 
 export default defineComponent({
