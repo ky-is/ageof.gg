@@ -3,6 +3,7 @@ export interface EffectDescription {
 	modifyAge?: CivAge
 	groupBy?: string
 	age: CivAge | null
+	icon?: number
 }
 
 export enum Focus {

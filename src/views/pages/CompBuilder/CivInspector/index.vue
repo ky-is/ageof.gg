@@ -23,11 +23,11 @@
 							:src="`/images/ages/${bonus.age}.png`" :alt="bonus.age + ' age'"
 							class="bonus-icon"
 						>
-						<!-- <img
-							v-if="bonus.getBonusTechAge()"
-							:src="`/images/techs/unique-${bonus.getBonusTechAge()}.png`" :alt="`${bonus.getBonusTechAge()} age unique tech`"
+						<img
+							v-if="bonus.icon"
+							:src="`/images/techs/${bonus.icon}.png`" :alt="`${bonus.age} age unique tech`"
 							class="bonus-icon"
-						> -->
+						>
 						<span v-if="bonus.name" class="text-secondary text-bold">{{ bonus.name }}: </span>
 						<span>{{ bonus.text }}</span>
 						<span v-if="bonus.clarification" class="text-secondary  hidden group-hover:inline"> ({{ bonus.clarification }})</span>
