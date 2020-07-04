@@ -1,4 +1,5 @@
 export interface EffectDescription {
+	id: number
 	text: string
 	modifyAge?: boolean
 	groupBy?: string
@@ -23,6 +24,7 @@ export enum Focus {
 	Gunpowder = 'gunpowder',
 	Infantry = 'infantry',
 	InfantryAnti = 'anti-infantry',
+	Laming = 'laming',
 	Military = 'military',
 	Monk = 'monk',
 	MonkAnti = 'anti-monk',
@@ -88,20 +90,36 @@ export const enum TechID {
 	DarkAge = 104,
 }
 
-export const ResourceType: {[id: number]: string} = {
-	0: 'Food',
-	1: 'Wood',
-	2: 'Stone',
-	3: 'Gold',
-	4: 'Population space',
-	191: 'Relic Gold',
-}
-
-export const ResourceFocus: {[id: string]: {name: string, requires: TechID[], focuses: Focus[]}} = {
+export const ResourceTypeInfo: {[id: string]: {name: string, requires: TechID[], focuses: Focus[]}} = {
+	0: {
+		name: 'Food',
+		requires: [],
+		focuses: [Focus.ResourceFood],
+	},
+	1: {
+		name: 'Wood',
+		requires: [],
+		focuses: [Focus.ResourceWood],
+	},
+	2: {
+		name: 'Stone',
+		requires: [],
+		focuses: [Focus.ResourceStone],
+	},
+	3: {
+		name: 'Gold',
+		requires: [],
+		focuses: [Focus.ResourceGold],
+	},
 	4: {
 		name: 'Population space',
 		requires: [],
 		focuses: [],
+	},
+	32: {
+		name: 'Population max cap',
+		requires: [],
+		focuses: [Focus.Military],
 	},
 	36: {
 		name: 'Farm food',
@@ -117,6 +135,21 @@ export const ResourceFocus: {[id: string]: {name: string, requires: TechID[], fo
 		name: 'Stone mining',
 		requires: [],
 		focuses: [Focus.ResourceStone],
+	},
+	85: {
+		name: 'Research cost',
+		requires: [],
+		focuses: [Focus.Resources],
+	},
+	89: {
+		name: 'Monk healing rate',
+		requires: [],
+		focuses: [Focus.Monk, Focus.Defense],
+	},
+	91: {
+		name: 'Starting Food',
+		requires: [],
+		focuses: [Focus.ResourceFood],
 	},
 	92: {
 		name: 'Starting Wood',
@@ -150,11 +183,27 @@ export const enum UnitAttribute {
 	LineOfSight = 1,
 	Speed = 5,
 	Attack = 9,
+	MaxRange = 12,
 	WorkRate = 13,
 	CarryCapacity = 14,
+	MinRange = 20,
 	SearchRadius = 23,
 	Cost = 100,
 	BuildTime = 101,
+}
+
+export const UnitAttributeInfo: {[id: number]: string} = {
+	[UnitAttribute.HP]: 'HP',
+	[UnitAttribute.LineOfSight]: 'line of sight',
+	[UnitAttribute.Speed]: 'Speed',
+	[UnitAttribute.Attack]: 'attack',
+	[UnitAttribute.MaxRange]: 'max range',
+	[UnitAttribute.MinRange]: 'min range',
+	[UnitAttribute.WorkRate]: 'work rate',
+	[UnitAttribute.CarryCapacity]: 'carry capacity',
+	[UnitAttribute.SearchRadius]: 'line of sight', // 'search radius'
+	[UnitAttribute.Cost]: 'costs',
+	[UnitAttribute.BuildTime]: 'build time',
 }
 
 export const UnitClass: {[id: number]: {name: string, focuses: Focus[]}} = {

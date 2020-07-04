@@ -2,26 +2,27 @@ export type CostData = [number, number, number]
 
 export type EffectCommandData = [number, number, number, number, number]
 export interface EffectData {
-	name: string
+	id: number
 	commands: EffectCommandData[]
 }
 
 export interface CivData {
 	name: string
 	remove: number[]
-	modify: EffectCommandData[]
-	uniqueTechs: number[]
-	teamBonuses: EffectCommandData[]
+	modify: EffectData
+	uniqueTechIDs: number[]
+	teamBonuses: EffectData | null
 }
 
 export interface TechData {
+	id: number
 	name: string
 	building: number | null
 	requires: number[]
 	costs: CostData[]
 	time: number
 	icon: number | null
-	commands: EffectCommandData[] | null
+	effect: EffectData | null
 }
 
 export interface UnitData {
@@ -31,6 +32,7 @@ export interface UnitData {
 }
 
 export const enum EffectType {
+	UnitSetModifier = 0,
 	ResourceModifier = 1,
 	UnitEnable = 2,
 	UnitAvailable = 3,

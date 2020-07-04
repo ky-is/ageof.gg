@@ -53,13 +53,26 @@ for (const unit of civs[0].Units) {
 	)
 }
 
+const mapCivNames = {
+	British: 'Britons',
+	Byzantine: 'Byzantines',
+	French: 'Franks',
+	Ethopians: 'Ethiopians', //cspell:disable-line
+	Mayan: 'Mayans',
+}
+
 for (const civKey in civs) {
 	const civ = civs[civKey]
+	const internalName = civ.Name
+	const name = mapCivNames[internalName] ?? internalName
 	outputCivs.push({
-		name: civ.Name,
+		name,
 		remove: [],
-		modify: [],
-		uniqueTechs: [],
+		modify: {
+			id: -1,
+			commands: [],
+		},
+		uniqueTechIDs: [],
 	})
 }
 
@@ -70,10 +83,13 @@ function getCommandsFrom (effect) {
 	return effect.EffectCommands.map(formatCommand)
 }
 
-for (const tech of techs) {
+
+for (let index = 0; index < techs.length; index += 1) {
+	const tech = techs[index]
 	const name = tech.Name
 	let outputTech = null
-	const hasEffect = tech.EffectID !== -1
+	const effectID = tech.EffectID
+	const hasEffect = effectID !== -1
 	if (hasEffect && name && name !== 'RESERVED' && name !== 'New Research') {
 		const costs = []
 		for (const resource of tech.ResourceCosts) {
@@ -82,7 +98,7 @@ for (const tech of techs) {
 				costs.push([resource.Type, resource.Amount, resource.Flag])
 			}
 		}
-		const effect = effects[tech.EffectID]
+		const effect = effects[effectID]
 		const localizedName = enStrings[tech.LanguageDLLName]
 		// if (!localizedName) {
 		// 	console.error('Missing localized name', name, tech.LanguageDLLName)
@@ -91,13 +107,17 @@ for (const tech of techs) {
 		const buildingID = tech.ResearchLocation
 		const iconID = tech.IconID
 		outputTech = {
-			name: localizedName ?? name,
+			id: index,
+			name: localizedName,
 			building: buildingID !== -1 ? buildingID : null,
 			requires: tech.RequiredTechs.filter(techID => techID > 0),
 			costs,
 			time: tech.ResearchTime,
 			icon: iconID !== -1 ? iconID : null,
-			commands: effect ? getCommandsFrom(effect) : null,
+			effect: {
+				id: effectID,
+				commands: effect ? getCommandsFrom(effect) : null,
+			},
 		}
 	}
 
@@ -107,16 +127,22 @@ for (const tech of techs) {
 			console.error('Missing unique tech definition', tech)
 		}
 		const index = outputTechs.length - 1
-		outputCivs[tech.Civ].uniqueTechs.push(index)
+		outputCivs[tech.Civ].uniqueTechIDs.push(index)
 	}
 }
 
 for (const civKey in civs) {
 	const civ = civs[civKey]
-	const treeEffects = effects[civ.TechTreeID]
-	const teamBonusEffect = effects[civ.TeamBonusID]
+	const techTreeEffectID = civ.TechTreeID
+	const treeEffects = effects[techTreeEffectID]
+	const teamEffectID = civ.TeamBonusID
+	const teamBonusEffect = effects[teamEffectID]
 	const output = outputCivs[civKey]
-	output.teamBonuses = teamBonusEffect ? getCommandsFrom(teamBonusEffect) : []
+	output.modify.id = techTreeEffectID
+	output.teamBonuses = !teamBonusEffect ? null : {
+		id: teamEffectID,
+		commands: getCommandsFrom(teamBonusEffect)
+	}
 	for (const treeEffect of treeEffects.EffectCommands) {
 		if (treeEffect.Type === EffectType.Remove) {
 			const techID = treeEffect.D
@@ -129,7 +155,7 @@ for (const civKey in civs) {
 				}
 			}
 		} else {
-			output.modify.push(formatCommand(treeEffect))
+			output.modify.commands.push(formatCommand(treeEffect))
 		}
 	}
 }
