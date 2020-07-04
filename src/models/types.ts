@@ -2,7 +2,7 @@ export interface EffectDescription {
 	id: number
 	text: string
 	modifyAge?: boolean
-	groupBy?: string
+	names: string[]
 	age: CivAge | null
 	icon?: number
 
@@ -126,6 +126,11 @@ export const ResourceTypeInfo: {[id: string]: {name: string, requires: TechID[],
 		requires: [],
 		focuses: [Focus.ResourceFood],
 	},
+	47: {
+		name: 'Gold mining',
+		requires: [],
+		focuses: [Focus.ResourceGold],
+	},
 	77: {
 		name: 'Conversion resistance',
 		requires: [],
@@ -166,6 +171,16 @@ export const ResourceTypeInfo: {[id: string]: {name: string, requires: TechID[],
 		requires: [],
 		focuses: [],
 	},
+	189: {
+		name: 'Wood chopping',
+		requires: [],
+		focuses: [Focus.ResourceWood],
+	},
+	190: {
+		name: 'Food gathering',
+		requires: [],
+		focuses: [Focus.ResourceFood],
+	},
 	191: {
 		name: 'Relic gold income',
 		requires: [TechID.CastleAge],
@@ -183,6 +198,7 @@ export const enum UnitAttribute {
 	LineOfSight = 1,
 	Speed = 5,
 	Attack = 9,
+	AccuracyPercent = 11,
 	MaxRange = 12,
 	WorkRate = 13,
 	CarryCapacity = 14,
@@ -197,12 +213,13 @@ export const UnitAttributeInfo: {[id: number]: string} = {
 	[UnitAttribute.LineOfSight]: 'line of sight',
 	[UnitAttribute.Speed]: 'Speed',
 	[UnitAttribute.Attack]: 'attack',
+	[UnitAttribute.AccuracyPercent]: 'accuracy',
 	[UnitAttribute.MaxRange]: 'max range',
 	[UnitAttribute.MinRange]: 'min range',
 	[UnitAttribute.WorkRate]: 'work rate',
 	[UnitAttribute.CarryCapacity]: 'carry capacity',
 	[UnitAttribute.SearchRadius]: 'line of sight', // 'search radius'
-	[UnitAttribute.Cost]: 'costs',
+	[UnitAttribute.Cost]: 'cost',
 	[UnitAttribute.BuildTime]: 'build time',
 }
 

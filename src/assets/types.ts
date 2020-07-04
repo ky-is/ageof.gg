@@ -39,7 +39,7 @@ export const enum EffectType {
 	UnitModifier = 4,
 	UnitMultiplier = 5,
 	ResourceMultiplier = 6,
-	ModifyTech = 101,
+	ModifyTechCost = 101,
 	DisableTech = 102,
 	ModifyTechTime = 103,
 }
