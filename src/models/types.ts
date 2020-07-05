@@ -3,7 +3,7 @@ export interface EffectDescription {
 	text: string
 	modifyAge?: boolean
 	names: string[]
-	age: CivAge | null
+	ages: CivAge[]
 	icon?: number
 
 	type: number
@@ -55,10 +55,17 @@ export const enum BonusType {
 }
 
 export const enum CivAge {
-	Dark = 'dark',
-	Feudal = 'feudal',
-	Castle = 'castle',
-	Imperial = 'imperial',
+	Dark = 104,
+	Feudal = 101,
+	Castle = 102,
+	Imperial = 103,
+}
+
+export const CivAgeName = {
+	104: 'Dark',
+	101: 'Feudal',
+	102: 'Castle',
+	103: 'Imperial',
 }
 
 interface Building {
@@ -167,7 +174,7 @@ export const ResourceTypeInfo: {[id: string]: {name: string, requires: TechID[],
 		focuses: [Focus.ResourceGold],
 	},
 	96: {
-		name: 'Berserker heal rate',
+		name: 'Berserker heal delay',
 		requires: [],
 		focuses: [],
 	},
@@ -198,6 +205,7 @@ export const enum UnitAttribute {
 	LineOfSight = 1,
 	Speed = 5,
 	Attack = 9,
+	ReloadTime = 10,
 	AccuracyPercent = 11,
 	MaxRange = 12,
 	WorkRate = 13,
@@ -206,6 +214,10 @@ export const enum UnitAttribute {
 	SearchRadius = 23,
 	Cost = 100,
 	BuildTime = 101,
+	CostFood = 103,
+	CostWood = 104,
+	CostGold = 105,
+	CostStone = 106,
 }
 
 export const UnitAttributeInfo: {[id: number]: string} = {
@@ -213,6 +225,7 @@ export const UnitAttributeInfo: {[id: number]: string} = {
 	[UnitAttribute.LineOfSight]: 'line of sight',
 	[UnitAttribute.Speed]: 'Speed',
 	[UnitAttribute.Attack]: 'attack',
+	[UnitAttribute.ReloadTime]: 'reload time',
 	[UnitAttribute.AccuracyPercent]: 'accuracy',
 	[UnitAttribute.MaxRange]: 'max range',
 	[UnitAttribute.MinRange]: 'min range',
@@ -221,11 +234,15 @@ export const UnitAttributeInfo: {[id: number]: string} = {
 	[UnitAttribute.SearchRadius]: 'line of sight', // 'search radius'
 	[UnitAttribute.Cost]: 'cost',
 	[UnitAttribute.BuildTime]: 'build time',
+	[UnitAttribute.CostFood]: 'food cost',
+	[UnitAttribute.CostWood]: 'wood cost',
+	[UnitAttribute.CostGold]: 'gold cost',
+	[UnitAttribute.CostStone]: 'stone cost',
 }
 
 export const UnitClass: {[id: number]: {name: string, focuses: Focus[]}} = {
 	0: {
-		name: 'Archery',
+		name: 'Archer',
 		focuses: [Focus.Archery],
 	},
 	3: {

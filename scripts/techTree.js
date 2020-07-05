@@ -90,7 +90,9 @@ for (let index = 0; index < techs.length; index += 1) {
 	let outputTech = null
 	const effectID = tech.EffectID
 	const hasEffect = effectID !== -1
-	if (hasEffect && name && name !== 'RESERVED' && name !== 'New Research') {
+	const iconID = tech.IconID
+	const addToCiv = hasEffect && tech.Civ > 0
+	if (hasEffect && (addToCiv || (name && name !== 'RESERVED' && name !== 'New Research' && iconID !== -1))) {
 		const costs = []
 		for (const resource of tech.ResourceCosts) {
 			const costIndex = resource.Type
@@ -105,7 +107,6 @@ for (let index = 0; index < techs.length; index += 1) {
 		// }
 
 		const buildingID = tech.ResearchLocation
-		const iconID = tech.IconID
 		outputTech = {
 			id: index,
 			name: localizedName,
@@ -122,11 +123,10 @@ for (let index = 0; index < techs.length; index += 1) {
 	}
 
 	outputTechs.push(outputTech)
-	if (hasEffect && tech.Civ > 0) {
+	if (addToCiv) {
 		if (!outputTech) {
 			console.error('Missing unique tech definition', tech)
 		}
-		const index = outputTechs.length - 1
 		outputCivs[tech.Civ].uniqueTechIDs.push(index)
 	}
 }

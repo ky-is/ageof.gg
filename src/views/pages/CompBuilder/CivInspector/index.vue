@@ -20,17 +20,19 @@
 					<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
 					<li v-for="bonus in bonuses" :key="bonus.description">
 						<img
-							:src="`/images/ages/${bonus.age}.png`" :alt="bonus.age + ' age'"
-							class="bonus-icon"
+							v-for="ageID in bonus.ages" :key="ageID"
+							:src="`/images/ages/${ageID}.png`" :alt="CivAgeName[ageID] + ' age'"
+							class="bonus-icon -ml-3"
 						>
 						<img
 							v-if="bonus.icon"
-							:src="`/images/techs/${bonus.icon}.png`" :alt="`${bonus.age} age unique tech`"
+							:src="`/images/techs/${bonus.icon}.png`" :alt="`${CivAgeName[bonus.ages[0]]} age unique tech`"
 							class="bonus-icon"
 						>
 						<span v-if="bonus.name" class="text-secondary text-bold">{{ bonus.name }}: </span>
+						<span class="text-secondary text-sm">{{ bonus.id }} : {{ bonus.type }} {{ bonus.a }}　</span>
 						<span>{{ bonus.text }}</span>
-						<span v-if="bonus.clarification" class="text-secondary  hidden group-hover:inline"> ({{ bonus.clarification }})</span>
+						<span v-if="bonus.names.length > 1" class="text-secondary  hidden group-hover:inline"> ({{ bonus.names.join(', ') }})</span>
 					</li>
 				</UIStack>
 			</ul>
@@ -41,7 +43,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 
-import { BonusType } from '/@/models/types'
+import { BonusType, CivAgeName } from '/@/models/types'
 import type { EffectDescription } from '/@/models/types'
 import { useStore } from '/@/models/store'
 
@@ -77,6 +79,7 @@ export default defineComponent({
 			civ,
 			commit: store.commit,
 			groupedBonuses,
+			CivAgeName,
 		}
 	},
 })

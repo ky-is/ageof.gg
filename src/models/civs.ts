@@ -13,9 +13,12 @@ const primaryFocuses: {[key: string]: Focus[]} = {
 
 interface EffectSummary {
 	type: EffectType
-	age?: CivAge
+	ages?: CivAge[]
+	a?: number[]
 	b?: number
 	c?: number
+	skipA?: number[]
+	replace?: string //RELEASE hardcoded strings must be validated every new patch
 	replaceName?: string
 	delete?: boolean
 	stack?: number[]
@@ -26,6 +29,26 @@ const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 		{
 			type: 4,
 			replaceName: 'Camels',
+		},
+	],
+
+	6: [ // Magyars
+		{
+			type: 4,
+			replaceName: 'Archers (except skirmishers)',
+		},
+	],
+
+	10: [ // Italians
+		{
+			type: 101,
+			skipA: [CivAge.Feudal, CivAge.Castle, CivAge.Imperial],
+			replace: 'Dock upgrades cost -50%',
+		},
+		{
+			type: 101,
+			a: [CivAge.Feudal, CivAge.Castle, CivAge.Imperial],
+			replace: 'Advancing to the next age costs -15%',
 		},
 	],
 
@@ -40,14 +63,38 @@ const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 		{
 			type: 103,
 			replaceName: 'Farm upgrades',
-			age: CivAge.Feudal, //TODO list
 		},
 	],
 	403: [ // Franks
 		{
 			type: 4,
 			replaceName: 'Knights',
-			age: CivAge.Castle,
+			// ages: [CivAge.Castle],
+		},
+	],
+
+	263: [ // Turks
+		{
+			type: 101,
+			replace: 'Gunpowder techs cost -50%',
+			// ages: [CivAge.Castle],
+		},
+		{
+			type: 103,
+			a: [254],
+			replaceName: 'Scout upgrades',
+		},
+		{
+			type: 103,
+			a: [428],
+			delete: true,
+		},
+	],
+	410: [ // Turks
+		{
+			type: 5,
+			replaceName: 'Gunpowder units',
+			ages: [CivAge.Castle],
 		},
 	],
 
@@ -61,7 +108,7 @@ const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 		{
 			type: 1,
 			stack: [350, 351], //TODO
-			age: CivAge.Feudal,
+			// ages: [CivAge.Feudal],
 		},
 	],
 
@@ -79,18 +126,29 @@ const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 		},
 	],
 
-	410: [ // Turks
-		{
-			type: 5,
-			replaceName: 'Gunpowder units',
-			age: CivAge.Castle,
-		},
-	],
-
 	411: [ // Vikings
 		{
 			type: 5,
 			replaceName: 'Docks',
+		},
+	],
+
+	446: [ // Spanish
+		{
+			type: 5,
+			replaceName: 'Gunpowder',
+			ages: [CivAge.Imperial],
+		},
+		{
+			type: 101,
+			replaceName: 'Blacksmith upgrades',
+		},
+	],
+	490: [ // Spanish
+		{
+			type: 5,
+			replaceName: 'Trade units',
+			ages: [CivAge.Feudal],
 		},
 	],
 
@@ -120,10 +178,10 @@ const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 		},
 	],
 
-	490: [ // Spanish
+	649: [ // Malay
 		{
 			type: 5,
-			replaceName: 'Trade units',
+			replaceName: 'Dock',
 		},
 	],
 
@@ -237,7 +295,7 @@ export class EffectCommand {
 		return {
 			id: this.id,
 			text,
-			age: age ?? CivAge.Dark,
+			ages: [age ?? CivAge.Dark],
 			names: nameable ? [nameable.name] : [],
 			modifyAge,
 			type: this.type,
@@ -314,7 +372,7 @@ export class EffectCommand {
 				break
 			}
 			if (!amountDescription) {
-				amountDescription = `x${this.d}`
+				amountDescription = formatPercent(this.d)
 			}
 			return this.makeDescription(`${replaceName ?? resourceInfo.name} ${amountDescription}`, getAgeFrom(resourceInfo), undefined)
 
@@ -322,6 +380,10 @@ export class EffectCommand {
 			amountDescription = 'free'
 		case EffectType.ModifyTechCost:
 			const techModify = techs[this.a]
+			if (!techModify) {
+				console.error(this.id, 'Unknown ModifyTechCost', this.a, this.type, this.a, this.b, this.c, this.d)
+				break
+			}
 			if (!amountDescription) {
 				const techResourceInfo = ResourceTypeInfo[this.b]
 				if (!techResourceInfo) {
@@ -334,6 +396,10 @@ export class EffectCommand {
 
 		case EffectType.DisableTech:
 			const techDisable = techs[this.d]
+			if (!techDisable) {
+				console.error(this.id, 'Unknown DisableTech', this.d, this.type, this.a, this.b, this.c, this.d)
+				break
+			}
 			const age = getAgeFrom(techDisable)
 			return this.makeDescription('', age === CivAge.Dark ? CivAge.Feudal : (age === CivAge.Feudal ? CivAge.Castle : CivAge.Imperial), undefined, true)
 
@@ -378,7 +444,10 @@ class EffectCommandList {
 				let summaryDescription: EffectDescription | null = null
 				for (const command of describeCommands) {
 					if (summary.type === command.type) {
-						if ((summary.b !== undefined && summary.b !== command.b) || (summary.c !== undefined && summary.c !== command.c)) {
+						if ((summary.a !== undefined && !summary.a.includes(command.a)) || (summary.b !== undefined && summary.b !== command.b) || (summary.c !== undefined && summary.c !== command.c)) {
+							continue
+						}
+						if (summary.skipA !== undefined && summary.skipA.includes(command.a)) {
 							continue
 						}
 						remainingCommands.delete(command)
@@ -388,17 +457,27 @@ class EffectCommandList {
 						if (!summaryDescription) {
 							summaryDescription = command.getDescription(undefined, summary.replaceName)
 							if (summaryDescription) {
-								if (summary.age) {
-									summaryDescription.age = summary.age
+								if (summary.replace) {
+									summaryDescription.text = summary.replace
+								}
+								if (summary.ages) {
+									summaryDescription.ages = summary.ages
 								}
 								addDescriptions.push(summaryDescription)
 							}
 						} else {
-							if (summary.replaceName) {
+							if (summary.replace || summary.replaceName) {
 								const description = command.getDescription()
-								const name = description?.names[0]
-								if (name) {
-									summaryDescription?.names.push(name)
+								if (description) {
+									for (const newAge of description.ages) {
+										if (!summaryDescription.ages.includes(newAge)) {
+											summaryDescription.ages.push(newAge)
+										}
+									}
+									const newName = description.names[0]
+									if (newName) {
+										summaryDescription.names.push(newName)
+									}
 								}
 							}
 						}
@@ -416,16 +495,27 @@ class EffectCommandList {
 				continue
 			}
 			if (previousDescription?.modifyAge) {
-				description.age = previousDescription.age
+				description.ages = previousDescription.ages
 			}
 			if (!description.modifyAge) {
-				if (!previousDescription || description.text !== previousDescription.text || description.age !== previousDescription.age) {
+				const newAges = description.ages
+				if (previousDescription) {
+					for (const newAge of newAges) {
+						if (!previousDescription.ages.includes(newAge)) {
+							previousDescription.ages.push(newAge)
+						}
+					}
+				}
+				if (!previousDescription || description.text !== previousDescription.text) {
 					descriptions.push(description)
 				}
 			}
 			previousDescription = description
 		}
 		descriptions = descriptions.concat(addDescriptions)
+		for (const description of descriptions) {
+			description.ages = description.ages.sort(sortByAge)
+		}
 		return descriptions
 	}
 
@@ -472,11 +562,11 @@ export class CivTech {
 			return commands[0].getDescription(this.age)
 		}
 		let text
-		let age = CivAge.Dark
+		let ages = [CivAge.Dark]
 		let preset = techDescriptions[this.id]
 		if (preset) {
 			text = preset[0]
-			age = preset[1]
+			ages = [preset[1]]
 		} else {
 			// console.error(this.id, 'No command', this.building, this.requires, this.costs, this.time, this.icon)
 			// console.log(this.commandList.commands)
@@ -485,7 +575,7 @@ export class CivTech {
 		return {
 			id: this.id,
 			text,
-			age,
+			ages,
 			names: [],
 			type: 0,
 			a: 0,
@@ -496,8 +586,18 @@ export class CivTech {
 	}
 }
 
-export function sortByName (a: {name: string}, b: {name: string}) {
+export function sortByName (a: {name: string}, b: {name: string}): number {
 	return a.name.localeCompare(b.name)
+}
+
+export function sortByAge (a: CivAge, b: CivAge) {
+	if (a === CivAge.Dark) {
+		return -1
+	}
+	if (b === CivAge.Dark) {
+		return 1
+	}
+	return a - b
 }
 
 export class CivTechList {
@@ -519,7 +619,7 @@ export class CivTechList {
 			}
 			const icon = tech.icon
 			if (icon === 33 || icon === 107) {
-				description.age = icon === 33 ? CivAge.Castle : CivAge.Imperial
+				description.ages = [icon === 33 ? CivAge.Castle : CivAge.Imperial]
 				description.icon = icon
 			}
 			if (!previousDescription || description.text !== previousDescription.text) {
