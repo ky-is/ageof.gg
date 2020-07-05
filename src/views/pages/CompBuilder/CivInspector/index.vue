@@ -1,6 +1,6 @@
 <template>
-	<div class="bg-gray-800">
-		<UIStack v-if="civ" direction="col" class="mx-4 my-2  group">
+	<div class="bg-gray-800 px-4">
+		<UIStack v-if="civ" direction="col" class="my-2  group">
 			<UIStack direction="row" wrap>
 				<CivIcon :civ="civ" dragAction="copy" class="w-24 h-24 -ml-2" />
 				<UIStack direction="col" class="ml-1">
@@ -15,10 +15,10 @@
 					<button class="ui-button my-2" @click="commit.addTeamCiv(civ)">+ to team</button>
 				</UIStack>
 			</UIStack>
-			<ul class="mt-2 list-disc list-inside">
+			<ul class="mt-2">
 				<UIStack v-for="[label, bonuses] in groupedBonuses" :key="label" direction="col">
 					<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
-					<li v-for="bonus in bonuses" :key="bonus.description">
+					<li v-for="bonus in bonuses" :key="bonus.description" class="ml-3">
 						<img
 							v-for="ageID in bonus.ages" :key="ageID"
 							:src="`/images/ages/${ageID}.png`" :alt="CivAgeName[ageID] + ' age'"
