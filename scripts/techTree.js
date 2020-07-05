@@ -83,7 +83,6 @@ function getCommandsFrom (effect) {
 	return effect.EffectCommands.map(formatCommand)
 }
 
-
 for (let index = 0; index < techs.length; index += 1) {
 	const tech = techs[index]
 	const name = tech.Name
