@@ -5,7 +5,7 @@ import units from '/@/assets/data/units'
 import { EffectCommandData, TechData, CostData, EffectType, UnitData } from '/@/assets/types'
 import type { CivData } from '/@/assets/types'
 
-import { Focus, ResourceTypeInfo, CivAge, UnitAttribute, UnitAttributeInfo, UnitClass, EffectDescription, AttributeTypeInfo } from '/@/models/types'
+import { Focus, ResourceTypeInfo, CivAge, UnitAttribute, UnitAttributeInfo, UnitClass, EffectDescription, AmountTypeInfo } from '/@/models/types'
 import { effectSummaries, EffectSummary } from '/@/models/effectSummaries'
 
 const primaryFocuses: {[key: string]: Focus[]} = {
@@ -25,28 +25,28 @@ function getAgeFrom ({ requires }: {requires: number[]}, minimumAge: CivAge | un
 
 function getFocusesFor (name: string, type: number, a: number, b: number, c: number, d: number) {
 	switch (type) {
-		case EffectType.UnitAvailable:
-			const unit = units[b]
-			if (!unit) {
-				// console.error('Unknown unit', b, name, type, a, b, c, d)
-				break
-			}
-			const unitClass = UnitClass[unit.class]
-			if (!unitClass) {
-				console.error('Unknown UnitClass', unit.name, unit.class, name, type, a, b, c, d)
-				return []
-			}
-			return unitClass.focuses
-		case EffectType.ResourceModifier:
-		case EffectType.ResourceMultiplier:
-			const resourceInfo = ResourceTypeInfo[a]
-			if (resourceInfo) {
-				return resourceInfo.focuses
-			}
-			console.error('Unknown ResourceTypeInfo', a, name, type, a, b, c, d)
+	case EffectType.UnitAvailable:
+		const unit = getUnit(b)
+		if (!unit) {
+			// console.error('Unknown unit', b, name, type, a, b, c, d)
 			break
 		}
-		return []
+		const unitClass = UnitClass[unit.class]
+		if (!unitClass) {
+			console.error('Unknown UnitClass', unit.name, unit.class, name, type, a, b, c, d)
+			break
+		}
+		return unitClass.focuses
+	case EffectType.ResourceModifier:
+	case EffectType.ResourceMultiplier:
+		const resourceInfo = ResourceTypeInfo[a]
+		if (resourceInfo) {
+			return resourceInfo.focuses
+		}
+		console.error('Unknown ResourceTypeInfo', a, name, type, a, b, c, d)
+		break
+	}
+	return []
 }
 
 const unitAge: {[id: number]: number} = {
@@ -91,8 +91,21 @@ function formatDifference (amount: number): string {
 	return `+${amount}`
 }
 
+function calculatePercent (proportion: number): number {
+	return Math.round(proportion * 100)
+}
 function formatPercent (proportion: number): string {
-	return `${formatDifference(Math.round((proportion - 1) * 100))}%`
+	return `${calculatePercent(proportion)}%`
+}
+function formatPercentDifference (proportion: number): string {
+	return formatDifference(calculatePercent(proportion - 1)) + '%'
+}
+
+function getUnit (id: number) {
+	if (id === 412 || id === 921) {
+		id = 125
+	}
+	return units[id]
 }
 
 export class EffectCommand {
@@ -141,22 +154,25 @@ export class EffectCommand {
 	}
 
 	getDescription (minimumAge?: CivAge): EffectDescription | null {
+		if (this.id === 573) {
+			return this.makeDescription('Gunpowder units more accurate', CivAge.Castle, undefined, undefined)
+		}
 		let amountDescription
 		switch (this.type) {
 
 		case EffectType.UnitEnable:
 			const enableID = this.a
-			const enableUnit = units[enableID]
+			const enableUnit = getUnit(enableID)
 			if (!enableUnit) {
 				console.error(this.id, 'Unknown unit', enableID, this.type, this.a, this.b, this.c, this.d)
 				break
 			}
 			const enabled = this.b === 1
-			return this.makeDescription(`${getDisplayNameFor(enableUnit)} ${enabled ? 'available' : 'disabled'}`, minimumAge, enableID, enableUnit)
+			return this.makeDescription(`${getDisplayNameFor(enableUnit)} available`, minimumAge, enableID, enableUnit)
 
 		case EffectType.UnitAvailable:
 			const availableID = this.b
-			const availableUnit = units[availableID]
+			const availableUnit = getUnit(availableID)
 			if (!availableUnit) {
 				console.error(this.id, 'Unknown unit', availableID, this.type, this.a, this.b, this.c, this.d)
 				break
@@ -168,7 +184,10 @@ export class EffectCommand {
 			let typeDescription
 			if (this.d > 0b11111111) {
 				const classID = this.d >>> 8
-				typeDescription = AttributeTypeInfo[classID]
+				typeDescription = AmountTypeInfo[classID]
+				if (!typeDescription) {
+					console.warn(this.id, 'Unknown AmountTypeInfo', classID, this.type, this.a, this.b, this.c, this.d);
+				}
 				if (this.c === UnitAttribute.Armor) {
 					typeDescription = `(${typeDescription})`
 				} else if (this.c === UnitAttribute.Attack) {
@@ -190,26 +209,25 @@ export class EffectCommand {
 			const proportion = this.d
 			const unitAttribute = UnitAttributeInfo[attribute]
 			if (!amountDescription) {
-				amountDescription = formatPercent(proportion)
+				amountDescription = formatPercentDifference(proportion)
 			}
 			const multipliedUnitID = this.a
-			const multipliedUnit = units[multipliedUnitID]
+			const multipliedUnit = getUnit(multipliedUnitID)
 			const unitClass = UnitClass[this.b]
 
 			if (!multipliedUnit && !unitClass) {
-				if (multipliedUnitID === -1) { //TODO !
-					console.error(this.id, multipliedUnitID !== -1 ? `Unknown Unit ${multipliedUnitID}` : `Unknown UnitClass ${this.b}`, this.type, this.a, this.b, this.c, this.d)
-				}
+				console.error(this.id, multipliedUnitID !== -1 ? `Unknown Unit ${multipliedUnitID}` : `Unknown UnitClass ${this.b}`, this.type, this.a, this.b, this.c, this.d)
 				break
 			}
 			if (!unitAttribute) {
-				console.error(this.id, 'Unknown UnitAttributeInfo', this.c, this.type, this.a, this.b, this.c, this.d)
+				console.warn(this.id, 'Unknown UnitAttributeInfo', this.c, this.type, this.a, this.b, this.c, this.d)
 			}
 			const name = multipliedUnit ? getDisplayNameFor(multipliedUnit) : unitClass.name
 			return this.makeDescription(`${name} ${unitAttribute} ${amountDescription}${attribute === UnitAttribute.AccuracyPercent ? '%' : ''}`, minimumAge, multipliedUnitID, multipliedUnit ?? unitClass)
 
 		case EffectType.ResourceModifier:
 			amountDescription = this.b ? formatDifference(this.d) : formatPercent(this.d)
+
 		case EffectType.ResourceMultiplier:
 			const resourceInfo = ResourceTypeInfo[this.a]
 			if (!resourceInfo) {
@@ -217,11 +235,11 @@ export class EffectCommand {
 				break
 			}
 			const unitID = resourceInfo.unitID
-			const unit = unitID ? units[unitID] : undefined
+			const unit = unitID ? getUnit(unitID) : undefined
 			if (!amountDescription) {
-				amountDescription = formatPercent(this.d)
+				amountDescription = formatPercentDifference(this.d)
 			}
-			return this.makeDescription(`${resourceInfo.name} ${amountDescription}`, getAgeFrom(resourceInfo, minimumAge), unitID, unit)
+			return this.makeDescription(`${resourceInfo.name} ${amountDescription}`, getAgeFrom(resourceInfo, minimumAge), unitID, unit ?? resourceInfo)
 
 		case EffectType.ModifyTechTime:
 			amountDescription = 'free'
@@ -360,7 +378,7 @@ class CivTech {
 						if (rawName) {
 							description.description = description.description.replace(getDisplayName(rawName), summary.replaceName)
 						} else {
-							console.error('No name for replacement', summary, description)
+							console.warn('No name for replacement', summary, description)
 						}
 					}
 					if (summary.ages) {

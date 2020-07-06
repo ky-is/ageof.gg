@@ -143,8 +143,18 @@ export const ResourceTypeInfo: {[id: string]: {name: string, unitID?: number, re
 		requires: [],
 		focuses: [Focus.ResourceGold],
 	},
+	50: {
+		name: 'Reveal allies',
+		requires: [],
+		focuses: [Focus.Vision],
+	},
 	77: {
 		name: 'Conversion resistance',
+		requires: [],
+		focuses: [Focus.MonkAnti],
+	},
+	78: {
+		name: 'Commodity trade fee',
 		requires: [],
 		focuses: [Focus.MonkAnti],
 	},
@@ -221,9 +231,15 @@ export const ResourceTypeInfo: {[id: string]: {name: string, unitID?: number, re
 	},
 }
 
-export const AttributeTypeInfo: {[id: string]: string} = {
+export const AmountTypeInfo: {[id: string]: string} = {
 	3: 'pierce',
+	4: 'melee',
+	8: 'cavalry',
+	13: 'buildings', // stone defense
+	14: 'predators',
+	15: 'archers',
 	21: 'buildings',
+	30: 'camels',
 }
 
 export const enum UnitAttribute {
@@ -244,11 +260,12 @@ export const enum UnitAttribute {
 	SearchRadius = 23,
 	Cost = 100,
 	BuildTime = 101,
+	TotalMissileCount = 102,
 	CostFood = 103,
 	CostWood = 104,
 	CostGold = 105,
 	CostStone = 106,
-	MissileCount = 107,
+	MaxMissileCount = 107,
 	RegenerationRate = 109,
 }
 
@@ -270,11 +287,12 @@ export const UnitAttributeInfo: {[id: number]: string} = {
 	[UnitAttribute.SearchRadius]: 'line of sight', // 'search radius'
 	[UnitAttribute.Cost]: 'cost',
 	[UnitAttribute.BuildTime]: 'build time',
+	[UnitAttribute.TotalMissileCount]: 'missile count',
 	[UnitAttribute.CostFood]: 'food cost',
 	[UnitAttribute.CostWood]: 'wood cost',
 	[UnitAttribute.CostGold]: 'gold cost',
 	[UnitAttribute.CostStone]: 'stone cost',
-	[UnitAttribute.MissileCount]: 'missile count',
+	[UnitAttribute.MaxMissileCount]: 'missile count',
 	[UnitAttribute.RegenerationRate]: 'regeneration',
 }
 
@@ -284,7 +302,7 @@ export const UnitClass: {[id: number]: {name: string, focuses: Focus[]}} = {
 		focuses: [Focus.Archery],
 	},
 	2: {
-		name: 'Trade unit',
+		name: 'Trade unit', // Trade cog
 		focuses: [Focus.ResourceGold],
 	},
 	3: {
@@ -311,13 +329,17 @@ export const UnitClass: {[id: number]: {name: string, focuses: Focus[]}} = {
 		name: 'Monk',
 		focuses: [Focus.Monk],
 	},
+	19: {
+		name: 'Trade unit', // Trade cart
+		focuses: [Focus.ResourceGold],
+	},
 	20: {
 		name: 'Transport',
-		focuses: [],
+		focuses: [Focus.Navy],
 	},
 	21: {
-		name: 'Standard Buildings',
-		focuses: [Focus.Defense],
+		name: 'Fishing ship',
+		focuses: [Focus.ResourceFood],
 	},
 	22: {
 		name: 'Navy',

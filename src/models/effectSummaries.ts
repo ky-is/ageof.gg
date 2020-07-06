@@ -1,5 +1,5 @@
 import type { EffectType } from '/@/assets/types'
-import { CivAge, UnitAttribute } from '/@/models/types'
+import { CivAge, UnitAttribute, Focus } from '/@/models/types'
 
 export interface EffectSummary {
 	type?: EffectType
@@ -334,12 +334,23 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	],
 
 	// Goths
-	// 342: [
-	// 	{
-	// 		type: 5,
-	// 		stack: [765, 767], //TODO
-	// 	},
-	// ],
+	18: [
+		{
+			// title: 'Anarchy'
+			// icon: 33, //TODO
+			// replace: 'Huskarl can be trained from Barracks'
+		},
+	],
+	327: [
+		{
+			extension: ' per age'
+		},
+	],
+	331: [
+		{
+			delete: true, // Unused
+		},
+	],
 
 	// Huns
 	[-448]: [
@@ -455,10 +466,190 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 		},
 	],
 
+	// Japanese
+	[-406]: [
+		{
+			replaceName: 'Galley',
+		},
+	],
+	59: [
+		{
+			// combine: true, //TODO
+		}
+	],
+	// 306: [
+	// 	{
+	// 		c: [0, 8],
+	// 		combine: true, //TODO
+	// 	}
+	// ],
+	340: [
+		{
+			// combineNames: true, //TODO
+		}
+	],
+	484: [
+		{
+			replaceName: 'Tower',
+		},
+	],
+
+	// Khmer
+	622: [
+		{
+			replaceName: 'Elephant',
+		},
+	],
+	623: [
+		{
+			// combineNames: true, //TODO
+		},
+	],
+
+	// Koreans
+	[-505]: [
+		{
+			replaceName: 'Mangonel-line',
+		},
+	],
+	390: [
+		{
+			replaceName: 'Military (except siege)',
+		},
+	],
+	452: [
+		{
+			replaceName: 'Towers',
+			extension: ' per age',
+		},
+	],
+	453: [
+		{
+			replaceName: 'Towers',
+			extension: ' per age',
+		},
+	],
+
+	// Lithuanians
+	692: [
+		{
+			replaceName: 'Spears, Skirmishers',
+		},
+	],
+	699: [
+		{
+			replace: 'Knight, Leitis +1 attack per relic (+4 max)',
+		},
+	],
+	700: [
+		{
+			replace: 'Knight, Leitis +1 attack per relic (+4 max)',
+		},
+	],
+	701: [
+		{
+			replace: 'Knight, Leitis +1 attack per relic (+4 max)',
+		},
+	],
+	702: [
+		{
+			replace: 'Knight, Leitis +1 attack per relic (+4 max)',
+		},
+	],
+	710: [
+		{
+			replaceName: 'Spears, Skirmishers',
+		},
+	],
+
+	// Magyars
+	[-6]: [
+		{
+			replace: 'Archers (except Skirmishers) line of sight +2',
+		},
+	],
+	[-5]: [
+		{
+			replaceName: 'Forging upgrade line',
+		},
+	],
+	473: [
+		{
+			replaceName: 'Scout-line',
+		},
+	],
+	515: [
+		{
+			a: [172, 437, 698, 731, 930, 943, 1010, 1012, 1034, 1036, 1106, 1166, 1267, 1269, 1275, 1276, 1297, 1303],
+			delete: true,
+		},
+		{
+			replaceName: 'Cavalry Archers',
+		},
+	],
+
 	// Malay
 	[-649]: [
 		{
 			replaceName: 'Dock',
+		},
+	],
+	624: [
+		{
+			replace: 'Upgrade Docks to Harbors, which fire arrows',
+		},
+	],
+	625: [
+		{
+			replace: 'Militia-line Gold cost replaced with Food',
+		},
+	],
+	634: [
+		{
+			replace: 'Age advance speed +66%',
+		},
+	],
+
+	// Malians
+	577: [
+		{
+			replaceName: 'Cavalry',
+			// removeSuffix: 'vs', //TODO
+		},
+	],
+	591: [
+		{
+			a: [751, 752, 753],
+			delete: true,
+		},
+		{
+			replaceName: 'Barracks units',
+			extension: ' per age',
+		},
+	],
+	592: [
+		{
+			a: [751, 752, 753],
+			delete: true,
+		},
+		{
+			replaceName: 'Barracks units',
+			extension: ' per age',
+		},
+	],
+	593: [
+		{
+			a: [751, 752, 753],
+			delete: true,
+		},
+		{
+			replaceName: 'Barracks units',
+			extension: ' per age',
+		},
+	],
+	595: [
+		{
+			replaceName: 'Buildings',
 		},
 	],
 
@@ -473,12 +664,22 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 			type: 5,
 			c: 100,
 			replaceName: 'Archers',
-			stack: [485, 486], //TODO
+			stack: [53, 56], //TODO
 		},
 		{
 			type: 1,
 			b: 0,
 			replaceName: 'Resources last',
+		},
+	],
+	4: [
+		{
+			replaceName: 'Eagles',
+		},
+	],
+	485: [
+		{
+			replaceName: 'Archers',
 		},
 	],
 
@@ -491,6 +692,83 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	388: [
 		{
 			// combineNames: true, //TODO
+		},
+	],
+
+	// Persians
+	[-408]: [
+		{
+			replaceName: 'Knight-line',
+		},
+	],
+	[-260]: [
+		{
+			// combineNames: true, //TODO
+		},
+	],
+	7: [
+		{
+			replaceName: 'Elephants',
+		},
+	],
+	342: [
+		{
+			// combineNames: true, //TODO
+		},
+	],
+	409: [
+		{
+			// combineAmounts: true, //TODO
+		},
+	],
+	412: [
+		{
+			// combineAmounts: true, //TODO
+		},
+	],
+	488: [
+		{
+			replaceName: 'Archer',
+		},
+	],
+
+	// Portuguese
+	559: [
+		{
+			replaceName: 'All units',
+		},
+	],
+	560: [
+		{
+			replaceName: 'Ships',
+		},
+	],
+	572: [
+		{
+			replaceName: 'Ships',
+		},
+	],
+
+	// Saracens
+	9: [
+		{
+			replaceName: 'Camel units',
+		},
+	],
+	312: [
+		{
+			a: [-1],
+			replaceName: 'Archers',
+		},
+	],
+	404: [
+		{
+			replaceName: 'Galley-line',
+		},
+	],
+	490: [
+		{
+			replace: 'Monks refund 50% of gold cost on death',
 		},
 	],
 
@@ -511,6 +789,47 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 		{
 			type: 101,
 			replaceName: 'Blacksmith upgrades',
+		},
+	],
+
+	// Tartars
+	687: [
+		{
+			replaceName: 'Scouts / Steppe Lancers',
+		},
+	],
+	688: [
+		{
+			a: [729, 730],
+			delete: true,
+		},
+		{
+			// combine: true, //TODO
+		},
+	],
+
+	// Teutons
+	334: [
+		{
+			a: [751, 752, 753],
+			delete: true,
+		},
+		{
+			replaceName: 'Barracks/Stable units',
+		},
+	],
+	335: [
+		{
+			a: [751, 752, 753],
+			delete: true,
+		},
+		{
+			replaceName: 'Barracks/Stable units',
+		},
+	],
+	489: [
+		{
+			replaceName: 'Siege engines',
 		},
 	],
 
@@ -540,6 +859,16 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 			replaceName: 'Economy upgrades',
 		},
 	],
+	628: [
+		{
+			replaceName: 'Elephants',
+		},
+	],
+	632: [
+		{
+			replaceName: 'Archery range units',
+		},
+	],
 
 	// Vikings
 	[-411]: [
@@ -553,6 +882,16 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 		},
 	],
 	395: [
+		{
+			replaceName: 'Ships',
+		},
+	],
+	501: [
+		{
+			replaceName: 'Ships',
+		},
+	],
+	502: [
 		{
 			replaceName: 'Ships',
 		},
