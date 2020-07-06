@@ -4,6 +4,7 @@ export interface EffectDescription {
 	description: string
 	modifyAge?: boolean
 	names: string[]
+	requires: string[]
 	ages: CivAge[]
 	icon?: number
 	team: boolean
@@ -101,7 +102,7 @@ export const enum TechID {
 	DarkAge = 104,
 }
 
-export const ResourceTypeInfo: {[id: string]: {name: string, requires: TechID[], focuses: Focus[]}} = {
+export const ResourceTypeInfo: {[id: string]: {name: string, unitID?: number, requires: TechID[], focuses: Focus[]}} = {
 	0: {
 		name: 'Food',
 		requires: [],
@@ -194,13 +195,24 @@ export const ResourceTypeInfo: {[id: string]: {name: string, requires: TechID[],
 	},
 	191: {
 		name: 'Relic gold income',
+		unitID: 285,
 		requires: [TechID.CastleAge],
 		focuses: [Focus.Relic, Focus.ResourceGold],
 	},
 	195: {
-		name: 'Construction rate',
+		name: 'Building construction rate',
 		requires: [],
 		focuses: [Focus.Defense],
+	},
+	196: {
+		name: 'Relic / Wonder victory',
+		requires: [],
+		focuses: [],
+	},
+	197: {
+		name: 'Spies / Treason cost',
+		requires: [],
+		focuses: [Focus.Vision],
 	},
 	210: {
 		name: 'Relics visible on map',
@@ -209,10 +221,17 @@ export const ResourceTypeInfo: {[id: string]: {name: string, requires: TechID[],
 	},
 }
 
+export const AttributeTypeInfo: {[id: string]: string} = {
+	3: 'pierce',
+	21: 'buildings',
+}
+
 export const enum UnitAttribute {
 	HP = 0,
 	LineOfSight = 1,
+	GarrisonCapacity = 2,
 	Speed = 5,
+	Armor = 8,
 	Attack = 9,
 	ReloadTime = 10,
 	AccuracyPercent = 11,
@@ -220,6 +239,8 @@ export const enum UnitAttribute {
 	WorkRate = 13,
 	CarryCapacity = 14,
 	MinRange = 20,
+	ResourceStorage = 21,
+	BlastRadius = 22,
 	SearchRadius = 23,
 	Cost = 100,
 	BuildTime = 101,
@@ -227,19 +248,25 @@ export const enum UnitAttribute {
 	CostWood = 104,
 	CostGold = 105,
 	CostStone = 106,
+	MissileCount = 107,
+	RegenerationRate = 109,
 }
 
 export const UnitAttributeInfo: {[id: number]: string} = {
 	[UnitAttribute.HP]: 'HP',
 	[UnitAttribute.LineOfSight]: 'line of sight',
-	[UnitAttribute.Speed]: 'Speed',
+	[UnitAttribute.GarrisonCapacity]: 'garrison capacity',
+	[UnitAttribute.Speed]: 'move speed',
+	[UnitAttribute.Armor]: 'armor',
 	[UnitAttribute.Attack]: 'attack',
-	[UnitAttribute.ReloadTime]: 'reload time',
+	[UnitAttribute.ReloadTime]: 'attack delay',
 	[UnitAttribute.AccuracyPercent]: 'accuracy',
 	[UnitAttribute.MaxRange]: 'max range',
 	[UnitAttribute.MinRange]: 'min range',
 	[UnitAttribute.WorkRate]: 'work rate',
 	[UnitAttribute.CarryCapacity]: 'carry capacity',
+	[UnitAttribute.ResourceStorage]: 'population space', //TODO
+	[UnitAttribute.BlastRadius]: 'blast radius',
 	[UnitAttribute.SearchRadius]: 'line of sight', // 'search radius'
 	[UnitAttribute.Cost]: 'cost',
 	[UnitAttribute.BuildTime]: 'build time',
@@ -247,12 +274,18 @@ export const UnitAttributeInfo: {[id: number]: string} = {
 	[UnitAttribute.CostWood]: 'wood cost',
 	[UnitAttribute.CostGold]: 'gold cost',
 	[UnitAttribute.CostStone]: 'stone cost',
+	[UnitAttribute.MissileCount]: 'missile count',
+	[UnitAttribute.RegenerationRate]: 'regeneration',
 }
 
 export const UnitClass: {[id: number]: {name: string, focuses: Focus[]}} = {
 	0: {
 		name: 'Archer',
 		focuses: [Focus.Archery],
+	},
+	2: {
+		name: 'Trade unit',
+		focuses: [Focus.ResourceGold],
 	},
 	3: {
 		name: 'Buildings',
@@ -271,8 +304,16 @@ export const UnitClass: {[id: number]: {name: string, focuses: Focus[]}} = {
 		focuses: [Focus.Cavalry],
 	},
 	13: {
-		name: 'Siege',
+		name: 'Siege engines',
 		focuses: [Focus.Siege],
+	},
+	18: {
+		name: 'Monk',
+		focuses: [Focus.Monk],
+	},
+	20: {
+		name: 'Transport',
+		focuses: [],
 	},
 	21: {
 		name: 'Standard Buildings',
@@ -286,9 +327,17 @@ export const UnitClass: {[id: number]: {name: string, focuses: Focus[]}} = {
 		name: 'Conquistador',
 		focuses: [Focus.Gunpowder, Focus.InfantryAnti],
 	},
+	24: {
+		name: 'Elephant',
+		focuses: [Focus.Cavalry, Focus.Siege],
+	},
 	27: {
 		name: 'Wall',
 		focuses: [Focus.Defense],
+	},
+	35: {
+		name: 'Petard',
+		focuses: [Focus.Siege],
 	},
 	36: {
 		name: 'Cavalry Archer',
@@ -298,12 +347,44 @@ export const UnitClass: {[id: number]: {name: string, focuses: Focus[]}} = {
 		name: 'Wall', // Gate
 		focuses: [Focus.Defense],
 	},
+	43: {
+		name: 'Monk',
+		focuses: [Focus.Monk],
+	},
 	44: {
 		name: 'Gunpowder', // Hand cannoneer
 		focuses: [Focus.Gunpowder, Focus.InfantryAnti],
 	},
+	47: {
+		name: 'Scout',
+		focuses: [Focus.Vision],
+	},
+	49: {
+		name: 'Farm',
+		focuses: [Focus.ResourceFood],
+	},
+	51: {
+		name: 'Trebuchet',
+		focuses: [Focus.Siege],
+	},
 	52: {
 		name: 'Tower',
 		focuses: [Focus.Tower, Focus.Defense],
+	},
+	53: {
+		name: 'Transport',
+		focuses: [],
+	},
+	54: {
+		name: 'Trebuchet',
+		focuses: [Focus.Siege],
+	},
+	55: {
+		name: 'Siege engines', //TODO
+		focuses: [Focus.Siege],
+	},
+	61: {
+		name: 'Herdable',
+		focuses: [Focus.ResourceFood, Focus.Vision],
 	},
 }

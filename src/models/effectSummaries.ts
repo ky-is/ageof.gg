@@ -1,5 +1,5 @@
 import type { EffectType } from '/@/assets/types'
-import { CivAge } from '/@/models/types'
+import { CivAge, UnitAttribute } from '/@/models/types'
 
 export interface EffectSummary {
 	type?: EffectType
@@ -10,120 +10,478 @@ export interface EffectSummary {
 	skipA?: number[]
 	replace?: string //RELEASE hardcoded strings must be validated every new patch
 	replaceName?: string
+	extension?: string
 	delete?: boolean
 	stack?: number[]
 }
 
 export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
-	2: [ // Indians
-		{
-			type: 4,
-			replaceName: 'Camels',
-		},
-	],
-
-	6: [ // Magyars
-		{
-			type: 4,
-			replaceName: 'Archers (except skirmishers)',
-		},
-	],
-
-	10: [ // Italians
-		{
-			type: 101,
-			skipA: [CivAge.Feudal, CivAge.Castle, CivAge.Imperial],
-			replace: 'Dock upgrades cost -50%',
-		},
-		{
-			type: 101,
-			a: [CivAge.Feudal, CivAge.Castle, CivAge.Imperial],
-			replace: 'Advancing to the next age costs -15%',
-		},
-	],
-
-	49: [ // Ethiopians
-		{
-			type: 4,
-			replaceName: 'Tower/Outpost',
-		},
-	],
-
-	258: [ // Franks
-		{
-			type: 103,
-			replaceName: 'Farm upgrades',
-		},
-	],
-	403: [ // Franks
-		{
-			type: 4,
-			replaceName: 'Knights',
-			// ages: [CivAge.Castle],
-		},
-	],
-
-	263: [ // Turks
-		{
-			type: 101,
-			replace: 'Gunpowder techs cost -50%',
-			// ages: [CivAge.Castle],
-		},
-		{
-			type: 103,
-			a: [254],
-			replaceName: 'Scout upgrades',
-		},
-		{
-			type: 103,
-			a: [428],
-			delete: true,
-		},
-	],
-	410: [ // Turks
+	// Aztecs
+	447: [
 		{
 			type: 5,
-			replaceName: 'Gunpowder units',
+			replaceName: 'Military units',
+		},
+	],
+	460: [
+		{
+			replace: 'Skirmisher range +1 / building damage +1',
+		},
+	],
+
+	// Berbers
+	38: [
+		{
 			ages: [CivAge.Castle],
 		},
 	],
-
-	304: [ // Chinese
+	579: [
 		{
-			type: 1,
+			replaceName: 'Camels',
+		},
+	],
+	584: [
+		{
+			replaceName: 'Villager / Navy',
+		},
+	],
+	585: [
+		{
+			replaceName: 'Villager / Navy',
+		},
+	],
+
+	// Bulgarians
+	// 686: [
+	// 	{
+	// 		replaceName: 'Militia-line',
+	// 	},
+	// ],
+	// 693: [
+	// 	{
+	// 		replaceName: 'Militia-line',
+	// 	},
+	// ],
+
+	// Burmese
+	626: [
+		{
+			replaceName: 'Elephant',
+			// removeEnd: true, //TODO
+		},
+	],
+	627: [
+		{
+			replaceName: 'Cavalry / Arambai',
+		},
+	],
+	645: [
+		{
+			replaceName: 'Lumber camp upgrades',
+		},
+	],
+	646: [
+		{
+			// removeEnd: true, //TODO
+		},
+	],
+	649: [
+		{
+			replace: 'Monastery upgrades cost -50%',
+		},
+	],
+	651: [
+		{
+			// removeEnd: true, //TODO
+		},
+	],
+
+	// Britons
+	3: [
+		{
+			replace: 'Archers range +1, Towers damage +2',
+		},
+	],
+	382: [
+		{
+			replace: 'Archers (except skirmishers) range +1 Castle/+1 Imperial Age',
+		},
+	],
+	403: [
+		{
+			replace: 'Archers (except skirmishers) range +1 Castle/+1 Imperial Age',
+			//TODO not .castle
+		},
+	],
+	461: [
+		{
+			// combine: true, //TODO
+		},
+	],
+
+	// Byzantines
+	256: [
+		{
+			type: 101,
+			a: [CivAge.Imperial],
+			replace: 'Imperial Age cost -33%',
+		},
+	],
+	283: [
+		{
+			replaceName: 'Buildings',
+		},
+	],
+	284: [
+		{
+			replaceName: 'Trash units',
+		},
+	],
+	397: [
+		{
+			c: UnitAttribute.Attack,
+			delete: true,
+		},
+		{
+			replaceName: 'Fire ships',
+		},
+	],
+	417: [
+		{
+			replaceName: 'Buildings',
+		},
+	],
+	418: [
+		{
+			replaceName: 'Buildings',
+		},
+	],
+	419: [
+		{
+			replaceName: 'Buildings',
+		},
+	],
+	464: [
+		{
+			replaceName: 'Fire ships',
+		},
+	],
+
+	// Celts
+	5: [
+		{
+			replaceName: 'Siege units'
+		},
+	],
+	386: [
+		{
+			replaceName: 'Siege'
+		},
+	],
+	482: [
+		{
+			replaceName: 'Towers / Castles'
+		},
+	],
+
+	// Chinese
+	52: [
+		{
+			replace: 'Chu Ko Nu attack +2, Scorpion attack +4', //TODO
+		},
+	],
+	257: [
+		// combine: true, //TODO
+	],
+	304: [
+		{
+			stack: [350, 351], //TODO
+			ages: [CivAge.Feudal],
+		},
+	],
+	396: [
+		{
+			replaceName: 'Demolition ships',
+		},
+	],
+	425: [
+		{
+			replace: 'Town Center population space +5, line of sight +5',
+		},
+	],
+	462: [
+		{
+			replaceName: 'Wall / Tower',
+		},
+	],
+
+	// Cumans
+	689: [
+		{
+			replaceName: 'Scout Cavalry / Steppe Lancer',
+		},
+	],
+	690: [
+		{
+			replace: 'Teammates can create 10 free Kipchak',
+		},
+	],
+	705: [
+		{
+			replace: 'Battering Ram / Capped Ram available',
+		},
+	],
+	706: [
+		{
+			replace: 'Battering Ram / Capped Ram available',
+		},
+	],
+	709: [
+		{
+			replaceName: 'Town Center, Siege Workshop',
+		},
+	],
+	723: [
+		{
 			delete: true,
 		},
 	],
-	349: [ // Chinese
+	724: [
+		{
+			delete: true,
+		},
+	],
+	711: [
+		{
+			replaceName: 'Cavalry',
+			extension: ' per age',
+		},
+	],
+	727: [
+		{
+			replaceName: 'Cavalry',
+			extension: ' per age',
+		},
+	],
+	728: [
+		{
+			replaceName: 'Cavalry',
+			extension: ' per age',
+		},
+	],
+
+	// Ethiopians
+	49: [
+		{
+			replaceName: 'Tower, Outpost',
+		},
+	],
+	587: [
+		{
+			// combineNames: true, //TODO
+			extension: ' per age',
+			// stack: [588, 589], //TODO
+		},
+	],
+	588: [
+		{
+			// combineNames: true, //TODO
+			extension: ' per age',
+		},
+	],
+	589: [
+		{
+			// combineNames: true, //TODO
+			extension: ' per age',
+		},
+	],
+	607: [
+		{
+			replaceName: 'Archer',
+		},
+	],
+	575: [
+		{
+			replace: 'Siege engines blast radius increased',
+		},
+	],
+
+	// Franks
+	258: [
+		{
+			replaceName: 'Farm upgrades', //TODO
+		},
+	],
+	290: [
+		{
+			replaceName: 'Cavalry',
+		},
+	],
+
+	// Goths
+	// 342: [
+	// 	{
+	// 		type: 5,
+	// 		stack: [765, 767], //TODO
+	// 	},
+	// ],
+
+	// Huns
+	21: [
+		{
+			replace: 'Spies/Treason cost -50%, Relic/Wonder victory +100 years',
+		},
+		{
+			type: 2,
+			delete: true,
+		},
+	],
+	448: [
 		{
 			type: 1,
-			stack: [350, 351], //TODO
-			// ages: [CivAge.Feudal],
+			replace: 'Houses not needed, but starting Wood -100',
+		},
+		{
+			type: 2,
+			delete: true,
+		},
+	],
+	483: [
+		{
+			replace: 'Tarkan can be trained from Stables',
 		},
 	],
 
-	342: [ // Goths
+	// Incas
+	495: [
+		{
+			replaceName: 'House',
+		},
+	],
+	474: [
+		{
+			replace: 'Villagers affected by Blacksmith upgrades',
+		},
+	],
+	475: [
+		{
+			replace: 'Villagers affected by Blacksmith upgrades',
+		},
+	],
+	476: [
+		{
+			replace: 'Villagers affected by Blacksmith upgrades',
+		},
+	],
+	477: [
+		{
+			replace: 'Villagers affected by Blacksmith upgrades',
+		},
+	],
+	478: [
+		{
+			replace: 'Villagers affected by Blacksmith upgrades',
+		},
+	],
+	479: [
+		{
+			replace: 'Villagers affected by Blacksmith upgrades',
+		},
+	],
+	516: [
+		{
+			replaceName: 'Skirmishers / Slingers',
+		},
+	],
+	517: [
+		{
+			replace: 'Kamayuks, Slingers, Eagles +1/+2P armor',
+		},
+	],
+	519: [
+		{
+			replaceName: 'Buildings',
+		},
+	],
+
+	// Indians
+	2: [
+		{
+			skipA: [207, 329, 330],
+			replaceName: 'Other camels',
+		},
+	],
+	506: [
+		{
+			replace: 'Gold income +10%',
+		},
+	],
+
+	// Italians
+	10: [
+		{
+			type: 101,
+			replace: 'Dock upgrades cost -15%',
+		},
+	],
+	494: [
+		{
+			replace: 'Foot archer armor +1/+1P',
+		},
+	],
+	499: [
+		{
+			replaceName: 'Trade units',
+		},
+	],
+	500: [
+		{
+			replaceName: 'Gunpowder units',
+		},
+	],
+
+	// Malay
+	// 649: [
+	// 	{
+	// 		type: 5,
+	// 		replaceName: 'Dock',
+	// 	},
+	// ],
+
+	// Mayans
+	449: [
 		{
 			type: 5,
-			stack: [765, 767], //TODO
+			c: 13,
+			delete: true,
+		},
+		{
+			type: 5,
+			c: 100,
+			replaceName: 'Archers',
+			stack: [485, 486], //TODO
+		},
+		{
+			type: 1,
+			b: 0,
+			replaceName: 'Resources last',
 		},
 	],
 
-	407: [ // Mongols
+	// Mongols
+	388: [
 		{
-			type: 4,
+			// combineNames: true, //TODO
+		},
+	],
+	407: [
+		{
 			replaceName: 'Scouts',
 		},
 	],
 
-	411: [ // Vikings
-		{
-			type: 5,
-			replaceName: 'Docks',
-		},
-	],
-
-	446: [ // Spanish
+	// Spanish
+	446: [
 		{
 			type: 5,
 			replaceName: 'Gunpowder',
@@ -134,51 +492,45 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 			replaceName: 'Blacksmith upgrades',
 		},
 	],
-	490: [ // Spanish
+	490: [
 		{
 			type: 5,
 			replaceName: 'Trade units',
-			ages: [CivAge.Feudal],
+			ages: [CivAge.Feudal], //TODO remove
 		},
 	],
 
-	447: [ // Aztecs
+	// Turks
+	263: [
 		{
-			type: 5,
-			replaceName: 'Military units',
+			type: 101,
+			replace: 'Gunpowder techs cost -50%',
+		},
+		{
+			type: 103,
+			a: [254, 428],
+			replaceName: 'Scout upgrades',
+		},
+	],
+	410: [
+		{
+			replaceName: 'Gunpowder units',
+			ages: [CivAge.Castle],
 		},
 	],
 
-	449: [ // Mayans
-		{
-			type: 5,
-			c: 13,
-			delete: true,
-		},
-		{
-			type: 1,
-			b: 0,
-			replaceName: 'Resources last',
-		},
-		{
-			type: 5,
-			c: 100,
-			replaceName: 'Archers',
-			stack: [485, 486], //TODO
-		},
-	],
-
-	649: [ // Malay
-		{
-			type: 5,
-			replaceName: 'Dock',
-		},
-	],
-
-	652: [ // Vietnamese
+	// Vietnamese
+	652: [
 		{
 			type: 101,
 			replaceName: 'Economy upgrades',
+		},
+	],
+
+	// Vikings
+	411: [
+		{
+			replaceName: 'Docks',
 		},
 	],
 }

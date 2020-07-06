@@ -1,6 +1,6 @@
 <template>
 	<div class="bg-gray-800 px-4">
-		<UIStack v-if="civ" direction="col" class="my-2  group">
+		<UIStack v-if="civ" direction="col" class="my-2">
 			<UIStack direction="row" wrap>
 				<CivIcon :civ="civ" dragAction="copy" class="w-24 h-24 -ml-2" />
 				<UIStack direction="col" class="ml-1">
@@ -16,7 +16,7 @@
 				</UIStack>
 			</UIStack>
 			<ul class="mt-2">
-				<UIStack v-for="[label, bonuses] in groupedBonuses" :key="label" direction="col">
+				<UIStack v-for="[label, bonuses] in groupedBonuses" :key="label" direction="col" class="group">
 					<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
 					<li v-for="bonus in bonuses" :key="bonus.description" class="ml-3">
 						<img
@@ -29,10 +29,12 @@
 							:src="`/images/techs/${bonus.icon}.png`" :alt="`${CivAgeName[bonus.ages[0]]} age unique tech`"
 							class="bonus-icon"
 						>
-						<span v-if="bonus.name" class="text-secondary text-bold">{{ bonus.name }}: </span>
-						<span class="text-secondary text-sm">{{ bonus.id }} : {{ bonus.type }} {{ bonus.a }}&nbsp;</span>
+						<!-- SAMPLE -->
+						<!-- <span class="text-secondary text-sm">{{ bonus.id }} : {{ bonus.type }} {{ bonus.a }}&nbsp;</span> -->
+						<span v-if="bonus.title" class="text-secondary text-bold">{{ bonus.title }}: </span>
 						<span>{{ bonus.description }}</span>
 						<span v-if="bonus.names.length > 1" class="text-secondary  hidden group-hover:inline"> ({{ bonus.names.join(', ') }})</span>
+						<span v-if="bonus.requires.length" class="text-secondary  hidden group-hover:inline"> (requires {{ bonus.requires.join(', ') }})</span>
 					</li>
 				</UIStack>
 			</ul>

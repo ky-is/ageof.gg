@@ -5,14 +5,14 @@ import units from '/@/assets/data/units'
 import { EffectCommandData, TechData, CostData, EffectType, UnitData } from '/@/assets/types'
 import type { CivData } from '/@/assets/types'
 
-import { Focus, ResourceTypeInfo, CivAge, UnitAttribute, UnitAttributeInfo, UnitClass, EffectDescription } from '/@/models/types'
+import { Focus, ResourceTypeInfo, CivAge, UnitAttribute, UnitAttributeInfo, UnitClass, EffectDescription, AttributeTypeInfo } from '/@/models/types'
 import { effectSummaries, EffectSummary } from '/@/models/effectSummaries'
 
 const primaryFocuses: {[key: string]: Focus[]} = {
 	'Aztecs': [Focus.Monk, Focus.Infantry],
 }
 
-function getAgeFrom ({ requires }: {requires: number[]}, minimumAge: CivAge | undefined): CivAge {
+function getAgeFrom ({ requires }: {requires: number[]}, minimumAge: CivAge | undefined): CivAge | undefined {
 	const foundAge = requires.find(requirement => requirement >= 101 && requirement <= 104)
 	if (foundAge) {
 		if (minimumAge && minimumAge !== CivAge.Dark) {
@@ -20,7 +20,7 @@ function getAgeFrom ({ requires }: {requires: number[]}, minimumAge: CivAge | un
 		}
 		return foundAge
 	}
-	return minimumAge ?? CivAge.Dark
+	return minimumAge
 }
 
 function getFocusesFor (name: string, type: number, a: number, b: number, c: number, d: number) {
@@ -37,6 +37,7 @@ function getFocusesFor (name: string, type: number, a: number, b: number, c: num
 				return []
 			}
 			return unitClass.focuses
+		case EffectType.ResourceModifier:
 		case EffectType.ResourceMultiplier:
 			const resourceInfo = ResourceTypeInfo[a]
 			if (resourceInfo) {
@@ -48,14 +49,25 @@ function getFocusesFor (name: string, type: number, a: number, b: number, c: num
 		return []
 }
 
+const unitAge: {[id: number]: number} = {
+	17: CivAge.Feudal, // Trade Cog
+	82: CivAge.Castle, // Castle
+	204: CivAge.Feudal, // Trade Cart
+}
+
 const removePrefixes: string[] = [
 	'Elite ',
 	'Fortified ',
 	'Heavy ',
-	// 'Rice ',
+	'Imperial ',
+	'Rice ',
 ]
 
-function getDisplayNameFor ({ name }: UnitData) {
+function removeSuffix (name: string) {
+	return name.split(' (')[0]
+}
+
+function getDisplayName (name: string) {
 	for (const prefix of removePrefixes) {
 		if (name.startsWith(prefix)) {
 			name = name.slice(prefix.length)
@@ -65,7 +77,11 @@ function getDisplayNameFor ({ name }: UnitData) {
 	if (name.startsWith('Palisade ')) {
 		return 'Palisade Wall'
 	}
-	return name.split(' (')[0]
+	return removeSuffix(name)
+}
+
+function getDisplayNameFor ({ name }: UnitData) {
+	return getDisplayName(name)
 }
 
 function formatDifference (amount: number): string {
@@ -102,7 +118,10 @@ export class EffectCommand {
 		this.focuses = getFocusesFor(name, type, a, b, c, d)
 	}
 
-	private makeDescription (description: string, age: CivAge | undefined, nameable: {name: string} | undefined, modifyAge?: boolean): EffectDescription {
+	private makeDescription (description: string, age: CivAge | undefined, nameableID: number | undefined, nameable: {name: string} | undefined, modifyAge?: boolean): EffectDescription {
+		if (nameableID && !age) {
+			age = unitAge[nameableID]
+		}
 		return {
 			id: this.id,
 			title: null,
@@ -110,7 +129,8 @@ export class EffectCommand {
 			castle: false,
 			description,
 			ages: [age ?? CivAge.Dark],
-			names: nameable ? [nameable.name] : [],
+			names: nameable ? [removeSuffix(nameable.name)] : [],
+			requires: [],
 			modifyAge,
 			type: this.type,
 			a: this.a,
@@ -125,33 +145,41 @@ export class EffectCommand {
 		switch (this.type) {
 
 		case EffectType.UnitEnable:
-			const enableUnit = units[this.a]
+			const enableID = this.a
+			const enableUnit = units[enableID]
 			if (!enableUnit) {
-				console.error(this.id, 'Unknown unit', this.a, this.type, this.a, this.b, this.c, this.d)
+				console.error(this.id, 'Unknown unit', enableID, this.type, this.a, this.b, this.c, this.d)
 				break
 			}
 			const enabled = this.b === 1
-			return this.makeDescription(`${getDisplayNameFor(enableUnit)} ${enabled ? 'available' : 'disabled'}`, minimumAge, enableUnit)
+			return this.makeDescription(`${getDisplayNameFor(enableUnit)} ${enabled ? 'available' : 'disabled'}`, minimumAge, enableID, enableUnit)
 
 		case EffectType.UnitAvailable:
-			const availableUnit = units[this.b]
+			const availableID = this.b
+			const availableUnit = units[availableID]
 			if (!availableUnit) {
-				console.error(this.id, 'Unknown unit', this.b, this.type, this.a, this.b, this.c, this.d)
+				console.error(this.id, 'Unknown unit', availableID, this.type, this.a, this.b, this.c, this.d)
 				break
 			}
-			return this.makeDescription(`${getDisplayNameFor(availableUnit)} available`, minimumAge, availableUnit)
+			return this.makeDescription(`${getDisplayNameFor(availableUnit)} available`, minimumAge, availableID, availableUnit)
 
 		case EffectType.UnitModifier:
+			let value = this.d
+			let typeDescription
 			if (this.d > 0b11111111) {
-				const toClass = UnitClass[this.d >>> 8]
-				if (!toClass) {
-					console.error(this.id, 'Unknown UnitClass', this.d, this.type, this.a, this.b, this.c, this.d)
-					break
+				const classID = this.d >>> 8
+				typeDescription = AttributeTypeInfo[classID]
+				if (this.c === UnitAttribute.Armor) {
+					typeDescription = `(${typeDescription})`
+				} else if (this.c === UnitAttribute.Attack) {
+					typeDescription = 'vs ' + typeDescription
 				}
-				const value = this.d & 0b0000000011111111
-				amountDescription = `${formatDifference(value)} to ${toClass.name}`
-			} else {
-				amountDescription = formatDifference(this.d)
+
+				value = this.d & 0b0000000011111111
+			}
+			amountDescription = formatDifference(value)
+			if (typeDescription) {
+				amountDescription += ` ${typeDescription}`
 			}
 		case EffectType.UnitSetModifier:
 			if (!amountDescription) {
@@ -164,18 +192,21 @@ export class EffectCommand {
 			if (!amountDescription) {
 				amountDescription = formatPercent(proportion)
 			}
-			const multipliedUnit = units[this.a]
+			const multipliedUnitID = this.a
+			const multipliedUnit = units[multipliedUnitID]
 			const unitClass = UnitClass[this.b]
 
 			if (!multipliedUnit && !unitClass) {
-				console.error(this.id, this.a !== -1 ? `Unknown Unit ${this.a}` : `Unknown UnitClass ${this.b}`, this.type, this.a, this.b, this.c, this.d)
+				if (multipliedUnitID === -1) { //TODO !
+					console.error(this.id, multipliedUnitID !== -1 ? `Unknown Unit ${multipliedUnitID}` : `Unknown UnitClass ${this.b}`, this.type, this.a, this.b, this.c, this.d)
+				}
 				break
 			}
 			if (!unitAttribute) {
 				console.error(this.id, 'Unknown UnitAttributeInfo', this.c, this.type, this.a, this.b, this.c, this.d)
 			}
 			const name = multipliedUnit ? getDisplayNameFor(multipliedUnit) : unitClass.name
-			return this.makeDescription(`${name} ${unitAttribute} ${amountDescription}${attribute === UnitAttribute.AccuracyPercent ? '%' : ''}`, minimumAge, multipliedUnit ?? unitClass)
+			return this.makeDescription(`${name} ${unitAttribute} ${amountDescription}${attribute === UnitAttribute.AccuracyPercent ? '%' : ''}`, minimumAge, multipliedUnitID, multipliedUnit ?? unitClass)
 
 		case EffectType.ResourceModifier:
 			amountDescription = this.b ? formatDifference(this.d) : formatPercent(this.d)
@@ -185,10 +216,12 @@ export class EffectCommand {
 				console.error(this.id, 'Unknown ResourceTypeInfo', this.a, this.type, this.a, this.b, this.c, this.d)
 				break
 			}
+			const unitID = resourceInfo.unitID
+			const unit = unitID ? units[unitID] : undefined
 			if (!amountDescription) {
 				amountDescription = formatPercent(this.d)
 			}
-			return this.makeDescription(`${resourceInfo.name} ${amountDescription}`, getAgeFrom(resourceInfo, minimumAge), undefined)
+			return this.makeDescription(`${resourceInfo.name} ${amountDescription}`, getAgeFrom(resourceInfo, minimumAge), unitID, unit)
 
 		case EffectType.ModifyTechTime:
 			amountDescription = 'free'
@@ -206,7 +239,7 @@ export class EffectCommand {
 				}
 				amountDescription = `${techResourceInfo.name} cost free`
 			}
-			return this.makeDescription(`${techModify.name} ${amountDescription}${this.d === 0 ? '' : ' ' + formatDifference(this.d)}`, getAgeFrom(techModify, minimumAge), undefined)
+			return this.makeDescription(`${techModify.name} ${amountDescription}${this.d === 0 ? '' : ' ' + formatDifference(this.d)}`, getAgeFrom(techModify, minimumAge), undefined, techModify)
 
 		case EffectType.DisableTech:
 			const techDisable = techs[this.d]
@@ -214,9 +247,9 @@ export class EffectCommand {
 				console.error(this.id, 'Unknown DisableTech', this.d, this.type, this.a, this.b, this.c, this.d)
 				break
 			}
-			const age = getAgeFrom(techDisable, minimumAge)
+			const age = getAgeFrom(techDisable, minimumAge) ?? CivAge.Dark
 			console.log('TODO disable age', age, this)
-			return this.makeDescription('', age === CivAge.Dark ? CivAge.Feudal : (age === CivAge.Feudal ? CivAge.Castle : CivAge.Imperial), undefined, true)
+			return this.makeDescription('', age === CivAge.Dark ? CivAge.Feudal : (age === CivAge.Feudal ? CivAge.Castle : CivAge.Imperial), undefined, undefined, true)
 
 		default:
 			console.error(this.id, 'Unknown EffectType', this.type, this.type, this.a, this.b, this.c, this.d)
@@ -232,7 +265,7 @@ class CivTech {
 	building: number | null
 	requires: number[]
 	castle: boolean
-	age: CivAge
+	age: CivAge | undefined
 	costs: CostData[]
 	time: number
 	icon: number | null
@@ -262,6 +295,7 @@ class CivTech {
 			description.castle = this.castle
 			if (this.icon === 33 || this.icon === 107) {
 				description.icon = this.icon
+				description.title = this.name
 			}
 		}
 		return description
@@ -271,12 +305,19 @@ class CivTech {
 		const results: EffectDescription[] = []
 		// Group commands that auto-research technologies
 		let describeCommands = this.commands
-		for (const command of describeCommands) {
-			if (command.type === EffectType.ModifyTechTime) {
-				const removeTechID = command.a
+		for (const overrideCommand of describeCommands) {
+			if (overrideCommand.type === EffectType.ModifyTechTime) {
+				const removeTechID = overrideCommand.a
 				for (let index = describeCommands.length - 1; index >= 0; index -= 1) {
 					const command = describeCommands[index]
 					if (command.type === EffectType.ModifyTechCost && command.a === removeTechID) {
+						describeCommands.splice(index, 1)
+					}
+				}
+			} else if (overrideCommand.type === EffectType.UnitModifier && overrideCommand.c === UnitAttribute.MaxRange) {
+				for (let index = describeCommands.length - 1; index >= 0; index -= 1) {
+					const command = describeCommands[index]
+					if (command.type === EffectType.UnitModifier && (command.c === UnitAttribute.LineOfSight || command.c === UnitAttribute.SearchRadius)) {
 						describeCommands.splice(index, 1)
 					}
 				}
@@ -315,15 +356,37 @@ class CivTech {
 					if (summary.replace) {
 						description.description = summary.replace
 					} else if (summary.replaceName) {
-						description.description = description.description.replace(description.names[0], summary.replaceName)
+						const rawName = description.names[0]
+						if (rawName) {
+							description.description = description.description.replace(getDisplayName(rawName), summary.replaceName)
+						} else {
+							console.error('No name for replacement', summary, description)
+						}
 					}
 					if (summary.ages) {
 						description.ages = summary.ages
+					}
+					if (summary.extension) {
+						description.description += summary.extension
 					}
 				}
 			}
 			if (!descriptionSummary?.delete) {
 				results.push(description)
+			}
+		}
+
+		const upgradeRequirements = this.requires.filter(techID => techID < 101 || techID > 104).map(techID => {
+			const tech = techs[techID]
+			if (!tech) {
+				console.error(this.id, 'Unknown tech', techID)
+				return null
+			}
+			return tech.name
+		}).filter(name => name) as string[]
+		if (upgradeRequirements) {
+			for (const result of results) {
+				result.requires = upgradeRequirements
 			}
 		}
 		return results
@@ -378,16 +441,17 @@ export class CivEntry {
 		const descriptionsByText: {[text: string]: EffectDescription[]} = {}
 		// Group summarized descriptions
 		for (const description of descriptions) {
-			if (descriptionsByText[description.description]) {
-				descriptionsByText[description.description].push(description)
+			const key = (description.title ?? '') + description.description
+			if (descriptionsByText[key]) {
+				descriptionsByText[key].push(description)
 			} else {
-				descriptionsByText[description.description] = [ description ]
+				descriptionsByText[key] = [ description ]
 			}
 		}
 		// Combine data for grouped descriptions
 		let results: EffectDescription[] = []
-		for (const text in descriptionsByText) {
-			const groupDescriptions = descriptionsByText[text]
+		for (const key in descriptionsByText) {
+			const groupDescriptions = descriptionsByText[key]
 			const resultDescription = groupDescriptions[0]
 			for (let index = groupDescriptions.length - 1; index > 0; index -= 1) {
 				const description = groupDescriptions[index]
@@ -400,8 +464,13 @@ export class CivEntry {
 					}
 				}
 				const newName = description.names[0]
-				if (newName) { //TODO verify: && !resultDescription.names.includes(newName)) {
+				if (newName && !resultDescription.names.includes(newName)) {
 					resultDescription.names.push(newName)
+				}
+				for (const requirement of description.requires) {
+					if (!resultDescription.requires.includes(requirement)) {
+						resultDescription.requires.push(requirement)
+					}
 				}
 			}
 			resultDescription.ages = resultDescription.ages.sort(sortByAge)
