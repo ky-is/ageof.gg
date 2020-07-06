@@ -17,7 +17,7 @@ export interface EffectSummary {
 
 export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	// Aztecs
-	447: [
+	[-447]: [
 		{
 			type: 5,
 			replaceName: 'Military units',
@@ -30,7 +30,7 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	],
 
 	// Berbers
-	38: [
+	[-38]: [
 		{
 			ages: [CivAge.Castle],
 		},
@@ -51,17 +51,50 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 		},
 	],
 
+
+	// Britons
+	3: [
+		{
+			replace: 'Archers range +1, Towers damage +2',
+		},
+	],
+	382: [
+		{
+			replace: 'Archers (except skirmishers) range +1 Castle/+1 Imperial Age',
+		},
+	],
+	403: [
+		{
+			replace: 'Archers (except skirmishers) range +1 Castle/+1 Imperial Age',
+			//TODO not .castle
+		},
+	],
+	461: [
+		{
+			// combine: true, //TODO
+		},
+	],
+
 	// Bulgarians
-	// 686: [
-	// 	{
-	// 		replaceName: 'Militia-line',
-	// 	},
-	// ],
-	// 693: [
-	// 	{
-	// 		replaceName: 'Militia-line',
-	// 	},
-	// ],
+	685: [
+		{
+			replaceName: 'Cavalry',
+		},
+	],
+	686: [
+		{
+			replaceName: 'Militia-line',
+		},
+	],
+	693: [
+		{
+			replaceName: 'Militia-line',
+		},
+		{
+			type: 101,
+			delete: true,
+		},
+	],
 
 	// Burmese
 	626: [
@@ -96,31 +129,8 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 		},
 	],
 
-	// Britons
-	3: [
-		{
-			replace: 'Archers range +1, Towers damage +2',
-		},
-	],
-	382: [
-		{
-			replace: 'Archers (except skirmishers) range +1 Castle/+1 Imperial Age',
-		},
-	],
-	403: [
-		{
-			replace: 'Archers (except skirmishers) range +1 Castle/+1 Imperial Age',
-			//TODO not .castle
-		},
-	],
-	461: [
-		{
-			// combine: true, //TODO
-		},
-	],
-
 	// Byzantines
-	256: [
+	[-256]: [
 		{
 			type: 101,
 			a: [CivAge.Imperial],
@@ -185,13 +195,13 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	],
 
 	// Chinese
+	[-257]: [
+		// combine: true, //TODO
+	],
 	52: [
 		{
 			replace: 'Chu Ko Nu attack +2, Scorpion attack +4', //TODO
 		},
-	],
-	257: [
-		// combine: true, //TODO
 	],
 	304: [
 		{
@@ -271,7 +281,7 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	],
 
 	// Ethiopians
-	49: [
+	[-49]: [
 		{
 			replaceName: 'Tower, Outpost',
 		},
@@ -307,7 +317,12 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	],
 
 	// Franks
-	258: [
+	[-403]: [
+		{
+			replaceName: 'Knight',
+		},
+	],
+	[-258]: [
 		{
 			replaceName: 'Farm upgrades', //TODO
 		},
@@ -327,19 +342,19 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	// ],
 
 	// Huns
-	21: [
+	[-448]: [
 		{
-			replace: 'Spies/Treason cost -50%, Relic/Wonder victory +100 years',
+			type: 1,
+			replace: 'Houses not needed, but starting Wood -100',
 		},
 		{
 			type: 2,
 			delete: true,
 		},
 	],
-	448: [
+	21: [
 		{
-			type: 1,
-			replace: 'Houses not needed, but starting Wood -100',
+			replace: 'Spies/Treason cost -50%, Relic/Wonder victory +100 years',
 		},
 		{
 			type: 2,
@@ -405,7 +420,7 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	],
 
 	// Indians
-	2: [
+	[-2]: [
 		{
 			skipA: [207, 329, 330],
 			replaceName: 'Other camels',
@@ -418,7 +433,7 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	],
 
 	// Italians
-	10: [
+	[-10]: [
 		{
 			type: 101,
 			replace: 'Dock upgrades cost -15%',
@@ -441,15 +456,14 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	],
 
 	// Malay
-	// 649: [
-	// 	{
-	// 		type: 5,
-	// 		replaceName: 'Dock',
-	// 	},
-	// ],
+	[-649]: [
+		{
+			replaceName: 'Dock',
+		},
+	],
 
 	// Mayans
-	449: [
+	[-449]: [
 		{
 			type: 5,
 			c: 13,
@@ -469,19 +483,26 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	],
 
 	// Mongols
+	[-407]: [
+		{
+			replaceName: 'Scouts',
+		},
+	],
 	388: [
 		{
 			// combineNames: true, //TODO
 		},
 	],
-	407: [
-		{
-			replaceName: 'Scouts',
-		},
-	],
 
 	// Spanish
-	446: [
+	[-490]: [
+		{
+			type: 5,
+			replaceName: 'Trade units',
+			ages: [CivAge.Feudal], //TODO remove
+		},
+	],
+	[-446]: [
 		{
 			type: 5,
 			replaceName: 'Gunpowder',
@@ -492,16 +513,15 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 			replaceName: 'Blacksmith upgrades',
 		},
 	],
-	490: [
-		{
-			type: 5,
-			replaceName: 'Trade units',
-			ages: [CivAge.Feudal], //TODO remove
-		},
-	],
 
 	// Turks
-	263: [
+	[-410]: [
+		{
+			replaceName: 'Gunpowder units',
+			ages: [CivAge.Castle],
+		},
+	],
+	[-263]: [
 		{
 			type: 101,
 			replace: 'Gunpowder techs cost -50%',
@@ -512,15 +532,9 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 			replaceName: 'Scout upgrades',
 		},
 	],
-	410: [
-		{
-			replaceName: 'Gunpowder units',
-			ages: [CivAge.Castle],
-		},
-	],
 
 	// Vietnamese
-	652: [
+	[-652]: [
 		{
 			type: 101,
 			replaceName: 'Economy upgrades',
@@ -528,9 +542,19 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	],
 
 	// Vikings
-	411: [
+	[-411]: [
 		{
 			replaceName: 'Docks',
+		},
+	],
+	[-276]: [
+		{
+			// combineNames: true, //TODO
+		},
+	],
+	395: [
+		{
+			replaceName: 'Ships',
 		},
 	],
 }

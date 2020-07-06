@@ -424,9 +424,9 @@ export class CivEntry {
 		const techIDs = data.techIDs.filter(techID => techs[techID])
 		const techData = techIDs.map(techID => techs[techID])
 		const bonuses = techData.map(tech => new CivTech(tech))
-		bonuses.push(new CivTech({ id: data.modify.id, name: data.name, team: false, building: null, requires: [], costs: [], time: 0, icon: null, effect: data.modify }))
+		bonuses.push(new CivTech({ id: -data.modify.id, name: data.name, team: false, building: null, requires: [], costs: [], time: 0, icon: null, effect: data.modify }))
 		if (data.teamBonuses) {
-			bonuses.push(new CivTech({ id: data.teamBonuses.id, name: data.name, team: true, building: null, requires: [], costs: [], time: 0, icon: null, effect: data.teamBonuses }))
+			bonuses.push(new CivTech({ id: -data.teamBonuses.id, name: data.name, team: true, building: null, requires: [], costs: [], time: 0, icon: null, effect: data.teamBonuses }))
 		}
 		this.bonuses = bonuses.sort((a, b) => a.id - b.id)
 		const teamFocuses = new Set(bonuses.filter(bonus => bonus.team).flatMap(bonus => bonus.focuses))
