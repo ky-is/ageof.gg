@@ -21,8 +21,7 @@
 <script lang="ts">
 import { defineComponent, PropType, ref, watch } from 'vue'
 
-import { civEntries } from '/@/models/civs'
-import type { CivEntry } from '/@/models/civs'
+import { CivEntry, civEntries } from '/@/models/civs'
 import { useStore } from '/@/models/store'
 
 import CivIcon from '/@/views/components/CivIcon.vue'

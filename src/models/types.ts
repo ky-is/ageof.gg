@@ -1,10 +1,13 @@
 export interface EffectDescription {
 	id: number
-	text: string
+	title: string | null
+	description: string
 	modifyAge?: boolean
 	names: string[]
 	ages: CivAge[]
 	icon?: number
+	team: boolean
+	castle: boolean
 
 	type: number
 	a: number
@@ -39,6 +42,7 @@ export enum Focus {
 	Tower = 'tower',
 	Trash = 'trash',
 	UniqueUnits = 'unique unit',
+	Vision = 'vision',
 }
 
 export const enum Strength {
@@ -197,6 +201,11 @@ export const ResourceTypeInfo: {[id: string]: {name: string, requires: TechID[],
 		name: 'Construction rate',
 		requires: [],
 		focuses: [Focus.Defense],
+	},
+	210: {
+		name: 'Relics visible on map',
+		requires: [],
+		focuses: [Focus.Relic],
 	},
 }
 

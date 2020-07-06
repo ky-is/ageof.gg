@@ -29,10 +29,11 @@ function getCivsForFilter (focusFilter: Focus | null): [CivEntry[], CivEntry[]] 
 		primaryCivs = civEntries.slice(1)
 	} else {
 		for (const civ of civEntries) {
-			if (civ.focuses.includes(focusFilter)) {
+			if (civ.primaryFocuses.includes(focusFilter)) {
 				primaryCivs.push(civ)
-			} else if (civ.hasSecondaryFocus(focusFilter)) {
+			} else if (civ.secondaryFocuses.includes(focusFilter)) {
 				secondaryCivs.push(civ)
+			} else { //TODO team
 			}
 		}
 	}

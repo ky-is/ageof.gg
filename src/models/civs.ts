@@ -6,26 +6,21 @@ import { EffectCommandData, TechData, CostData, EffectType, UnitData } from '/@/
 import type { CivData } from '/@/assets/types'
 
 import { Focus, ResourceTypeInfo, CivAge, UnitAttribute, UnitAttributeInfo, UnitClass, EffectDescription } from '/@/models/types'
-import effectSummaries from '/@/models/effectSummaries'
+import { effectSummaries, EffectSummary } from '/@/models/effectSummaries'
 
 const primaryFocuses: {[key: string]: Focus[]} = {
 	'Aztecs': [Focus.Monk, Focus.Infantry],
 }
 
-function getAgeFrom ({ requires }: {requires: number[]}): CivAge {
-	const ageNumber = requires.find(requirement => requirement >= 101 && requirement <= 104)
-	switch (ageNumber) {
-	case 101:
-		return CivAge.Feudal
-	case 102:
-		return CivAge.Castle
-	case 103:
-		return CivAge.Imperial
-	case 104:
-		return CivAge.Dark
-	default:
-		return CivAge.Dark
+function getAgeFrom ({ requires }: {requires: number[]}, minimumAge: CivAge | undefined): CivAge {
+	const foundAge = requires.find(requirement => requirement >= 101 && requirement <= 104)
+	if (foundAge) {
+		if (minimumAge && minimumAge !== CivAge.Dark) {
+			return Math.max(minimumAge, foundAge)
+		}
+		return foundAge
 	}
+	return minimumAge ?? CivAge.Dark
 }
 
 function getFocusesFor (name: string, type: number, a: number, b: number, c: number, d: number) {
@@ -53,24 +48,21 @@ function getFocusesFor (name: string, type: number, a: number, b: number, c: num
 		return []
 }
 
-const removePrefixes = [
+const removePrefixes: string[] = [
 	'Elite ',
 	'Fortified ',
 	'Heavy ',
-	'Rice ',
+	// 'Rice ',
 ]
 
-function getDisplayNameFor (overrideName: string | undefined, { name }: UnitData) {
-	if (overrideName) {
-		return overrideName
-	}
+function getDisplayNameFor ({ name }: UnitData) {
 	for (const prefix of removePrefixes) {
 		if (name.startsWith(prefix)) {
 			name = name.slice(prefix.length)
 			break
 		}
 	}
-	if (name.startsWith('Palisade')) {
+	if (name.startsWith('Palisade ')) {
 		return 'Palisade Wall'
 	}
 	return name.split(' (')[0]
@@ -110,10 +102,13 @@ export class EffectCommand {
 		this.focuses = getFocusesFor(name, type, a, b, c, d)
 	}
 
-	private makeDescription (text: string, age: CivAge | undefined, nameable: {name: string} | undefined, modifyAge?: boolean): EffectDescription {
+	private makeDescription (description: string, age: CivAge | undefined, nameable: {name: string} | undefined, modifyAge?: boolean): EffectDescription {
 		return {
 			id: this.id,
-			text,
+			title: null,
+			team: false,
+			castle: false,
+			description,
 			ages: [age ?? CivAge.Dark],
 			names: nameable ? [nameable.name] : [],
 			modifyAge,
@@ -125,7 +120,7 @@ export class EffectCommand {
 		}
 	}
 
-	getDescription (minimumAge?: CivAge, replaceName?: string): EffectDescription | null {
+	getDescription (minimumAge?: CivAge): EffectDescription | null {
 		let amountDescription
 		switch (this.type) {
 
@@ -136,7 +131,7 @@ export class EffectCommand {
 				break
 			}
 			const enabled = this.b === 1
-			return this.makeDescription(`${getDisplayNameFor(replaceName, enableUnit)} ${enabled ? 'available' : 'disabled'}`, minimumAge, enableUnit)
+			return this.makeDescription(`${getDisplayNameFor(enableUnit)} ${enabled ? 'available' : 'disabled'}`, minimumAge, enableUnit)
 
 		case EffectType.UnitAvailable:
 			const availableUnit = units[this.b]
@@ -144,7 +139,7 @@ export class EffectCommand {
 				console.error(this.id, 'Unknown unit', this.b, this.type, this.a, this.b, this.c, this.d)
 				break
 			}
-			return this.makeDescription(`${getDisplayNameFor(replaceName, availableUnit)} available`, minimumAge, availableUnit)
+			return this.makeDescription(`${getDisplayNameFor(availableUnit)} available`, minimumAge, availableUnit)
 
 		case EffectType.UnitModifier:
 			if (this.d > 0b11111111) {
@@ -179,7 +174,7 @@ export class EffectCommand {
 			if (!unitAttribute) {
 				console.error(this.id, 'Unknown UnitAttributeInfo', this.c, this.type, this.a, this.b, this.c, this.d)
 			}
-			const name = replaceName ? replaceName : (multipliedUnit ? getDisplayNameFor(replaceName, multipliedUnit) : unitClass.name)
+			const name = multipliedUnit ? getDisplayNameFor(multipliedUnit) : unitClass.name
 			return this.makeDescription(`${name} ${unitAttribute} ${amountDescription}${attribute === UnitAttribute.AccuracyPercent ? '%' : ''}`, minimumAge, multipliedUnit ?? unitClass)
 
 		case EffectType.ResourceModifier:
@@ -193,7 +188,7 @@ export class EffectCommand {
 			if (!amountDescription) {
 				amountDescription = formatPercent(this.d)
 			}
-			return this.makeDescription(`${replaceName ?? resourceInfo.name} ${amountDescription}`, getAgeFrom(resourceInfo), undefined)
+			return this.makeDescription(`${resourceInfo.name} ${amountDescription}`, getAgeFrom(resourceInfo, minimumAge), undefined)
 
 		case EffectType.ModifyTechTime:
 			amountDescription = 'free'
@@ -211,7 +206,7 @@ export class EffectCommand {
 				}
 				amountDescription = `${techResourceInfo.name} cost free`
 			}
-			return this.makeDescription(`${replaceName ?? techModify.name} ${amountDescription}${this.d === 0 ? '' : ' ' + formatDifference(this.d)}`, getAgeFrom(techModify), undefined)
+			return this.makeDescription(`${techModify.name} ${amountDescription}${this.d === 0 ? '' : ' ' + formatDifference(this.d)}`, getAgeFrom(techModify, minimumAge), undefined)
 
 		case EffectType.DisableTech:
 			const techDisable = techs[this.d]
@@ -219,7 +214,8 @@ export class EffectCommand {
 				console.error(this.id, 'Unknown DisableTech', this.d, this.type, this.a, this.b, this.c, this.d)
 				break
 			}
-			const age = getAgeFrom(techDisable)
+			const age = getAgeFrom(techDisable, minimumAge)
+			console.log('TODO disable age', age, this)
 			return this.makeDescription('', age === CivAge.Dark ? CivAge.Feudal : (age === CivAge.Feudal ? CivAge.Castle : CivAge.Imperial), undefined, true)
 
 		default:
@@ -229,23 +225,52 @@ export class EffectCommand {
 	}
 }
 
-class EffectCommandList {
+class CivTech {
 	id: number
-	commands: EffectCommand[]
+	name: string
 	team: boolean
+	building: number | null
+	requires: number[]
+	castle: boolean
+	age: CivAge
+	costs: CostData[]
+	time: number
+	icon: number | null
+	commands: EffectCommand[]
 	focuses: Focus[]
 
-	constructor (id: number, name: string, commands: EffectCommandData[]) {
+	constructor ({ id, name, team, building, requires, costs, time, icon, effect }: TechData) {
 		this.id = id
-		this.commands = commands.map(command => new EffectCommand(id, command))
-		this.team = !!this.commands.find(command => command.team)
+		this.name = name
+		this.building = building
+		this.requires = requires
+		this.team = effect?.commands.find(command => command[0] >= 10 && command[0] <= 16) !== undefined
+		this.age = getAgeFrom(this, undefined)
+		this.castle = building === 82 || (!building && requires[0] === CivAge.Castle)
+		this.costs = costs
+		this.time = time
+		this.icon = icon
+		this.commands = effect?.commands?.map(command => new EffectCommand(this.id, command)) ?? []
+		this.team = team || !!this.commands.find(command => command.team)
 		this.focuses = Array.from(new Set(this.commands.flatMap(command => command.focuses)))
 	}
 
+	private getDescriptionFor (command: EffectCommand) {
+		const description = command.getDescription(this.age)
+		if (description) {
+			description.team = this.team
+			description.castle = this.castle
+			if (this.icon === 33 || this.icon === 107) {
+				description.icon = this.icon
+			}
+		}
+		return description
+	}
+
 	getDescriptions (): EffectDescription[] {
-		const summaries = effectSummaries[this.id]
+		const results: EffectDescription[] = []
+		// Group commands that auto-research technologies
 		let describeCommands = this.commands
-		let addDescriptions: EffectDescription[] = []
 		for (const command of describeCommands) {
 			if (command.type === EffectType.ModifyTechTime) {
 				const removeTechID = command.a
@@ -257,151 +282,51 @@ class EffectCommandList {
 				}
 			}
 		}
-		if (summaries) {
-			const remainingCommands = new Set(describeCommands)
-			for (const summary of summaries) {
-				let summaryDescription: EffectDescription | null = null
-				for (const command of describeCommands) {
-					if (summary.type === command.type) {
-						if ((summary.a !== undefined && !summary.a.includes(command.a)) || (summary.b !== undefined && summary.b !== command.b) || (summary.c !== undefined && summary.c !== command.c)) {
-							continue
-						}
-						if (summary.skipA !== undefined && summary.skipA.includes(command.a)) {
-							continue
-						}
-						remainingCommands.delete(command)
-						if (summary.delete) {
-							continue
-						}
-						if (!summaryDescription) {
-							summaryDescription = command.getDescription(undefined, summary.replaceName)
-							if (summaryDescription) {
-								if (summary.replace) {
-									summaryDescription.text = summary.replace
-								}
-								if (summary.ages) {
-									summaryDescription.ages = summary.ages
-								}
-								addDescriptions.push(summaryDescription)
-							}
-						} else {
-							if (summary.replace || summary.replaceName) {
-								const description = command.getDescription()
-								if (description) {
-									for (const newAge of description.ages) {
-										if (!summaryDescription.ages.includes(newAge)) {
-											summaryDescription.ages.push(newAge)
-										}
-									}
-									const newName = description.names[0]
-									if (newName) {
-										summaryDescription.names.push(newName)
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-			describeCommands = Array.from(remainingCommands)
-		}
+
+		// Summarize related descriptions
+		const summaries = effectSummaries[this.id]
 		let previousDescription: EffectDescription | undefined = undefined
-		let descriptions: EffectDescription[] = []
 		for (let index = describeCommands.length - 1; index >= 0; index -= 1) {
 			const command = describeCommands[index]
-			const description = command.getDescription()
+			const description = this.getDescriptionFor(command)
 			if (!description) {
 				continue
 			}
 			if (previousDescription?.modifyAge) {
 				description.ages = previousDescription.ages
 			}
-			if (!description.modifyAge) {
-				const newAges = description.ages
-				if (previousDescription) {
-					for (const newAge of newAges) {
-						if (!previousDescription.ages.includes(newAge)) {
-							previousDescription.ages.push(newAge)
-						}
+			previousDescription = description
+			let descriptionSummary: EffectSummary | null = null
+			if (summaries) {
+				for (const summary of summaries) {
+					if (summary.type !== undefined && summary.type !== command.type) {
+						continue
+					}
+					if ((summary.a !== undefined && !summary.a.includes(command.a)) || (summary.b !== undefined && summary.b !== command.b) || (summary.c !== undefined && summary.c !== command.c)) {
+						continue
+					}
+					if (summary.skipA !== undefined && summary.skipA.includes(command.a)) {
+						continue
+					}
+					descriptionSummary = summary
+					if (summary.delete) {
+						break
+					}
+					if (summary.replace) {
+						description.description = summary.replace
+					} else if (summary.replaceName) {
+						description.description = description.description.replace(description.names[0], summary.replaceName)
+					}
+					if (summary.ages) {
+						description.ages = summary.ages
 					}
 				}
-				if (!previousDescription || description.text !== previousDescription.text) {
-					descriptions.push(description)
-				}
 			}
-			previousDescription = description
+			if (!descriptionSummary?.delete) {
+				results.push(description)
+			}
 		}
-		descriptions = descriptions.concat(addDescriptions)
-		for (const description of descriptions) {
-			description.ages = description.ages.sort(sortByAge)
-		}
-		return descriptions
-	}
-
-	hasFocus (focus: Focus) {
-		return this.focuses.includes(focus)
-	}
-}
-
-const techDescriptions: {[name: string]: [string, CivAge]} = {
-	'Atlatl': ['Skirmishers attack +1/range +1', CivAge.Castle],
-	'C-Bonus, +5 monk HP': ['Monk HP +5 per Monastery technology researched', CivAge.Castle],
-	'C-Bonus, Start w/ 6 villagers': ['Start with +3 villagers', CivAge.Dark],
-	'': ['', CivAge.Castle],
-}
-
-export class CivTech {
-	id: number
-	name: string
-	team: boolean
-	building: number | null
-	requires: number[]
-	age: CivAge
-	costs: CostData[]
-	time: number
-	icon: number | null
-	commandList: EffectCommandList
-
-	constructor ({ id, name, building, requires, costs, time, icon, effect }: TechData) {
-		this.id = id
-		this.name = name
-		this.building = building
-		this.requires = requires
-		this.team = effect?.commands.find(command => command[0] >= 10 && command[0] <= 16) !== undefined
-		this.age = getAgeFrom(this)
-		this.costs = costs
-		this.time = time
-		this.icon = icon
-		this.commandList = new EffectCommandList(effect?.id ?? -1, name, effect?.commands ?? [])
-	}
-
-	getDescription (): EffectDescription | null {
-		const commands = this.commandList.commands
-		if (commands.length === 1) {
-			return commands[0].getDescription(this.age)
-		}
-		let text
-		let ages = [CivAge.Dark]
-		let preset = techDescriptions[this.id]
-		if (preset) {
-			text = preset[0]
-			ages = [preset[1]]
-		} else {
-			// console.error(this.id, 'No command', this.building, this.requires, this.costs, this.time, this.icon)
-			// console.log(this.commandList.commands)
-			text = this.name
-		}
-		return {
-			id: this.id,
-			text,
-			ages,
-			names: [],
-			type: 0,
-			a: 0,
-			b: 0,
-			c: 0,
-			d: 0,
-		}
+		return results
 	}
 }
 
@@ -419,60 +344,70 @@ export function sortByAge (a: CivAge, b: CivAge) {
 	return a - b
 }
 
-export class CivTechList {
-	techs: CivTech[]
-
-	constructor (techIDs: number[]) {
-		this.techs = techIDs.map(techID => new CivTech(techs[techID]))
-	}
-
-	getDescriptions (): EffectDescription[] {
-		let previousDescription: EffectDescription | undefined = undefined
-		const techs = this.techs
-		const descriptions: EffectDescription[] = []
-		for (let index = techs.length - 1; index >= 0; index -= 1) {
-			const tech = techs[index]
-			const description = tech.getDescription()
-			if (!description) {
-				continue
-			}
-			const icon = tech.icon
-			if (icon === 33 || icon === 107) {
-				description.ages = [icon === 33 ? CivAge.Castle : CivAge.Imperial]
-				description.icon = icon
-			}
-			if (!previousDescription || description.text !== previousDescription.text) {
-				descriptions.push(description)
-			}
-			previousDescription = description
-		}
-		return descriptions
-	}
+function dedupe<T> (array: T[]): T[] {
+	return Array.from(new Set(array))
 }
 
 export class CivEntry {
 	name: string
-	focuses: Focus[]
-	teamBonus: EffectCommandList
-	uniqueBonus: EffectCommandList
-	uniqueTechs: CivTechList
+	primaryFocuses: Focus[]
+	secondaryFocuses: Focus[]
+	teamFocuses: Focus[]
+	bonuses: CivTech[]
 
 	constructor (data: CivData) {
 		this.name = data.name
-		this.focuses = primaryFocuses[name] ?? []
-		this.teamBonus = new EffectCommandList(data.teamBonuses?.id ?? -1, name, data.teamBonuses?.commands ?? [])
-		this.uniqueBonus = new EffectCommandList(data.modify.id, name, data.modify.commands)
-		this.uniqueTechs = new CivTechList(data.uniqueTechIDs.filter(techID => techs[techID]))
+		this.primaryFocuses = primaryFocuses[name] ?? []
+		const techIDs = data.techIDs.filter(techID => techs[techID])
+		const techData = techIDs.map(techID => techs[techID])
+		const bonuses = techData.map(tech => new CivTech(tech))
+		bonuses.push(new CivTech({ id: data.modify.id, name: data.name, team: false, building: null, requires: [], costs: [], time: 0, icon: null, effect: data.modify }))
+		if (data.teamBonuses) {
+			bonuses.push(new CivTech({ id: data.teamBonuses.id, name: data.name, team: true, building: null, requires: [], costs: [], time: 0, icon: null, effect: data.teamBonuses }))
+		}
+		this.bonuses = bonuses.sort((a, b) => a.id - b.id)
+		const teamFocuses = new Set(bonuses.filter(bonus => bonus.team).flatMap(bonus => bonus.focuses))
+		const secondaryFocuses = dedupe(bonuses.flatMap(bonus => bonus.focuses)).filter(focus => !teamFocuses.has(focus) && !this.primaryFocuses.includes(focus))
+		this.teamFocuses = Array.from(teamFocuses)
+		this.secondaryFocuses = secondaryFocuses
 	}
 
-	getSecondaryFocuses () {
-		const secondaryFocuses = new Set(this.teamBonus.focuses.concat(this.uniqueBonus.focuses))
-		this.focuses.forEach(primaryFocus => secondaryFocuses.delete(primaryFocus))
-		return Array.from(secondaryFocuses)
-	}
 
-	hasSecondaryFocus (focus: Focus) {
-		return this.teamBonus.hasFocus(focus) || this.uniqueBonus.hasFocus(focus)
+	getDescriptions () {
+		const descriptions = this.bonuses.flatMap(bonus => bonus.getDescriptions())
+		const descriptionsByText: {[text: string]: EffectDescription[]} = {}
+		// Group summarized descriptions
+		for (const description of descriptions) {
+			if (descriptionsByText[description.description]) {
+				descriptionsByText[description.description].push(description)
+			} else {
+				descriptionsByText[description.description] = [ description ]
+			}
+		}
+		// Combine data for grouped descriptions
+		let results: EffectDescription[] = []
+		for (const text in descriptionsByText) {
+			const groupDescriptions = descriptionsByText[text]
+			const resultDescription = groupDescriptions[0]
+			for (let index = groupDescriptions.length - 1; index > 0; index -= 1) {
+				const description = groupDescriptions[index]
+				if (description.icon) {
+					resultDescription.icon = description.icon
+				}
+				for (const newAge of description.ages) {
+					if (!resultDescription.ages.includes(newAge)) {
+						resultDescription.ages.push(newAge)
+					}
+				}
+				const newName = description.names[0]
+				if (newName) { //TODO verify: && !resultDescription.names.includes(newName)) {
+					resultDescription.names.push(newName)
+				}
+			}
+			resultDescription.ages = resultDescription.ages.sort(sortByAge)
+			results.push(resultDescription)
+		}
+		return results
 	}
 }
 

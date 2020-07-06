@@ -1,8 +1,8 @@
 import type { EffectType } from '/@/assets/types'
 import { CivAge } from '/@/models/types'
 
-interface EffectSummary {
-	type: EffectType
+export interface EffectSummary {
+	type?: EffectType
 	ages?: CivAge[]
 	a?: number[]
 	b?: number
@@ -14,7 +14,7 @@ interface EffectSummary {
 	stack?: number[]
 }
 
-const effectSummaries: {[effectID: number]: EffectSummary[]} = {
+export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	2: [ // Indians
 		{
 			type: 4,
@@ -182,5 +182,3 @@ const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 		},
 	],
 }
-
-export default effectSummaries

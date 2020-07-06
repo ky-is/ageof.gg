@@ -59,7 +59,7 @@ const store = {
 
 	getters: {
 		selectedCiv: computed(() => {
-			return state.selectedCiv.hovered || state.selectedCiv.clicked
+			return state.selectedCiv.hovered ?? state.selectedCiv.clicked
 		}),
 	},
 }

@@ -9,7 +9,7 @@
 			<CivIcon :civ="civ" dragAction="copy" class="w-10 -ml-1 mr-1" />
 			<UIStack direction="col" class="leading-tight">
 				<h3 class="text-lg font-light">{{ civ.name }}</h3>
-				<div class="text-sm text-secondary">{{ civ.focuses.join(' + ') }}</div>
+				<div class="text-sm text-secondary">{{ civ.primaryFocuses.join(' + ') }}</div>
 			</UIStack>
 		</UIStack>
 	</UIStack>
@@ -19,7 +19,7 @@
 import { defineComponent, PropType } from 'vue'
 
 import { useStore } from '/@/models/store'
-import type { CivEntry } from '/@/models/civs'
+import { CivEntry } from '/@/models/civs'
 
 import UIStack from '/@/views/ui/Stack.vue'
 import CivIcon from '/@/views/components/CivIcon.vue'

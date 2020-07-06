@@ -138,10 +138,12 @@ for (const civKey in civs) {
 	const teamBonusEffect = effects[teamEffectID]
 	const output = outputCivs[civKey]
 	output.modify.id = techTreeEffectID
-	output.teamBonuses = !teamBonusEffect ? null : {
-		id: teamEffectID,
-		commands: getCommandsFrom(teamBonusEffect)
-	}
+	output.teamBonuses = teamBonusEffect
+		? {
+			id: teamEffectID,
+			commands: getCommandsFrom(teamBonusEffect),
+		}
+		: null
 	for (const treeEffect of treeEffects.EffectCommands) {
 		if (treeEffect.Type === EffectType.Remove) {
 			const techID = treeEffect.D

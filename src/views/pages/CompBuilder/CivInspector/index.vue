@@ -6,9 +6,9 @@
 				<UIStack direction="col" class="ml-1">
 					<h2 class="text-2xl font-light">{{ civ.name }}</h2>
 					<table class="leading-tight">
-						<FocusRow title="major" color="text-bonus-major" :focuses="civ.focuses" />
-						<FocusRow title="minor" color="text-bonus-general" :focuses="civ.getSecondaryFocuses()" />
-						<FocusRow title="team" color="text-bonus-team" :focuses="civ.teamBonus.focuses" />
+						<FocusRow title="major" color="text-bonus-major" :focuses="civ.primaryFocuses" />
+						<FocusRow title="minor" color="text-bonus-general" :focuses="civ.secondaryFocuses" />
+						<FocusRow title="team" color="text-bonus-team" :focuses="civ.teamFocuses" />
 					</table>
 				</UIStack>
 				<UIStack direction="row" alignment="center" justification="center" class="ml-4">
@@ -30,8 +30,8 @@
 							class="bonus-icon"
 						>
 						<span v-if="bonus.name" class="text-secondary text-bold">{{ bonus.name }}: </span>
-						<span class="text-secondary text-sm">{{ bonus.id }} : {{ bonus.type }} {{ bonus.a }}　</span>
-						<span>{{ bonus.text }}</span>
+						<span class="text-secondary text-sm">{{ bonus.id }} : {{ bonus.type }} {{ bonus.a }}&nbsp;</span>
+						<span>{{ bonus.description }}</span>
 						<span v-if="bonus.names.length > 1" class="text-secondary  hidden group-hover:inline"> ({{ bonus.names.join(', ') }})</span>
 					</li>
 				</UIStack>
@@ -43,8 +43,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 
-import { BonusType, CivAgeName } from '/@/models/types'
-import type { EffectDescription } from '/@/models/types'
+import { BonusType, CivAgeName, EffectDescription, CivAge } from '/@/models/types'
 import { useStore } from '/@/models/store'
 
 import UIStack from '/@/views/ui/Stack.vue'
@@ -67,12 +66,24 @@ export default defineComponent({
 			if (!civ.value) {
 				return []
 			}
-			const groupedBonuses: [string, EffectDescription[]][] = [
-				['team', civ.value.teamBonus.getDescriptions()],
-				['general', civ.value.uniqueBonus.getDescriptions()],
-				['castle', civ.value.uniqueTechs.getDescriptions()],
+
+			const result: [string, EffectDescription[]][] = [
+				['team', []],
+				['general', []],
+				['castle', []],
 			]
-			return groupedBonuses
+			for (const description of civ.value.getDescriptions()) {
+				let index: number
+				if (description.team) {
+					index = 0
+				} else if (description.castle) {
+					index = 2
+				} else {
+					index = 1
+				}
+				result[index][1].push(description)
+			}
+			return result
 		})
 
 		return {
