@@ -88,7 +88,7 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	],
 	693: [
 		{
-			replaceName: 'Militia-line',
+			replaceName: 'Militia-line upgrades',
 		},
 		{
 			type: 101,
@@ -713,7 +713,12 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	],
 	342: [
 		{
-			// combineNames: true, //TODO
+			ages: [CivAge.Dark],
+		},
+	],
+	349: [
+		{
+			ages: [CivAge.Dark],
 		},
 	],
 	409: [

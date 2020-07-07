@@ -50,9 +50,26 @@ function getFocusesFor (name: string, type: number, a: number, b: number, c: num
 }
 
 const unitAge: {[id: number]: number} = {
-	17: CivAge.Feudal, // Trade Cog
-	82: CivAge.Castle, // Castle
-	204: CivAge.Feudal, // Trade Cart
+	// Trade
+	17: CivAge.Feudal,
+	204: CivAge.Feudal,
+
+	// Castle
+	82: CivAge.Castle,
+
+	105: CivAge.Feudal,
+
+	// Dock
+	45: CivAge.Dark,
+	133: CivAge.Feudal,
+	47: CivAge.Castle,
+	51: CivAge.Imperial,
+
+	// Town Center
+	109: CivAge.Dark,
+	71: CivAge.Feudal,
+	141: CivAge.Castle,
+	142: CivAge.Imperial,
 }
 
 const removePrefixes: string[] = [
@@ -132,8 +149,11 @@ export class EffectCommand {
 	}
 
 	private makeDescription (description: string, age: CivAge | undefined, nameableID: number | undefined, nameable: {name: string} | undefined, modifyAge?: boolean): EffectDescription {
-		if (nameableID && !age) {
-			age = unitAge[nameableID]
+		if (nameableID) {
+			const minAge = unitAge[nameableID]
+			if (!age || age === CivAge.Dark || minAge > age) {
+				age = minAge
+			}
 		}
 		return {
 			id: this.id,
@@ -141,7 +161,7 @@ export class EffectCommand {
 			team: false,
 			castle: false,
 			description,
-			ages: [age ?? CivAge.Dark],
+			ages: age ? [age] : [],
 			names: nameable ? [removeSuffix(nameable.name)] : [],
 			requires: [],
 			modifyAge,
@@ -438,7 +458,7 @@ export class CivEntry {
 
 	constructor (data: CivData) {
 		this.name = data.name
-		this.primaryFocuses = primaryFocuses[name] ?? []
+		this.primaryFocuses = primaryFocuses[data.name] ?? []
 		const techIDs = data.techIDs.filter(techID => techs[techID])
 		const techData = techIDs.map(techID => techs[techID])
 		const bonuses = techData.map(tech => new CivTech(tech))

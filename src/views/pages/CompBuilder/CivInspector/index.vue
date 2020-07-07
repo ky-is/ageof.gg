@@ -1,5 +1,5 @@
 <template>
-	<div class="bg-gray-800 px-4">
+	<div class="bg-gray-800 px-4 overflow-y-scroll">
 		<UIStack v-if="civ" direction="col" class="my-2">
 			<UIStack direction="row" wrap>
 				<CivIcon :civ="civ" dragAction="copy" class="w-24 h-24 -ml-2" />
@@ -16,11 +16,11 @@
 				</UIStack>
 			</UIStack>
 			<ul class="mt-2">
-				<UIStack v-for="[label, bonuses] in groupedBonuses" :key="label" direction="col" class="group">
+				<UIStack v-for="[label, bonuses] in groupedBonuses" :key="label" direction="col">
 					<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
-					<li v-for="bonus in bonuses" :key="bonus.description" class="ml-3">
+					<li v-for="bonus in bonuses" :key="bonus.description" class="ml-3  group">
 						<img
-							v-for="ageID in bonus.ages" :key="ageID"
+							v-for="ageID in bonus.ages.length ? bonus.ages : [darkAge]" :key="ageID"
 							:src="`/images/ages/${ageID}.png`" :alt="CivAgeName[ageID] + ' age'"
 							class="bonus-icon -ml-3"
 						>
@@ -92,6 +92,7 @@ export default defineComponent({
 			civ,
 			commit: store.commit,
 			groupedBonuses,
+			darkAge: CivAge.Dark,
 			CivAgeName,
 		}
 	},
