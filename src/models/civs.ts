@@ -2,10 +2,10 @@ import civs from '/@/assets/data/civs'
 import techs from '/@/assets/data/techs'
 import units from '/@/assets/data/units'
 
-import { EffectCommandData, TechData, CostData, EffectType, UnitData } from '/@/assets/types'
+import { EffectCommandData, TechData, CostData, EffectType, UnitData, CostType } from '/@/assets/types'
 import type { CivData } from '/@/assets/types'
 
-import { Focus, ResourceTypeInfo, CivAge, UnitAttribute, UnitAttributeInfo, UnitClass, EffectDescription, AmountTypeInfo } from '/@/models/types'
+import { Focus, ResourceTypeInfo, CivAge, UnitAttribute, UnitAttributeInfo, UnitClassInfo, EffectDescription, AmountTypeInfo } from '/@/models/types'
 import { effectSummaries, EffectSummary } from '/@/models/effectSummaries'
 
 const primaryFocuses: {[key: string]: Focus[]} = {
@@ -24,19 +24,18 @@ function getAgeFrom ({ requires }: {requires: number[]}, minimumAge: CivAge | un
 }
 
 function getFocusesFor (name: string, type: number, a: number, b: number, c: number, d: number) {
+	let unitID
 	switch (type) {
-	case EffectType.UnitAvailable:
-		const unit = getUnit(b)
-		if (!unit) {
-			// console.error('Unknown unit', b, name, type, a, b, c, d)
-			break
-		}
-		const unitClass = UnitClass[unit.class]
-		if (!unitClass) {
-			console.error('Unknown UnitClass', unit.name, unit.class, name, type, a, b, c, d)
-			break
-		}
-		return unitClass.focuses
+	case EffectType.UnitEnable:
+	case EffectType.UnitMultiplier:
+	case EffectType.UnitModifier:
+	case EffectType.UnitSetModifier:
+		unitID = a
+		break
+	case EffectType.UnitUpgrade:
+		unitID = b
+		break
+
 	case EffectType.ResourceModifier:
 	case EffectType.ResourceMultiplier:
 		const resourceInfo = ResourceTypeInfo[a]
@@ -45,6 +44,20 @@ function getFocusesFor (name: string, type: number, a: number, b: number, c: num
 		}
 		console.error('Unknown ResourceTypeInfo', a, name, type, a, b, c, d)
 		break
+	}
+
+	if (unitID) {
+		const unit = getUnit(unitID)
+		if (!unit) {
+			console.error('Unknown unit', b, name, type, a, b, c, d)
+			return []
+		}
+		const unitClass = UnitClassInfo[unit.class]
+		if (!unitClass) {
+			console.error('Unknown UnitClassInfo', unit.name, unit.class, name, type, a, b, c, d)
+			return []
+		}
+		return unitClass.focuses
 	}
 	return []
 }
@@ -190,7 +203,8 @@ export class EffectCommand {
 			const enabled = this.b === 1
 			return this.makeDescription([getDisplayNameFor(enableUnit), 'available'], minimumAge, enableID, enableUnit)
 
-		case EffectType.UnitAvailable:
+		case EffectType.UnitUpgrade:
+			// const oldUnit = getUnit(this.a)
 			const availableID = this.b
 			const availableUnit = getUnit(availableID)
 			if (!availableUnit) {
@@ -203,10 +217,10 @@ export class EffectCommand {
 			let value = this.d
 			let typeDescription
 			if (this.d > 0b11111111) {
-				const classID = this.d >>> 8
-				typeDescription = AmountTypeInfo[classID]
+				const amountTypeID = this.d >>> 8
+				typeDescription = AmountTypeInfo[amountTypeID]
 				if (!typeDescription) {
-					console.warn(this.id, 'Unknown AmountTypeInfo', classID, this.type, this.a, this.b, this.c, this.d);
+					console.warn(this.id, 'Unknown AmountTypeInfo', amountTypeID, this.type, this.a, this.b, this.c, this.d);
 				}
 				if (this.c === UnitAttribute.Armor) {
 					typeDescription = `(${typeDescription})`
@@ -222,7 +236,7 @@ export class EffectCommand {
 			}
 		case EffectType.UnitSetModifier:
 			if (!amountDescription) {
-				amountDescription = `to ${this.d}`
+				amountDescription = `set to ${this.d}`
 			}
 		case EffectType.UnitMultiplier:
 			const attribute = this.c
@@ -237,16 +251,16 @@ export class EffectCommand {
 			}
 			const multipliedUnitID = this.a
 			const multipliedUnit = getUnit(multipliedUnitID)
-			const unitClass = UnitClass[this.b]
+			const unitClass = UnitClassInfo[this.b]
 
 			if (!multipliedUnit && !unitClass) {
-				console.error(this.id, multipliedUnitID !== -1 ? `Unknown Unit ${multipliedUnitID}` : `Unknown UnitClass ${this.b}`, this.type, this.a, this.b, this.c, this.d)
+				console.error(this.id, multipliedUnitID !== -1 ? `Unknown Unit ${multipliedUnitID}` : `Unknown UnitClassInfo ${this.b}`, this.type, this.a, this.b, this.c, this.d)
 				break
 			}
 			if (!unitAttribute) {
 				console.warn(this.id, 'Unknown UnitAttributeInfo', this.c, this.type, this.a, this.b, this.c, this.d)
 			}
-			const name = multipliedUnit ? getDisplayNameFor(multipliedUnit) : unitClass.name
+			const name = multipliedUnit ? getDisplayNameFor(multipliedUnit) : unitClass!.name
 			return this.makeDescription([name, unitAttribute, amountDescription + (attribute === UnitAttribute.AccuracyPercent ? '%' : '')], minimumAge, multipliedUnitID, multipliedUnit ?? unitClass)
 
 		case EffectType.ResourceModifier:
@@ -340,6 +354,12 @@ class CivTech {
 		this.commands = effect?.commands?.map(command => new EffectCommand(this.id, command)) ?? []
 		this.team = team || !!this.commands.find(command => command.team)
 		this.focuses = Array.from(new Set(this.commands.flatMap(command => command.focuses)))
+		for (const cost of costs) {
+			if (cost[0] === CostType.RelicsCaptured) {
+				this.focuses.push(Focus.Relic)
+				break
+			}
+		}
 		this.castle = building === 82 || (!building && requires[0] === CivAge.Castle && this.commands[0]?.type === EffectType.UnitEnable)
 	}
 
@@ -452,14 +472,18 @@ export function sortByName (a: {name: string}, b: {name: string}): number {
 	return a.name.localeCompare(b.name)
 }
 
-export function sortByAge (a: CivAge, b: CivAge) {
-	if (a === CivAge.Dark) {
+export function sortAges (a: CivAge, b: CivAge) {
+	if (!a || a === CivAge.Dark) {
 		return -1
 	}
-	if (b === CivAge.Dark) {
+	if (!b || b === CivAge.Dark) {
 		return 1
 	}
 	return a - b
+}
+
+export function sortByAge ({ages: aAges}: {ages: CivAge[]}, {ages: bAges}: {ages: CivAge[]}) {
+	return sortAges(aAges[0], bAges[0])
 }
 
 function dedupe<T> (array: T[]): T[] {
@@ -530,13 +554,14 @@ export class CivEntry {
 					}
 				}
 			}
-			resultDescription.ages = resultDescription.ages.sort(sortByAge)
+			resultDescription.ages = resultDescription.ages.sort(sortAges)
 			if (resultDescription.extension) {
 				resultDescription.segments.push(resultDescription.extension)
 				resultDescription.extension = undefined
 			}
 			results.push(resultDescription)
 		}
+		results.sort(sortByAge)
 		return results
 	}
 }

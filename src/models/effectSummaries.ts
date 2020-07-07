@@ -47,12 +47,12 @@ export const effectSummaries: {[effectID: number]: EffectSummary[] | undefined} 
 	],
 	584: [
 		{
-			replaceName: 'Villager / Navy',
+			replaceName: 'Villagers / Ships',
 		},
 	],
 	585: [
 		{
-			replaceName: 'Villager / Navy',
+			replaceName: 'Villagers / Ships',
 		},
 	],
 	586: [
@@ -147,8 +147,13 @@ export const effectSummaries: {[effectID: number]: EffectSummary[] | undefined} 
 	[-256]: [
 		{
 			type: 101,
-			a: [CivAge.Imperial],
+			a: [ CivAge.Imperial ],
 			replace: 'Imperial Age cost -33%',
+		},
+	],
+	61: [
+		{
+			replace: 'Cataphracts deal 6 trample damage to infantry', //RELEASE
 		},
 	],
 	283: [
@@ -435,7 +440,7 @@ export const effectSummaries: {[effectID: number]: EffectSummary[] | undefined} 
 	// Indians
 	[-2]: [
 		{
-			skipA: [207, 329, 330],
+			skipA: [ 207, 329, 330 ],
 			replaceName: 'Other camels',
 		},
 	],
@@ -519,6 +524,26 @@ export const effectSummaries: {[effectID: number]: EffectSummary[] | undefined} 
 			replaceName: 'Military (except siege)',
 		},
 	],
+	442: [
+		{
+			replace: 'Tower upgrades free',
+		},
+	],
+	443: [
+		{
+			replace: 'Tower upgrades free',
+		},
+	],
+	444: [
+		{
+			replace: 'Tower upgrades free',
+		},
+	],
+	445: [
+		{
+			replaceName: 'Mangonel-line',
+		},
+	],
 	452: [
 		{
 			replaceName: 'Towers',
@@ -582,7 +607,7 @@ export const effectSummaries: {[effectID: number]: EffectSummary[] | undefined} 
 	],
 	515: [
 		{
-			a: [172, 437, 698, 731, 930, 943, 1010, 1012, 1034, 1036, 1106, 1166, 1267, 1269, 1275, 1276, 1297, 1303],
+			a: [ 172, 437, 698, 731, 930, 943, 1010, 1012, 1034, 1036, 1106, 1166, 1267, 1269, 1275, 1276, 1297, 1303 ],
 			delete: true,
 		},
 		{
@@ -621,7 +646,7 @@ export const effectSummaries: {[effectID: number]: EffectSummary[] | undefined} 
 	],
 	591: [
 		{
-			a: [751, 752, 753],
+			a: [ 751, 752, 753 ],
 			delete: true,
 		},
 		{
@@ -631,7 +656,7 @@ export const effectSummaries: {[effectID: number]: EffectSummary[] | undefined} 
 	],
 	592: [
 		{
-			a: [751, 752, 753],
+			a: [ 751, 752, 753 ],
 			delete: true,
 		},
 		{
@@ -641,7 +666,7 @@ export const effectSummaries: {[effectID: number]: EffectSummary[] | undefined} 
 	],
 	593: [
 		{
-			a: [751, 752, 753],
+			a: [ 751, 752, 753 ],
 			delete: true,
 		},
 		{
@@ -764,7 +789,20 @@ export const effectSummaries: {[effectID: number]: EffectSummary[] | undefined} 
 	],
 	312: [
 		{
-			a: [-1],
+			skipA: [ -1 ],
+			replaceName: 'Archers',
+			extension: 'per age'
+		},
+	],
+	725: [
+		{
+			skipA: [ -1 ],
+			replaceName: 'Archers',
+		},
+	],
+	726: [
+		{
+			skipA: [ -1 ],
 			replaceName: 'Archers',
 		},
 	],
@@ -807,7 +845,7 @@ export const effectSummaries: {[effectID: number]: EffectSummary[] | undefined} 
 	],
 	688: [
 		{
-			a: [729, 730],
+			a: [ 729, 730 ],
 			delete: true,
 		},
 		{
@@ -818,7 +856,7 @@ export const effectSummaries: {[effectID: number]: EffectSummary[] | undefined} 
 	// Teutons
 	334: [
 		{
-			a: [751, 752, 753],
+			a: [ 751, 752, 753 ],
 			delete: true,
 		},
 		{
@@ -827,7 +865,7 @@ export const effectSummaries: {[effectID: number]: EffectSummary[] | undefined} 
 	],
 	335: [
 		{
-			a: [751, 752, 753],
+			a: [ 751, 752, 753 ],
 			delete: true,
 		},
 		{
@@ -854,7 +892,7 @@ export const effectSummaries: {[effectID: number]: EffectSummary[] | undefined} 
 		},
 		{
 			type: 103,
-			a: [254, 428],
+			a: [ 254, 428 ],
 			replaceName: 'Scout upgrades',
 		},
 	],

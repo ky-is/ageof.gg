@@ -1,3 +1,7 @@
+export const enum CostType {
+	RelicsCaptured = 7
+}
+
 export type CostData = [number, number, number]
 
 export type EffectCommandData = [number, number, number, number, number]
@@ -36,7 +40,7 @@ export const enum EffectType {
 	UnitSetModifier = 0,
 	ResourceModifier = 1,
 	UnitEnable = 2,
-	UnitAvailable = 3,
+	UnitUpgrade = 3,
 	UnitModifier = 4,
 	UnitMultiplier = 5,
 	ResourceMultiplier = 6,

@@ -233,14 +233,18 @@ export const ResourceTypeInfo: {[id: string]: {name: string, unitID?: number, re
 }
 
 export const AmountTypeInfo: {[id: string]: string} = {
+	1: 'infantry',
 	3: 'pierce',
 	4: 'melee',
 	8: 'cavalry',
 	13: 'buildings', // stone defense
 	14: 'predators',
 	15: 'archers',
+	16: 'ships & camels',
 	21: 'buildings',
+	24: 'boars',
 	30: 'camels',
+	31: 'armor ignored',
 }
 
 export const enum UnitAttribute {
@@ -297,13 +301,32 @@ export const UnitAttributeInfo: {[id: number]: string} = {
 	[UnitAttribute.RegenerationRate]: 'regeneration',
 }
 
-export const UnitClass: {[id: number]: {name: string, focuses: Focus[]}} = {
+export const UnitFocuses: {[id: number]: Focus[] | undefined} = {
+	// Skirmishers
+	6: [ Focus.ArcheryAnti ],
+	7: [ Focus.ArcheryAnti ],
+	1155: [ Focus.ArcheryAnti ],
+
+	// Spears
+	93: [ Focus.CavalryAnti ],
+	358: [ Focus.CavalryAnti ],
+	359: [ Focus.CavalryAnti ],
+}
+
+interface UnitClass {
+	name: string
+	focuses: Focus[]
+	waterLevel?: 0 | 1 | 2 | 3
+}
+
+export const UnitClassInfo: {[id: number]: UnitClass | undefined} = {
 	0: {
 		name: 'Archer',
 		focuses: [Focus.Archery],
 	},
 	2: {
-		name: 'Trade unit', // Trade cog
+		name: 'Trade cog',
+		waterLevel: 3,
 		focuses: [Focus.ResourceGold],
 	},
 	3: {
@@ -331,19 +354,22 @@ export const UnitClass: {[id: number]: {name: string, focuses: Focus[]}} = {
 		focuses: [Focus.Monk],
 	},
 	19: {
-		name: 'Trade unit', // Trade cart
+		name: 'Trade cart',
 		focuses: [Focus.ResourceGold],
 	},
 	20: {
 		name: 'Transport',
+		waterLevel: 3,
 		focuses: [Focus.Navy],
 	},
 	21: {
 		name: 'Fishing ship',
+		waterLevel: 2,
 		focuses: [Focus.ResourceFood],
 	},
 	22: {
 		name: 'Navy',
+		waterLevel: 2,
 		focuses: [Focus.Navy],
 	},
 	23: {
@@ -396,7 +422,8 @@ export const UnitClass: {[id: number]: {name: string, focuses: Focus[]}} = {
 	},
 	53: {
 		name: 'Transport',
-		focuses: [],
+		waterLevel: 3,
+		focuses: [Focus.Navy],
 	},
 	54: {
 		name: 'Trebuchet',
