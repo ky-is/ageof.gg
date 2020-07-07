@@ -7,8 +7,8 @@
 					<h2 class="text-2xl font-light">{{ civ.name }}</h2>
 					<table class="leading-tight">
 						<FocusRow title="major" color="text-bonus-major" :focuses="civ.primaryFocuses" />
-						<FocusRow title="minor" color="text-bonus-general" :focuses="civ.secondaryFocuses" />
 						<FocusRow title="team" color="text-bonus-team" :focuses="civ.teamFocuses" />
+						<FocusRow title="minor" color="text-bonus-general" :focuses="civ.secondaryFocuses" />
 					</table>
 				</UIStack>
 				<UIStack direction="row" alignment="center" justification="center" class="ml-4">
@@ -18,7 +18,7 @@
 			<ul class="mt-2">
 				<UIStack v-for="[label, bonuses] in groupedBonuses" :key="label" direction="col">
 					<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
-					<li v-for="bonus in bonuses" :key="bonus.description" class="ml-3  group">
+					<li v-for="bonus in bonuses" :key="bonus.segments" class="ml-3  group">
 						<img
 							v-for="ageID in bonus.ages.length ? bonus.ages : [darkAge]" :key="ageID"
 							:src="`/images/ages/${ageID}.png`" :alt="CivAgeName[ageID] + ' age'"
@@ -32,7 +32,7 @@
 						<!-- SAMPLE -->
 						<!-- <span class="text-secondary text-sm">{{ bonus.id }} : {{ bonus.type }} {{ bonus.a }}&nbsp;</span> -->
 						<span v-if="bonus.title" class="text-secondary text-bold">{{ bonus.title }}: </span>
-						<span>{{ bonus.description }}</span>
+						<span>{{ bonus.segments.join(' ') }}</span>
 						<span v-if="bonus.names.length > 1" class="text-secondary  hidden group-hover:inline"> ({{ bonus.names.join(', ') }})</span>
 						<span v-if="bonus.requires.length" class="text-secondary  hidden group-hover:inline"> (requires {{ bonus.requires.join(', ') }})</span>
 					</li>

@@ -1,5 +1,5 @@
 import type { EffectType } from '/@/assets/types'
-import { CivAge, UnitAttribute, Focus } from '/@/models/types'
+import { CivAge, UnitAttribute } from '/@/models/types'
 
 export interface EffectSummary {
 	type?: EffectType
@@ -15,12 +15,17 @@ export interface EffectSummary {
 	stack?: number[]
 }
 
-export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
+export const effectSummaries: {[effectID: number]: EffectSummary[] | undefined} = {
 	// Aztecs
 	[-447]: [
 		{
 			type: 5,
 			replaceName: 'Military units',
+		},
+	],
+	29: [
+		{
+			extension: 'per Monastery technology'
 		},
 	],
 	460: [
@@ -50,7 +55,16 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 			replaceName: 'Villager / Navy',
 		},
 	],
-
+	586: [
+		{
+			replaceName: 'Cavalry',
+		},
+	],
+	613: [
+		{
+			replaceName: 'Cavalry',
+		},
+	],
 
 	// Britons
 	3: [
@@ -264,19 +278,19 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	711: [
 		{
 			replaceName: 'Cavalry',
-			extension: ' per age',
+			extension: 'per age',
 		},
 	],
 	727: [
 		{
 			replaceName: 'Cavalry',
-			extension: ' per age',
+			extension: 'per age',
 		},
 	],
 	728: [
 		{
 			replaceName: 'Cavalry',
-			extension: ' per age',
+			extension: 'per age',
 		},
 	],
 
@@ -289,20 +303,8 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	587: [
 		{
 			// combineNames: true, //TODO
-			extension: ' per age',
+			extension: 'per age',
 			// stack: [588, 589], //TODO
-		},
-	],
-	588: [
-		{
-			// combineNames: true, //TODO
-			extension: ' per age',
-		},
-	],
-	589: [
-		{
-			// combineNames: true, //TODO
-			extension: ' per age',
 		},
 	],
 	607: [
@@ -343,7 +345,7 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	],
 	327: [
 		{
-			extension: ' per age'
+			extension: 'per age'
 		},
 	],
 	331: [
@@ -520,13 +522,13 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 	452: [
 		{
 			replaceName: 'Towers',
-			extension: ' per age',
+			extension: 'per age',
 		},
 	],
 	453: [
 		{
 			replaceName: 'Towers',
-			extension: ' per age',
+			extension: 'per age',
 		},
 	],
 
@@ -624,7 +626,7 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 		},
 		{
 			replaceName: 'Barracks units',
-			extension: ' per age',
+			extension: 'per age',
 		},
 	],
 	592: [
@@ -634,7 +636,7 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 		},
 		{
 			replaceName: 'Barracks units',
-			extension: ' per age',
+			extension: 'per age',
 		},
 	],
 	593: [
@@ -644,7 +646,7 @@ export const effectSummaries: {[effectID: number]: EffectSummary[]} = {
 		},
 		{
 			replaceName: 'Barracks units',
-			extension: ' per age',
+			extension: 'per age',
 		},
 	],
 	595: [

@@ -1,7 +1,8 @@
 export interface EffectDescription {
 	id: number
 	title: string | null
-	description: string
+	segments: string[]
+	extension?: string
 	modifyAge?: boolean
 	names: string[]
 	requires: string[]

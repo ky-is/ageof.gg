@@ -148,7 +148,7 @@ export class EffectCommand {
 		this.focuses = getFocusesFor(name, type, a, b, c, d)
 	}
 
-	private makeDescription (description: string, age: CivAge | undefined, nameableID: number | undefined, nameable: {name: string} | undefined, modifyAge?: boolean): EffectDescription {
+	private makeDescription (segments: string[], age: CivAge | undefined, nameableID: number | undefined, nameable: {name: string} | undefined, modifyAge?: boolean): EffectDescription {
 		if (nameableID) {
 			const minAge = unitAge[nameableID]
 			if (!age || age === CivAge.Dark || minAge > age) {
@@ -160,7 +160,7 @@ export class EffectCommand {
 			title: null,
 			team: false,
 			castle: false,
-			description,
+			segments,
 			ages: age ? [age] : [],
 			names: nameable ? [removeSuffix(nameable.name)] : [],
 			requires: [],
@@ -175,7 +175,7 @@ export class EffectCommand {
 
 	getDescription (minimumAge?: CivAge): EffectDescription | null {
 		if (this.id === 573) {
-			return this.makeDescription('Gunpowder units more accurate', CivAge.Castle, undefined, undefined)
+			return this.makeDescription(['Gunpowder units', 'more accurate'], CivAge.Castle, undefined, undefined)
 		}
 		let amountDescription
 		switch (this.type) {
@@ -188,7 +188,7 @@ export class EffectCommand {
 				break
 			}
 			const enabled = this.b === 1
-			return this.makeDescription(`${getDisplayNameFor(enableUnit)} available`, minimumAge, enableID, enableUnit)
+			return this.makeDescription([getDisplayNameFor(enableUnit), 'available'], minimumAge, enableID, enableUnit)
 
 		case EffectType.UnitAvailable:
 			const availableID = this.b
@@ -197,7 +197,7 @@ export class EffectCommand {
 				console.error(this.id, 'Unknown unit', availableID, this.type, this.a, this.b, this.c, this.d)
 				break
 			}
-			return this.makeDescription(`${getDisplayNameFor(availableUnit)} available`, minimumAge, availableID, availableUnit)
+			return this.makeDescription([getDisplayNameFor(availableUnit), 'available'], minimumAge, availableID, availableUnit)
 
 		case EffectType.UnitModifier:
 			let value = this.d
@@ -229,6 +229,10 @@ export class EffectCommand {
 			const proportion = this.d
 			const unitAttribute = UnitAttributeInfo[attribute]
 			if (!amountDescription) {
+				if (proportion === 1) {
+					console.warn('Proportion is zero for', this);
+					break
+				}
 				amountDescription = formatPercentDifference(proportion)
 			}
 			const multipliedUnitID = this.a
@@ -243,10 +247,19 @@ export class EffectCommand {
 				console.warn(this.id, 'Unknown UnitAttributeInfo', this.c, this.type, this.a, this.b, this.c, this.d)
 			}
 			const name = multipliedUnit ? getDisplayNameFor(multipliedUnit) : unitClass.name
-			return this.makeDescription(`${name} ${unitAttribute} ${amountDescription}${attribute === UnitAttribute.AccuracyPercent ? '%' : ''}`, minimumAge, multipliedUnitID, multipliedUnit ?? unitClass)
+			return this.makeDescription([name, unitAttribute, amountDescription + (attribute === UnitAttribute.AccuracyPercent ? '%' : '')], minimumAge, multipliedUnitID, multipliedUnit ?? unitClass)
 
 		case EffectType.ResourceModifier:
-			amountDescription = this.b ? formatDifference(this.d) : formatPercent(this.d)
+			const amount = this.d
+			if (this.b) {
+				amountDescription = formatDifference(amount)
+			} else {
+				if (amount === 1) {
+					console.warn('Proportion is zero for', this)
+					break
+				}
+				amountDescription = formatPercent(amount)
+			}
 
 		case EffectType.ResourceMultiplier:
 			const resourceInfo = ResourceTypeInfo[this.a]
@@ -257,9 +270,14 @@ export class EffectCommand {
 			const unitID = resourceInfo.unitID
 			const unit = unitID ? getUnit(unitID) : undefined
 			if (!amountDescription) {
-				amountDescription = formatPercentDifference(this.d)
+				const proportion = this.d
+				if (proportion === 1) {
+					console.warn('Proportion is zero for', this);
+					break
+				}
+				amountDescription = formatPercentDifference(proportion)
 			}
-			return this.makeDescription(`${resourceInfo.name} ${amountDescription}`, getAgeFrom(resourceInfo, minimumAge), unitID, unit ?? resourceInfo)
+			return this.makeDescription([resourceInfo.name, amountDescription], getAgeFrom(resourceInfo, minimumAge), unitID, unit ?? resourceInfo)
 
 		case EffectType.ModifyTechTime:
 			amountDescription = 'free'
@@ -277,7 +295,7 @@ export class EffectCommand {
 				}
 				amountDescription = `${techResourceInfo.name} cost free`
 			}
-			return this.makeDescription(`${techModify.name} ${amountDescription}${this.d === 0 ? '' : ' ' + formatDifference(this.d)}`, getAgeFrom(techModify, minimumAge), undefined, techModify)
+			return this.makeDescription([techModify.name, amountDescription, this.d === 0 ? '' : formatDifference(this.d)], getAgeFrom(techModify, minimumAge), undefined, techModify)
 
 		case EffectType.DisableTech:
 			const techDisable = techs[this.d]
@@ -287,7 +305,7 @@ export class EffectCommand {
 			}
 			const age = getAgeFrom(techDisable, minimumAge) ?? CivAge.Dark
 			console.log('TODO disable age', age, this)
-			return this.makeDescription('', age === CivAge.Dark ? CivAge.Feudal : (age === CivAge.Feudal ? CivAge.Castle : CivAge.Imperial), undefined, undefined, true)
+			return this.makeDescription([], age === CivAge.Dark ? CivAge.Feudal : (age === CivAge.Feudal ? CivAge.Castle : CivAge.Imperial), undefined, undefined, true)
 
 		default:
 			console.error(this.id, 'Unknown EffectType', this.type, this.type, this.a, this.b, this.c, this.d)
@@ -315,15 +333,14 @@ class CivTech {
 		this.name = name
 		this.building = building
 		this.requires = requires
-		this.team = effect?.commands.find(command => command[0] >= 10 && command[0] <= 16) !== undefined
 		this.age = getAgeFrom(this, undefined)
-		this.castle = building === 82 || (!building && requires[0] === CivAge.Castle)
 		this.costs = costs
 		this.time = time
 		this.icon = icon
 		this.commands = effect?.commands?.map(command => new EffectCommand(this.id, command)) ?? []
 		this.team = team || !!this.commands.find(command => command.team)
 		this.focuses = Array.from(new Set(this.commands.flatMap(command => command.focuses)))
+		this.castle = building === 82 || (!building && requires[0] === CivAge.Castle && this.commands[0]?.type === EffectType.UnitEnable)
 	}
 
 	private getDescriptionFor (command: EffectCommand) {
@@ -367,36 +384,38 @@ class CivTech {
 		let previousDescription: EffectDescription | undefined = undefined
 		for (let index = describeCommands.length - 1; index >= 0; index -= 1) {
 			const command = describeCommands[index]
+			const commandSummaries = summaries?.filter(summary => {
+				if (summary.type !== undefined && summary.type !== command.type) {
+					return false
+				}
+				if ((summary.a !== undefined && !summary.a.includes(command.a)) || (summary.b !== undefined && summary.b !== command.b) || (summary.c !== undefined && summary.c !== command.c)) {
+					return false
+				}
+				if (summary.skipA !== undefined && summary.skipA.includes(command.a)) {
+					return false
+				}
+				return true
+			})
+			if (commandSummaries?.find(summary => summary.delete)) {
+				continue
+			}
 			const description = this.getDescriptionFor(command)
 			if (!description) {
 				continue
 			}
 			if (previousDescription?.modifyAge) {
+				console.log(this.name, description.ages, previousDescription.ages)
 				description.ages = previousDescription.ages
 			}
 			previousDescription = description
-			let descriptionSummary: EffectSummary | null = null
-			if (summaries) {
-				for (const summary of summaries) {
-					if (summary.type !== undefined && summary.type !== command.type) {
-						continue
-					}
-					if ((summary.a !== undefined && !summary.a.includes(command.a)) || (summary.b !== undefined && summary.b !== command.b) || (summary.c !== undefined && summary.c !== command.c)) {
-						continue
-					}
-					if (summary.skipA !== undefined && summary.skipA.includes(command.a)) {
-						continue
-					}
-					descriptionSummary = summary
-					if (summary.delete) {
-						break
-					}
+			if (commandSummaries) {
+				for (const summary of commandSummaries) {
 					if (summary.replace) {
-						description.description = summary.replace
+						description.segments = [summary.replace]
 					} else if (summary.replaceName) {
 						const rawName = description.names[0]
 						if (rawName) {
-							description.description = description.description.replace(getDisplayName(rawName), summary.replaceName)
+							description.segments[0] = summary.replaceName
 						} else {
 							console.warn('No name for replacement', summary, description)
 						}
@@ -405,13 +424,11 @@ class CivTech {
 						description.ages = summary.ages
 					}
 					if (summary.extension) {
-						description.description += summary.extension
+						description.extension = summary.extension
 					}
 				}
 			}
-			if (!descriptionSummary?.delete) {
-				results.push(description)
-			}
+			results.push(description)
 		}
 
 		const upgradeRequirements = this.requires.filter(techID => techID < 101 || techID > 104).map(techID => {
@@ -473,13 +490,12 @@ export class CivEntry {
 		this.secondaryFocuses = secondaryFocuses
 	}
 
-
 	getDescriptions () {
 		const descriptions = this.bonuses.flatMap(bonus => bonus.getDescriptions())
 		const descriptionsByText: {[text: string]: EffectDescription[]} = {}
 		// Group summarized descriptions
 		for (const description of descriptions) {
-			const key = (description.title ?? '') + description.description
+			const key = (description.title ?? '') + description.segments.join('')
 			if (descriptionsByText[key]) {
 				descriptionsByText[key].push(description)
 			} else {
@@ -495,6 +511,9 @@ export class CivEntry {
 				const description = groupDescriptions[index]
 				if (description.icon) {
 					resultDescription.icon = description.icon
+				}
+				if (description.extension) {
+					resultDescription.extension = description.extension
 				}
 				for (const newAge of description.ages) {
 					if (!resultDescription.ages.includes(newAge)) {
@@ -512,6 +531,10 @@ export class CivEntry {
 				}
 			}
 			resultDescription.ages = resultDescription.ages.sort(sortByAge)
+			if (resultDescription.extension) {
+				resultDescription.segments.push(resultDescription.extension)
+				resultDescription.extension = undefined
+			}
 			results.push(resultDescription)
 		}
 		return results
