@@ -18,20 +18,23 @@
 					</select>
 				</UIStack>
 			</UIStack>
-			<UIStack direction="row" justification="center" wrap class="flex-grow">
-				<div
-					v-for="size in teamSize" :key="size"
-					class="center-center flex  flex-shrink-0" :class="size <= 2 ? 'w-1/2' : 'w-1/5'"
-				>
-					<TeamCivEntry :index="size - 1" :civ="teamCivs[size - 1]" />
-				</div>
+			<UIStack direction="col" class="flex-grow">
+				<UIStack direction="row" justification="center" wrap class="flex-grow">
+					<div
+						v-for="size in teamSize" :key="size"
+						class="center-center flex  flex-shrink-0" :class="size <= 2 ? 'w-1/2' : 'w-1/5'"
+					>
+						<TeamCivEntry :index="size - 1" :civ="teamCivs[size - 1]" />
+					</div>
+				</UIStack>
+				<div v-if="isTeamEmpty" class="mt-4 text-center text-secondary font-light">drag+drop / double-click civ icons to add to team</div>
 			</UIStack>
 		</UIStack>
 	</UIStack>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, computed, ref } from 'vue'
 
 import { useStore } from '/@/models/store'
 
@@ -46,16 +49,27 @@ export default defineComponent({
 	},
 
 	setup () {
-		const teamSize = ref(1)
+		const teamSize = ref(3)
 		const mapStyles = ['open', 'closed', 'water', 'hybrid']
 		const mapStyle = ref(mapStyles[0])
+
 		const store = useStore()
 		const teamCivs = store.state.teamCivs
+		const isTeamEmpty = computed(() => {
+			for (let index = 0; index < teamSize.value; index += 1) {
+				if (teamCivs[index]) {
+					return false
+				}
+			}
+			return true
+		})
+
 		return {
 			teamSize,
 			mapStyles,
 			mapStyle,
 			teamCivs,
+			isTeamEmpty,
 		}
 	},
 })

@@ -1,22 +1,22 @@
 <template>
 	<div class="bg-gray-800 px-4 overflow-y-scroll">
-		<UIStack v-if="civ" direction="col" class="my-2">
-			<UIStack direction="row" wrap>
-				<CivIcon :civ="civ" dragAction="copy" class="w-24 h-24 -ml-2" />
-				<UIStack direction="col" class="ml-1">
-					<h2 class="text-2xl font-light">{{ civ.name }}</h2>
-					<table class="leading-tight">
-						<FocusRow title="major" color="text-bonus-major" :focuses="civ.primaryFocuses" />
-						<FocusRow title="team" color="text-bonus-team" :focuses="civ.teamFocuses" />
-						<FocusRow title="minor" color="text-bonus-general" :focuses="civ.secondaryFocuses" />
-					</table>
+		<UIStack v-if="civ" direction="col" switchAt="lg" class="my-2">
+			<UIStack direction="col" class="lg:w-1/2 mb-4">
+				<UIStack direction="row">
+					<CivIcon :civ="civ" dragAction="copy" class="w-24 h-24 -ml-2" />
+					<UIStack direction="col" class="ml-1">
+						<h2 class="text-2xl font-light">{{ civ.name }}</h2>
+						<table class="leading-tight">
+							<FocusRow title="major" color="text-bonus-major" :focuses="civ.primaryFocuses" />
+							<FocusRow title="team" color="text-bonus-team" :focuses="civ.teamFocuses" />
+							<FocusRow title="minor" color="text-bonus-general" :focuses="civ.secondaryFocuses" />
+						</table>
+					</UIStack>
+					<!-- <UIStack direction="row" alignment="center" justification="center" class="ml-4">
+						<button class="ui-button my-2" @click="commit.addTeamCiv(civ)">+ to team</button>
+					</UIStack> -->
 				</UIStack>
-				<UIStack direction="row" alignment="center" justification="center" class="ml-4">
-					<button class="ui-button my-2" @click="commit.addTeamCiv(civ)">+ to team</button>
-				</UIStack>
-			</UIStack>
-			<UIStack direction="col" switchAt="lg">
-				<ul class="mt-2 lg:w-1/2">
+				<ul class="mt-2">
 					<UIStack v-for="[label, bonuses] in groupedBonuses" :key="label" direction="col">
 						<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
 						<li v-for="bonus in bonuses" :key="bonus.segments" class="ml-3  group">
@@ -31,7 +31,7 @@
 								class="bonus-icon"
 							>
 							<!-- SAMPLE -->
-							<span class="text-secondary text-sm">{{ bonus.id }} : {{ bonus.type }} {{ bonus.a }}&nbsp;</span>
+							<!-- <span class="text-secondary text-sm">{{ bonus.id }} : {{ bonus.type }} {{ bonus.a }}&nbsp;</span> -->
 							<span v-if="bonus.title" class="text-secondary text-bold">{{ bonus.title }}: </span>
 							<span>{{ bonus.segments.join(' ') }}</span>
 							<span v-if="bonus.names.length > 1" class="text-secondary  hidden group-hover:inline"> ({{ bonus.names.join(', ') }})</span>
@@ -39,17 +39,17 @@
 						</li>
 					</UIStack>
 				</ul>
-				<div class="text-sm lg:w-1/2">
-					<div v-for="line in unitLines" :key="line.name">
-						<div v-if="!civ.disableTechIDs.includes(line.units[0][1])">
-							{{ line.name }}
-							<template v-for="[unitID, techID] in line.units">
-								<div :key="unitID" class="inline-block w-2 h-2 mx-px" :class="techID === undefined ? 'bg-yellow-700' : (!civ.disableTechIDs.includes(techID) ? 'bg-yellow-500' : 'bg-gray-500')" />
-							</template>
-						</div>
+			</UIStack>
+			<div class="mt-4 lg:ml-4 text-sm lg:w-1/2">
+				<div v-for="line in unitLines" :key="line.name">
+					<div v-if="!civ.disableTechIDs.includes(line.units[0][1])">
+						{{ line.name }}
+						<template v-for="[unitID, techID] in line.units">
+							<div :key="unitID" class="inline-block w-2 h-3 mx-px" :class="techID === undefined ? 'bg-yellow-700' : (!civ.disableTechIDs.includes(techID) ? 'bg-yellow-500' : 'bg-gray-500')" />
+						</template>
 					</div>
 				</div>
-			</UIStack>
+			</div>
 		</UIStack>
 	</div>
 </template>
