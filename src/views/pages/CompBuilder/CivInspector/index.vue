@@ -15,29 +15,41 @@
 					<button class="ui-button my-2" @click="commit.addTeamCiv(civ)">+ to team</button>
 				</UIStack>
 			</UIStack>
-			<ul class="mt-2">
-				<UIStack v-for="[label, bonuses] in groupedBonuses" :key="label" direction="col">
-					<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
-					<li v-for="bonus in bonuses" :key="bonus.segments" class="ml-3  group">
-						<img
-							v-for="ageID in bonus.ages.length ? bonus.ages : [darkAge]" :key="ageID"
-							:src="`/images/ages/${ageID}.png`" :alt="CivAgeName[ageID] + ' age'"
-							class="bonus-icon -ml-3"
-						>
-						<img
-							v-if="bonus.icon"
-							:src="`/images/techs/${bonus.icon}.png`" :alt="`${CivAgeName[bonus.ages[0]]} age unique tech`"
-							class="bonus-icon"
-						>
-						<!-- SAMPLE -->
-						<!-- <span class="text-secondary text-sm">{{ bonus.id }} : {{ bonus.type }} {{ bonus.a }}&nbsp;</span> -->
-						<span v-if="bonus.title" class="text-secondary text-bold">{{ bonus.title }}: </span>
-						<span>{{ bonus.segments.join(' ') }}</span>
-						<span v-if="bonus.names.length > 1" class="text-secondary  hidden group-hover:inline"> ({{ bonus.names.join(', ') }})</span>
-						<span v-if="bonus.requires.length" class="text-secondary  hidden group-hover:inline"> (requires {{ bonus.requires.join(', ') }})</span>
-					</li>
-				</UIStack>
-			</ul>
+			<UIStack direction="col" switchAt="lg">
+				<ul class="mt-2 lg:w-1/2">
+					<UIStack v-for="[label, bonuses] in groupedBonuses" :key="label" direction="col">
+						<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
+						<li v-for="bonus in bonuses" :key="bonus.segments" class="ml-3  group">
+							<img
+								v-for="ageID in bonus.ages.length ? bonus.ages : [darkAge]" :key="ageID"
+								:src="`/images/ages/${ageID}.png`" :alt="CivAgeName[ageID] + ' age'"
+								class="bonus-icon -ml-3"
+							>
+							<img
+								v-if="bonus.icon"
+								:src="`/images/techs/${bonus.icon}.png`" :alt="`${CivAgeName[bonus.ages[0]]} age unique tech`"
+								class="bonus-icon"
+							>
+							<!-- SAMPLE -->
+							<span class="text-secondary text-sm">{{ bonus.id }} : {{ bonus.type }} {{ bonus.a }}&nbsp;</span>
+							<span v-if="bonus.title" class="text-secondary text-bold">{{ bonus.title }}: </span>
+							<span>{{ bonus.segments.join(' ') }}</span>
+							<span v-if="bonus.names.length > 1" class="text-secondary  hidden group-hover:inline"> ({{ bonus.names.join(', ') }})</span>
+							<span v-if="bonus.requires.length" class="text-secondary  hidden group-hover:inline"> (requires {{ bonus.requires.join(', ') }})</span>
+						</li>
+					</UIStack>
+				</ul>
+				<div class="text-sm lg:w-1/2">
+					<div v-for="line in unitLines" :key="line.name">
+						<div v-if="!civ.disableTechIDs.includes(line.units[0][1])">
+							{{ line.name }}
+							<template v-for="[unitID, techID] in line.units">
+								<div :key="unitID" class="inline-block w-2 h-2 mx-px" :class="techID === undefined ? 'bg-yellow-700' : (!civ.disableTechIDs.includes(techID) ? 'bg-yellow-500' : 'bg-gray-500')" />
+							</template>
+						</div>
+					</div>
+				</div>
+			</UIStack>
 		</UIStack>
 	</div>
 </template>
@@ -45,6 +57,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 
+import { unitLines } from '/@/models/effectSummaries'
 import { BonusType, CivAgeName, EffectDescription, CivAge } from '/@/models/types'
 import { useStore } from '/@/models/store'
 
@@ -94,6 +107,7 @@ export default defineComponent({
 			groupedBonuses,
 			darkAge: CivAge.Dark,
 			CivAgeName,
+			unitLines,
 		}
 	},
 })

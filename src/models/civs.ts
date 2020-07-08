@@ -496,6 +496,7 @@ export class CivEntry {
 	secondaryFocuses: Focus[]
 	teamFocuses: Focus[]
 	bonuses: CivTech[]
+	disableTechIDs: number[]
 
 	constructor (data: CivData) {
 		this.name = data.name
@@ -503,6 +504,7 @@ export class CivEntry {
 		const techIDs = data.techIDs.filter(techID => techs[techID])
 		const techData = techIDs.map(techID => techs[techID])
 		const bonuses = techData.map(tech => new CivTech(tech))
+		this.disableTechIDs = data.remove
 		bonuses.push(new CivTech({ id: -data.modify.id, name: data.name, team: false, building: null, requires: [], costs: [], time: 0, icon: null, effect: data.modify }))
 		if (data.teamBonuses) {
 			bonuses.push(new CivTech({ id: -data.teamBonuses.id, name: data.name, team: true, building: null, requires: [], costs: [], time: 0, icon: null, effect: data.teamBonuses }))
