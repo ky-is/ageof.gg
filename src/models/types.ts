@@ -1,3 +1,16 @@
+export const enum EffectType {
+	UnitSetModifier = 0,
+	ResourceModifier = 1,
+	UnitEnable = 2,
+	UnitUpgrade = 3,
+	UnitModifier = 4,
+	UnitMultiplier = 5,
+	ResourceMultiplier = 6,
+	ModifyTechCost = 101,
+	DisableTech = 102,
+	ModifyTechTime = 103,
+}
+
 export interface EffectDescription {
 	id: number
 	title: string | null
@@ -311,6 +324,11 @@ export const UnitFocuses: {[id: number]: Focus[] | undefined} = {
 	93: [ Focus.CavalryAnti ],
 	358: [ Focus.CavalryAnti ],
 	359: [ Focus.CavalryAnti ],
+
+	// Stables
+	101: [ Focus.Cavalry ],
+	86: [ Focus.Cavalry ],
+	153: [ Focus.Cavalry ],
 }
 
 interface UnitClass {

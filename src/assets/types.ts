@@ -35,16 +35,3 @@ export interface UnitData {
 	class: number
 	icon: number | null
 }
-
-export const enum EffectType {
-	UnitSetModifier = 0,
-	ResourceModifier = 1,
-	UnitEnable = 2,
-	UnitUpgrade = 3,
-	UnitModifier = 4,
-	UnitMultiplier = 5,
-	ResourceMultiplier = 6,
-	ModifyTechCost = 101,
-	DisableTech = 102,
-	ModifyTechTime = 103,
-}

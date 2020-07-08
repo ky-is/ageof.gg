@@ -40,16 +40,20 @@
 					</UIStack>
 				</ul>
 			</UIStack>
-			<div class="mt-4 lg:ml-4 text-sm lg:w-1/2">
-				<div v-for="line in unitLines" :key="line.name">
-					<div v-if="!civ.disableTechIDs.includes(line.units[0][1])">
-						{{ line.name }}
-						<template v-for="[unitID, techID] in line.units">
-							<div :key="unitID" class="inline-block w-2 h-3 mx-px" :class="techID === undefined ? 'bg-yellow-700' : (!civ.disableTechIDs.includes(techID) ? 'bg-yellow-500' : 'bg-gray-500')" />
-						</template>
+			<UIStack direction="col" class="mt-1 lg:ml-4 text-sm lg:w-1/2">
+				<h3 class="-mb-1 text-lg">Tech Tree</h3>
+				<div v-for="[category, unitLines] in unitCategoryLines" :key="category">
+					<h4 class="mt-1 smallcaps text-secondary">{{ category }}</h4>
+					<div v-for="line in unitLines" :key="line.name">
+						<div v-if="!civ.disableTechIDs.includes(line.units[0][1])">
+							{{ line.name }}
+							<template v-for="[unitID, techID] in line.units">
+								<div :key="unitID" class="inline-block w-2 h-3 mx-px" :class="techID === undefined ? 'bg-yellow-700' : (!civ.disableTechIDs.includes(techID) ? 'bg-yellow-500' : 'bg-gray-500')" />
+							</template>
+						</div>
 					</div>
 				</div>
-			</div>
+			</UIStack>
 		</UIStack>
 	</div>
 </template>
@@ -57,7 +61,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 
-import { unitLines } from '/@/models/effectSummaries'
+import { unitCategoryLines } from '/@/models/effectSummaries'
 import { BonusType, CivAgeName, EffectDescription, CivAge } from '/@/models/types'
 import { useStore } from '/@/models/store'
 
@@ -107,7 +111,7 @@ export default defineComponent({
 			groupedBonuses,
 			darkAge: CivAge.Dark,
 			CivAgeName,
-			unitLines,
+			unitCategoryLines,
 		}
 	},
 })

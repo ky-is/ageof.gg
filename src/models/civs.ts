@@ -2,11 +2,11 @@ import civs from '/@/assets/data/civs'
 import techs from '/@/assets/data/techs'
 import units from '/@/assets/data/units'
 
-import { EffectCommandData, TechData, CostData, EffectType, UnitData, CostType } from '/@/assets/types'
+import { EffectCommandData, TechData, CostData, UnitData, CostType } from '/@/assets/types'
 import type { CivData } from '/@/assets/types'
 
-import { Focus, ResourceTypeInfo, CivAge, UnitAttribute, UnitAttributeInfo, UnitClassInfo, EffectDescription, AmountTypeInfo } from '/@/models/types'
-import { effectSummaries, EffectSummary } from '/@/models/effectSummaries'
+import { EffectType, Focus, ResourceTypeInfo, CivAge, UnitAttribute, UnitAttributeInfo, UnitClassInfo, EffectDescription, AmountTypeInfo } from '/@/models/types'
+import { effectSummaries } from '/@/models/effectSummaries'
 
 const primaryFocuses: {[key: string]: Focus[]} = {
 	'Aztecs': [Focus.Monk, Focus.Infantry],
@@ -24,14 +24,18 @@ function getAgeFrom ({ requires }: {requires: number[]}, minimumAge: CivAge | un
 }
 
 function getFocusesFor (name: string, type: number, a: number, b: number, c: number, d: number) {
-	let unitID
+	let unitID, unitClassID
 	switch (type) {
 	case EffectType.UnitEnable:
 	case EffectType.UnitMultiplier:
+		if (b !== -1) {
+			unitClassID = b
+		}
 	case EffectType.UnitModifier:
 	case EffectType.UnitSetModifier:
 		unitID = a
 		break
+
 	case EffectType.UnitUpgrade:
 		unitID = b
 		break
@@ -46,18 +50,20 @@ function getFocusesFor (name: string, type: number, a: number, b: number, c: num
 		break
 	}
 
-	if (unitID) {
+	if (unitID && unitID !== -1) {
 		const unit = getUnit(unitID)
-		if (!unit) {
-			console.error('Unknown unit', b, name, type, a, b, c, d)
-			return []
+		if (unit) {
+			unitClassID = unit.class
+		} else {
+			console.error('Unknown unit', unitID, name, type, a, b, c, d)
 		}
-		const unitClass = UnitClassInfo[unit.class]
-		if (!unitClass) {
-			console.error('Unknown UnitClassInfo', unit.name, unit.class, name, type, a, b, c, d)
-			return []
+	}
+	if (unitClassID) {
+		const unitClass = UnitClassInfo[unitClassID]
+		if (unitClass) {
+			return unitClass.focuses
 		}
-		return unitClass.focuses
+		console.error('Unknown UnitClassInfo', unitID, unitClassID, name, type, a, b, c, d)
 	}
 	return []
 }
