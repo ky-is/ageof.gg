@@ -507,7 +507,7 @@ export class CivEntry {
 	constructor (data: CivData) {
 		this.name = data.name
 		this.primaryFocuses = primaryFocuses[data.name] ?? []
-		const techIDs = data.techIDs.filter(techID => techs[techID])
+		const techIDs = data.uniqueTechIDs.filter(techID => techs[techID])
 		const techData = techIDs.map(techID => techs[techID])
 		const bonuses = techData.map(tech => new CivTech(tech))
 		this.disableTechIDs = data.remove

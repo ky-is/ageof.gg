@@ -14,14 +14,14 @@ export interface CivData {
 	name: string
 	remove: number[]
 	modify: EffectData
-	techIDs: number[]
+	uniqueTechIDs: number[]
 	teamBonuses: EffectData | null
 }
 
 export interface TechData {
 	id: number
 	name: string
-	team: boolean
+	team?: boolean
 	building: number | null
 	requires: number[]
 	costs: CostData[]

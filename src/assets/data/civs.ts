@@ -8,7 +8,7 @@ export default [
 			"id": 348,
 			"commands": [],
 		},
-		"techIDs": [],
+		"uniqueTechIDs": [],
 		"teamBonuses": null,
 	},
 	{
@@ -18,7 +18,7 @@ export default [
 			"id": 254,
 			"commands": [],
 		},
-		"techIDs": [ 3, 263, 360, 381, 382, 383, 403, 461 ],
+		"uniqueTechIDs": [ 3, 263, 360, 381, 382, 383, 403, 461 ],
 		"teamBonuses": {
 			"id": 399,
 			"commands": [
@@ -45,7 +45,7 @@ export default [
 				[ 103, 12, -1, 0, 0 ],
 			],
 		},
-		"techIDs": [ 83, 275, 287, 288, 289, 290, 325, 363, 493, 524 ],
+		"uniqueTechIDs": [ 83, 275, 287, 288, 289, 290, 325, 363, 493, 524 ],
 		"teamBonuses": {
 			"id": 403,
 			"commands": [
@@ -65,7 +65,7 @@ export default [
 			"id": 259,
 			"commands": [],
 		},
-		"techIDs": [ 16, 18, 327, 328, 329, 331, 343, 344, 345, 346, 365, 402, 406, 446, 457, 731, 732, 733 ],
+		"uniqueTechIDs": [ 16, 18, 327, 328, 329, 331, 343, 344, 345, 346, 365, 402, 406, 446, 457, 731, 732, 733 ],
 		"teamBonuses": {
 			"id": 405,
 			"commands": [
@@ -89,7 +89,7 @@ export default [
 				[ 103, 441, -1, 0, 0 ],
 			],
 		},
-		"techIDs": [ 11, 276, 314, 333, 334, 335, 336, 347, 353, 364, 489 ],
+		"uniqueTechIDs": [ 11, 276, 314, 333, 334, 335, 336, 347, 353, 364, 489 ],
 		"teamBonuses": {
 			"id": 404,
 			"commands": [
@@ -106,7 +106,7 @@ export default [
 			"id": 255,
 			"commands": [],
 		},
-		"techIDs": [ 59, 262, 306, 340, 341, 366, 420, 421, 422, 423, 424, 484 ],
+		"uniqueTechIDs": [ 59, 262, 306, 340, 341, 366, 420, 421, 422, 423, 424, 484 ],
 		"teamBonuses": {
 			"id": 406,
 			"commands": [
@@ -126,7 +126,7 @@ export default [
 				[ 1, 92, 1, -1, -50 ],
 			],
 		},
-		"techIDs": [ 52, 268, 302, 304, 350, 351, 352, 362, 396, 425, 462 ],
+		"uniqueTechIDs": [ 52, 268, 302, 304, 350, 351, 352, 362, 396, 425, 462 ],
 		"teamBonuses": {
 			"id": 402,
 			"commands": [
@@ -146,7 +146,7 @@ export default [
 				[ 101, 103, 0, 1, -333 ],
 			],
 		},
-		"techIDs": [ 61, 267, 283, 284, 361, 397, 401, 417, 418, 419, 464 ],
+		"uniqueTechIDs": [ 61, 267, 283, 284, 361, 397, 401, 417, 418, 419, 464 ],
 		"teamBonuses": {
 			"id": 400,
 			"commands": [
@@ -164,7 +164,7 @@ export default [
 				[ 1, 92, 1, -1, 50 ],
 			],
 		},
-		"techIDs": [ 7, 274, 342, 349, 367, 409, 412, 488 ],
+		"uniqueTechIDs": [ 7, 274, 342, 349, 367, 409, 412, 488 ],
 		"teamBonuses": {
 			"id": 408,
 			"commands": [
@@ -181,7 +181,7 @@ export default [
 			"id": 261,
 			"commands": [],
 		},
-		"techIDs": [ 9, 269, 312, 337, 355, 368, 404, 490, 725, 726 ],
+		"uniqueTechIDs": [ 9, 269, 312, 337, 355, 368, 404, 490, 725, 726 ],
 		"teamBonuses": {
 			"id": 409,
 			"commands": [
@@ -216,7 +216,7 @@ export default [
 				[ 101, 376, 3, 1, -250 ],
 			],
 		},
-		"techIDs": [ 10, 95, 271, 285, 286, 300, 301, 354, 369, 491 ],
+		"uniqueTechIDs": [ 10, 95, 271, 285, 286, 300, 301, 354, 369, 491 ],
 		"teamBonuses": {
 			"id": 410,
 			"commands": [
@@ -251,7 +251,7 @@ export default [
 				[ 103, 249, -1, 0, 0 ],
 			],
 		},
-		"techIDs": [ 49, 272, 372, 391, 392, 395, 398, 399, 400, 415, 416, 463, 501, 502 ],
+		"uniqueTechIDs": [ 49, 272, 372, 391, 392, 395, 398, 399, 400, 415, 416, 463, 501, 502 ],
 		"teamBonuses": {
 			"id": 411,
 			"commands": [
@@ -270,7 +270,7 @@ export default [
 			"id": 277,
 			"commands": [],
 		},
-		"techIDs": [ 6, 273, 371, 388, 389, 394, 487, 552, 641 ],
+		"uniqueTechIDs": [ 6, 273, 371, 388, 389, 394, 487, 552, 641 ],
 		"teamBonuses": {
 			"id": 407,
 			"commands": [
@@ -290,7 +290,7 @@ export default [
 			"id": 275,
 			"commands": [],
 		},
-		"techIDs": [ 5, 277, 370, 385, 386, 393, 405, 482 ],
+		"uniqueTechIDs": [ 5, 277, 370, 385, 386, 393, 405, 482 ],
 		"teamBonuses": {
 			"id": 401,
 			"commands": [
@@ -323,7 +323,7 @@ export default [
 				[ 0, 374, -1, 5, 7 ],
 			],
 		},
-		"techIDs": [ 58, 60, 84, 440, 492 ],
+		"uniqueTechIDs": [ 58, 60, 84, 440, 492 ],
 		"teamBonuses": {
 			"id": 490,
 			"commands": [
@@ -353,7 +353,7 @@ export default [
 				[ 5, -1, 12, 101, 0.9 ],
 			],
 		},
-		"techIDs": [ 24, 29, 30, 31, 32, 33, 36, 38, 40, 41, 318, 431, 432, 456, 460 ],
+		"uniqueTechIDs": [ 24, 29, 30, 31, 32, 33, 36, 38, 40, 41, 318, 431, 432, 456, 460 ],
 		"teamBonuses": {
 			"id": 488,
 			"commands": [
@@ -396,7 +396,7 @@ export default [
 				[ 1, 216, 0, -1, 1.15 ],
 			],
 		},
-		"techIDs": [ 4, 26, 27, 53, 56, 348, 485, 554 ],
+		"uniqueTechIDs": [ 4, 26, 27, 53, 56, 348, 485, 554 ],
 		"teamBonuses": {
 			"id": 489,
 			"commands": [
@@ -417,7 +417,7 @@ export default [
 				[ 2, 70, 0, -1, 0 ],
 			],
 		},
-		"techIDs": [ 1, 2, 21, 458, 459, 483 ],
+		"uniqueTechIDs": [ 1, 2, 21, 458, 459, 483 ],
 		"teamBonuses": {
 			"id": 484,
 			"commands": [
@@ -438,7 +438,7 @@ export default [
 				[ 5, 124, -1, 13, 1.2 ],
 			],
 		},
-		"techIDs": [ 390, 442, 443, 444, 445, 447, 448, 449, 450, 451, 452, 453, 486 ],
+		"uniqueTechIDs": [ 390, 442, 443, 444, 445, 447, 448, 449, 450, 451, 452, 453, 486 ],
 		"teamBonuses": {
 			"id": 505,
 			"commands": [
@@ -480,7 +480,7 @@ export default [
 				[ 101, 65, 1, 1, -100 ],
 			],
 		},
-		"techIDs": [ 466, 467, 468, 494, 499, 500 ],
+		"uniqueTechIDs": [ 466, 467, 468, 494, 499, 500 ],
 		"teamBonuses": {
 			"id": 11,
 			"commands": [
@@ -495,7 +495,7 @@ export default [
 			"id": 1,
 			"commands": [],
 		},
-		"techIDs": [ 480, 481, 496, 497, 498, 505, 506, 507, 518, 521, 553 ],
+		"uniqueTechIDs": [ 480, 481, 496, 497, 498, 505, 506, 507, 518, 521, 553 ],
 		"teamBonuses": {
 			"id": 2,
 			"commands": [
@@ -517,7 +517,7 @@ export default [
 			"id": 3,
 			"commands": [],
 		},
-		"techIDs": [ 70, 378, 474, 475, 476, 477, 478, 479, 495, 508, 509, 516, 517, 519, 528, 730 ],
+		"uniqueTechIDs": [ 70, 378, 474, 475, 476, 477, 478, 479, 495, 508, 509, 516, 517, 519, 528, 730 ],
 		"teamBonuses": {
 			"id": 4,
 			"commands": [
@@ -543,7 +543,7 @@ export default [
 				[ 103, 75, 3, 0, 0 ],
 			],
 		},
-		"techIDs": [ 69, 471, 472, 473, 514, 515 ],
+		"uniqueTechIDs": [ 69, 471, 472, 473, 514, 515 ],
 		"teamBonuses": {
 			"id": 6,
 			"commands": [
@@ -569,7 +569,7 @@ export default [
 				[ 5, 1187, -1, 13, 1.1 ],
 			],
 		},
-		"techIDs": [ 503, 504, 511, 512, 513, 721 ],
+		"uniqueTechIDs": [ 503, 504, 511, 512, 513, 721 ],
 		"teamBonuses": {
 			"id": 9,
 			"commands": [],
@@ -582,7 +582,7 @@ export default [
 			"id": 31,
 			"commands": [],
 		},
-		"techIDs": [ 559, 560, 561, 562, 563, 570, 572, 573, 596, 597, 600 ],
+		"uniqueTechIDs": [ 559, 560, 561, 562, 563, 570, 572, 573, 596, 597, 600 ],
 		"teamBonuses": {
 			"id": 32,
 			"commands": [],
@@ -595,7 +595,7 @@ export default [
 			"id": 48,
 			"commands": [],
 		},
-		"techIDs": [ 568, 569, 574, 575, 587, 588, 589, 590, 607, 609 ],
+		"uniqueTechIDs": [ 568, 569, 574, 575, 587, 588, 589, 590, 607, 609 ],
 		"teamBonuses": {
 			"id": 49,
 			"commands": [
@@ -614,7 +614,7 @@ export default [
 			"id": 42,
 			"commands": [],
 		},
-		"techIDs": [ 566, 567, 576, 577, 591, 592, 593, 594, 595 ],
+		"uniqueTechIDs": [ 566, 567, 576, 577, 591, 592, 593, 594, 595 ],
 		"teamBonuses": {
 			"id": 43,
 			"commands": [
@@ -630,7 +630,7 @@ export default [
 			"id": 37,
 			"commands": [],
 		},
-		"techIDs": [ 564, 565, 578, 579, 584, 585, 586, 598, 613 ],
+		"uniqueTechIDs": [ 564, 565, 578, 579, 584, 585, 586, 598, 613 ],
 		"teamBonuses": {
 			"id": 38,
 			"commands": [
@@ -649,7 +649,7 @@ export default [
 				[ 5, 259, -1, 13, 0.97 ],
 			],
 		},
-		"techIDs": [ 614, 615, 622, 623, 657, 672 ],
+		"uniqueTechIDs": [ 614, 615, 622, 623, 657, 672 ],
 		"teamBonuses": {
 			"id": 647,
 			"commands": [
@@ -669,7 +669,7 @@ export default [
 			"id": 648,
 			"commands": [],
 		},
-		"techIDs": [ 616, 617, 624, 625, 634, 635, 637, 642, 643, 644, 662 ],
+		"uniqueTechIDs": [ 616, 617, 624, 625, 634, 635, 637, 642, 643, 644, 662 ],
 		"teamBonuses": {
 			"id": 649,
 			"commands": [
@@ -688,7 +688,7 @@ export default [
 			"id": 650,
 			"commands": [],
 		},
-		"techIDs": [ 618, 619, 626, 627, 633, 645, 646, 647, 648, 649 ],
+		"uniqueTechIDs": [ 618, 619, 626, 627, 633, 645, 646, 647, 648, 649 ],
 		"teamBonuses": {
 			"id": 651,
 			"commands": [
@@ -720,7 +720,7 @@ export default [
 				[ 101, 65, 1, 0, 0 ],
 			],
 		},
-		"techIDs": [ 620, 621, 628, 629, 632, 665 ],
+		"uniqueTechIDs": [ 620, 621, 628, 629, 632, 665 ],
 		"teamBonuses": {
 			"id": 653,
 			"commands": [
@@ -735,7 +735,7 @@ export default [
 			"id": 706,
 			"commands": [],
 		},
-		"techIDs": [ 677, 678, 685, 686, 693, 694, 695 ],
+		"uniqueTechIDs": [ 677, 678, 685, 686, 693, 694, 695 ],
 		"teamBonuses": {
 			"id": 707,
 			"commands": [
@@ -753,7 +753,7 @@ export default [
 			"id": 708,
 			"commands": [],
 		},
-		"techIDs": [ 679, 680, 687, 688, 696, 698, 704 ],
+		"uniqueTechIDs": [ 679, 680, 687, 688, 696, 698, 704 ],
 		"teamBonuses": {
 			"id": 709,
 			"commands": [
@@ -768,7 +768,7 @@ export default [
 			"id": 710,
 			"commands": [],
 		},
-		"techIDs": [ 681, 682, 689, 690, 705, 706, 709, 711, 723, 724, 727, 728 ],
+		"uniqueTechIDs": [ 681, 682, 689, 690, 705, 706, 709, 711, 723, 724, 727, 728 ],
 		"teamBonuses": {
 			"id": 711,
 			"commands": [
@@ -800,7 +800,7 @@ export default [
 			"id": 712,
 			"commands": [],
 		},
-		"techIDs": [ 683, 684, 691, 692, 697, 699, 700, 701, 702, 710 ],
+		"uniqueTechIDs": [ 683, 684, 691, 692, 697, 699, 700, 701, 702, 710 ],
 		"teamBonuses": {
 			"id": 713,
 			"commands": [

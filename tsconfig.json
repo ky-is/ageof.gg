@@ -2,11 +2,12 @@
 	"compilerOptions": {
 		"strict": true,
 		"target": "ES2015",
+		"moduleResolution": "node",
 		"isolatedModules": true,
 		"skipLibCheck": true,
 		"lib": [
 			"DOM",
-			"es2019"
+			"ES2019",
 		],
 		"baseUrl": ".",
 		"paths": {
