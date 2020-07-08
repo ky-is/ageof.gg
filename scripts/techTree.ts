@@ -1,50 +1,9 @@
-import { EffectType } from 'src/models/types'
-import type { CivData, TechData, UnitData, EffectCommandData, CostData } from 'src/assets/types'
+import { EffectType } from '/@/models/types'
+import type { CivData, TechData, UnitData, EffectCommandData, CostData } from '/@/assets/types'
+import type { TreeCiv, TreeCommand, TreeEffect, TreeTech } from './types'
 
 const fs = require('fs')
 const path = require('path')
-
-interface TreeEffect {
-	EffectCommands: TreeCommand[]
-}
-interface TreeCommand {
-	Type: number
-	A: number
-	B: number
-	C: number
-	D: number
-}
-
-interface TreeCiv {
-	Name: string
-	Units: TreeUnit[]
-	TechTreeID: number
-	TeamBonusID: number
-}
-interface TreeUnit {
-	Name: string
-	Class: number
-	IconID: number
-	LanguageDLLName: number
-}
-
-interface TreeTech {
-	Name: string
-	EffectID: number
-	ResearchLocation: number
-	ResearchTime: number
-	Civ: number
-	RequiredTechs: number[]
-	IconID: number
-	ResourceCosts: TreeCost[]
-	LanguageDLLName: number
-}
-interface TreeCost {
-	Type: number
-	Amount: number
-	Flag: number
-}
-
 
 const tree = require('./data/full.json') as {
 	Civs: TreeCiv[]
