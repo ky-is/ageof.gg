@@ -1,6 +1,62 @@
 import { EffectType, CivAge, UnitAttribute } from '/@/models/types'
+import { TreeBranchData } from '/@/assets/types'
 
-import units from '/@/assets/data/units'
+import trees from '/@/assets/data/trees'
+
+export const unitCategoryLines: [string, TreeBranchData[]][] = [
+	[
+		'archery range',
+		[
+			trees.archer,
+			trees.skirmisher,
+			trees.cavalryarcher,
+		],
+	],
+	[
+		'barracks',
+		[
+			trees.militia,
+			trees.spear,
+			trees.eagle,
+		],
+	],
+	[
+		'stable',
+		[
+			trees.scout,
+			trees.knight,
+			trees.camel,
+			trees.elephant,
+			trees.lancer,
+		],
+	],
+	[
+		'siege workshop',
+		[
+			trees.ram,
+			trees.mangonel,
+			trees.scorpion,
+		],
+	],
+	[
+		'dock',
+		[
+			trees.fireship,
+			trees.galley,
+			trees.demoship,
+			trees.cannongalleon,
+		],
+	],
+	[
+		'misc.',
+		[
+			trees.tower,
+			trees.bombardcannon,
+			trees.bombardtower,
+			trees.monk,
+		],
+	],
+]
 
 export interface EffectSummary {
 	type?: EffectType
@@ -15,150 +71,6 @@ export interface EffectSummary {
 	delete?: boolean
 	stack?: number[]
 }
-
-class UnitLine {
-	name: string
-	class: number
-	units: [number, number?][]
-
-	constructor (name: string, unitGroups: [number, number?][]) {
-		const unit = units[unitGroups[unitGroups.length - 1][0]]
-		this.name = name
-		this.class = unit.class
-		this.units = unitGroups
-	}
-}
-
-export const unitCategoryLines: [string, UnitLine[]][] = [
-	[
-		'archery range',
-		[
-			new UnitLine('Archer', [
-				[4],
-				[24, 100],
-				[492, 237],
-			]),
-			new UnitLine('Skirmisher', [
-				[7],
-				[6, 98],
-			 ]),
-			new UnitLine('Cavalry Archer', [
-				[39, 192],
-				[474, 218],
-			]),
-		],
-	],
-	[
-		'barracks',
-		[
-			new UnitLine('Militia', [
-				[74],
-				[75],
-				[77],
-				[473, 217],
-				[567, 264],
-			]),
-			new UnitLine('Spear', [
-				[93],
-				[358, 197], //TODO verify
-				[359, 429],
-			]),
-			new UnitLine('Eagle', [
-				[751, 384],
-				[752, 434],
-				[753, 434],
-			]),
-		],
-	],
-	[
-		'stable',
-		[
-			new UnitLine('Scout', [
-				[448, 204],
-				[546, 254],
-				[441, 428],
-			]),
-			new UnitLine('Knight', [
-				[38, 166],
-				[283, 209],
-				[569, 265],
-			]),
-			new UnitLine('Camel',[
-				[329, 235],
-				[330, 236],
-			]),
-			new UnitLine('Elephant', [
-				[1132, 630],
-				[1134, 631],
-			 ]),
-			new UnitLine('Lancer', [
-				[1370, 714],
-				[1372],
-			]),
-		],
-	],
-	[
-		'siege workshop',
-		[
-			new UnitLine('Ram', [
-				[35],
-				[422],
-				[548, 255],
-			]),
-			new UnitLine('Mangonel', [
-				[280],
-				[550, 257],
-				[588, 320],
-			]),
-			new UnitLine('Scorpion', [
-				[279],
-				[542, 239],
-			]),
-		],
-	],
-	[
-		'dock',
-		[
-			new UnitLine('Fire ship', [
-				[1103, 604],
-				[529, 243],
-				[532, 246],
-			]),
-			new UnitLine('Galley', [
-				[539],
-				[21],
-				[442, 35] ]),
-			new UnitLine('Demo. ship', [
-				[1104, 605],
-				[527, 242],
-				[528, 244],
-			]),
-			new UnitLine('Cannon Galleon', [
-				[420, 37],
-				[691, 376],
-			]),
-		],
-	],
-	[
-		'misc.',
-		[
-			new UnitLine('Tower', [
-				[79],
-				[234, 140],
-				[235, 63],
-			]),
-			new UnitLine('Bombard Cannon', [
-				[36, 188],
-			]),
-			new UnitLine('Bombard Tower', [
-				[236, 64],
-			]),
-			new UnitLine('Monk', [
-				[125],
-			]),
-		],
-	],
-]
 
 export const effectSummaries: {[effectID: number]: EffectSummary[] | undefined} = {
 	// Aztecs

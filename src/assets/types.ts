@@ -1,3 +1,10 @@
+export const enum ResourceType {
+	MonkConversionEnabled = 27,
+	BuildingConversionEnabled = 28,
+	FaithRechargeRate = 35,
+	Theocracy = 193,
+}
+
 export const enum CostType {
 	RelicsCaptured = 7
 }
@@ -34,4 +41,12 @@ export interface UnitData {
 	name: string
 	class: number
 	icon: number | null
+}
+
+export interface TreeBranchData {
+	name: string
+	class: number
+	resources?: ResourceType[]
+	units: number[][]
+	upgrades: number[]
 }
