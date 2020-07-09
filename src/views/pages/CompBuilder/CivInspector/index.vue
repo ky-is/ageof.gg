@@ -45,12 +45,15 @@
 				<div v-for="[category, unitLines] in unitCategoryLines" :key="category">
 					<h4 class="mt-1 smallcaps text-secondary">{{ category }}</h4>
 					<div v-for="line in unitLines" :key="line.name">
-						<div v-if="!civ.disableTechIDs.includes(line.units[0][1])">
+						<UIStack v-if="!civ.disableTechIDs.includes(line.units[0][1])" direction="row" alignment="center">
 							{{ line.name }}
-							<template v-for="[unitID, techID] in line.units">
-								<div :key="unitID" class="inline-block w-2 h-3 mx-px" :class="techID === undefined ? 'bg-yellow-700' : (!civ.disableTechIDs.includes(techID) ? 'bg-yellow-500' : 'bg-gray-500')" />
-							</template>
-						</div>
+							<UIStack direction="col" class="ml-px pl-px">
+								<UIStack direction="row">
+									<div v-for="[unitID, techID] in line.units" :key="unitID" class="w-2 h-2 mx-px" :class="techID === undefined ? 'bg-yellow-700' : (!civ.disableTechIDs.includes(techID) ? 'bg-yellow-500' : 'bg-gray-500')" />
+								</UIStack>
+								<LineUpgrades :upgrades="line.upgrades" :disableTechIDs="civ.disableTechIDs" class="mt-px" />
+							</UIStack>
+						</UIStack>
 					</div>
 				</div>
 			</UIStack>
@@ -68,12 +71,15 @@ import { useStore } from '/@/models/store'
 import UIStack from '/@/views/ui/Stack.vue'
 import CivIcon from '/@/views/components/CivIcon.vue'
 
+import LineUpgrades from '/@/views/pages/CompBuilder/CivInspector/LineUpgrades.vue'
+
 import FocusRow from './FocusRow.vue'
 
 export default defineComponent({
 	components: {
 		CivIcon,
 		FocusRow,
+		LineUpgrades,
 		UIStack,
 	},
 
