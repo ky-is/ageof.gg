@@ -424,11 +424,15 @@ for (const civKey in civs) {
 const outputPath = path.join(__dirname, '../src/assets/data')
 fs.mkdirSync(outputPath, { recursive: true })
 
-function writeFile (name: string, type: string, object: any) {
+function writeFile (name: string, prefix: string, object: any, suffix: string) {
 	const jsObjectString = JSON.stringify(object, null, '\t').replace(/(\[\n[^[{]+?\])/g, (match) => match.replace(/\s{2,}/g, ' ')).replace(/([^,[{])\n/g, '$1,\n')
-	const collectionType = Array.isArray(object) ? `${type}[]` : `{[key: string]: ${type}}`
-	const output = `import { ${type} } from '/@/assets/types'\n\nexport default ${jsObjectString} as ${collectionType}`
+	const output = `${prefix}export default ${jsObjectString}${suffix}`
 	fs.writeFileSync(path.join(outputPath, `${name}.ts`), output, 'utf-8')
+}
+
+function writeFileFor (name: string, type: string, object: any) {
+	const collectionType = Array.isArray(object) ? `${type}[]` : `{[key: string]: ${type}}`
+	writeFile(name, `import { ${type} } from '/@/assets/types'\n\n`, object, ` as ${collectionType}`)
 }
 
 const outputTreeObject: {[name: string]: TreeBranchData} = {}
@@ -437,7 +441,20 @@ outputTree.forEach(branch => {
 	outputTreeObject[branch.name.toLowerCase().replace(' ', '')] = branch
 })
 
-writeFile('civs', 'CivData', outputCivs)
-writeFile('techs', 'TechData', outputTechs)
-writeFile('trees', 'TreeBranchData', outputTreeObject)
-writeFile('units', 'UnitData', outputUnits)
+const allCivTechs = new Set(outputTree.flatMap(branch => branch.upgrades))
+for (const civ of outputCivs) {
+	for (const id of civ.remove) {
+		allCivTechs.delete(id)
+	}
+}
+// console.log(Array.from(allCivTechs).map(techID => techs[techID]!.Name)) //SAMPLE
+const CHEMISTRY_TECH_ID = 47
+outputTree.forEach(branch => {
+	branch.upgrades = branch.upgrades.filter(techID => techID === CHEMISTRY_TECH_ID || !allCivTechs.has(techID))
+})
+
+writeFileFor('civs', 'CivData', outputCivs)
+writeFileFor('techs', 'TechData', outputTechs)
+writeFileFor('trees', 'TreeBranchData', outputTreeObject)
+writeFileFor('units', 'UnitData', outputUnits)
+writeFile('allCivTechs', '', Array.from(allCivTechs), '')

@@ -1,6 +1,6 @@
 <template>
 	<UIStack direction="row">
-		<div v-for="tech in lineTechs" :key="tech.name" class="w-2 h-2 mx-px" :class="!disableTechIDs.includes(tech.id) ? 'bg-blue-600' : 'bg-gray-700'" :title="tech.name" />
+		<div v-for="tech in lineTechs" :key="tech.name" class="w-2 h-2 mx-px" :class="allCivTechs.includes(tech.id) ? 'bg-blue-700' : (!disableTechIDs.includes(tech.id) ? 'bg-blue-500' : 'bg-gray-700')" :title="tech.name" />
 	</UIStack>
 </template>
 
@@ -8,6 +8,7 @@
 import { defineComponent, computed, PropType } from 'vue'
 
 import techs from '/@/assets/data/techs'
+import allCivTechs from '/@/assets/data/allCivTechs'
 
 import UIStack from '/@/views/ui/Stack.vue'
 
@@ -44,6 +45,7 @@ export default defineComponent({
 		return {
 			availableCount,
 			lineTechs,
+			allCivTechs,
 		}
 	},
 })
