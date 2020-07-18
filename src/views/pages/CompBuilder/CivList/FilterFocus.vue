@@ -14,29 +14,19 @@
 	</div>
 </template>
 
-<script>
-import { defineComponent, computed } from 'vue'
+<script setup="props, { emit }" lang="ts">
+import { computed } from 'vue'
 
 import { Focus } from '/@/models/types'
 
-export default defineComponent({
-	props: {
-		selected: {
-			type: String,
-			required: true,
-		},
-	},
+declare const props: {
+	selected: string
+}
 
-	setup (props, { emit }) {
-		const focusFilters = Object.entries(Focus)
-		const value = computed({
-			get: () => props.selected,
-			set: (newValue) => emit('update:selected', newValue),
-		})
-		return {
-			focusFilters,
-			value,
-		}
-	},
+export const focusFilters = Object.entries(Focus)
+
+export const value = computed({
+	get: () => props.selected,
+	set: (newValue) => emit('update:selected', newValue),
 })
 </script>

@@ -1,7 +1,7 @@
 <template>
 	<div class="w-24 h-24 relative" @dragover.prevent @drop.prevent="onDrop">
-		<div v-if="civ" class="absolute group" @mouseenter="commit.selectedCiv('hovered', civ)" @mouseleave="commit.selectedCiv('hovered', null)">
-			<CivIcon :civ="civ" dragAction="move" @click="commit.selectedCiv('clicked', civ)" @dragging="isDragging = $event" />
+		<div v-if="civ" class="absolute group" @mouseenter="commit.selectCiv('hovered', civ)" @mouseleave="commit.selectCiv('hovered', null)">
+			<CivIcon :civ="civ" dragAction="move" @click="commit.selectCiv('clicked', civ)" @dragging="isDragging = $event" />
 			<button
 				v-if="!isDragging"
 				class="center-center hidden group-hover:flex  absolute left-0 top-0 w-8 h-8 bg-black opacity-50 rounded-full"
@@ -18,53 +18,34 @@
 	</div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType, ref, watch } from 'vue'
+<script setup="props" lang="ts">
+import { ref, watch } from 'vue'
 
 import { CivEntry, civEntries } from '/@/models/civs'
 import { useStore } from '/@/models/store'
 
 import CivIcon from '/@/views/components/CivIcon.vue'
+export default { components: { CivIcon } }
 
-export default defineComponent({
-	components: {
-		CivIcon,
-	},
+declare const props: {
+	index: 0 | 1 | 2 | 3
+	civ?: CivEntry
+}
 
-	props: {
-		index: {
-			type: Number as PropType<0 | 1 | 2 | 3>,
-			required: true,
-		},
-		civ: {
-			type: Object as PropType<CivEntry | null>,
-			default: null,
-		},
-	},
+export const { commit } = useStore()
 
-	setup (props) {
-		const store = useStore()
-
-		const isDragging = ref(false)
-		watch(() => props.civ, () => {
-			isDragging.value = false
-		})
-
-		function onDrop (event: DragEvent) {
-			const civName = event.dataTransfer?.getData('text/civ')
-			const civ = civEntries.find(civ => civ.name === civName)
-			if (!civ) {
-				return console.error('drop', civName, event)
-			}
-			store.commit.setTeamCivAt(props.index, civ)
-			return false
-		}
-
-		return {
-			commit: store.commit,
-			isDragging,
-			onDrop,
-		}
-	},
+export const isDragging = ref(false)
+watch(() => props.civ, () => {
+	isDragging.value = false
 })
+
+export function onDrop (event: DragEvent) {
+	const civName = event.dataTransfer?.getData('text/civ')
+	const civ = civEntries.find(civ => civ.name === civName)
+	if (!civ) {
+		return console.error('drop', civName, event)
+	}
+	commit.setTeamCivAt(props.index, civ)
+	return false
+}
 </script>

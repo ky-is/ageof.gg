@@ -9,17 +9,8 @@
 	</UIStack>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-import UIStack from '/@/views/ui/Stack.vue'
-
+<script setup lang="ts">
 import CompBuilder from '/@/views/pages/CompBuilder/index.vue'
-
-export default defineComponent({
-	components: {
-		CompBuilder,
-		UIStack,
-	},
-})
+import UIStack from '/@/views/ui/Stack.vue'
+export default { components: { CompBuilder, UIStack } }
 </script>

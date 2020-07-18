@@ -9,29 +9,15 @@
 	</tr>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup="props" lang="ts">
+import { Focus } from '/@/models/types'
 
 import UIStack from '/@/views/ui/Stack.vue'
+export default { components: { UIStack } }
 
-export default defineComponent({
-	components: {
-		UIStack,
-	},
-
-	props: {
-		title: {
-			type: String,
-			required: true,
-		},
-		color: {
-			type: String,
-			required: true,
-		},
-		focuses: {
-			type: Array,
-			required: true,
-		},
-	},
-})
+declare const props: {
+	title: string
+	color: string
+	focuses: Focus[]
+}
 </script>

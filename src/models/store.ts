@@ -23,7 +23,7 @@ const store = {
 	state: readonly(state),
 
 	commit: {
-		selectedCiv (type: 'hovered' | 'clicked', civ: CivEntry | null) {
+		selectCiv (type: 'hovered' | 'clicked', civ: CivEntry | null) {
 			state.selectedCiv[type] = civ
 		},
 

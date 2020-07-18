@@ -11,18 +11,21 @@
 	</UIStack>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed, ref, Ref } from 'vue'
+<script setup lang="ts">
+import { computed, ref, Ref } from 'vue'
 
 import { Focus } from '/@/models/types'
 import { civEntries, CivEntry, sortByName } from '/@/models/civs'
 
 import UIStack from '/@/views/ui/Stack.vue'
-
 import FilterFocus from './FilterFocus.vue'
 import FilterList from './FilterList.vue'
+export default { components: { FilterFocus, FilterList, UIStack } }
 
-function getCivsForFilter (focusFilter: Focus | null): [CivEntry[], CivEntry[]] {
+export const filterFocus: Ref<keyof typeof Focus | ''> = ref('')
+
+export const filteredCivs = computed(() => {
+	const focusFilter = filterFocus.value ? Focus[filterFocus.value] : null
 	let primaryCivs: CivEntry[] = []
 	const secondaryCivs: CivEntry[] = []
 	if (!focusFilter) {
@@ -33,29 +36,11 @@ function getCivsForFilter (focusFilter: Focus | null): [CivEntry[], CivEntry[]] 
 				primaryCivs.push(civ)
 			} else if (civ.secondaryFocuses.includes(focusFilter)) {
 				secondaryCivs.push(civ)
-			} else { //TODO team
+			} else {
+				//TODO team
 			}
 		}
 	}
 	return [primaryCivs.sort(sortByName), secondaryCivs.sort(sortByName)]
-}
-
-export default defineComponent({
-	components: {
-		FilterFocus,
-		FilterList,
-		UIStack,
-	},
-
-	setup () {
-		const filterFocus: Ref<keyof typeof Focus | ''> = ref('')
-		const filteredCivs = computed(() => {
-			return getCivsForFilter(filterFocus.value ? Focus[filterFocus.value] : null)
-		})
-		return {
-			filteredCivs,
-			filterFocus,
-		}
-	},
 })
 </script>

@@ -6,7 +6,7 @@
 				<UIStack direction="row" alignment="baseline" class="px-4 py-2">
 					<label for="teamSize" class="mr-px text-secondary">Team size:</label>
 					<select id="teamSize" v-model="teamSize" class="ui-select">
-						<option v-for="size in 4" :key="size" :value="size" class="ui-option">
+						<option v-for="size in maxTeamSize" :key="size" :value="size" class="ui-option">
 							{{ size }}
 						</option>
 					</select>
@@ -33,44 +33,29 @@
 	</UIStack>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed, ref } from 'vue'
+<script setup lang="ts">
+import { computed, ref } from 'vue'
 
 import { useStore } from '/@/models/store'
 
 import UIStack from '/@/views/ui/Stack.vue'
-
 import TeamCivEntry from './TeamCivEntry.vue'
+export default { components: { TeamCivEntry, UIStack } }
 
-export default defineComponent({
-	components: {
-		TeamCivEntry,
-		UIStack,
-	},
+const { state } = useStore()
+export const teamCivs = state.teamCivs
 
-	setup () {
-		const teamSize = ref(3)
-		const mapStyles = ['open', 'closed', 'water', 'hybrid']
-		const mapStyle = ref(mapStyles[0])
+export const maxTeamSize = 4
+export const teamSize = ref(3)
+export const mapStyles = ['open', 'closed', 'water', 'hybrid']
+export const mapStyle = ref(mapStyles[0])
 
-		const store = useStore()
-		const teamCivs = store.state.teamCivs
-		const isTeamEmpty = computed(() => {
-			for (let index = 0; index < teamSize.value; index += 1) {
-				if (teamCivs[index]) {
-					return false
-				}
-			}
-			return true
-		})
-
-		return {
-			teamSize,
-			mapStyles,
-			mapStyle,
-			teamCivs,
-			isTeamEmpty,
+export const isTeamEmpty = computed(() => {
+	for (let index = 0; index < teamSize.value; index += 1) {
+		if (teamCivs[index]) {
+			return false
 		}
-	},
+	}
+	return true
 })
 </script>
