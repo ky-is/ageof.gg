@@ -6,6 +6,8 @@ export const enum EffectType {
 	UnitModifier = 4,
 	UnitMultiplier = 5,
 	ResourceMultiplier = 6,
+	ResourceSet = 10,
+	ResourceAdd = 11, //TODO verify
 	ModifyTechCost = 101,
 	DisableTech = 102,
 	ModifyTechTime = 103,

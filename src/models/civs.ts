@@ -23,17 +23,34 @@ function getAgeFrom ({ requires }: {requires: number[]}, minimumAge: CivAge | un
 	return minimumAge
 }
 
-function getFocusesFor (name: string, type: number, a: number, b: number, c: number, d: number) {
-	let unitID, unitClassID
+const unitFocuses: {[unitName: string]: Focus[] | undefined} = {
+	'Archery Range': [Focus.Archery, Focus.ArcheryAnti],
+	'Barracks': [Focus.Infantry, Focus.CavalryAnti],
+	'Blacksmith': [Focus.Military],
+	'Dock': [Focus.Navy],
+	'Harbor': [Focus.Navy],
+	'Siege Workshop': [Focus.Siege],
+	'Stable': [Focus.Cavalry],
+	'University': [Focus.Military],
+}
+
+function getFocusesFor (id: number, type: number, a: number, b: number, c: number, d: number) {
+	let unitID = -1, unitClassID = -1, unitAttribute = -1
 	switch (type) {
-	case EffectType.UnitEnable:
-	case EffectType.UnitMultiplier:
-		if (b !== -1) {
-			unitClassID = b
-		}
-	case EffectType.UnitModifier:
 	case EffectType.UnitSetModifier:
-		unitID = a
+	case EffectType.UnitEnable:
+	case EffectType.UnitModifier:
+	case EffectType.UnitMultiplier:
+		if (a !== -1) {
+			unitID = a
+		} else if (b !== -1) {
+			unitClassID = b
+		} else {
+			console.error('Invalid focus', name, type, a, b, c, d)
+		}
+		if (c !== -1) {
+			unitAttribute = c
+		}
 		break
 
 	case EffectType.UnitUpgrade:
@@ -42,6 +59,8 @@ function getFocusesFor (name: string, type: number, a: number, b: number, c: num
 
 	case EffectType.ResourceModifier:
 	case EffectType.ResourceMultiplier:
+	case EffectType.ResourceSet:
+	case EffectType.ResourceAdd:
 		const resourceInfo = ResourceTypeInfo[a]
 		if (resourceInfo) {
 			return resourceInfo.focuses
@@ -50,22 +69,48 @@ function getFocusesFor (name: string, type: number, a: number, b: number, c: num
 		break
 	}
 
-	if (unitID && unitID !== -1) {
+	let focuses: Focus[] = []
+	if (unitID !== -1) {
 		const unit = getUnit(unitID)
 		if (unit) {
-			unitClassID = unit.class
+			const uFocuses = unitFocuses[unit.name]
+			if (uFocuses) {
+				focuses = uFocuses
+			} else {
+				unitClassID = unit.class
+			}
 		} else {
 			console.error('Unknown unit', unitID, name, type, a, b, c, d)
 		}
 	}
-	if (unitClassID) {
+	if (unitClassID !== -1) {
 		const unitClass = UnitClassInfo[unitClassID]
 		if (unitClass) {
-			return unitClass.focuses
+			for (const focus of unitClass.focuses) {
+				if (!focuses.includes(focus)) {
+					focuses.push(focus)
+				}
+			}
+		} else {
+			console.error('Unknown UnitClassInfo', unitID, unitClassID, name, type, a, b, c, d)
 		}
-		console.error('Unknown UnitClassInfo', unitID, unitClassID, name, type, a, b, c, d)
 	}
-	return []
+	if (unitAttribute !== -1) {
+		let extraFocus
+		if (unitAttribute === UnitAttribute.SearchRadius || unitAttribute === UnitAttribute.LineOfSight) {
+			extraFocus = Focus.Vision
+		}
+		if (unitAttribute === UnitAttribute.ResourceStorage) {
+			extraFocus = Focus.PopSpace
+		}
+		if (extraFocus && !focuses.includes(extraFocus)) {
+			focuses.push(extraFocus)
+		}
+	}
+	if (id === 721) {
+		console.log(unitID, unitClassID, unitAttribute, focuses, type, a, b, c, d)
+	}
+	return focuses
 }
 
 const unitAge: {[id: number]: number} = {
@@ -155,7 +200,7 @@ export class EffectCommand {
 	c: number
 	d: number
 
-	constructor (id: number, name: string, [ type, a, b, c, d ]: EffectCommandData) {
+	constructor (id: number, [ type, a, b, c, d ]: EffectCommandData) {
 		this.id = id
 		const isTeam = type >= 10 && type < 20
 		this.team = isTeam
@@ -164,7 +209,7 @@ export class EffectCommand {
 		this.b = b
 		this.c = c
 		this.d = d
-		this.focuses = getFocusesFor(name, type, a, b, c, d)
+		this.focuses = getFocusesFor(id, type, a, b, c, d)
 	}
 
 	private makeDescription (segments: string[], age: CivAge | undefined, nameableID: number | undefined, nameable: {name: string} | undefined, modifyAge?: boolean): EffectDescription {
@@ -260,7 +305,7 @@ export class EffectCommand {
 			const unitClass = UnitClassInfo[this.b]
 
 			if (!multipliedUnit && !unitClass) {
-				console.error(this.id, multipliedUnitID !== -1 ? `Unknown Unit ${multipliedUnitID}` : `Unknown UnitClassInfo ${this.b}`, this.type, this.a, this.b, this.c, this.d)
+				// console.error(this.id, multipliedUnitID !== -1 ? `Unknown Unit ${multipliedUnitID}` : `Unknown UnitClassInfo ${this.b}`, this.type, this.a, this.b, this.c, this.d)
 				break
 			}
 			if (!unitAttribute) {
@@ -357,7 +402,7 @@ export class CivTech {
 		this.costs = costs
 		this.time = time
 		this.icon = icon
-		this.commands = effect && effect.commands ? effect.commands.map(command => new EffectCommand(id, name, command)) : [] //TODO Vite OC support
+		this.commands = effect && effect.commands ? effect.commands.map(command => new EffectCommand(id, command)) : [] //TODO Vite OC support
 		this.team = team || !!this.commands.find(command => command.team)
 		this.focuses = Array.from(new Set(this.commands.flatMap(command => command.focuses)))
 		for (const cost of costs) {

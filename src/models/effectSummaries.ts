@@ -874,6 +874,13 @@ export const effectSummaries: {[effectID: number]: EffectSummary[] | undefined} 
 		},
 	],
 
+	// Slavs
+	721: [
+		{
+			replaceName: 'Military buildings',
+		},
+	],
+
 	// Spanish
 	[-490]: [
 		{

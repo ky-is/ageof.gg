@@ -34,6 +34,7 @@ export enum Focus {
 	Monk = 'monk',
 	MonkAnti = 'anti-monk',
 	Navy = 'navy',
+	PopSpace = 'population space',
 	Relic = 'relics',
 	Resources = 'resources',
 	ResourceFood = 'food',
@@ -45,6 +46,7 @@ export enum Focus {
 	Trash = 'trash',
 	UniqueUnits = 'unique unit',
 	Vision = 'vision',
+	Wall = 'wall'
 }
 
 export const enum Strength {
@@ -125,9 +127,14 @@ export const ResourceTypeInfo: {[id: string]: {name: string, unitID?: number, re
 		focuses: [Focus.ResourceGold],
 	},
 	4: {
+		name: 'Max population space',
+		requires: [],
+		focuses: [Focus.PopSpace],
+	},
+	10: {
 		name: 'Population space',
 		requires: [],
-		focuses: [],
+		focuses: [Focus.PopSpace],
 	},
 	32: {
 		name: 'Population max cap',
@@ -391,7 +398,7 @@ export const UnitClassInfo: {[id: number]: UnitClass | undefined} = {
 	},
 	27: {
 		name: 'Wall',
-		focuses: [Focus.Defense],
+		focuses: [Focus.Wall, Focus.Defense],
 	},
 	35: {
 		name: 'Petard',
@@ -403,7 +410,7 @@ export const UnitClassInfo: {[id: number]: UnitClass | undefined} = {
 	},
 	39: {
 		name: 'Wall', // Gate
-		focuses: [Focus.Defense],
+		focuses: [Focus.Wall, Focus.Defense],
 	},
 	43: {
 		name: 'Monk',
