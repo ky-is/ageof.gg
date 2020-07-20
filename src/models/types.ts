@@ -1,16 +1,3 @@
-export const enum EffectType {
-	UnitSetModifier = 0,
-	ResourceModifier = 1,
-	UnitEnable = 2,
-	UnitUpgrade = 3,
-	UnitModifier = 4,
-	UnitMultiplier = 5,
-	ResourceMultiplier = 6,
-	ModifyTechCost = 101,
-	DisableTech = 102,
-	ModifyTechTime = 103,
-}
-
 export interface EffectDescription {
 	id: number
 	title: string | null
@@ -258,6 +245,10 @@ export const AmountTypeInfo: {[id: string]: string} = {
 	24: 'boars',
 	30: 'camels',
 	31: 'armor ignored',
+}
+
+export const enum CostType {
+	RelicsCaptured = 7
 }
 
 export const enum UnitAttribute {

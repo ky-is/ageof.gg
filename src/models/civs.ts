@@ -1,11 +1,11 @@
-import civs from '/@/assets/data/civs'
-import techs from '/@/assets/data/techs'
-import units from '/@/assets/data/units'
+import civs from '/@/assets/generated/civs'
+import techs from '/@/assets/generated/techs'
+import units from '/@/assets/generated/units'
 
-import { EffectCommandData, TechData, CostData, UnitData, CostType } from '/@/assets/types'
+import { EffectType, EffectCommandData, TechData, CostData, UnitData } from '/@/assets/types'
 import type { CivData } from '/@/assets/types'
 
-import { EffectType, Focus, ResourceTypeInfo, CivAge, UnitAttribute, UnitAttributeInfo, UnitClassInfo, EffectDescription, AmountTypeInfo } from '/@/models/types'
+import { CostType, Focus, ResourceTypeInfo, CivAge, UnitAttribute, UnitAttributeInfo, UnitClassInfo, EffectDescription, AmountTypeInfo } from '/@/models/types'
 import { effectSummaries } from '/@/models/effectSummaries'
 
 const primaryFocuses: {[key: string]: Focus[]} = {

@@ -1,3 +1,16 @@
+export const enum EffectType {
+	UnitSetModifier = 0,
+	ResourceModifier = 1,
+	UnitEnable = 2,
+	UnitUpgrade = 3,
+	UnitModifier = 4,
+	UnitMultiplier = 5,
+	ResourceMultiplier = 6,
+	ModifyTechCost = 101,
+	DisableTech = 102,
+	ModifyTechTime = 103,
+}
+
 export const enum ResourceType {
 	MonkConversionEnabled = 27,
 	BuildingConversionEnabled = 28,
@@ -5,14 +18,11 @@ export const enum ResourceType {
 	Theocracy = 193,
 }
 
-export const enum CostType {
-	RelicsCaptured = 7
-}
-
 export type CostData = [number, number, number]
 
 export type EffectCommandData = [number, number, number, number, number]
-export interface EffectData {
+
+interface EffectData {
 	id: number
 	commands: EffectCommandData[]
 }

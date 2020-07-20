@@ -11,7 +11,7 @@
 <script setup="props" lang="ts">
 import { computed } from 'vue'
 
-import techs from '/@/assets/data/techs'
+import techs from '/@/assets/generated/techs'
 
 import UIStack from '/@/views/ui/Stack.vue'
 export default { components: { UIStack } }

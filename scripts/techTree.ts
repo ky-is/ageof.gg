@@ -1,6 +1,5 @@
 import type { TreeCiv, TreeCommand, TreeEffect, TreeTech } from './types'
-import { EffectType } from '/@/models/types'
-import { CivData, TechData, UnitData, EffectCommandData, CostData, TreeBranchData, ResourceType } from '/@/assets/types'
+import { EffectType, CivData, TechData, UnitData, EffectCommandData, CostData, TreeBranchData, ResourceType } from '/@/assets/types'
 
 const fs = require('fs')
 const path = require('path')
@@ -421,7 +420,7 @@ for (const civKey in civs) {
 
 // Output
 
-const outputPath = path.join(__dirname, '../src/assets/data')
+const outputPath = path.join(__dirname, '../src/assets/generated')
 fs.mkdirSync(outputPath, { recursive: true })
 
 function writeFile (name: string, prefix: string, object: any, suffix: string) {

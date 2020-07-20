@@ -1,7 +1,7 @@
-import { EffectType, CivAge, UnitAttribute } from '/@/models/types'
-import { TreeBranchData } from '/@/assets/types'
+import { CivAge, UnitAttribute } from '/@/models/types'
+import { EffectType, TreeBranchData } from '/@/assets/types'
 
-import trees from '/@/assets/data/trees'
+import trees from '/@/assets/generated/trees'
 
 export const unitCategoryLines: [string, TreeBranchData[]][] = [
 	[
