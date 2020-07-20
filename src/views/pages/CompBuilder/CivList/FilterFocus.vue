@@ -19,6 +19,8 @@ import { computed } from 'vue'
 
 import { Focus } from '/@/models/types'
 
+export default {}
+
 declare const props: {
 	selected: string
 }

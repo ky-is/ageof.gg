@@ -47,6 +47,7 @@ export const teamCivs = state.teamCivs
 
 export const maxTeamSize = 4
 export const teamSize = ref(3)
+
 export const mapStyles = ['open', 'closed', 'water', 'hybrid']
 export const mapStyle = ref(mapStyles[0])
 
