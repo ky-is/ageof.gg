@@ -3,7 +3,7 @@
 		<h2 v-show="false">Team composition</h2>
 		<UIStack direction="col" switchAt="lg">
 			<UIStack direction="col">
-				<UIStack direction="row" alignment="baseline" class="px-4 py-2">
+				<UIStack direction="row" alignment="baseline" class="mx-4 py-2">
 					<label for="teamSize" class="mr-px text-secondary">Team size:</label>
 					<select id="teamSize" v-model="teamSize" class="ui-select">
 						<option v-for="size in maxTeamSize" :key="size" :value="size" class="ui-option">
@@ -16,6 +16,26 @@
 							{{ map }}
 						</option>
 					</select>
+				</UIStack>
+				<hr class="border-gray-700">
+				<UIStack direction="col" class="mt-2 mx-4">
+					<h3 class="smallcaps text-secondary">team bonuses</h3>
+					<div
+						v-for="[focus, civsAndBonuses] in teamSynergies" :key="focus"
+						:title="civsAndBonuses[1].map(civAndBonus => civAndBonus[0].name).join(', ')"
+						class="group"
+					>
+						<span class="capitalize">{{ focus }}</span>
+						<span class="text-sm text-secondary"> +{{ civsAndBonuses[1].length }}</span>
+						<div class="hidden group-hover:block">
+							<!-- TODO cache -->
+							<div v-for="civAndBonus in civsAndBonuses[1]" :key="civAndBonus">
+								<div v-for="description in civAndBonus[1].getDescriptions()" :key="description.segments">
+									{{ description.segments.join(' ') }}
+								</div>
+							</div>
+						</div>
+					</div>
 				</UIStack>
 			</UIStack>
 			<UIStack direction="col" class="flex-grow">
@@ -37,19 +57,21 @@
 import { computed, ref } from 'vue'
 
 import { useStore } from '/@/models/store'
+import { Focus } from '/@/models/types'
+import { CivEntry, CivTech } from '/@/models/civs'
 
 import UIStack from '/@/views/ui/Stack.vue'
 import TeamCivEntry from './TeamCivEntry.vue'
 export default { components: { TeamCivEntry, UIStack } }
 
 const { state } = useStore()
-export const teamCivs = state.teamCivs
+export const teamCivs = state.teamCivs as (CivEntry | null)[]
 
 export const maxTeamSize = 4
-export const teamSize = ref(3)
+export const teamSize = ref(maxTeamSize - 1)
 
 export const mapStyles = ['open', 'closed', 'water', 'hybrid']
-export const mapStyle = ref(mapStyles[0])
+export const mapStyle = ref('hybrid')
 
 export const isTeamEmpty = computed(() => {
 	for (let index = 0; index < teamSize.value; index += 1) {
@@ -58,5 +80,32 @@ export const isTeamEmpty = computed(() => {
 		}
 	}
 	return true
+})
+
+const synergies = computed(() => {
+	const synergiesByFocus = new Map<Focus, [[CivEntry, CivTech][], [CivEntry, CivTech][]]>()
+	for (const civ of teamCivs) {
+		if (!civ) {
+			continue
+		}
+		for (const bonus of civ.bonuses) {
+			const focuses = bonus.focuses
+			const focusIndex = bonus.team ? 1 : 0
+			for (const focus of focuses) {
+				let synergy = synergiesByFocus.get(focus)
+				if (!synergy) {
+					synergy = [ [], [] ]
+					synergiesByFocus.set(focus, synergy)
+				}
+				synergy[focusIndex].push([civ, bonus])
+			}
+		}
+	}
+	return Array.from(synergiesByFocus.entries())
+		.sort((a, b) => (a[1][0].length + a[1][1].length) - (b[1][0].length + b[1][1].length))
+})
+
+export const teamSynergies = computed(() => {
+	return synergies.value.filter(synergy => synergy[1][1].length)
 })
 </script>

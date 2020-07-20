@@ -155,7 +155,7 @@ export class EffectCommand {
 	c: number
 	d: number
 
-	constructor (id: number, [ type, a, b, c, d ]: EffectCommandData) {
+	constructor (id: number, name: string, [ type, a, b, c, d ]: EffectCommandData) {
 		this.id = id
 		const isTeam = type >= 10 && type < 20
 		this.team = isTeam
@@ -334,7 +334,7 @@ export class EffectCommand {
 	}
 }
 
-class CivTech {
+export class CivTech {
 	id: number
 	name: string
 	team: boolean
@@ -357,7 +357,7 @@ class CivTech {
 		this.costs = costs
 		this.time = time
 		this.icon = icon
-		this.commands = effect && effect.commands ? effect.commands.map(command => new EffectCommand(this.id, command)) : [] //TODO Vite OC support
+		this.commands = effect && effect.commands ? effect.commands.map(command => new EffectCommand(id, name, command)) : [] //TODO Vite OC support
 		this.team = team || !!this.commands.find(command => command.team)
 		this.focuses = Array.from(new Set(this.commands.flatMap(command => command.focuses)))
 		for (const cost of costs) {
