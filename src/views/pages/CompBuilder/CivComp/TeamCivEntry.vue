@@ -40,7 +40,7 @@ watch(() => props.civ, () => {
 })
 
 export function onDrop (event: DragEvent) {
-	const civName = event.dataTransfer?.getData('text/civ')
+	const civName = event.dataTransfer && event.dataTransfer.getData('text/civ') //TODO Vite OC support
 	const civ = civEntries.find(civ => civ.name === civName)
 	if (!civ) {
 		return console.error('drop', civName, event)

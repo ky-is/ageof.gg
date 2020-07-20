@@ -357,7 +357,7 @@ class CivTech {
 		this.costs = costs
 		this.time = time
 		this.icon = icon
-		this.commands = effect?.commands?.map(command => new EffectCommand(this.id, command)) ?? []
+		this.commands = effect && effect.commands ? effect.commands.map(command => new EffectCommand(this.id, command)) : [] //TODO Vite OC support
 		this.team = team || !!this.commands.find(command => command.team)
 		this.focuses = Array.from(new Set(this.commands.flatMap(command => command.focuses)))
 		for (const cost of costs) {
@@ -366,7 +366,7 @@ class CivTech {
 				break
 			}
 		}
-		this.castle = building === 82 || (!building && requires[0] === CivAge.Castle && this.commands[0]?.type === EffectType.UnitEnable)
+		this.castle = building === 82 || (!building && requires[0] === CivAge.Castle && this.commands[0] && this.commands[0].type === EffectType.UnitEnable) //TODO Vite OC support
 	}
 
 	private getDescriptionFor (command: EffectCommand) {
@@ -410,7 +410,7 @@ class CivTech {
 		let previousDescription: EffectDescription | undefined = undefined
 		for (let index = describeCommands.length - 1; index >= 0; index -= 1) {
 			const command = describeCommands[index]
-			const commandSummaries = summaries?.filter(summary => {
+			const commandSummaries = summaries && summaries.filter(summary => { //TODO Vite OC support
 				if (summary.type !== undefined && summary.type !== command.type) {
 					return false
 				}
@@ -422,14 +422,14 @@ class CivTech {
 				}
 				return true
 			})
-			if (commandSummaries?.find(summary => summary.delete)) {
+			if (commandSummaries && commandSummaries.find(summary => summary.delete)) { //TODO Vite OC support
 				continue
 			}
 			const description = this.getDescriptionFor(command)
 			if (!description) {
 				continue
 			}
-			if (previousDescription?.modifyAge) {
+			if (previousDescription && previousDescription.modifyAge) { //TODO Vite OC support
 				console.log(this.name, description.ages, previousDescription.ages)
 				description.ages = previousDescription.ages
 			}
