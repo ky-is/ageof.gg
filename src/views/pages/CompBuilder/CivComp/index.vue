@@ -19,21 +19,34 @@
 				</UIStack>
 				<hr class="border-gray-700">
 				<UIStack direction="col" class="mt-2 mx-4">
-					<h3 class="smallcaps text-secondary">team bonuses</h3>
+					<h3 class="smallcaps text-secondary">synergies</h3>
 					<div
-						v-for="[focus, civsAndBonuses] in teamSynergies" :key="focus"
-						:title="civsAndBonuses[1].map(civAndBonus => civAndBonus[0].name).join(', ')"
-						class="group"
+						v-for="[focus, [teamCivsAndBonuses, uniqueCivsAndBonuses]] in teamSynergies" :key="focus"
+						class="group relative cursor-help"
 					>
 						<span class="capitalize">{{ focus }}</span>
-						<span class="text-sm text-secondary"> +{{ civsAndBonuses[1].length }}</span>
-						<div class="hidden group-hover:block">
+						<span v-if="teamCivsAndBonuses.length"
+							class="text-sm text-bonus-team"
+							:title="teamCivsAndBonuses.map(civAndBonus => civAndBonus[0].name).join(', ')"
+						>
+							+{{ teamCivsAndBonuses.length }}
+						</span>
+						<span
+							class="text-sm text-secondary"
+							:title="uniqueCivsAndBonuses.map(civAndBonus => civAndBonus[0].name).join(', ')"
+						>
+							+{{ uniqueCivsAndBonuses.length }}
+						</span>
+						<div class="hidden group-hover:block absolute bg-gray-950 z-50 pointer-events-none">
 							<!-- TODO cache -->
-							<div v-for="civAndBonus in civsAndBonuses[1]" :key="civAndBonus">
-								<div v-for="description in civAndBonus[1].getDescriptions()" :key="description.segments">
-									{{ description.segments.join(' ') }}
+							<template v-for="civsAndBonuses in [teamCivsAndBonuses, uniqueCivsAndBonuses]">
+								<div v-for="[civ, tech] in civsAndBonuses" :key="tech.id" class="text-sm">
+									<CivIcon :civ="civ" class="w-5" />
+									<span v-for="description in deduplicateDescriptions(tech.getDescriptions())" :key="description.segments">
+										{{ description.segments.join(' ') }}
+									</span>
 								</div>
-							</div>
+							</template>
 						</div>
 					</div>
 				</UIStack>
@@ -58,11 +71,14 @@ import { computed, ref } from 'vue'
 
 import { useStore } from '/@/models/store'
 import { Focus } from '/@/models/types'
-import { CivEntry, CivTech } from '/@/models/civs'
+import { CivEntry, CivTech, deduplicateDescriptions } from '/@/models/civs'
 
+import CivIcon from '/@/views/components/CivIcon.vue'
 import UIStack from '/@/views/ui/Stack.vue'
 import TeamCivEntry from './TeamCivEntry.vue'
-export default { components: { TeamCivEntry, UIStack } }
+export default { components: { CivIcon, TeamCivEntry, UIStack } }
+
+export { deduplicateDescriptions }
 
 const { state } = useStore()
 export const teamCivs = state.teamCivs as (CivEntry | null)[]
@@ -90,7 +106,7 @@ const synergies = computed(() => {
 		}
 		for (const bonus of civ.bonuses) {
 			const focuses = bonus.focuses
-			const focusIndex = bonus.team ? 1 : 0
+			const focusIndex = bonus.team ? 0 : 1
 			for (const focus of focuses) {
 				let synergy = synergiesByFocus.get(focus)
 				if (!synergy) {
@@ -102,7 +118,7 @@ const synergies = computed(() => {
 		}
 	}
 	return Array.from(synergiesByFocus.entries())
-		.sort((a, b) => (a[1][0].length + a[1][1].length) - (b[1][0].length + b[1][1].length))
+		.sort((a, b) => (b[1][0].length + b[1][1].length) - (a[1][0].length + a[1][1].length))
 })
 
 export const teamSynergies = computed(() => {

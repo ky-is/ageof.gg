@@ -541,6 +541,56 @@ function dedupe<T> (array: T[]): T[] {
 	return Array.from(new Set(array))
 }
 
+export function deduplicateDescriptions (descriptions: EffectDescription[]) {
+	const descriptionsByText: {[text: string]: EffectDescription[]} = {}
+	// Group summarized descriptions
+	for (const description of descriptions) {
+		const key = (description.title ?? '') + description.segments.join('')
+		if (descriptionsByText[key]) {
+			descriptionsByText[key].push(description)
+		} else {
+			descriptionsByText[key] = [ description ]
+		}
+	}
+	// Combine data for grouped descriptions
+	let results: EffectDescription[] = []
+	for (const key in descriptionsByText) {
+		const groupDescriptions = descriptionsByText[key]
+		const resultDescription = groupDescriptions[0]
+		for (let index = groupDescriptions.length - 1; index > 0; index -= 1) {
+			const description = groupDescriptions[index]
+			if (description.icon) {
+				resultDescription.icon = description.icon
+			}
+			if (description.extension) {
+				resultDescription.extension = description.extension
+			}
+			for (const newAge of description.ages) {
+				if (!resultDescription.ages.includes(newAge)) {
+					resultDescription.ages.push(newAge)
+				}
+			}
+			const newName = description.names[0]
+			if (newName && !resultDescription.names.includes(newName)) {
+				resultDescription.names.push(newName)
+			}
+			for (const requirement of description.requires) {
+				if (!resultDescription.requires.includes(requirement)) {
+					resultDescription.requires.push(requirement)
+				}
+			}
+		}
+		resultDescription.ages = resultDescription.ages.sort(sortAges)
+		if (resultDescription.extension) {
+			resultDescription.segments.push(resultDescription.extension)
+			resultDescription.extension = undefined
+		}
+		results.push(resultDescription)
+	}
+	results.sort(sortByAge)
+	return results
+}
+
 export class CivEntry {
 	name: string
 	primaryFocuses: Focus[]
@@ -568,54 +618,7 @@ export class CivEntry {
 	}
 
 	getDescriptions () {
-		const descriptions = this.bonuses.flatMap(bonus => bonus.getDescriptions())
-		const descriptionsByText: {[text: string]: EffectDescription[]} = {}
-		// Group summarized descriptions
-		for (const description of descriptions) {
-			const key = (description.title ?? '') + description.segments.join('')
-			if (descriptionsByText[key]) {
-				descriptionsByText[key].push(description)
-			} else {
-				descriptionsByText[key] = [ description ]
-			}
-		}
-		// Combine data for grouped descriptions
-		let results: EffectDescription[] = []
-		for (const key in descriptionsByText) {
-			const groupDescriptions = descriptionsByText[key]
-			const resultDescription = groupDescriptions[0]
-			for (let index = groupDescriptions.length - 1; index > 0; index -= 1) {
-				const description = groupDescriptions[index]
-				if (description.icon) {
-					resultDescription.icon = description.icon
-				}
-				if (description.extension) {
-					resultDescription.extension = description.extension
-				}
-				for (const newAge of description.ages) {
-					if (!resultDescription.ages.includes(newAge)) {
-						resultDescription.ages.push(newAge)
-					}
-				}
-				const newName = description.names[0]
-				if (newName && !resultDescription.names.includes(newName)) {
-					resultDescription.names.push(newName)
-				}
-				for (const requirement of description.requires) {
-					if (!resultDescription.requires.includes(requirement)) {
-						resultDescription.requires.push(requirement)
-					}
-				}
-			}
-			resultDescription.ages = resultDescription.ages.sort(sortAges)
-			if (resultDescription.extension) {
-				resultDescription.segments.push(resultDescription.extension)
-				resultDescription.extension = undefined
-			}
-			results.push(resultDescription)
-		}
-		results.sort(sortByAge)
-		return results
+		return deduplicateDescriptions(this.bonuses.flatMap(bonus => bonus.getDescriptions()))
 	}
 }
 

@@ -41,7 +41,7 @@
 				</ul>
 			</UIStack>
 			<UIStack direction="col" class="mt-1 lg:ml-4 text-sm lg:w-1/2">
-				<h3 class="-mb-1 text-lg">Tech Tree</h3>
+				<h3 v-show="false" class="-mb-1 text-lg">Tech Tree</h3>
 				<div v-for="[category, unitLines] in unitCategoryLines" :key="category">
 					<h4 class="mt-1 smallcaps text-secondary">{{ category }}</h4>
 					<div v-for="line in unitLines" :key="line.name">
