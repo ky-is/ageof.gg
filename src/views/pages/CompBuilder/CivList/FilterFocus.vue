@@ -17,7 +17,7 @@
 <script setup="props, { emit }" lang="ts">
 import { computed } from 'vue'
 
-import { Focus } from '/@/models/types'
+import { Focus } from '/@/assets/types'
 
 export default {}
 

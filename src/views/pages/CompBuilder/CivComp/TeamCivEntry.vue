@@ -21,7 +21,9 @@
 <script setup="props" lang="ts">
 import { ref, watch } from 'vue'
 
-import { CivEntry, civEntries } from '/@/models/civs'
+import type { CivData } from '/@/assets/types'
+import civEntries from '/@/assets/generated/civs'
+
 import { useStore } from '/@/models/store'
 
 import CivIcon from '/@/views/components/CivIcon.vue'
@@ -29,7 +31,7 @@ export default { components: { CivIcon } }
 
 declare const props: {
 	index: 0 | 1 | 2 | 3
-	civ?: CivEntry
+	civ?: CivData
 }
 
 export const { commit } = useStore()
@@ -40,7 +42,7 @@ watch(() => props.civ, () => {
 })
 
 export function onDrop (event: DragEvent) {
-	const civName = event.dataTransfer && event.dataTransfer.getData('text/civ') //TODO Vite OC support
+	const civName = event.dataTransfer?.getData('text/civ')
 	const civ = civEntries.find(civ => civ.name === civName)
 	if (!civ) {
 		return console.error('drop', civName, event)

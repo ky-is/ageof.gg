@@ -7,9 +7,9 @@
 					<UIStack direction="col" class="ml-1">
 						<h2 class="text-2xl font-light">{{ selectedCiv.name }}</h2>
 						<table class="leading-tight">
-							<FocusRow title="major" color="text-bonus-major" :focuses="selectedCiv.primaryFocuses" />
-							<FocusRow title="team" color="text-bonus-team" :focuses="selectedCiv.teamFocuses" />
-							<FocusRow title="minor" color="text-bonus-general" :focuses="selectedCiv.secondaryFocuses" />
+							<FocusRow title="major" color="text-bonus-major" :focuses="selectedCiv.focuses.primary" />
+							<FocusRow title="team" color="text-bonus-team" :focuses="selectedCiv.focuses.team" />
+							<FocusRow title="minor" color="text-bonus-general" :focuses="selectedCiv.focuses.secondary" />
 						</table>
 					</UIStack>
 					<!-- <UIStack direction="row" alignment="center" justification="center" class="ml-4">
@@ -19,23 +19,23 @@
 				<ul class="mt-2">
 					<UIStack v-for="[label, bonuses] in groupedBonuses" :key="label" direction="col">
 						<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
-						<li v-for="bonus in bonuses" :key="bonus.segments" class="ml-3  group">
+						<li v-for="bonus in bonuses" :key="bonus.body" class="ml-3  group">
 							<img
-								v-for="ageID in bonus.ages.length ? bonus.ages : [darkAge]" :key="ageID"
+								v-for="ageID in (bonus.ages || [darkAge])" :key="ageID"
 								:src="`/images/ages/${ageID}.png`" :alt="CivAgeName[ageID] + ' age'"
 								class="bonus-icon -ml-3"
 							>
 							<img
 								v-if="bonus.icon"
-								:src="`/images/techs/${bonus.icon}.png`" :alt="`${CivAgeName[bonus.ages[0]]} age unique tech`"
+								:src="`/images/techs/${bonus.icon}.png`" :alt="`${CivAgeName[bonus.ages ? bonus.ages[0] : darkAge]} age unique tech`"
 								class="bonus-icon"
 							>
 							<!-- SAMPLE -->
-							<span class="text-secondary text-sm">{{ bonus.id }} : {{ bonus.type }} {{ bonus.a }}&nbsp;</span>
+							<!-- <span class="text-secondary text-sm">{{ bonus.debug }}&nbsp;</span> -->
 							<span v-if="bonus.title" class="text-secondary text-bold">{{ bonus.title }}: </span>
-							<span>{{ bonus.segments.join(' ') }}</span>
-							<span v-if="bonus.names.length > 1" class="text-secondary  hidden group-hover:inline"> ({{ bonus.names.join(', ') }})</span>
-							<span v-if="bonus.requires.length" class="text-secondary  hidden group-hover:inline"> (requires {{ bonus.requires.join(', ') }})</span>
+							<span>{{ bonus.body }}</span>
+							<span v-if="bonus.names" class="text-secondary  hidden group-hover:inline"> ({{ bonus.names.join(', ') }})</span>
+							<span v-if="bonus.requires" class="text-secondary  hidden group-hover:inline"> (requires {{ bonus.requires.join(', ') }})</span>
 						</li>
 					</UIStack>
 				</ul>
@@ -64,7 +64,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { BonusType, EffectDescription, CivAge } from '/@/models/types'
 import { useStore } from '/@/models/store'
 
 import UIStack from '/@/views/ui/Stack.vue'
@@ -73,8 +72,10 @@ import LineUpgrades from '/@/views/pages/CompBuilder/CivInspector/LineUpgrades.v
 import FocusRow from './FocusRow.vue'
 export default { components: { CivIcon, FocusRow, LineUpgrades, UIStack } }
 
-export { unitCategoryLines } from '/@/models/effectSummaries'
-export { CivAgeName } from '/@/models/types'
+import { CivAgeName, EffectDescription, CivAge } from '/@/assets/types'
+import unitCategoryLines from '/@/assets/generated/unitLines'
+
+export { CivAgeName, unitCategoryLines }
 
 export const darkAge = CivAge.Dark
 
@@ -92,7 +93,7 @@ export const groupedBonuses = computed(() => {
 		['general', []],
 		['castle', []],
 	]
-	for (const description of selectedCiv.value.getDescriptions()) {
+	for (const description of selectedCiv.value.descriptions) {
 		let index: number
 		if (description.team) {
 			index = 0

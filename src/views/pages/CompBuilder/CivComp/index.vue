@@ -37,14 +37,12 @@
 						>
 							+{{ uniqueCivsAndBonuses.length }}
 						</span>
-						<div class="hidden group-hover:block absolute bg-gray-950 z-50 pointer-events-none">
-							<!-- TODO cache -->
+						<div class="hidden group-hover:block absolute p-2 bg-gray-950 z-50 pointer-events-none">
 							<template v-for="civsAndBonuses in [teamCivsAndBonuses, uniqueCivsAndBonuses]">
-								<div v-for="[civ, tech] in civsAndBonuses" :key="tech.id" class="text-sm">
-									<CivIcon :civ="civ" class="w-5" />
-									<span v-for="description in deduplicateDescriptions(tech.getDescriptions())" :key="description.segments">
-										{{ description.segments.join(' ') }}
-									</span>
+								<div v-for="[civ, description] in civsAndBonuses" :key="description.body" class="text-sm">
+									<div v-if="description.team" class="inline-block w-5 text-base text-center">🌍</div>
+									<CivIcon v-else :civ="civ" class="w-5" />
+									{{ description.body }}
 								</div>
 							</template>
 						</div>
@@ -69,19 +67,17 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
+import type { Focus, EffectDescription, CivData } from '/@/assets/types'
+
 import { useStore } from '/@/models/store'
-import { Focus } from '/@/models/types'
-import { CivEntry, CivTech, deduplicateDescriptions } from '/@/models/civs'
 
 import CivIcon from '/@/views/components/CivIcon.vue'
 import UIStack from '/@/views/ui/Stack.vue'
 import TeamCivEntry from './TeamCivEntry.vue'
 export default { components: { CivIcon, TeamCivEntry, UIStack } }
 
-export { deduplicateDescriptions }
-
 const { state } = useStore()
-export const teamCivs = state.teamCivs as (CivEntry | null)[]
+export const teamCivs = state.teamCivs as (CivData | null)[]
 
 export const maxTeamSize = 4
 export const teamSize = ref(maxTeamSize - 1)
@@ -99,21 +95,20 @@ export const isTeamEmpty = computed(() => {
 })
 
 const synergies = computed(() => {
-	const synergiesByFocus = new Map<Focus, [[CivEntry, CivTech][], [CivEntry, CivTech][]]>()
+	const synergiesByFocus = new Map<Focus, [[CivData, EffectDescription][], [CivData, EffectDescription][]]>()
 	for (const civ of teamCivs) {
 		if (!civ) {
 			continue
 		}
-		for (const bonus of civ.bonuses) {
-			const focuses = bonus.focuses
-			const focusIndex = bonus.team ? 0 : 1
-			for (const focus of focuses) {
+		for (const civDescription of civ.descriptions) {
+			const focusIndex = civDescription.team ? 0 : 1
+			for (const focus of civDescription.focuses) {
 				let synergy = synergiesByFocus.get(focus)
 				if (!synergy) {
 					synergy = [ [], [] ]
 					synergiesByFocus.set(focus, synergy)
 				}
-				synergy[focusIndex].push([civ, bonus])
+				synergy[focusIndex].push([civ, civDescription])
 			}
 		}
 	}

@@ -10,7 +10,7 @@
 </template>
 
 <script setup="props" lang="ts">
-import { Focus } from '/@/models/types'
+import type { Focus } from '/@/assets/types'
 
 import UIStack from '/@/views/ui/Stack.vue'
 export default { components: { UIStack } }

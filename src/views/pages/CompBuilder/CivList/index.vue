@@ -5,8 +5,9 @@
 			<FilterFocus v-model:selected="filterFocus" />
 		</UIStack>
 		<div class="w-full px-4 flex-gro overflow-y-scroll">
-			<FilterList v-if="filteredCivs[0].length" header="primary" :civs="filteredCivs[0]" :isFiltered="!!filterFocus" />
-			<FilterList v-if="filteredCivs[1].length" header="secondary" :civs="filteredCivs[1]" :isFiltered="!!filterFocus" />
+			<template v-for="[header, civs] in filteredCivs">
+				<FilterList v-if="civs.length" :key="header" header="header" :civs="civs" :isFiltered="!!filterFocus" />
+			</template>
 		</div>
 	</UIStack>
 </template>
@@ -14,8 +15,8 @@
 <script setup lang="ts">
 import { computed, ref, Ref } from 'vue'
 
-import { Focus } from '/@/models/types'
-import { civEntries, CivEntry, sortByName } from '/@/models/civs'
+import { CivData, Focus } from '/@/assets/types'
+import civEntries from '/@/assets/generated/civs'
 
 import UIStack from '/@/views/ui/Stack.vue'
 import FilterFocus from './FilterFocus.vue'
@@ -24,23 +25,30 @@ export default { components: { FilterFocus, FilterList, UIStack } }
 
 export const filterFocus: Ref<keyof typeof Focus | ''> = ref('')
 
+function sortByName (a: {name: string}, b: {name: string}): number {
+	return a.name.localeCompare(b.name)
+}
+
 export const filteredCivs = computed(() => {
 	const focusFilter = filterFocus.value ? Focus[filterFocus.value] : null
-	let primaryCivs: CivEntry[] = []
-	const secondaryCivs: CivEntry[] = []
+	const results: [string, CivData[]][] = [ ['team', []], ['primary', []], ['secondary', []] ]
 	if (!focusFilter) {
-		primaryCivs = civEntries.slice(1)
+		results[1][1] = civEntries.slice(1)
 	} else {
 		for (const civ of civEntries) {
-			if (civ.primaryFocuses.includes(focusFilter)) {
-				primaryCivs.push(civ)
-			} else if (civ.secondaryFocuses.includes(focusFilter)) {
-				secondaryCivs.push(civ)
-			} else {
-				//TODO team
+			let priorityIndex
+			if (civ.focuses.team.includes(focusFilter)) {
+				priorityIndex = 0
+			} else if (civ.focuses.primary.includes(focusFilter)) {
+				priorityIndex = 1
+			} else if (civ.focuses.secondary.includes(focusFilter)) {
+				priorityIndex = 2
+			}
+			if (priorityIndex !== undefined) {
+				results[priorityIndex][1].push(civ)
 			}
 		}
 	}
-	return [primaryCivs.sort(sortByName), secondaryCivs.sort(sortByName)]
+	return results
 })
 </script>

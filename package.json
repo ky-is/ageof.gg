@@ -4,7 +4,7 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
-		"generate:techtree": "tsc -p scripts/tsconfig.json && rm scripts/types.js && rm src/assets/types.js && node scripts/techTree.js"
+		"generate:techtree": "tsc -p scripts/tsconfig.json && node scripts/techTree.js && rm scripts/techTree.js && rm scripts/types/tree.js && rm src/assets/types.js && rm scripts/unitCategoryLines.js"
 	},
 	"dependencies": {
 		"tailwindcss": "^1.5.2",

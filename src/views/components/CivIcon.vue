@@ -9,12 +9,13 @@
 <script setup="props, { emit }" lang="ts">
 import { ref, watch } from 'vue'
 
-import { CivEntry } from '/@/models/civs'
+import type { CivData } from '/@/assets/types'
+
 import { useStore } from '/@/models/store'
 
 declare const props: {
-	civ: CivEntry
-	dragAction: 'move' | 'copy'
+	civ: CivData
+	dragAction?: 'move' | 'copy'
 }
 
 export const { commit } = useStore()
@@ -25,6 +26,9 @@ watch(dragging, dragging => {
 })
 
 export function onDragStart (event: DragEvent) {
+	if (!props.dragAction) {
+		return true
+	}
 	if (event.dataTransfer) {
 		dragging.value = true
 		event.dataTransfer.effectAllowed = props.dragAction

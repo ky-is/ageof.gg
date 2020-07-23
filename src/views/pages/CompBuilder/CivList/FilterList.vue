@@ -9,15 +9,15 @@
 			<CivIcon :civ="civ" dragAction="copy" class="w-10 -ml-1 mr-1" />
 			<UIStack direction="col" class="leading-tight">
 				<h3 class="text-lg font-light">{{ civ.name }}</h3>
-				<div class="text-sm text-secondary">{{ civ.primaryFocuses.join(' + ') }}</div>
+				<div class="text-sm text-secondary">{{ civ.focuses.primary.join(' + ') }}</div>
 			</UIStack>
 		</UIStack>
 	</UIStack>
 </template>
 
 <script setup="props" lang="ts">
+import type { CivData } from '/@/assets/types'
 import { useStore } from '/@/models/store'
-import { CivEntry } from '/@/models/civs'
 
 import UIStack from '/@/views/ui/Stack.vue'
 import CivIcon from '/@/views/components/CivIcon.vue'
@@ -25,7 +25,7 @@ export default { components: { CivIcon, UIStack } }
 
 declare const props: {
 	header: string
-	civs: CivEntry[][]
+	civs: CivData[][]
 	isFiltered: boolean
 }
 
