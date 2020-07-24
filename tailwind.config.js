@@ -22,7 +22,9 @@ module.exports = {
 		display: ['group-hover'],
 		flex: ['responsive'],
 	},
-	plugins: [],
+	plugins: [
+		require('@ky-is/tailwindcss-plugin-width-height')({ variants: [] }),
+	],
 	purge: {
 		content: [
 			'./index.html',

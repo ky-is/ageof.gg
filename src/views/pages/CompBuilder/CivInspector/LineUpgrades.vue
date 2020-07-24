@@ -2,7 +2,7 @@
 	<UIStack direction="row">
 		<div
 			v-for="[id, tech] in lineTechs" :key="tech.name"
-			class="w-2 h-2 mx-px" :class="!disableTechIDs.includes(id) ? 'bg-blue-500' : 'bg-gray-700'"
+			class="wh-2 mx-px" :class="!disableTechIDs.includes(id) ? 'bg-blue-500' : 'bg-gray-700'"
 			:title="tech.name"
 		/>
 	</UIStack>

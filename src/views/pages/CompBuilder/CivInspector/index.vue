@@ -3,7 +3,7 @@
 		<UIStack v-if="selectedCiv" direction="col" switchAt="lg" class="my-2">
 			<UIStack direction="col" class="lg:w-1/2 mb-4">
 				<UIStack direction="row">
-					<CivIcon :civ="selectedCiv" dragAction="copy" class="w-24 h-24 -ml-2" />
+					<CivIcon :civ="selectedCiv" dragAction="copy" class="wh-24 -ml-2" />
 					<UIStack direction="col" class="ml-1">
 						<h2 class="text-2xl font-light">{{ selectedCiv.name }}</h2>
 						<table class="leading-tight">
@@ -49,7 +49,7 @@
 							{{ line.name }}
 							<UIStack direction="col" class="ml-px pl-px">
 								<UIStack direction="row">
-									<div v-for="[unitID, techID] in line.units" :key="unitID" class="w-2 h-2 mx-px" :class="techID === undefined ? 'bg-yellow-700' : (!selectedCiv.disableTechIDs.includes(techID) ? 'bg-yellow-500' : 'bg-gray-700')" :title="units[unitID].name" />
+									<div v-for="[unitID, techID] in line.units" :key="unitID" class="wh-2 mx-px" :class="techID === undefined ? 'bg-yellow-700' : (!selectedCiv.disableTechIDs.includes(techID) ? 'bg-yellow-500' : 'bg-gray-700')" :title="units[unitID].name" />
 								</UIStack>
 								<LineUpgrades :upgrades="line.upgrades" :disableTechIDs="selectedCiv.disableTechIDs" class="mt-px" />
 							</UIStack>
@@ -111,6 +111,6 @@ export const groupedBonuses = computed(() => {
 
 <style lang="postcss" scoped>
 .bonus-icon {
-	@apply inline w-5 h-5 mr-px;
+	@apply inline wh-5 mr-px;
 }
 </style>

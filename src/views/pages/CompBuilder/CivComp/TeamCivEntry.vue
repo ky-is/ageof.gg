@@ -1,17 +1,17 @@
 <template>
-	<div class="w-24 h-24 relative" @dragover.prevent @drop.prevent="onDrop">
+	<div class="wh-24 relative" @dragover.prevent @drop.prevent="onDrop">
 		<div v-if="civ" class="absolute group" @mouseenter="commit.selectCiv('hovered', civ)" @mouseleave="commit.selectCiv('hovered', null)">
 			<CivIcon :civ="civ" dragAction="move" @click="commit.selectCiv('clicked', civ)" @dragging="isDragging = $event" />
 			<button
 				v-if="!isDragging"
-				class="center-center hidden group-hover:flex  absolute left-0 top-0 w-8 h-8 bg-black opacity-50 rounded-full"
+				class="center-center hidden group-hover:flex  absolute left-0 top-0 wh-8 bg-black opacity-50 rounded-full"
 				@click="commit.removeTeamCiv(civ)"
 			>
 				╳
 			</button>
 		</div>
-		<div class="p-2 w-full h-full">
-			<div class="center-center flex  w-full h-full border-secondary text-secondary rounded-full text-3xl font-thin" :class="!civ || isDragging ? 'border' : null">
+		<div class="p-2 wh-full">
+			<div class="center-center flex  wh-full border-secondary text-secondary rounded-full text-3xl font-thin" :class="!civ || isDragging ? 'border' : null">
 				？
 			</div>
 		</div>
