@@ -49,7 +49,7 @@
 							{{ line.name }}
 							<UIStack direction="col" class="ml-px pl-px">
 								<UIStack direction="row">
-									<div v-for="[unitID, techID] in line.units" :key="unitID" class="w-2 h-2 mx-px" :class="techID === undefined ? 'bg-yellow-700' : (!selectedCiv.disableTechIDs.includes(techID) ? 'bg-yellow-500' : 'bg-gray-700')" :title="unitID" />
+									<div v-for="[unitID, techID] in line.units" :key="unitID" class="w-2 h-2 mx-px" :class="techID === undefined ? 'bg-yellow-700' : (!selectedCiv.disableTechIDs.includes(techID) ? 'bg-yellow-500' : 'bg-gray-700')" :title="units[unitID].name" />
 								</UIStack>
 								<LineUpgrades :upgrades="line.upgrades" :disableTechIDs="selectedCiv.disableTechIDs" class="mt-px" />
 							</UIStack>
@@ -66,16 +66,17 @@ import { computed } from 'vue'
 
 import { useStore } from '/@/models/store'
 
+import { CivAgeName, EffectDescription, CivAge } from '/@/assets/types'
+import units from '/@/assets/generated/units'
+import unitCategoryLines from '/@/assets/generated/unitLines'
+
 import UIStack from '/@/views/ui/Stack.vue'
 import CivIcon from '/@/views/components/CivIcon.vue'
 import LineUpgrades from '/@/views/pages/CompBuilder/CivInspector/LineUpgrades.vue'
 import FocusRow from './FocusRow.vue'
 export default { components: { CivIcon, FocusRow, LineUpgrades, UIStack } }
 
-import { CivAgeName, EffectDescription, CivAge } from '/@/assets/types'
-import unitCategoryLines from '/@/assets/generated/unitLines'
-
-export { CivAgeName, unitCategoryLines }
+export { CivAgeName, unitCategoryLines, units }
 
 export const darkAge = CivAge.Dark
 

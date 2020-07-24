@@ -35,9 +35,14 @@ export interface CivData {
 	descriptions: EffectDescription[]
 }
 
-export interface UnitData {
+export interface UnitSummaryData {
 	name: string
 	class: number
+	icon: number | null
+}
+export interface TechSummaryData {
+	name: string
+	age: number
 	icon: number | null
 }
 

@@ -1,5 +1,5 @@
 import type { TreeCiv, TreeCommand, TreeEffect, TreeTech } from './types/tree'
-import { CivData, EffectType, CostData, TreeBranchData, ResourceType, Focus, ResourceTypeInfo, CivAge, CostType, UnitAttribute, UnitAttributeInfo, UnitClassInfo, EffectDescriptionData, EffectDescription, AmountTypeInfo } from '../src/assets/types'
+import { CivData, EffectType, CostData, TreeBranchData, ResourceType, Focus, ResourceTypeInfo, CivAge, CostType, UnitAttribute, UnitAttributeInfo, UnitClassInfo, EffectDescriptionData, EffectDescription, AmountTypeInfo, TechSummaryData, UnitSummaryData } from '../src/assets/types'
 
 import { effectSummaries } from './effectSummaries'
 
@@ -698,6 +698,32 @@ function writeFileFor (name: string, type: string, importType: string | undefine
 }
 
 const outputTreeObject: {[name: string]: TreeBranchData} = {}
+const outputTreeUnits: {[id: number]: UnitSummaryData} = {}
+outputTree
+	.flatMap(branch => branch.units)
+	.map(unitData => unitData[0])
+	.forEach(unitID => {
+		const unit = units[unitID]
+		outputTreeUnits[unitID] = {
+			name: getDisplayNameFor(unit),
+			class: unit.Class,
+			icon: unit.IconID,
+		}
+	})
+const outputTreeTechs: {[id: number]: TechSummaryData} = {}
+dedupe(
+	outputTree
+		.flatMap(branch => branch.upgrades)
+)
+	.forEach(techID => {
+		const tech = techs[techID]
+		outputTreeTechs[techID] = {
+			name: getDisplayNameFor(tech),
+			age: tech.RequiredTechs.find(id => id >= 101 && id <= 103) ?? 0,
+			icon: tech.IconID,
+		}
+	})
+
 outputTree.forEach(branch => {
 	outputTreeObject[branch.name.toLowerCase().replace(' ', '')] = branch
 })
@@ -766,10 +792,18 @@ for (const civ of outputCivs) {
 // console.log(Array.from(allCivTechs).map(techID => techs[techID]!.Name)) //SAMPLE
 const CHEMISTRY_TECH_ID = 47
 outputTree.forEach(branch => {
-	branch.upgrades = branch.upgrades.filter(techID => techID === CHEMISTRY_TECH_ID || !allCivTechs.has(techID))
+	branch.upgrades = branch.upgrades
+		.filter(techID => techID === CHEMISTRY_TECH_ID || !allCivTechs.has(techID))
+		.sort((aID, bID) => {
+			const aAgeRequirement = techs[aID].RequiredTechs.find(id => id >= 101 && id <= 103) ?? 0
+			const bAgeRequirement = techs[bID].RequiredTechs.find(id => id >= 101 && id <= 103) ?? 0
+			return aAgeRequirement - bAgeRequirement
+		})
 })
 
 writeFileFor('civs', 'CivData', undefined, outputCivs)
+writeFileFor('techs', '{[id: number]: TechSummaryData}', 'TechSummaryData', outputTreeTechs)
+writeFileFor('units', '{[id: number]: UnitSummaryData}', 'UnitSummaryData', outputTreeUnits)
 writeFileFor('unitLines', '[string, TreeBranchData[]]', 'TreeBranchData', unitCategoryLines)
 writeFile('allCivTechs', '', Array.from(allCivTechs), '')
 
