@@ -45,7 +45,7 @@ export interface TreeBranchData {
 	name: string
 	class: number
 	resources?: ResourceType[]
-	units: number[][]
+	units: [number, number][]
 	upgrades: number[]
 }
 

@@ -1,7 +1,7 @@
 import type { TreeCiv, TreeCommand, TreeEffect, TreeTech } from './types/tree'
 import { CivData, EffectType, CostData, TreeBranchData, ResourceType, Focus, ResourceTypeInfo, CivAge, CostType, UnitAttribute, UnitAttributeInfo, UnitClassInfo, EffectDescriptionData, EffectDescription, AmountTypeInfo } from '../src/assets/types'
 
-import { effectSummaries } from './unitCategoryLines'
+import { effectSummaries } from './effectSummaries'
 
 const fs = require('fs')
 const path = require('path')
@@ -388,7 +388,7 @@ class EffectCommand {
 
 		case EffectType.UnitEnable:
 			const enableID = this.a
-			const enableUnit = getUnit(enableID)
+			const enableUnit = units[enableID]
 			if (!enableUnit) {
 				console.error(this.id, 'Unknown unit', enableID, this.type, this.a, this.b, this.c, this.d)
 				break
@@ -397,9 +397,9 @@ class EffectCommand {
 			return this.makeDescription([getDisplayNameFor(enableUnit), 'available'], minimumAge, enableID, enableUnit)
 
 		case EffectType.UnitUpgrade:
-			// const oldUnit = getUnit(this.a)
+			// const oldUnit = units[this.a]
 			const availableID = this.b
-			const availableUnit = getUnit(availableID)
+			const availableUnit = units[availableID]
 			if (!availableUnit) {
 				console.error(this.id, 'Unknown unit', availableID, this.type, this.a, this.b, this.c, this.d)
 				break
@@ -420,7 +420,6 @@ class EffectCommand {
 				} else if (this.c === UnitAttribute.Attack) {
 					typeDescription = 'vs ' + typeDescription
 				}
-
 				value = this.d & 0b0000000011111111
 			}
 			amountDescription = formatDifference(value)
@@ -443,7 +442,7 @@ class EffectCommand {
 				amountDescription = formatPercentDifference(proportion)
 			}
 			const multipliedUnitID = this.a
-			const multipliedUnit = getUnit(multipliedUnitID)
+			const multipliedUnit = units[multipliedUnitID]
 			const unitClass = UnitClassInfo[this.b]
 
 			if (!multipliedUnit && !unitClass) {
@@ -475,7 +474,7 @@ class EffectCommand {
 				break
 			}
 			const unitID = resourceInfo.unitID
-			const unit = unitID ? getUnit(unitID) : undefined
+			const unit = unitID ? units[unitID] : undefined
 			if (!amountDescription) {
 				const proportion = this.d
 				if (proportion === 1) {
@@ -537,7 +536,7 @@ for (let techID = 0; techID < techs.length; techID += 1) {
 	for (const resource of tech.ResourceCosts) {
 		const costIndex = resource.Type
 		if (costIndex !== -1) {
-			costs.push([resource.Type, resource.Amount, resource.Flag])
+			costs.push([ resource.Type, resource.Amount, resource.Flag ])
 		}
 	}
 
@@ -776,13 +775,6 @@ writeFile('allCivTechs', '', Array.from(allCivTechs), '')
 
 // Descriptions
 
-function getUnit (id: number) {
-	if (id === 412 || id === 921) {
-		id = 125
-	}
-	return units[id]
-}
-
 type Nameable = {LanguageDLLName: number}
 type RequiresTechs = {RequiredTechs?: number[], requires?: number[]}
 
@@ -844,7 +836,7 @@ function getFocusesFor (id: number, type: number, a: number, b: number, c: numbe
 
 	let focuses: Focus[] = []
 	if (unitID !== -1) {
-		const unit = getUnit(unitID)
+		const unit = units[unitID]
 		if (unit) {
 			const name = getName(unit)
 			const uFocuses = name ? unitFocuses[name] : undefined
@@ -1014,14 +1006,17 @@ function getTechDescriptions (tech: TechData): EffectDescriptionData[] {
 		results.push(description)
 	}
 
-	const upgradeRequirements = tech.requires.filter(techID => techID !== -1 && (techID < 101 || techID > 104)).map(techID => {
-		const tech = techs[techID]
-		if (!tech) {
-			console.error(techID, 'Unknown tech')
-			return null
-		}
-		return tech.Name
-	}).filter(name => name) as string[]
+	const upgradeRequirements = tech.requires
+		.filter(techID => techID !== -1 && (techID < 101 || techID > 104))
+		.map(techID => {
+			const tech = techs[techID]
+			if (!tech) {
+				console.error(techID, 'Unknown tech')
+				return null
+			}
+			return tech.Name
+		})
+		.filter(name => name) as string[]
 	if (upgradeRequirements) {
 		for (const result of results) {
 			result.requires = upgradeRequirements
