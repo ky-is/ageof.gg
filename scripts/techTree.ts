@@ -1,3 +1,5 @@
+const DEBUG_ID = 285 //SAMPLE
+
 import type { TreeCiv, TreeCommand, TreeEffect, TreeTech } from './types/tree'
 import { CivData, EffectType, CostData, TreeBranchData, ResourceType, Focus, ResourceTypeInfo, CivAge, CostType, UnitAttribute, UnitAttributeInfo, UnitClassInfo, EffectDescriptionData, EffectDescription, AmountTypeInfo, TechSummaryData, UnitSummaryData } from '../src/assets/types'
 
@@ -354,20 +356,21 @@ class EffectCommand {
 		this.focuses = getFocusesFor(id, Type, A, B, C, D)
 	}
 
-	makeDescription (segments: string[], age: CivAge | undefined, nameableID: number | undefined, nameable: Nameable | string | undefined, modifyAge?: boolean): EffectDescriptionData {
+	makeDescription (segments: string[], age: CivAge | undefined, nameableID: number | undefined, nameable: Nameable | undefined, modifyAge?: boolean): EffectDescriptionData {
 		if (nameableID) {
 			const minAge = unitAge[nameableID]
 			if (!age || age === CivAge.Dark || minAge > age) {
 				age = minAge
 			}
 		}
+		const name = nameable && removeSuffix(getName(nameable))
 		return {
 			id: this.id,
 			team: false,
 			castle: false,
 			segments,
 			ages: age ? [age] : [],
-			names: nameable ? [removeSuffix(typeof nameable === 'string' ? nameable : getName(nameable))] : [],
+			names: name !== undefined ? [name] : [],
 			requires: [],
 			focuses: this.focuses,
 			modifyAge,
@@ -393,7 +396,7 @@ class EffectCommand {
 				console.error(this.id, 'Unknown unit', enableID, this.type, this.a, this.b, this.c, this.d)
 				break
 			}
-			const enabled = this.b === 1
+			// const enabled = this.b === 1
 			return this.makeDescription([getDisplayNameFor(enableUnit), 'available'], minimumAge, enableID, enableUnit)
 
 		case EffectType.UnitUpgrade:
@@ -413,7 +416,7 @@ class EffectCommand {
 				const amountTypeID = this.d >>> 8
 				typeDescription = AmountTypeInfo[amountTypeID]
 				if (!typeDescription) {
-					console.warn(this.id, 'Unknown AmountTypeInfo', amountTypeID, this.type, this.a, this.b, this.c, this.d);
+					// console.warn(this.id, 'Unknown AmountTypeInfo', amountTypeID, this.type, this.a, this.b, this.c, this.d) //TODO
 				}
 				if (this.c === UnitAttribute.Armor) {
 					typeDescription = `(${typeDescription})`
@@ -435,10 +438,10 @@ class EffectCommand {
 			const proportion = this.d
 			const unitAttribute = UnitAttributeInfo[attribute]
 			if (!amountDescription) {
-				if (proportion === 1) {
-					console.warn('Proportion is zero for', this);
-					break
-				}
+				// if (proportion === 1) { //TODO
+				// 	console.warn('Proportion is zero for', this)
+				// 	break
+				// }
 				amountDescription = formatPercentDifference(proportion)
 			}
 			const multipliedUnitID = this.a
@@ -450,7 +453,7 @@ class EffectCommand {
 				break
 			}
 			if (!unitAttribute) {
-				console.warn(this.id, 'Unknown UnitAttributeInfo', this.c, this.type, this.a, this.b, this.c, this.d)
+				// console.warn(this.id, 'Unknown UnitAttributeInfo', this.c, this.type, this.a, this.b, this.c, this.d) //TODO
 			}
 			const name = multipliedUnit ? getDisplayNameFor(multipliedUnit) : unitClass!.name
 			return this.makeDescription([name, unitAttribute, amountDescription + (attribute === UnitAttribute.AccuracyPercent ? '%' : '')], minimumAge, multipliedUnitID, multipliedUnit ?? unitClass)
@@ -478,25 +481,25 @@ class EffectCommand {
 			if (!amountDescription) {
 				const proportion = this.d
 				if (proportion === 1) {
-					console.warn('Proportion is zero for', this);
+					console.warn('Proportion is zero for', this)
 					break
 				}
 				amountDescription = formatPercentDifference(proportion)
 			}
-			return this.makeDescription([resourceInfo.name, amountDescription], getAgeFrom(resourceInfo, minimumAge), unitID, unit ?? resourceInfo.name)
+			return this.makeDescription([resourceInfo.name, amountDescription], getAgeFrom(resourceInfo, minimumAge), unitID, unit ?? resourceInfo)
 
 		case EffectType.ModifyTechTime:
 			amountDescription = 'free'
 		case EffectType.ModifyTechCost:
 			const techModify = techs[this.a]
 			if (!techModify) {
-				console.error(this.id, 'Unknown ModifyTechCost', this.a, this.type, this.a, this.b, this.c, this.d)
+				console.error(this.id, 'Unknown ModifyTechCost', this.a, 'a', this.type, this.a, this.b, this.c, this.d)
 				break
 			}
 			if (!amountDescription) {
 				const techResourceInfo = ResourceTypeInfo[this.b]
 				if (!techResourceInfo) {
-					console.error(this.id, 'Unknown ResourceTypeInfo', this.b, this.type, this.a, this.b, this.c, this.d)
+					console.error(this.id, 'Unknown ResourceTypeInfo', this.b, 'b', this.type, this.a, this.b, this.c, this.d)
 					break
 				}
 				amountDescription = `${techResourceInfo.name} cost free`
@@ -506,7 +509,7 @@ class EffectCommand {
 		case EffectType.DisableTech:
 			const techDisable = techs[this.d]
 			if (!techDisable) {
-				console.error(this.id, 'Unknown DisableTech', this.d, this.type, this.a, this.b, this.c, this.d)
+				console.error(this.id, 'Unknown DisableTech', this.d, 'd', this.type, this.a, this.b, this.c, this.d)
 				break
 			}
 			const age = getAgeFrom(techDisable, minimumAge) ?? CivAge.Dark
@@ -514,7 +517,7 @@ class EffectCommand {
 			return this.makeDescription([], age === CivAge.Dark ? CivAge.Feudal : (age === CivAge.Feudal ? CivAge.Castle : CivAge.Imperial), undefined, undefined, true)
 
 		default:
-			console.error(this.id, 'Unknown EffectType', this.type, this.type, this.a, this.b, this.c, this.d)
+			console.error(this.id, 'Unknown EffectType', this.type, 'type', this.type, this.a, this.b, this.c, this.d)
 		}
 		return null
 	}
@@ -562,7 +565,7 @@ for (let techID = 0; techID < techs.length; techID += 1) {
 					classID = command.B
 					break
 				default:
-					console.log('Unknown EffectType', command)
+					console.warn('Unknown EffectType', command)
 				}
 				if (unitID !== -1 || classID !== -1 || resourceID !== -1) {
 					for (const branch of outputTree) {
@@ -593,6 +596,9 @@ for (let techID = 0; techID < techs.length; techID += 1) {
 	}
 
 	if (addToCiv) {
+		if (effectID === DEBUG_ID) {
+			console.log(effectID, 'DEBUG', getName(tech, true))
+		}
 		const building = tech.ResearchLocation !== -1 ? tech.ResearchLocation : null
 		const requires = tech.RequiredTechs
 		const commands = makeEffectCommands(effectID, effect)
@@ -605,7 +611,7 @@ for (let techID = 0; techID < techs.length; techID += 1) {
 		}
 		civTechs[tech.Civ].push({
 			id: techID,
-			name: getName(tech),
+			name: getName(tech, true),
 			building,
 			requires,
 			team: !!commands.find(command => command.team),
@@ -647,8 +653,6 @@ for (const civKey in civs) {
 				} else if (!tech.Name.startsWith('C-Bonus')) { // Civ bonuses are implicitly disabled
 					output.disableTechIDs.push(techID)
 				}
-			} else {
-				console.error(techID, 'Unknown techID', civ.Name)
 			}
 		} else {
 			civCommands.push(new EffectCommand(techID, civCommand))
@@ -809,13 +813,21 @@ writeFile('allCivTechs', '', Array.from(allCivTechs), '')
 
 // Descriptions
 
-type Nameable = {LanguageDLLName: number}
+type Nameable = {LanguageDLLName: number, Name: string} | {name: string}
 type RequiresTechs = {RequiredTechs?: number[], requires?: number[]}
 
-function getName (entity: Nameable): string {
+function getName (entity: Nameable, fallback?: boolean): string {
+	if ('name' in entity) {
+		return entity.name
+	}
 	const name = enStrings[entity.LanguageDLLName]
-	if (!name) {
-		console.error('Unknown name', entity.LanguageDLLName, entity)
+	if (!name) { //TODO
+		if (fallback) {
+			return entity.Name
+		}
+		if (entity.LanguageDLLName) {
+			console.error('Unknown name', entity.LanguageDLLName, entity.Name)
+		}
 		return ''
 	}
 	return name
@@ -845,7 +857,7 @@ function getFocusesFor (id: number, type: number, a: number, b: number, c: numbe
 		} else if (b !== -1) {
 			unitClassID = b
 		} else {
-			console.error('Invalid focus', id, type, a, b, c, d)
+			console.error(id, 'Invalid focus', type, a, b, c, d)
 		}
 		if (c !== -1) {
 			unitAttribute = c
@@ -864,7 +876,7 @@ function getFocusesFor (id: number, type: number, a: number, b: number, c: numbe
 		if (resourceInfo) {
 			return resourceInfo.focuses
 		}
-		console.error('Unknown ResourceTypeInfo', a, id, type, a, b, c, d)
+		// console.warn('Unknown ResourceTypeInfo', a, id, type, a, b, c, d) //TODO
 		break
 	}
 
@@ -880,7 +892,7 @@ function getFocusesFor (id: number, type: number, a: number, b: number, c: numbe
 				unitClassID = unit.Class
 			}
 		} else {
-			console.error('Unknown unit', unitID, id, type, a, b, c, d)
+			console.error(id, 'Unknown unit', unitID, 'uid', type, a, b, c, d)
 		}
 	}
 	if (unitClassID !== -1) {
@@ -892,7 +904,7 @@ function getFocusesFor (id: number, type: number, a: number, b: number, c: numbe
 				}
 			}
 		} else {
-			console.error('Unknown UnitClassInfo', unitID, unitClassID, id, type, a, b, c, d)
+			// console.warn('Unknown UnitClassInfo', unitID, unitClassID, id, type, a, b, c, d) //TODO
 		}
 	}
 	if (unitAttribute !== -1) {
@@ -907,8 +919,8 @@ function getFocusesFor (id: number, type: number, a: number, b: number, c: numbe
 			focuses.push(extraFocus)
 		}
 	}
-	if (id === 721) {
-		console.log(unitID, unitClassID, unitAttribute, focuses, type, a, b, c, d)
+	if (id === DEBUG_ID) {
+		console.log(id, 'DEBUG', unitID, unitClassID, unitAttribute, focuses, type, a, b, c, d)
 	}
 	return focuses
 }
@@ -1013,7 +1025,7 @@ function getTechDescriptions (tech: TechData): EffectDescriptionData[] {
 			continue
 		}
 		if (previousDescription?.modifyAge) {
-			console.log(tech.name, description.ages, previousDescription.ages)
+			console.log(tech.name, 'MODIFY', description.ages, previousDescription.ages)
 			description.ages = previousDescription.ages
 		}
 		previousDescription = description
@@ -1022,11 +1034,11 @@ function getTechDescriptions (tech: TechData): EffectDescriptionData[] {
 				if (summary.replace) {
 					description.segments = [summary.replace]
 				} else if (summary.replaceName) {
-					const rawName = description.names?.[0]
-					if (rawName) {
+					const rawName = description.names[0]
+					if (rawName !== undefined) {
 						description.segments[0] = summary.replaceName
 					} else {
-						console.warn('No name for replacement', summary, description)
+						console.warn('No name for replacement', summary, description) //TODO
 					}
 				}
 				if (summary.ages) {
@@ -1106,9 +1118,9 @@ function outputDescriptions (descriptions: EffectDescriptionData[]): EffectDescr
 					resultDescription.ages.push(newAge)
 				}
 			}
-			const newName = description.names?.[0]
-			if (newName && !resultDescription.names?.includes(newName)) {
-				resultDescription.names?.push(newName)
+			const newName = description.names[0]
+			if (newName && !resultDescription.names.includes(newName)) {
+				resultDescription.names.push(newName)
 			}
 			for (const requirement of description.requires) {
 				if (!resultDescription.requires.includes(requirement)) {

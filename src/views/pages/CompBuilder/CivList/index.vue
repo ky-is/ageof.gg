@@ -6,7 +6,7 @@
 		</UIStack>
 		<div class="w-full px-4 flex-gro overflow-y-scroll">
 			<template v-for="[header, civs] in filteredCivs">
-				<FilterList v-if="civs.length" :key="header" header="header" :civs="civs" :isFiltered="!!filterFocus" />
+				<FilterList v-if="civs.length" :key="header" :header="header" :civs="civs" :isFiltered="!!filterFocus" />
 			</template>
 		</div>
 	</UIStack>
