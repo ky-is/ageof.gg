@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
 	theme: {
 		extend: {
@@ -18,14 +20,16 @@ module.exports = {
 			},
 		},
 	},
-	variants: {
-		display: ['group-hover'],
-		flex: ['responsive'],
-		backgroundColor: ['hover', 'disabled'],
-		cursor: ['disabled'],
-	},
+	variants: ['responsive', 'group-hover', 'hover', 'hover-active', 'focus', 'disabled'],
 	plugins: [
 		require('@ky-is/tailwindcss-plugin-width-height')({ variants: [] }),
+		plugin(({ addVariant, e }) => {
+			addVariant('hover-active', ({ modifySelectors, separator }) => {
+				modifySelectors(({ className }) => {
+					return `.${e(`hover-active${separator}${className}`)}:hover:active`
+				})
+			})
+		}),
 	],
 	purge: {
 		content: [
