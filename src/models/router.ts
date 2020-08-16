@@ -20,6 +20,18 @@ const router = createRouter({
 			path: '/games',
 			component: GamesPage,
 		},
+		{
+			path: '/games/civ-icons',
+			component: GameCivIcons,
+		},
+		// {
+		// 	path: '/games/civ-sounds',
+		// 	component: GamesPage,
+		// },
+		// {
+		// 	path: '/games/taunts',
+		// 	component: GamesPage,
+		// },
 	],
 })
 

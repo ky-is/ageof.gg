@@ -21,6 +21,8 @@ module.exports = {
 	variants: {
 		display: ['group-hover'],
 		flex: ['responsive'],
+		backgroundColor: ['hover', 'disabled'],
+		cursor: ['disabled'],
 	},
 	plugins: [
 		require('@ky-is/tailwindcss-plugin-width-height')({ variants: [] }),
