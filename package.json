@@ -21,6 +21,7 @@
 		"autoprefixer": "^9.8.6",
 		"eslint": "^7.6.0",
 		"eslint-plugin-vue": "^7.0.0-beta.2",
+		"postcss-preset-env": "^6.7.0",
 		"typescript": "^3.9.7",
 		"vite": "^1.0.0-rc.4"
 	},
@@ -38,6 +39,9 @@
 	],
 	"postcss": {
 		"plugins": {
+			"postcss-preset-env": {
+				"stage": 0
+			},
 			"tailwindcss": {},
 			"autoprefixer": {}
 		}
