@@ -9,7 +9,7 @@
 			<button
 				v-for="answer in availableAnswers" :key="answer"
 				:disabled="questionIncorrectAnswers.includes(answer)"
-				class="w-64 h-12 mb-3 border border-gray-850 outline-none rounded-full text-xl bg-gray-950  hover:bg-gray-850 disabled:cursor-default disabled:bg-red-900"
+				class="w-64 h-12 mb-3 border border-gray-850 rounded-full text-xl bg-gray-950  hover:bg-gray-850 hover-active:bg-gray-750 disabled:cursor-default disabled:bg-red-900 focus:outline-none"
 				@click="onAnswer(answer)"
 			>
 				{{ answer }}
@@ -57,7 +57,7 @@ function shuffle<T> (array: T[]) {
 	return array
 }
 
-function getRandomItemFrom(array: any[]) {
+function getRandomItemFrom (array: any[]) {
 	return array[Math.floor(Math.random() * array.length)]
 }
 
