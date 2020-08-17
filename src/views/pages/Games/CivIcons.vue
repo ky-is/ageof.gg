@@ -1,6 +1,24 @@
 <template>
 	<UIStack direction="col" justification="center" class="h-content items-center bg-black relative">
-		<template v-if="currentCiv">
+		<template v-if="!gameMode">
+			<h2 class="text-2xl">Civ Icon Match</h2>
+			<p class="text-secondary text-xl font-light">Guess the civilization for each of {{ civNames.length }} AoE II civ icons!</p>
+			<hr class="w-64 my-8 border-secondary">
+			<h3 class="mb-2 text-xl">Choose your mode:</h3>
+			<table class="text-center" style="">
+				<tbody>
+					<tr>
+						<td><button class="ui-button ui-purple w-48" @click="gameMode = 'easy'">Easy</button></td>
+						<td><button class="ui-button ui-pink w-48" @click="gameMode = 'hard'">Hard</button></td>
+					</tr>
+					<tr class="text-secondary">
+						<td class="pt-1"><p class="w-64">Large icon with 3 multiple-choice answers to guide you.</p></td>
+						<td class="pt-1"><p class="w-64">Small icon and type-to-answer mode.</p></td>
+					</tr>
+				</tbody>
+			</table>
+		</template>
+		<template v-else-if="currentCiv">
 			<div class="absolute top-0 right-0 mt-1 mx-2">
 				<span class="text-green-700">✓</span><span class="text-secondary">{{ sessionCorrectAnswers.length }}</span>&nbsp;
 				<span class="text-red-600">✕</span><span class="text-secondary">{{ sessionIncorrectAnswers.length }}</span>
@@ -27,7 +45,7 @@
 				<tbody>
 					<tr>
 						<td>{{ sessionCorrectAnswers.join(', ') }}</td>
-						<td>{{ sessionIncorrectAnswers.map(a => a[0]).join(', ') }}</td>
+						<td>{{ sessionIncorrectAnswers.map(([correctCivName, answer]) => correctCivName).join(', ') }}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -45,6 +63,8 @@ import { shuffle, getRandomItemFrom } from '/@/helpers/random'
 import CivIcon from '/@/views/components/CivIcon.vue'
 import UIStack from '/@/views/ui/Stack.vue'
 export default { components: { CivIcon, UIStack } }
+
+export const gameMode = ref<undefined | 'easy' | 'hard'>(undefined)
 
 const availableCivs = shuffle(civEntries.slice(1))
 
@@ -83,8 +103,7 @@ export function onAnswer (answer: string) {
 	if (!correctCivName) {
 		return
 	}
-	const isCorrect = answer === correctCivName
-	if (isCorrect) {
+	if (answer === correctCivName) {
 		currentCiv.value = getNextCiv()
 		availableAnswers.value = getMultipleChoiceAnswers()
 		if (!sessionIncorrectCivs.has(correctCivName)) {

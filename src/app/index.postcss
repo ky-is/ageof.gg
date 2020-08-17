@@ -31,6 +31,30 @@ html, body, #app {
 	&:focus {
 		@apply outline-none;
 	}
+	&.ui-900 {
+		@apply border-gray-950 text-gray-900;
+	}
+	&.ui-800 {
+		@apply border-gray-800 text-gray-750;
+	}
+	&.ui-purple {
+		@apply border-purple-300 text-purple-300;
+		&:hover {
+			@apply bg-purple-900;
+			&:active {
+				@apply bg-purple-300 text-purple-900;
+			}
+		}
+	}
+	&.ui-pink {
+		@apply border-pink-300 text-pink-300;
+		&:hover {
+			@apply bg-pink-900;
+			&:active {
+				@apply bg-pink-300 text-pink-900;
+			}
+		}
+	}
 }
 
 .ui-select {
