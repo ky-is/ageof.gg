@@ -40,26 +40,11 @@ import { computed, ref, reactive } from 'vue'
 
 import civEntries from '/@/assets/generated/civs'
 
+import { shuffle, getRandomItemFrom } from '/@/helpers/random'
+
 import CivIcon from '/@/views/components/CivIcon.vue'
 import UIStack from '/@/views/ui/Stack.vue'
 export default { components: { CivIcon, UIStack } }
-
-function shuffle<T> (array: T[]) {
-	let currentIndex = array.length, temporaryValue, randomIndex
-	while (currentIndex !== 0) {
-		randomIndex = Math.floor(Math.random() * currentIndex)
-		currentIndex -= 1
-
-		temporaryValue = array[currentIndex]
-		array[currentIndex] = array[randomIndex]
-		array[randomIndex] = temporaryValue
-	}
-	return array
-}
-
-function getRandomItemFrom (array: any[]) {
-	return array[Math.floor(Math.random() * array.length)]
-}
 
 const availableCivs = shuffle(civEntries.slice(1))
 
