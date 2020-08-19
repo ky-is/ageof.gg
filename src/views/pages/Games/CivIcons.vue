@@ -23,14 +23,40 @@
 				<span class="text-green-700">✓</span><span class="text-secondary">{{ sessionCorrectAnswers.length }}</span>&nbsp;
 				<span class="text-red-600">✕</span><span class="text-secondary">{{ sessionIncorrectAnswers.length }}</span>
 			</div>
-			<CivIcon :civ="currentCiv" class="wh-32 mb-4" />
+			<CivIcon :civ="currentCiv" class="mb-4" :class="gameMode === 'hard' ? 'wh-6' : 'wh-32'" />
+			<template v-if="gameMode === 'hard'">
+				<UIStack direction="col" class="relative mb-4">
+					<input
+						v-model="typedAnswer"
+						class="w-64 h-12 text-2xl font-light bg-gray-900 text-gray-100 text-center" placeholder="Type a civ name"
+						@keydown="onTypedKey"
+					>
+					<UIStack v-if="typedSuggestions?.length" direction="col" class="absolute top-full w-full">
+						<button
+							v-for="(suggestion, index) in typedSuggestions" :key="suggestion"
+							class="h-8" :class="typedSuggestionIndex === index ? 'bg-gray-800 font-bold' : 'bg-gray-950'"
+							@hover="typedSuggestionIndex = index" @click="onAnswer(suggestion)"
+						>
+							{{ suggestion }}
+						</button>
+					</UIStack>
+				</UIStack>
+			</template>
+			<template v-else>
+				<button
+					v-for="answer in availableAnswers" :key="answer"
+					:disabled="questionIncorrectAnswers.has(answer.toLowerCase())"
+					class="w-64 h-12 mb-3 border border-gray-850 rounded-full text-xl bg-gray-950  hover:bg-gray-850 hover-active:bg-gray-750 disabled:cursor-default disabled:bg-red-900 focus:outline-none"
+					@click="onAnswer(answer)"
+				>
+					{{ answer }}
+				</button>
+			</template>
 			<button
-				v-for="answer in availableAnswers" :key="answer"
-				:disabled="questionIncorrectAnswers.includes(answer)"
-				class="w-64 h-12 mb-3 border border-gray-850 rounded-full text-xl bg-gray-950  hover:bg-gray-850 hover-active:bg-gray-750 disabled:cursor-default disabled:bg-red-900 focus:outline-none"
-				@click="onAnswer(answer)"
+				class="ui-button ui-700  w-64" :class="{ invisible: typedSuggestions?.length }"
+				@click="onShowAnswer"
 			>
-				{{ answer }}
+				Not sure
 			</button>
 		</template>
 		<template v-else>
@@ -75,6 +101,43 @@ function getNextCiv () {
 export const civNames = availableCivs.map(civ => civ.name)
 export const currentCiv = ref(getNextCiv())
 
+export const typedAnswer = ref('')
+export const typedSuggestions = computed(() => {
+	const normalizedTypedAnswer = typedAnswer.value.trim().toLowerCase()
+	const suggestions = []
+	if (normalizedTypedAnswer) {
+		for (const civName of civNames) {
+			const normalizedCivName = civName.toLowerCase()
+			if (normalizedCivName === normalizedTypedAnswer) {
+				return null
+			}
+			if (normalizedCivName.startsWith(normalizedTypedAnswer)) {
+				suggestions.push(civName)
+			}
+		}
+	}
+	return suggestions
+})
+export const typedSuggestionIndex = ref(0)
+
+export function onTypedKey (event: KeyboardEvent) {
+	switch (event.keyCode) {
+	case 13: {
+		const answer = typedSuggestions.value ? typedSuggestions.value[typedSuggestionIndex.value] : typedAnswer.value
+		if (answer) {
+			onAnswer(answer)
+		}
+		break
+	}
+	case 38:
+		typedSuggestionIndex.value -= 1
+		break
+	case 40:
+		typedSuggestionIndex.value += 1
+		break
+	}
+}
+
 export const sessionCorrectAnswers = reactive([] as string[])
 const sessionIncorrectCivs = new Set<string>()
 export const sessionIncorrectAnswers = reactive([] as [string, string][])
@@ -96,24 +159,29 @@ function getMultipleChoiceAnswers () {
 }
 
 export const availableAnswers = ref(getMultipleChoiceAnswers())
-export const questionIncorrectAnswers = ref([] as string[])
+export const questionIncorrectAnswers = reactive(new Set<string>())
 
 export function onAnswer (answer: string) {
 	const correctCivName = currentCiv.value?.name
+	typedAnswer.value = ''
+	typedSuggestionIndex.value = 0
 	if (!correctCivName) {
 		return
 	}
-	if (answer === correctCivName) {
+	const answerNormalized = answer.toLowerCase()
+	if (answerNormalized === correctCivName.toLowerCase()) {
 		currentCiv.value = getNextCiv()
 		availableAnswers.value = getMultipleChoiceAnswers()
 		if (!sessionIncorrectCivs.has(correctCivName)) {
 			sessionCorrectAnswers.push(correctCivName)
 		}
-		questionIncorrectAnswers.value = []
+		questionIncorrectAnswers.clear()
 	} else {
-		sessionIncorrectAnswers.push([correctCivName, answer])
-		sessionIncorrectCivs.add(correctCivName)
-		questionIncorrectAnswers.value.push(answer)
+		if (!questionIncorrectAnswers.has(answerNormalized)) {
+			sessionIncorrectAnswers.push([correctCivName, answer])
+			sessionIncorrectCivs.add(correctCivName)
+			questionIncorrectAnswers.add(answerNormalized)
+		}
 	}
 }
 </script>

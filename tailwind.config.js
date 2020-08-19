@@ -18,6 +18,9 @@ module.exports = {
 				'96': '24rem',
 				'128': '32rem',
 			},
+			inset: {
+				'full': '100%',
+			},
 		},
 	},
 	variants: ['responsive', 'group-hover', 'hover', 'hover-active', 'focus', 'disabled'],
