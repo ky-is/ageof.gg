@@ -10,10 +10,10 @@
 	@apply text-gray-100;
 }
 .text-secondary {
-	@apply text-gray-500;
+	@apply text-gray-400;
 }
 .border-secondary {
-	@apply border-gray-500;
+	@apply border-gray-400;
 }
 
 @tailwind utilities;
@@ -26,11 +26,14 @@ html, body, #app {
 	@apply justify-center items-center;
 }
 
+.ui-answer {
+	@apply w-64 h-12 mb-3 border border-gray-850 rounded-full text-xl bg-gray-950;
+	@apply hover:bg-gray-850 hover-active:bg-gray-750;
+	@apply disabled:cursor-default disabled:bg-red-900 focus:outline-none;
+}
 .ui-button {
 	@apply px-6 h-12 border-2 border-gray-950 rounded-full text-lg text-gray-900 font-medium;
-	&:focus {
-		@apply outline-none;
-	}
+	@apply focus:outline-none;
 	&.ui-900 {
 		@apply border-gray-950 text-gray-900;
 	}
@@ -38,22 +41,12 @@ html, body, #app {
 		@apply border-gray-700 text-gray-600;
 	}
 	&.ui-purple {
-		@apply border-purple-300 text-purple-300;
-		&:hover {
-			@apply bg-purple-900;
-			&:active {
-				@apply bg-purple-300 text-purple-900;
-			}
-		}
+		@apply border-purple-400 text-purple-400;
+		@apply hover:bg-purple-900 hover-active:bg-purple-400 hover-active:text-purple-900;
 	}
 	&.ui-pink {
-		@apply border-pink-300 text-pink-300;
-		&:hover {
-			@apply bg-pink-900;
-			&:active {
-				@apply bg-pink-300 text-pink-900;
-			}
-		}
+		@apply border-pink-400 text-pink-400;
+		@apply hover:bg-pink-900 hover-active:bg-pink-400 hover-active:text-pink-900;
 	}
 }
 

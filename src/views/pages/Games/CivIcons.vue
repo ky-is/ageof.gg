@@ -46,7 +46,7 @@
 				<button
 					v-for="answer in availableAnswers" :key="answer"
 					:disabled="questionIncorrectAnswers.has(answer.toLowerCase())"
-					class="w-64 h-12 mb-3 border border-gray-850 rounded-full text-xl bg-gray-950  hover:bg-gray-850 hover-active:bg-gray-750 disabled:cursor-default disabled:bg-red-900 focus:outline-none"
+					class="ui-answer"
 					@click="onAnswer(answer)"
 				>
 					{{ answer }}

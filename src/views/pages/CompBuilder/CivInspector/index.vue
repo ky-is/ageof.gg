@@ -49,7 +49,7 @@
 							{{ line.name }}
 							<UIStack direction="col" class="ml-px pl-px">
 								<UIStack direction="row">
-									<div v-for="[unitID, techID] in line.units" :key="unitID" class="wh-2 mx-px" :class="techID === undefined ? 'bg-yellow-700' : (!selectedCiv.disableTechIDs.includes(techID) ? 'bg-yellow-500' : 'bg-gray-700')" :title="units[unitID].name" />
+									<div v-for="[unitID, techID] in line.units" :key="unitID" class="wh-2 mx-px" :class="techID === undefined ? 'bg-yellow-600' : (!selectedCiv.disableTechIDs.includes(techID) ? 'bg-yellow-400' : 'bg-gray-700')" :title="units[unitID].name" />
 								</UIStack>
 								<LineUpgrades :upgrades="line.upgrades" :disableTechIDs="selectedCiv.disableTechIDs" class="mt-px" />
 							</UIStack>
