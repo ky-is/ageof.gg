@@ -22,6 +22,7 @@
 			<div class="absolute top-0 right-0 mt-1 mx-2">
 				<span class="text-green-700">✓</span><span class="text-secondary">{{ sessionCorrectAnswers.length }}</span>&nbsp;
 				<span class="text-red-600">✕</span><span class="text-secondary">{{ sessionIncorrectAnswers.length }}</span>
+				<span class="text-secondary">Best: <span class="font-semibold">{{ highScores[gameMode] }}</span></span>
 			</div>
 			<CivIcon :civ="currentCiv" class="mb-4" :class="gameMode === 'hard' ? 'wh-6' : 'wh-32'" />
 			<template v-if="gameMode === 'hard'">
@@ -85,10 +86,15 @@ import { computed, ref, reactive } from 'vue'
 import civEntries from '/@/assets/generated/civs'
 
 import { shuffle, getRandomItemFrom } from '/@/helpers/random'
+import { useStore } from '/@/models/store'
 
 import CivIcon from '/@/views/components/CivIcon.vue'
 import UIStack from '/@/views/ui/Stack.vue'
 export default { components: { CivIcon, UIStack } }
+
+const { state, commit } = useStore()
+
+export const highScores = computed(() => state.games.civIcons.highScore)
 
 export const gameMode = ref<undefined | 'easy' | 'hard'>(undefined)
 
@@ -174,6 +180,9 @@ export function onAnswer (answer: string) {
 		availableAnswers.value = getMultipleChoiceAnswers()
 		if (!sessionIncorrectCivs.has(correctCivName)) {
 			sessionCorrectAnswers.push(correctCivName)
+			if (sessionCorrectAnswers.size > highScores.value[currentGameMode]) {
+				commit.setHighScore('civIcons', currentGameMode, sessionCorrectAnswers.size)
+			}
 		}
 		questionIncorrectAnswers.clear()
 	} else {

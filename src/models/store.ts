@@ -2,6 +2,8 @@ import { computed, reactive, readonly } from 'vue'
 
 import type { CivData } from '/@/assets/types'
 
+import storage from '/@/helpers/storage'
+
 function createState() {
 	return {
 		selectedCiv: {
@@ -14,6 +16,14 @@ function createState() {
 			null as CivData | null,
 			null as CivData | null,
 		],
+		games: {
+			civIcons: {
+				highScore: {
+					easy: storage.getInt('civIcons.highScore.easy') ?? 0,
+					hard: storage.getInt('civIcons.highScore.hard') ?? 0,
+				},
+			},
+		},
 	}
 }
 
@@ -54,6 +64,11 @@ const store = {
 					break
 				}
 			}
+		},
+
+		setHighScore (game: 'civIcons', mode: 'easy' | 'hard', value: number) {
+			state.games[game].highScore[mode] = value
+			storage.setItem(`${game}.highScore.${mode}`, value)
 		},
 	},
 
