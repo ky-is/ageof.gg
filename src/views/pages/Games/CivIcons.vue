@@ -20,15 +20,15 @@
 		</template>
 		<template v-else-if="currentCiv">
 			<div class="absolute top-0 right-0 mt-1 mx-2">
-				<span class="text-green-700">✓</span><span class="text-secondary">{{ sessionCorrectAnswers.length }}</span>&nbsp;
-				<span class="text-red-600">✕</span><span class="text-secondary">{{ sessionIncorrectAnswers.length }}</span>
+				<span class="text-green-700">✓</span><span class="text-secondary font-semibold">{{ sessionCorrectAnswers.size }}</span>&nbsp;
+				<span class="text-red-600 mr-px">✕</span><span class="text-secondary font-semibold">{{ sessionIncorrectAnswers.size }}</span>&nbsp;
 				<span class="text-secondary">Best: <span class="font-semibold">{{ highScores[gameMode] }}</span></span>
 			</div>
-			<CivIcon :civ="currentCiv" class="mb-4" :class="gameMode === 'hard' ? 'wh-6' : 'wh-32'" />
+			<CivIcon :civ="currentCiv" class="mb-4" :class="gameMode === 'hard' ? 'wh-8' : 'wh-32'" />
 			<template v-if="gameMode === 'hard'">
 				<UIStack direction="col" class="relative mb-4">
 					<input
-						v-model="typedAnswer"
+						ref="answerInput" v-model="typedAnswer"
 						class="w-64 h-12 text-2xl font-light bg-gray-900 text-gray-100 text-center" placeholder="Type a civ name"
 						@keydown="onTypedKey"
 					>
@@ -46,33 +46,41 @@
 			<template v-else>
 				<button
 					v-for="answer in availableAnswers" :key="answer"
-					:disabled="questionIncorrectAnswers.has(answer.toLowerCase())"
+					:disabled="questionIncorrectNormalizedAnswers.has(normalized(answer))"
 					class="ui-answer"
 					@click="onAnswer(answer)"
 				>
 					{{ answer }}
 				</button>
 			</template>
-			<button
-				class="ui-button ui-700  w-64" :class="{ invisible: typedSuggestions?.length }"
-				@click="onShowAnswer"
-			>
-				Not sure
-			</button>
+			<UIStack direction="col" :class="{ invisible: typedSuggestions?.length }">
+				<button
+					class="ui-button ui-700  w-64"
+					@click="onShowAnswer"
+				>
+					Not sure
+				</button>
+				<button
+					class="ui-button ui-700  w-64 mt-2" :class="{ invisible: typedSuggestions?.length }"
+					@click="onReset"
+				>
+					Reset...
+				</button>
+			</UIStack>
 		</template>
 		<template v-else>
 			<h2 class="text-5xl text-secondary font-thin smallcaps">game over!</h2>
 			<table class="border-cells max-w-lg">
 				<thead>
 					<tr class="text-3xl">
-						<th><span class="text-green-700">✓</span> <span>{{ sessionCorrectAnswers.length }}</span></th>
-						<th><span class="text-red-600">✕</span> <span>{{ sessionIncorrectAnswers.length }}</span></th>
+						<th><span class="text-green-700">✓</span> <span>{{ sessionCorrectAnswers.size }}</span></th>
+						<th><span class="text-red-600">✕</span> <span>{{ sessionIncorrectAnswers.size }}</span></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>{{ sessionCorrectAnswers.join(', ') }}</td>
-						<td>{{ sessionIncorrectAnswers.map(([correctCivName, answer]) => correctCivName).join(', ') }}</td>
+						<td>{{ Array.from(sessionCorrectAnswers).join(', ') }}</td>
+						<td>{{ Array.from(sessionIncorrectAnswers).map(([correctCivName, answer]) => correctCivName).join(', ') }}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -90,6 +98,7 @@ import { useStore } from '/@/models/store'
 
 import CivIcon from '/@/views/components/CivIcon.vue'
 import UIStack from '/@/views/ui/Stack.vue'
+import { CivData } from '/@/assets/types'
 export default { components: { CivIcon, UIStack } }
 
 const { state, commit } = useStore()
@@ -104,16 +113,22 @@ function getNextCiv () {
 	return availableCivs.pop()
 }
 
+export const answerInput = ref<HTMLInputElement | undefined>(undefined)
+
+export function normalized (civName: string) {
+	return civName.toLowerCase()
+}
+
 export const civNames = availableCivs.map(civ => civ.name)
 export const currentCiv = ref(getNextCiv())
 
 export const typedAnswer = ref('')
 export const typedSuggestions = computed(() => {
-	const normalizedTypedAnswer = typedAnswer.value.trim().toLowerCase()
+	const normalizedTypedAnswer = normalized(typedAnswer.value.trim())
 	const suggestions = []
 	if (normalizedTypedAnswer) {
 		for (const civName of civNames) {
-			const normalizedCivName = civName.toLowerCase()
+			const normalizedCivName = normalized(civName)
 			if (normalizedCivName === normalizedTypedAnswer) {
 				return null
 			}
@@ -144,16 +159,12 @@ export function onTypedKey (event: KeyboardEvent) {
 	}
 }
 
-export const sessionCorrectAnswers = reactive([] as string[])
+export const sessionCorrectAnswers = reactive(new Set<string>())
 const sessionIncorrectCivs = new Set<string>()
-export const sessionIncorrectAnswers = reactive([] as [string, string][])
+export const sessionIncorrectAnswers = reactive(new Set<[string, string]>())
 
-function getMultipleChoiceAnswers () {
-	const civ = currentCiv.value
-	if (!civ) {
-		return []
-	}
-	const results = [civ.name, '', '']
+function getMultipleChoiceAnswers (correctCiv: CivData) {
+	const results = [correctCiv.name, '', '']
 	for (let index = 1; index < results.length; index += 1) {
 		let answer = ''
 		while (results.includes(answer)) {
@@ -164,33 +175,75 @@ function getMultipleChoiceAnswers () {
 	return shuffle(results)
 }
 
-export const availableAnswers = ref(getMultipleChoiceAnswers())
-export const questionIncorrectAnswers = reactive(new Set<string>())
+export const availableAnswers = ref(getMultipleChoiceAnswers(currentCiv.value!))
+export const questionIncorrectNormalizedAnswers = reactive(new Set<string>())
+
+function answerIncorrectly (correctCivAnswer: string, submittedAnswer: string) {
+	const answerNormalized = normalized(submittedAnswer)
+	if (!questionIncorrectNormalizedAnswers.has(answerNormalized)) {
+		sessionIncorrectAnswers.add([correctCivAnswer, submittedAnswer])
+		sessionIncorrectCivs.add(correctCivAnswer)
+		questionIncorrectNormalizedAnswers.add(answerNormalized)
+	}
+	answerInput.value?.focus()
+}
+
+function advanceToNextQuestion () {
+	const nextCiv = getNextCiv()
+	currentCiv.value = nextCiv
+	if (nextCiv) {
+		availableAnswers.value = getMultipleChoiceAnswers(nextCiv)
+	} else {
+		sessionCorrectAnswers.clear()
+	}
+	questionIncorrectNormalizedAnswers.clear()
+}
 
 export function onAnswer (answer: string) {
 	const correctCivName = currentCiv.value?.name
+	const currentGameMode = gameMode.value
 	typedAnswer.value = ''
 	typedSuggestionIndex.value = 0
-	if (!correctCivName) {
+	if (!correctCivName || !currentGameMode) {
 		return
 	}
-	const answerNormalized = answer.toLowerCase()
-	if (answerNormalized === correctCivName.toLowerCase()) {
-		currentCiv.value = getNextCiv()
-		availableAnswers.value = getMultipleChoiceAnswers()
+	const answerNormalized = normalized(answer)
+	if (answerNormalized === normalized(correctCivName)) {
 		if (!sessionIncorrectCivs.has(correctCivName)) {
-			sessionCorrectAnswers.push(correctCivName)
+			sessionCorrectAnswers.add(correctCivName)
 			if (sessionCorrectAnswers.size > highScores.value[currentGameMode]) {
 				commit.setHighScore('civIcons', currentGameMode, sessionCorrectAnswers.size)
 			}
 		}
-		questionIncorrectAnswers.clear()
+		advanceToNextQuestion()
 	} else {
-		if (!questionIncorrectAnswers.has(answerNormalized)) {
-			sessionIncorrectAnswers.push([correctCivName, answer])
-			sessionIncorrectCivs.add(correctCivName)
-			questionIncorrectAnswers.add(answerNormalized)
+		answerIncorrectly(correctCivName, answer)
+	}
+}
+
+export function onShowAnswer () {
+	const correctCivName = currentCiv.value?.name
+	if (!correctCivName) {
+		return
+	}
+	if (gameMode.value === 'hard') {
+		typedAnswer.value = correctCivName
+	} else {
+		for (const answer of availableAnswers.value) {
+			if (answer !== correctCivName) {
+				questionIncorrectNormalizedAnswers.add(normalized(answer))
+			}
 		}
 	}
+	answerIncorrectly(correctCivName, '?')
+}
+
+export function onReset () {
+	gameMode.value = undefined
+	currentCiv.value = undefined
+	sessionCorrectAnswers.clear()
+	sessionIncorrectCivs.clear()
+	sessionIncorrectAnswers.clear()
+	advanceToNextQuestion()
 }
 </script>
