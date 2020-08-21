@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"scripts": {
 		"dev": "vite",
-		"build": "vite build",
+		"build": "NODE_ENV=production vite build",
 		"generate:techtree": "tsc -p scripts/tsconfig.json && node scripts/techTree.js && rm scripts/techTree.js && rm scripts/types/tree.js && rm src/assets/types.js && rm scripts/effectSummaries.js"
 	},
 	"dependencies": {
