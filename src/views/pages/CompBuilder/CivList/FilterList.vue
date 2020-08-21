@@ -19,7 +19,7 @@
 import type { CivData } from '/@/assets/types'
 import { useStore } from '/@/models/store'
 
-import UIStack from '/@/views/ui/Stack.vue'
+import UIStack from '/@/views/ui/UIStack.vue'
 import CivIcon from '/@/views/components/CivIcon.vue'
 export default { components: { CivIcon, UIStack } }
 

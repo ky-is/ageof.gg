@@ -72,7 +72,7 @@ import type { Focus, EffectDescription, CivData } from '/@/assets/types'
 import { useStore } from '/@/models/store'
 
 import CivIcon from '/@/views/components/CivIcon.vue'
-import UIStack from '/@/views/ui/Stack.vue'
+import UIStack from '/@/views/ui/UIStack.vue'
 import TeamCivEntry from './TeamCivEntry.vue'
 export default { components: { CivIcon, TeamCivEntry, UIStack } }
 

@@ -29,7 +29,8 @@
 				<UIStack direction="col" class="relative mb-4">
 					<input
 						ref="answerInput" v-model="typedAnswer"
-						class="w-64 h-12 text-2xl font-light bg-gray-900 text-gray-100 text-center" placeholder="Type a civ name"
+						class="block w-96 max-w-full w-md h-12 text-2xl font-light bg-gray-900 text-gray-100 text-center"
+						placeholder="Type a civ name"
 						@keydown="onTypedKey"
 					>
 					<UIStack v-if="typedSuggestions?.length" direction="col" class="absolute top-full w-full">
@@ -97,7 +98,7 @@ import { shuffle, getRandomItemFrom } from '/@/helpers/random'
 import { useStore } from '/@/models/store'
 
 import CivIcon from '/@/views/components/CivIcon.vue'
-import UIStack from '/@/views/ui/Stack.vue'
+import UIStack from '/@/views/ui/UIStack.vue'
 import { CivData } from '/@/assets/types'
 export default { components: { CivIcon, UIStack } }
 

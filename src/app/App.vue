@@ -16,6 +16,6 @@
 </template>
 
 <script setup lang="ts">
-import UIStack from '/@/views/ui/Stack.vue'
+import UIStack from '/@/views/ui/UIStack.vue'
 export default { components: { UIStack } }
 </script>

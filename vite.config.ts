@@ -1,10 +1,9 @@
-const path = require('path')
+import path from 'path'
 
-module.exports = {
+export default {
 	alias: {
 		'/@/': path.resolve(__dirname, 'src'),
 	},
-
 	define: {
 		__VUE_OPTIONS_API__: false,
 	},

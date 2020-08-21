@@ -5,8 +5,8 @@
 			<FilterFocus v-model:selected="filterFocus" />
 		</UIStack>
 		<div class="w-full px-4 flex-gro overflow-y-scroll">
-			<template v-for="[header, civs] in filteredCivs">
-				<FilterList :key="header" :header="header" :civs="civs" :isFiltered="!!filterFocus" />
+			<template v-for="[header, civs] in filteredCivs" :key="header">
+				<FilterList :header="header" :civs="civs" :isFiltered="!!filterFocus" />
 			</template>
 		</div>
 	</UIStack>
@@ -18,7 +18,7 @@ import { computed, ref, Ref } from 'vue'
 import { CivData, Focus } from '/@/assets/types'
 import civEntries from '/@/assets/generated/civs'
 
-import UIStack from '/@/views/ui/Stack.vue'
+import UIStack from '/@/views/ui/UIStack.vue'
 import FilterFocus from './FilterFocus.vue'
 import FilterList from './FilterList.vue'
 export default { components: { FilterFocus, FilterList, UIStack } }

@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import UIStack from '/@/views/ui/Stack.vue'
+import UIStack from '/@/views/ui/UIStack.vue'
 
 import CivList from './CivList/index.vue'
 import CivComp from './CivComp/index.vue'

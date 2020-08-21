@@ -12,7 +12,7 @@
 <script setup="props" lang="ts">
 import type { Focus } from '/@/assets/types'
 
-import UIStack from '/@/views/ui/Stack.vue'
+import UIStack from '/@/views/ui/UIStack.vue'
 export default { components: { UIStack } }
 
 declare const props: {
