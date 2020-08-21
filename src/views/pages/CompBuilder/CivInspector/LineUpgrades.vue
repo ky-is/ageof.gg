@@ -13,9 +13,6 @@ import { computed } from 'vue'
 
 import techs from '/@/assets/generated/techs'
 
-import UIStack from '/@/views/ui/UIStack.vue'
-export default { components: { UIStack } }
-
 declare const props: {
 	upgrades: number[]
 	disableTechIDs: number[]

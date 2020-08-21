@@ -7,12 +7,3 @@
 		</UIStack>
 	</UIStack>
 </template>
-
-<script setup lang="ts">
-import UIStack from '/@/views/ui/UIStack.vue'
-
-import CivList from './CivList/index.vue'
-import CivComp from './CivComp/index.vue'
-import CivInspector from './CivInspector/index.vue'
-export default { components: { CivInspector, CivList, CivComp, UIStack } }
-</script>

@@ -26,9 +26,6 @@ import civEntries from '/@/assets/generated/civs'
 
 import { useStore } from '/@/models/store'
 
-import CivIcon from '/@/views/components/CivIcon.vue'
-export default { components: { CivIcon } }
-
 declare const props: {
 	index: 0 | 1 | 2 | 3
 	civ?: CivData

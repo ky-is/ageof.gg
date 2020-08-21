@@ -97,10 +97,7 @@ import civEntries from '/@/assets/generated/civs'
 import { shuffle, getRandomItemFrom } from '/@/helpers/random'
 import { useStore } from '/@/models/store'
 
-import CivIcon from '/@/views/components/CivIcon.vue'
-import UIStack from '/@/views/ui/UIStack.vue'
 import { CivData } from '/@/assets/types'
-export default { components: { CivIcon, UIStack } }
 
 const { state, commit } = useStore()
 

@@ -71,11 +71,6 @@ import type { Focus, EffectDescription, CivData } from '/@/assets/types'
 
 import { useStore } from '/@/models/store'
 
-import CivIcon from '/@/views/components/CivIcon.vue'
-import UIStack from '/@/views/ui/UIStack.vue'
-import TeamCivEntry from './TeamCivEntry.vue'
-export default { components: { CivIcon, TeamCivEntry, UIStack } }
-
 const { state } = useStore()
 export const teamCivs = state.teamCivs as (CivData | null)[]
 

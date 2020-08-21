@@ -6,5 +6,5 @@ import './index.postcss'
 import router from '/@/models/router'
 
 createApp(App)
-  .use(router)
-  .mount('#app')
+	.use(router)
+	.mount('#app')

@@ -18,11 +18,6 @@ import { computed, ref, Ref } from 'vue'
 import { CivData, Focus } from '/@/assets/types'
 import civEntries from '/@/assets/generated/civs'
 
-import UIStack from '/@/views/ui/UIStack.vue'
-import FilterFocus from './FilterFocus.vue'
-import FilterList from './FilterList.vue'
-export default { components: { FilterFocus, FilterList, UIStack } }
-
 export const filterFocus: Ref<keyof typeof Focus | ''> = ref('')
 
 function sortByName (a: {name: string}, b: {name: string}): number {
