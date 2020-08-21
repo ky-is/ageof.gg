@@ -28,6 +28,24 @@ module.exports = {
 		},
 	},
 	variants: ['responsive', 'group-hover', 'hover', 'hover-active', 'focus', 'disabled'],
+	corePlugins: {
+		container: false,
+		clear: false,
+		float: false,
+		gap: false,
+		gradientColorStops: false,
+		gridAutoFlow: false,
+		gridColumn: false,
+		gridColumnEnd: false,
+		gridColumnStart: false,
+		gridRow: false,
+		gridRowEnd: false,
+		gridRowStart: false,
+		gridTemplateColumns: false,
+		gridTemplateRows: false,
+		// objectFit: false,
+		// objectPosition: false,
+	},
 	plugins: [
 		require('@ky-is/tailwindcss-plugin-width-height')({ variants: [] }),
 		plugin(({ addVariant, e }) => {
@@ -51,7 +69,8 @@ module.exports = {
 	purge: {
 		content: [
 			'./index.html',
-			'./src/**/*.vue',
+			'./src/app/App.vue',
+			'./src/views/**/*.vue',
 			'./src/**/*.ts',
 		],
 		options: {
