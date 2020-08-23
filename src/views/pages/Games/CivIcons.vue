@@ -51,7 +51,7 @@
 					class="ui-answer  relative"
 					@click="onAnswer(answer)"
 				>
-					<div class="absolute leading-loose pl-4 text-secondary text-sm">{{ index + 1 }}</div>
+					<div class="absolute pl-4 text-secondary text-sm leading-loose">{{ index + 1 }}</div>
 					{{ answer }}
 				</button>
 			</UIStack>
