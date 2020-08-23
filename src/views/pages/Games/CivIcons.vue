@@ -1,22 +1,20 @@
 <template>
 	<UIStack direction="col" justification="center" class="h-content items-center bg-black relative">
 		<template v-if="!gameMode">
-			<h2 class="text-2xl">Civ Icon Match</h2>
-			<p class="text-secondary text-xl font-light">Guess the civilization for each of {{ civNames.length }} AoE II civ icons!</p>
+			<h2 class="text-3xl">Civ Icon Match</h2>
+			<p class="text-secondary text-xl font-light px-4 text-center">Guess the civilization for each of {{ civNames.length }} AoE II civ icons!</p>
 			<hr class="w-64 my-8 border-secondary">
 			<h3 class="mb-2 text-xl">Choose your mode:</h3>
-			<table class="text-center" style="">
-				<tbody>
-					<tr>
-						<td><button class="ui-button ui-purple w-48" @click="onGameMode('easy')">Easy</button></td>
-						<td><button class="ui-button ui-pink w-48" @click="onGameMode('hard')">Hard</button></td>
-					</tr>
-					<tr class="text-secondary">
-						<td class="pt-1"><p class="w-64">Large icon with 3 multiple-choice answers to guide you.</p></td>
-						<td class="pt-1"><p class="w-64">Small icon and type-to-answer mode.</p></td>
-					</tr>
-				</tbody>
-			</table>
+			<UIStack direction="col" switchAt="md" class="md:space-x-4 md:space-y-0 space-y-4">
+				<UIStack direction="col" alignment="center" class="space-y-1">
+					<button class="ui-button ui-purple  w-48" @click="onGameMode('easy')">Easy</button>
+					<p class="w-64 text-center text-secondary">Large icon with 3 multiple-choice answers to guide you.</p>
+				</UIStack>
+				<UIStack direction="col" alignment="center" class="space-y-1">
+					<button class="ui-button ui-pink  w-48" @click="onGameMode('hard')">Hard</button>
+					<p class="w-64 text-center text-secondary">Small icon and type-to-answer mode.</p>
+				</UIStack>
+			</UIStack>
 		</template>
 		<template v-else-if="currentCiv">
 			<div class="absolute top-0 right-0 mt-1 mx-2">
