@@ -81,7 +81,10 @@ html, body, #app {
 }
 
 .router-link-active {
-	@apply text-secondary cursor-default;
+	@apply text-secondary;
+	&.router-link-exact-active {
+		@apply cursor-default;
+	}
 }
 
 .border-cells {
