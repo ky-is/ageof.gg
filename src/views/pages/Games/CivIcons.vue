@@ -21,7 +21,7 @@
 		<template v-else-if="currentCiv">
 			<div class="absolute top-0 right-0 mt-1 mx-2">
 				<span class="text-green-700">✓</span><span class="text-secondary font-semibold">{{ sessionCorrectAnswers.size }}</span>&nbsp;
-				<span class="text-red-600 mr-px">✕</span><span class="text-secondary font-semibold">{{ sessionIncorrectAnswers.size }}</span>&nbsp;
+				<span class="text-red-600 mr-px">✕</span><span class="text-secondary font-semibold">{{ sessionIncorrectCivs.size }}</span>&nbsp;
 				<span class="text-secondary">Best: <span class="font-semibold">{{ highScores[gameMode] }}</span></span>
 			</div>
 			<CivIcon :civ="currentCiv" class="mb-4" :class="gameMode === 'hard' ? 'wh-8' : 'wh-32'" />
@@ -74,15 +74,15 @@
 			<h2 class="mb-4 text-5xl text-secondary font-thin smallcaps">game over!</h2>
 			<table class="border-cells max-w-lg">
 				<thead>
-					<tr class="text-3xl">
+					<tr class="text-3xl whitespace-no-wrap">
 						<th><span class="text-green-700">✓</span> <span>{{ sessionCorrectAnswers.size }}</span></th>
-						<th><span class="text-red-600">✕</span> <span>{{ sessionIncorrectAnswers.size }}</span></th>
+						<th><span class="text-red-600">✕</span> <span>{{ sessionIncorrectCivs.size }}</span></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td>{{ Array.from(sessionCorrectAnswers).join(', ') }}</td>
-						<td>{{ Array.from(sessionIncorrectAnswers).map(([correctCivName, answer]) => correctCivName).join(', ') }}</td>
+						<td>{{ Array.from(sessionIncorrectCivs).join(', ') }}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -111,7 +111,11 @@ export const highScores = computed(() => state.games.civIcons.highScore)
 
 export const gameMode = ref<undefined | 'easy' | 'hard'>(undefined)
 
-const availableCivs = shuffle(civEntries.slice(1))
+function getCivList () {
+	return shuffle(civEntries.slice(1))
+}
+
+let availableCivs = getCivList()
 
 function getNextCiv () {
 	return availableCivs.pop()
@@ -176,7 +180,7 @@ export function onTypedKey (event: KeyboardEvent) {
 }
 
 export const sessionCorrectAnswers = reactive(new Set<string>())
-const sessionIncorrectCivs = new Set<string>()
+export const sessionIncorrectCivs = reactive(new Set<string>())
 export const sessionIncorrectAnswers = reactive(new Set<[string, string]>())
 
 function getMultipleChoiceAnswers (correctCiv: CivData) {
@@ -200,12 +204,11 @@ useKeydown([49, 50, 51], (keyCode) => {
 })
 
 function answerIncorrectly (correctCivAnswer: string, submittedAnswer: string) {
-	const answerNormalized = normalized(submittedAnswer)
-	if (!questionIncorrectNormalizedAnswers.has(answerNormalized)) {
-		sessionIncorrectAnswers.add([correctCivAnswer, submittedAnswer])
-		sessionIncorrectCivs.add(correctCivAnswer)
-		questionIncorrectNormalizedAnswers.add(answerNormalized)
-	}
+	sessionIncorrectAnswers.add([correctCivAnswer, submittedAnswer])
+	sessionIncorrectCivs.add(correctCivAnswer)
+	questionIncorrectNormalizedAnswers.add(normalized(submittedAnswer))
+	// if (!sessionIncorrectCivs.has(correctCivAnswer)) {
+	// }
 	answerInput.value?.focus()
 }
 
@@ -214,8 +217,6 @@ function advanceToNextQuestion () {
 	currentCiv.value = nextCiv
 	if (nextCiv) {
 		availableAnswers.value = getMultipleChoiceAnswers(nextCiv)
-	} else {
-		sessionCorrectAnswers.clear()
 	}
 	questionIncorrectNormalizedAnswers.clear()
 }
@@ -260,7 +261,7 @@ export function onShowAnswer () {
 }
 
 export function onEndEarly () {
-	if (!sessionCorrectAnswers.size && !sessionIncorrectAnswers.size) {
+	if (!sessionCorrectAnswers.size && !sessionIncorrectCivs.size) {
 		return onReset()
 	}
 	const confirmed = window.confirm('End the game now?')
@@ -272,6 +273,7 @@ export function onEndEarly () {
 export function onReset () {
 	gameMode.value = undefined
 	currentCiv.value = undefined
+	availableCivs = getCivList()
 	sessionCorrectAnswers.clear()
 	sessionIncorrectCivs.clear()
 	sessionIncorrectAnswers.clear()
