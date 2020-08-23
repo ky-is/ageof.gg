@@ -8,8 +8,8 @@
 			<table class="text-center" style="">
 				<tbody>
 					<tr>
-						<td><button class="ui-button ui-purple w-48" @click="gameMode = 'easy'">Easy</button></td>
-						<td><button class="ui-button ui-pink w-48" @click="gameMode = 'hard'">Hard</button></td>
+						<td><button class="ui-button ui-purple w-48" @click="onGameMode('easy')">Easy</button></td>
+						<td><button class="ui-button ui-pink w-48" @click="onGameMode('hard')">Hard</button></td>
 					</tr>
 					<tr class="text-secondary">
 						<td class="pt-1"><p class="w-64">Large icon with 3 multiple-choice answers to guide you.</p></td>
@@ -44,16 +44,17 @@
 					</UIStack>
 				</UIStack>
 			</template>
-			<template v-else>
+			<UIStack v-else direction="col" @keydown="onAnswerButtonShortcuts">
 				<button
-					v-for="answer in availableAnswers" :key="answer"
+					v-for="(answer, index) in availableAnswers" :key="answer"
 					:disabled="questionIncorrectNormalizedAnswers.has(normalized(answer))"
-					class="ui-answer"
+					class="ui-answer  relative"
 					@click="onAnswer(answer)"
 				>
+					<div class="absolute leading-loose pl-4 text-secondary text-sm">{{ index + 1 }}</div>
 					{{ answer }}
 				</button>
-			</template>
+			</UIStack>
 			<UIStack direction="col" :class="{ invisible: typedSuggestions?.length }">
 				<button
 					class="ui-button ui-700  w-64"
@@ -63,14 +64,14 @@
 				</button>
 				<button
 					class="ui-button ui-700  w-64 mt-2" :class="{ invisible: typedSuggestions?.length }"
-					@click="onReset"
+					@click="onEndEarly"
 				>
-					Reset...
+					End now...
 				</button>
 			</UIStack>
 		</template>
 		<template v-else>
-			<h2 class="text-5xl text-secondary font-thin smallcaps">game over!</h2>
+			<h2 class="mb-4 text-5xl text-secondary font-thin smallcaps">game over!</h2>
 			<table class="border-cells max-w-lg">
 				<thead>
 					<tr class="text-3xl">
@@ -85,6 +86,9 @@
 					</tr>
 				</tbody>
 			</table>
+			<button class="ui-button  w-64 mt-4" :class="gameMode === 'hard' ? 'ui-pink' : 'ui-purple'" @click="onReset">
+				Play again
+			</button>
 		</template>
 	</UIStack>
 </template>
@@ -98,6 +102,8 @@ import { shuffle, getRandomItemFrom } from '/@/helpers/random'
 import { useStore } from '/@/models/store'
 
 import { CivData } from '/@/assets/types'
+
+import { useKeydown } from '/@/helpers/keyboard'
 
 const { state, commit } = useStore()
 
@@ -139,6 +145,18 @@ export const typedSuggestions = computed(() => {
 })
 export const typedSuggestionIndex = ref(0)
 
+export function onGameMode (mode: 'easy' | 'hard') {
+	gameMode.value = mode
+}
+
+export function onAnswerButtonShortcuts (event: KeyboardEvent) {
+	console.log(event.keyCode)
+	switch (event.keyCode) {
+	case 13:
+		break
+	}
+}
+
 export function onTypedKey (event: KeyboardEvent) {
 	switch (event.keyCode) {
 	case 13: {
@@ -175,6 +193,11 @@ function getMultipleChoiceAnswers (correctCiv: CivData) {
 
 export const availableAnswers = ref(getMultipleChoiceAnswers(currentCiv.value!))
 export const questionIncorrectNormalizedAnswers = reactive(new Set<string>())
+
+useKeydown([49, 50, 51], (keyCode) => {
+	const index = keyCode - 49
+	onAnswer(availableAnswers.value[index])
+})
 
 function answerIncorrectly (correctCivAnswer: string, submittedAnswer: string) {
 	const answerNormalized = normalized(submittedAnswer)
@@ -234,6 +257,16 @@ export function onShowAnswer () {
 		}
 	}
 	answerIncorrectly(correctCivName, '?')
+}
+
+export function onEndEarly () {
+	if (!sessionCorrectAnswers.size && !sessionIncorrectAnswers.size) {
+		return onReset()
+	}
+	const confirmed = window.confirm('End the game now?')
+	if (confirmed) {
+		currentCiv.value = undefined
+	}
 }
 
 export function onReset () {
