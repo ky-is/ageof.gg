@@ -28,7 +28,7 @@
 					<input
 						ref="answerInput" v-model="typedAnswer"
 						class="block w-96 max-w-full w-md h-12 text-2xl font-light bg-gray-900 text-gray-100 text-center"
-						placeholder="Type a civ name"
+						placeholder="Type a civ name" autofocus
 						@keydown="onTypedKey"
 					>
 					<UIStack v-if="typedSuggestions?.length" direction="col" class="absolute top-full w-full">
