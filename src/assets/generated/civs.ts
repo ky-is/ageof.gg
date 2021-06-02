@@ -1,4 +1,4 @@
-import { CivData } from '/@/assets/types'
+import { CivData } from '@/assets/types'
 
 export default [
 	{

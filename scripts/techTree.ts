@@ -696,9 +696,8 @@ function writeFile (name: string, prefix: string, object: any, suffix: string) {
 	fs.writeFileSync(path.join(outputPath, `${name}.ts`), output, 'utf-8')
 }
 
-function writeFileFor (name: string, type: string, importType: string | undefined, object: any) {
-	const collectionType = Array.isArray(object) ? `${type}[]` : `{[key: string]: ${type}}`
-	writeFile(name, `import { ${importType ?? type} } from '/@/assets/types'\n\n`, object, ` as ${collectionType}`)
+function writeFileFor (name: string, importType: string | undefined, exportType: string, object: any) {
+	writeFile(name, `import { ${importType } } from '@/assets/types'\n\n`, object, ` as ${exportType}`)
 }
 
 const outputTreeObject: {[name: string]: TreeBranchData} = {}
@@ -805,10 +804,10 @@ outputTree.forEach(branch => {
 		})
 })
 
-writeFileFor('civs', 'CivData', undefined, outputCivs)
-writeFileFor('techs', '{[id: number]: TechSummaryData}', 'TechSummaryData', outputTreeTechs)
-writeFileFor('units', '{[id: number]: UnitSummaryData}', 'UnitSummaryData', outputTreeUnits)
-writeFileFor('unitLines', '[string, TreeBranchData[]]', 'TreeBranchData', unitCategoryLines)
+writeFileFor('civs', 'CivData', 'CivData[]', outputCivs)
+writeFileFor('techs', 'TechSummaryData', '{[id: string]: TechSummaryData}', outputTreeTechs)
+writeFileFor('units', 'UnitSummaryData', '{[id: string]: UnitSummaryData}', outputTreeUnits)
+writeFileFor('unitLines', 'TreeBranchData', '[string, TreeBranchData[]][]', unitCategoryLines)
 writeFile('allCivTechs', '', Array.from(allCivTechs), '')
 
 // Descriptions

@@ -1,8 +1,8 @@
 import { computed, reactive, readonly } from 'vue'
 
-import type { CivData } from '/@/assets/types'
+import type { CivData } from '@/assets/types'
 
-import storage from '/@/helpers/storage'
+import storage from '@/helpers/storage'
 
 function createState() {
 	return {
@@ -33,8 +33,8 @@ const store = {
 	state: readonly(state),
 
 	commit: {
-		selectCiv (type: 'hovered' | 'clicked', civ: CivData | null) {
-			state.selectedCiv[type] = civ
+		selectCiv (type: 'hovered' | 'clicked', civ: CivData | undefined) {
+			state.selectedCiv[type] = civ ?? null
 		},
 
 		addTeamCiv (teamCiv: CivData) {
@@ -55,11 +55,11 @@ const store = {
 			store.commit.removeTeamCiv(teamCiv)
 			state.teamCivs[index] = teamCiv
 		},
-		removeTeamCiv (teamCiv: CivData) {
+		removeTeamCiv (teamCiv: CivData | undefined) {
 			state.selectedCiv.hovered = null
 			for (const index in state.teamCivs) {
 				const civ = state.teamCivs[index]
-				if (civ && civ.name === teamCiv.name) {
+				if (civ && civ.name === teamCiv?.name) {
 					state.teamCivs[index] = null
 					break
 				}

@@ -1,6 +1,7 @@
 const plugin = require('tailwindcss/plugin')
 
 module.exports = {
+	mode: 'jit',
 	theme: {
 		extend: {
 			colors: { // sqrt(a^2/2+b^2/2)
@@ -12,39 +13,10 @@ module.exports = {
 				'gray-750': 'rgb(47, 57, 73)',
 				// background-color:rgb(55, 65, 81);
 			},
-			width: {
-				'1/2': '50%',
-				'96': '24rem',
-				'128': '32rem',
-			},
-			height: {
-				'1/2': '50%',
-				'96': '24rem',
-				'128': '32rem',
-			},
 			inset: {
 				'full': '100%',
 			},
 		},
-	},
-	variants: ['responsive', 'group-hover', 'hover', 'hover-active', 'focus', 'disabled'],
-	corePlugins: {
-		container: false,
-		clear: false,
-		float: false,
-		gap: false,
-		gradientColorStops: false,
-		gridAutoFlow: false,
-		gridColumn: false,
-		gridColumnEnd: false,
-		gridColumnStart: false,
-		gridRow: false,
-		gridRowEnd: false,
-		gridRowStart: false,
-		gridTemplateColumns: false,
-		gridTemplateRows: false,
-		// objectFit: false,
-		// objectPosition: false,
 	},
 	plugins: [
 		require('@ky-is/tailwindcss-plugin-width-height')({ variants: [] }),
@@ -56,25 +28,14 @@ module.exports = {
 			})
 		}),
 	],
-	experimental: {
-		applyComplexClasses: true,
-		uniformColorPalette: true,
-		extendedSpacingScale: true,
-		defaultLineHeights: true,
-		extendedFontSizeScale: true,
-	},
-	future: {
-		removeDeprecatedGapUtilities: true,
-	},
 	purge: {
 		content: [
 			'./index.html',
-			'./src/app/App.vue',
-			'./src/views/**/*.vue',
+			'./src/**/*.vue',
 			'./src/**/*.ts',
 		],
 		options: {
-			whitelistPatterns: [
+			safelistPatterns: [
 				/flex-(row|col)$/,
 				/^items-(start|center|baseline|end)$/,
 				/^justify-(start|center|end)$/,

@@ -4,7 +4,7 @@
 		<UIStack
 			v-for="civ in civs" :key="civ.name"
 			direction="row" alignment="start" class="py-1"
-			@click="commit.selectCiv('clicked', civ)" @mouseenter="commit.selectCiv('hovered', civ)" @mouseleave="commit.selectCiv('hovered', null)"
+			@click="commit.selectCiv('clicked', civ)" @mouseenter="commit.selectCiv('hovered', civ)" @mouseleave="commit.selectCiv('hovered', undefined)"
 		>
 			<CivIcon :civ="civ" dragAction="copy" class="w-10 -ml-1 mr-1" />
 			<UIStack direction="col" class="leading-tight">
@@ -15,15 +15,17 @@
 	</UIStack>
 </template>
 
-<script setup="props" lang="ts">
-import type { CivData } from '/@/assets/types'
-import { useStore } from '/@/models/store'
+<script setup lang="ts">
+import { defineProps } from 'vue'
 
-declare const props: {
+import type { CivData } from '@/assets/types'
+import { useStore } from '@/models/store'
+
+const props = defineProps<{
 	header: string
-	civs: CivData[][]
+	civs: CivData[]
 	isFiltered: boolean
-}
+}>()
 
-export const { commit } = useStore()
+const { commit } = useStore()
 </script>

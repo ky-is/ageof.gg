@@ -8,21 +8,22 @@
 	</UIStack>
 </template>
 
-<script setup="props" lang="ts">
-import { computed } from 'vue'
+<script setup lang="ts">
+import { computed, defineProps } from 'vue'
 
-import techs from '/@/assets/generated/techs'
+import techs from '@/assets/generated/techs'
+import type { TechSummaryData } from '@/assets/types'
 
-declare const props: {
+const props = defineProps<{
 	upgrades: number[]
 	disableTechIDs: number[]
-}
+}>()
 
-export const availableCount = computed(() => {
-	return props.upgrades.filter(techID => !props.disableTechIDs.includes(techID)).length
-})
+// const availableCount = computed(() => {
+// 	return props.upgrades.filter(techID => !props.disableTechIDs.includes(techID)).length
+// })
 
-export const lineTechs = computed(() => {
-	return props.upgrades.map(techID => [ techID, techs[techID] ])
+const lineTechs = computed(() => {
+	return props.upgrades.map(techID => [ techID, techs[techID] ] as [number, TechSummaryData])
 })
 </script>

@@ -5,7 +5,7 @@
 			<p class="text-secondary text-xl font-light px-4 text-center">Guess the civilization for each of {{ civNames.length }} AoE II civ icons!</p>
 			<hr class="w-64 my-8 border-secondary">
 			<h3 class="mb-2 text-xl">Choose your mode:</h3>
-			<UIStack direction="col" switchAt="md" class="md:space-x-4 md:space-y-0 space-y-4">
+			<UIStack direction="col" switchAt="md" class="space-x-4 md:space-x-0 md:space-y-0 space-y-4">
 				<UIStack direction="col" alignment="center" class="space-y-1">
 					<button class="ui-button ui-purple  w-48" @click="onGameMode('easy')">Easy</button>
 					<p class="w-64 text-center text-secondary">Large icon with 3 multiple-choice answers to guide you.</p>
@@ -69,10 +69,10 @@
 			</UIStack>
 		</template>
 		<template v-else>
-			<h2 class="mb-4 text-5xl text-secondary font-thin smallcaps">game over!</h2>
+			<h2 class="mb-4 text-5xl text-secondary font-extralight smallcaps">game over!</h2>
 			<table class="border-cells max-w-lg">
 				<thead>
-					<tr class="text-3xl whitespace-no-wrap">
+					<tr class="text-3xl whitespace-nowrap">
 						<th><span class="text-green-700">✓</span> <span>{{ sessionCorrectAnswers.size }}</span></th>
 						<th><span class="text-red-600">✕</span> <span>{{ sessionIncorrectCivs.size }}</span></th>
 					</tr>
@@ -94,20 +94,20 @@
 <script setup lang="ts">
 import { computed, ref, reactive } from 'vue'
 
-import civEntries from '/@/assets/generated/civs'
+import civEntries from '@/assets/generated/civs'
 
-import { shuffle, getRandomItemFrom } from '/@/helpers/random'
-import { useStore } from '/@/models/store'
+import { shuffle, getRandomItemFrom } from '@/helpers/random'
+import { useStore } from '@/models/store'
 
-import { CivData } from '/@/assets/types'
+import type { CivData } from '@/assets/types'
 
-import { useKeydown } from '/@/helpers/keyboard'
+import { useKeydown } from '@/helpers/keyboard'
 
 const { state, commit } = useStore()
 
-export const highScores = computed(() => state.games.civIcons.highScore)
+const highScores = computed(() => state.games.civIcons.highScore)
 
-export const gameMode = ref<undefined | 'easy' | 'hard'>(undefined)
+const gameMode = ref<undefined | 'easy' | 'hard'>(undefined)
 
 function getCivList () {
 	return shuffle(civEntries.slice(1))
@@ -119,17 +119,17 @@ function getNextCiv () {
 	return availableCivs.pop()
 }
 
-export const answerInput = ref<HTMLInputElement | undefined>(undefined)
+const answerInput = ref<HTMLInputElement | undefined>(undefined)
 
-export function normalized (civName: string) {
+function normalized (civName: string) {
 	return civName.toLowerCase()
 }
 
-export const civNames = availableCivs.map(civ => civ.name)
-export const currentCiv = ref(getNextCiv())
+const civNames = availableCivs.map(civ => civ.name)
+const currentCiv = ref(getNextCiv())
 
-export const typedAnswer = ref('')
-export const typedSuggestions = computed(() => {
+const typedAnswer = ref('')
+const typedSuggestions = computed(() => {
 	const normalizedTypedAnswer = normalized(typedAnswer.value.trim())
 	const suggestions = []
 	if (normalizedTypedAnswer) {
@@ -145,13 +145,13 @@ export const typedSuggestions = computed(() => {
 	}
 	return suggestions
 })
-export const typedSuggestionIndex = ref(0)
+const typedSuggestionIndex = ref(0)
 
-export function onGameMode (mode: 'easy' | 'hard') {
+function onGameMode (mode: 'easy' | 'hard') {
 	gameMode.value = mode
 }
 
-export function onAnswerButtonShortcuts (event: KeyboardEvent) {
+function onAnswerButtonShortcuts (event: KeyboardEvent) {
 	console.log(event.keyCode)
 	switch (event.keyCode) {
 	case 13:
@@ -159,7 +159,7 @@ export function onAnswerButtonShortcuts (event: KeyboardEvent) {
 	}
 }
 
-export function onTypedKey (event: KeyboardEvent) {
+function onTypedKey (event: KeyboardEvent) {
 	switch (event.keyCode) {
 	case 13: {
 		const answer = typedSuggestions.value ? typedSuggestions.value[typedSuggestionIndex.value] : typedAnswer.value
@@ -177,9 +177,9 @@ export function onTypedKey (event: KeyboardEvent) {
 	}
 }
 
-export const sessionCorrectAnswers = reactive(new Set<string>())
-export const sessionIncorrectCivs = reactive(new Set<string>())
-export const sessionIncorrectAnswers = reactive(new Set<[string, string]>())
+const sessionCorrectAnswers = reactive(new Set<string>())
+const sessionIncorrectCivs = reactive(new Set<string>())
+const sessionIncorrectAnswers = reactive(new Set<[string, string]>())
 
 function getMultipleChoiceAnswers (correctCiv: CivData) {
 	const results = [correctCiv.name, '', '']
@@ -193,8 +193,8 @@ function getMultipleChoiceAnswers (correctCiv: CivData) {
 	return shuffle(results)
 }
 
-export const availableAnswers = ref(getMultipleChoiceAnswers(currentCiv.value!))
-export const questionIncorrectNormalizedAnswers = reactive(new Set<string>())
+const availableAnswers = ref(getMultipleChoiceAnswers(currentCiv.value!))
+const questionIncorrectNormalizedAnswers = reactive(new Set<string>())
 
 useKeydown([49, 50, 51], (keyCode) => {
 	const index = keyCode - 49
@@ -219,7 +219,7 @@ function advanceToNextQuestion () {
 	questionIncorrectNormalizedAnswers.clear()
 }
 
-export function onAnswer (answer: string) {
+function onAnswer (answer: string) {
 	const correctCivName = currentCiv.value?.name
 	const currentGameMode = gameMode.value
 	typedAnswer.value = ''
@@ -241,7 +241,7 @@ export function onAnswer (answer: string) {
 	}
 }
 
-export function onShowAnswer () {
+function onShowAnswer () {
 	const correctCivName = currentCiv.value?.name
 	if (!correctCivName) {
 		return
@@ -258,7 +258,7 @@ export function onShowAnswer () {
 	answerIncorrectly(correctCivName, '?')
 }
 
-export function onEndEarly () {
+function onEndEarly () {
 	if (!sessionCorrectAnswers.size && !sessionIncorrectCivs.size) {
 		return onReset()
 	}
@@ -268,7 +268,7 @@ export function onEndEarly () {
 	}
 }
 
-export function onReset () {
+function onReset () {
 	gameMode.value = undefined
 	currentCiv.value = undefined
 	availableCivs = getCivList()

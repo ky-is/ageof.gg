@@ -1,20 +1,20 @@
 import path from 'path'
-
 import ViteComponentsImport from 'vite-plugin-components'
-
-const alias = {
-	'/@/': path.resolve(__dirname, 'src'),
-}
+import vue from '@vitejs/plugin-vue'
 
 export default {
-	alias,
+	resolve: {
+		alias: {
+			'@': path.resolve(__dirname, 'src'),
+		}
+	},
 	define: {
 		__VUE_OPTIONS_API__: false,
 	},
 	plugins: [
+		vue(),
 		ViteComponentsImport({
 			dirs: ['src/views'],
-			alias,
 		}),
 	],
 }

@@ -7,39 +7,35 @@
 		"generate:techtree": "tsc -p scripts/tsconfig.json && node scripts/techTree.js && rm scripts/techTree.js && rm scripts/types/tree.js && rm src/assets/types.js && rm scripts/effectSummaries.js"
 	},
 	"dependencies": {
-		"@vueuse/core": "^4.0.0-beta.10",
-		"tailwindcss": "^1.7.6",
-		"vue": "^3.0.0-rc.10",
-		"vue-router": "^4.0.0-beta.9"
+		"@vueuse/core": "^4.11.2",
+		"vue": "^3.0.11",
+		"vue-router": "^4.0.8"
 	},
 	"devDependencies": {
-		"@ky-is/eslint-config": "^2.1.0",
+		"@ky-is/eslint-config": "^2.3.4",
 		"@ky-is/tailwindcss-plugin-width-height": "^1.0.0",
-		"@types/node": "^14.6.4",
-		"@typescript-eslint/eslint-plugin": "^4.0.1",
-		"@typescript-eslint/parser": "^4.0.1",
-		"@vue/compiler-sfc": "^3.0.0-rc.10",
-		"@vue/eslint-config-typescript": "^5.1.0",
-		"autoprefixer": "^9.8.6",
-		"eslint": "^7.8.1",
-		"eslint-plugin-vue": "^7.0.0-beta.3",
+		"@types/node": "^15.6.2",
+		"@typescript-eslint/eslint-plugin": "^4.26.0",
+		"@typescript-eslint/parser": "^4.26.0",
+		"@vitejs/plugin-vue": "^1.2.3",
+		"@vue/compiler-sfc": "^3.0.11",
+		"@vue/eslint-config-typescript": "^7.0.0",
+		"autoprefixer": "^10.2.6",
+		"eslint": "^7.27.0",
+		"eslint-plugin-vue": "^7.10.0",
+		"postcss": "^8.3.0",
 		"postcss-preset-env": "^6.7.0",
-		"typescript": "^4.0.2",
-		"vite": "^1.0.0-rc.4",
-		"vite-plugin-components": "^0.2.13"
+		"tailwindcss": "^2.1.4",
+		"typescript": "^4.3.2",
+		"vite": "^2.3.6",
+		"vite-plugin-components": "^0.10.4"
 	},
 	"eslintConfig": {
 		"extends": "@ky-is/eslint-config/vue-typescript",
-		"rules": {
-			"no-unused-vars": "off",
-			"vue/comment-directive": "off",
-			"vue/no-template-key": "off"
-		}
+		"rules": {}
 	},
 	"eslintIgnore": [
-		"dist",
-		"scripts/*.js",
-		"src/*.js"
+		"dist"
 	],
 	"postcss": {
 		"plugins": {

@@ -1,4 +1,4 @@
-import { UnitSummaryData } from '/@/assets/types'
+import { UnitSummaryData } from '@/assets/types'
 
 export default {
 	"4": {
@@ -276,4 +276,4 @@ export default {
 		"class": 12,
 		"icon": 274,
 	},
-} as {[key: string]: {[id: number]: UnitSummaryData}}
+} as {[id: string]: UnitSummaryData}

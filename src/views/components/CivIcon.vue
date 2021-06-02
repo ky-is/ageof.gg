@@ -6,26 +6,27 @@
 	>
 </template>
 
-<script setup="props, { emit }" lang="ts">
-import { ref, watch } from 'vue'
+<script setup lang="ts">
+import { ref, watch, defineProps, defineEmit } from 'vue'
 
-import type { CivData } from '/@/assets/types'
+import type { CivData } from '@/assets/types'
 
-import { useStore } from '/@/models/store'
+import { useStore } from '@/models/store'
 
-declare const props: {
+const props = defineProps<{
 	civ: CivData
 	dragAction?: 'move' | 'copy'
-}
+}>()
+const emit = defineEmit(['dragging'])
 
-export const { commit } = useStore()
+const { commit } = useStore()
 
-export const dragging = ref(false)
+const dragging = ref(false)
 watch(dragging, dragging => {
 	emit('dragging', dragging)
 })
 
-export function onDragStart (event: DragEvent) {
+function onDragStart (event: DragEvent) {
 	if (!props.dragAction) {
 		return true
 	}
@@ -39,7 +40,7 @@ export function onDragStart (event: DragEvent) {
 	}
 }
 
-export function onDragEnd (event: DragEvent) {
+function onDragEnd (event: DragEvent) {
 	dragging.value = false
 }
 </script>

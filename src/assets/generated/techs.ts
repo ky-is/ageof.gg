@@ -1,4 +1,4 @@
-import { TechSummaryData } from '/@/assets/types'
+import { TechSummaryData } from '@/assets/types'
 
 export default {
 	"8": {
@@ -216,4 +216,4 @@ export default {
 		"age": 101,
 		"icon": 124,
 	},
-} as {[key: string]: {[id: number]: TechSummaryData}}
+} as {[id: string]: TechSummaryData}

@@ -14,18 +14,19 @@
 	</div>
 </template>
 
-<script setup="props, { emit }" lang="ts">
-import { computed } from 'vue'
+<script setup lang="ts">
+import { computed, defineProps, defineEmit } from 'vue'
 
-import { Focus } from '/@/assets/types'
+import { Focus } from '@/assets/types'
 
-declare const props: {
+const props = defineProps<{
 	selected: string
-}
+}>()
+const emit = defineEmit(['update:selected'])
 
-export const focusFilters = Object.entries(Focus)
+const focusFilters = Object.entries(Focus)
 
-export const value = computed({
+const value = computed({
 	get: () => props.selected,
 	set: (newValue) => emit('update:selected', newValue),
 })

@@ -127,7 +127,7 @@ export const enum Strength {
 	Strong,
 }
 
-export const enum CivAge {
+export enum CivAge {
 	Dark = 104,
 	Feudal = 101,
 	Castle = 102,

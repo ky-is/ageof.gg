@@ -9,12 +9,14 @@
 	</tr>
 </template>
 
-<script setup="props" lang="ts">
-import type { Focus } from '/@/assets/types'
+<script setup lang="ts">
+import { defineProps } from 'vue'
 
-declare const props: {
+const props = defineProps<{
 	title: string
 	color: string
 	focuses: Focus[]
-}
+}>()
+
+import type { Focus } from '@/assets/types'
 </script>

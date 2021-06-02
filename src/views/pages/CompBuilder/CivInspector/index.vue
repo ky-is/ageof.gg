@@ -21,17 +21,17 @@
 						<h3 class="smallcaps" :class="`text-bonus-${label}`">{{ label }}</h3>
 						<li v-for="bonus in bonuses" :key="bonus.body" class="ml-3  group">
 							<img
-								v-for="ageID in (bonus.ages || [darkAge])" :key="ageID"
+								v-for="ageID in (bonus.ages || [CivAge.Dark])" :key="ageID"
 								:src="`/images/ages/${ageID}.png`" :alt="CivAgeName[ageID] + ' age'"
 								class="bonus-icon -ml-3"
 							>
 							<img
 								v-if="bonus.icon"
-								:src="`/images/techs/${bonus.icon}.png`" :alt="`${CivAgeName[bonus.ages ? bonus.ages[0] : darkAge]} age unique tech`"
+								:src="`/images/techs/${bonus.icon}.png`" :alt="`${CivAgeName[bonus.ages ? bonus.ages[0] : CivAge.Dark]} age unique tech`"
 								class="bonus-icon"
 							>
 							<!-- SAMPLE -->
-							<!-- <span class="text-secondary text-sm">{{ bonus.debug }}&nbsp;</span> -->
+							<span class="text-secondary text-sm">{{ bonus.debug }}&nbsp;</span>
 							<span v-if="bonus.title" class="text-secondary text-bold">{{ bonus.title }}: </span>
 							<span>{{ bonus.body }}</span>
 							<span v-if="bonus.names" class="text-secondary  hidden group-hover:inline"> ({{ bonus.names.join(', ') }})</span>
@@ -64,21 +64,16 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { useStore } from '/@/models/store'
+import { useStore } from '@/models/store'
 
-import { CivAgeName, EffectDescription, CivAge } from '/@/assets/types'
-import units from '/@/assets/generated/units'
-import unitCategoryLines from '/@/assets/generated/unitLines'
+import { CivAge, CivAgeName } from '@/assets/types'
+import type { EffectDescription } from '@/assets/types'
+import units from '@/assets/generated/units'
+import unitCategoryLines from '@/assets/generated/unitLines'
 
-export { CivAgeName, unitCategoryLines, units }
+const { commit, getters: { selectedCiv } } = useStore()
 
-export const darkAge = CivAge.Dark
-
-const store = useStore()
-export const commit = store.commit
-export const { selectedCiv } = store.getters
-
-export const groupedBonuses = computed(() => {
+const groupedBonuses = computed(() => {
 	if (!selectedCiv.value) {
 		return []
 	}

@@ -18,47 +18,50 @@
 					</select>
 				</UIStack>
 				<hr class="border-gray-700">
-				<UIStack direction="col" class="mt-2 mx-4">
-					<h3 class="smallcaps text-secondary">synergies</h3>
-					<div
-						v-for="[focus, [teamCivsAndBonuses, uniqueCivsAndBonuses]] in teamSynergies" :key="focus"
-						class="group relative cursor-help"
-					>
-						<span class="capitalize">{{ focus }}</span>
-						<span v-if="teamCivsAndBonuses.length"
-							class="text-sm text-bonus-team"
-							:title="teamCivsAndBonuses.map(civAndBonus => civAndBonus[0].name).join(', ')"
+				<!-- TODO fix scroll -->
+				<UIStack direction="row" class="overflow-y-scroll">
+					<UIStack direction="col" class="mt-2 mx-4">
+						<h3 class="smallcaps text-secondary">synergies</h3>
+						<div
+							v-for="[focus, [teamCivsAndBonuses, uniqueCivsAndBonuses]] in teamSynergies" :key="focus"
+							class="group relative cursor-help"
 						>
-							+{{ teamCivsAndBonuses.length }}
-						</span>
-						<span
-							class="text-sm text-secondary"
-							:title="uniqueCivsAndBonuses.map(civAndBonus => civAndBonus[0].name).join(', ')"
-						>
-							+{{ uniqueCivsAndBonuses.length }}
-						</span>
-						<div class="hidden group-hover:block absolute p-2 bg-gray-950 z-50 pointer-events-none">
-							<template v-for="civsAndBonuses in [teamCivsAndBonuses, uniqueCivsAndBonuses]">
-								<div v-for="[civ, description] in civsAndBonuses" :key="description.body" class="text-sm">
-									<div v-if="description.team" class="inline-block w-5 text-base text-center">🌍</div>
-									<CivIcon v-else :civ="civ" class="w-5" />
-									{{ description.body }}
-								</div>
-							</template>
+							<span class="capitalize">{{ focus }}</span>
+							<span v-if="teamCivsAndBonuses.length"
+								class="text-sm text-bonus-team"
+								:title="teamCivsAndBonuses.map(civAndBonus => civAndBonus[0].name).join(', ')"
+							>
+								+{{ teamCivsAndBonuses.length }}
+							</span>
+							<span
+								class="text-sm text-secondary"
+								:title="uniqueCivsAndBonuses.map(civAndBonus => civAndBonus[0].name).join(', ')"
+							>
+								+{{ uniqueCivsAndBonuses.length }}
+							</span>
+							<div class="hidden group-hover:block absolute p-2 bg-gray-950 z-50 pointer-events-none">
+								<template v-for="civsAndBonuses in [teamCivsAndBonuses, uniqueCivsAndBonuses]">
+									<div v-for="[civ, description] in civsAndBonuses" :key="description.body" class="text-sm">
+										<div v-if="description.team" class="inline-block w-5 text-base text-center">🌍</div>
+										<CivIcon v-else :civ="civ" class="w-5" />
+										{{ description.body }}
+									</div>
+								</template>
+							</div>
 						</div>
-					</div>
+					</UIStack>
+					<UIStack direction="col" class="flex-grow">
+						<UIStack direction="row" justification="center" wrap class="flex-grow">
+							<div
+								v-for="size in teamSize" :key="size"
+								class="center-center flex  flex-shrink-0" :class="size <= 2 ? 'w-1/2' : 'w-1/5'"
+							>
+								<TeamCivEntry :index="size - 1" :civ="teamCivs[size - 1]" />
+							</div>
+						</UIStack>
+						<div v-if="isTeamEmpty" class="mt-4 text-center text-secondary font-light">drag+drop / double-click civ icons to add to team</div>
+					</UIStack>
 				</UIStack>
-			</UIStack>
-			<UIStack direction="col" class="flex-grow">
-				<UIStack direction="row" justification="center" wrap class="flex-grow">
-					<div
-						v-for="size in teamSize" :key="size"
-						class="center-center flex  flex-shrink-0" :class="size <= 2 ? 'w-1/2' : 'w-1/5'"
-					>
-						<TeamCivEntry :index="size - 1" :civ="teamCivs[size - 1]" />
-					</div>
-				</UIStack>
-				<div v-if="isTeamEmpty" class="mt-4 text-center text-secondary font-light">drag+drop / double-click civ icons to add to team</div>
 			</UIStack>
 		</UIStack>
 	</UIStack>
@@ -67,20 +70,20 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
-import type { Focus, EffectDescription, CivData } from '/@/assets/types'
+import type { Focus, EffectDescription, CivData } from '@/assets/types'
 
-import { useStore } from '/@/models/store'
+import { useStore } from '@/models/store'
 
 const { state } = useStore()
-export const teamCivs = state.teamCivs as (CivData | null)[]
+const teamCivs = state.teamCivs as (CivData | null)[]
 
-export const maxTeamSize = 4
-export const teamSize = ref(maxTeamSize - 1)
+const maxTeamSize = 4
+const teamSize = ref(maxTeamSize - 1)
 
-export const mapStyles = ['open', 'closed', 'water', 'hybrid']
-export const mapStyle = ref('hybrid')
+const mapStyles = ['open', 'closed', 'water', 'hybrid']
+const mapStyle = ref('hybrid')
 
-export const isTeamEmpty = computed(() => {
+const isTeamEmpty = computed(() => {
 	for (let index = 0; index < teamSize.value; index += 1) {
 		if (teamCivs[index]) {
 			return false
@@ -111,7 +114,7 @@ const synergies = computed(() => {
 		.sort((a, b) => (b[1][0].length + b[1][1].length) - (a[1][0].length + a[1][1].length))
 })
 
-export const teamSynergies = computed(() => {
+const teamSynergies = computed(() => {
 	return synergies.value.filter(synergy => synergy[1][1].length)
 })
 </script>

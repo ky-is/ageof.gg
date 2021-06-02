@@ -4,7 +4,7 @@
 		<UIStack direction="row" alignment="center" class="my-2 px-4">
 			<FilterFocus v-model:selected="filterFocus" />
 		</UIStack>
-		<div class="w-full px-4 flex-gro overflow-y-scroll">
+		<div class="w-full px-4 overflow-y-scroll">
 			<template v-for="[header, civs] in filteredCivs" :key="header">
 				<FilterList :header="header" :civs="civs" :isFiltered="!!filterFocus" />
 			</template>
@@ -13,18 +13,19 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, Ref } from 'vue'
+import { computed, ref } from 'vue'
 
-import { CivData, Focus } from '/@/assets/types'
-import civEntries from '/@/assets/generated/civs'
+import type { CivData } from '@/assets/types'
+import { Focus } from '@/assets/types'
+import civEntries from '@/assets/generated/civs'
 
-export const filterFocus: Ref<keyof typeof Focus | ''> = ref('')
+const filterFocus = ref<keyof typeof Focus | ''>('')
 
-function sortByName (a: {name: string}, b: {name: string}): number {
-	return a.name.localeCompare(b.name)
-}
+// function sortByName (a: {name: string}, b: {name: string}): number {
+// 	return a.name.localeCompare(b.name)
+// }
 
-export const filteredCivs = computed(() => {
+const filteredCivs = computed(() => {
 	const focusFilter = filterFocus.value ? Focus[filterFocus.value] : null
 	const results: [string, CivData[]][] = [ ['team', []], ['primary', []], ['secondary', []] ]
 	if (!focusFilter) {

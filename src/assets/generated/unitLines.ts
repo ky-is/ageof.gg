@@ -1,4 +1,4 @@
-import { TreeBranchData } from '/@/assets/types'
+import { TreeBranchData } from '@/assets/types'
 
 export default [
 	[

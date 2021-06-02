@@ -2,21 +2,23 @@
 
 @tailwind components;
 
-.smallcaps {
-	font-variant: small-caps;
-}
-
-.text-primary {
-	@apply text-gray-100;
-}
-.text-secondary {
-	@apply text-gray-400;
-}
-.border-secondary {
-	@apply border-gray-400;
-}
-
 @tailwind utilities;
+
+@layer utilities {
+	.smallcaps {
+		font-variant: small-caps;
+	}
+
+	.text-primary {
+		@apply text-gray-100;
+	}
+	.text-secondary {
+		@apply text-gray-400;
+	}
+	.border-secondary {
+		@apply border-gray-400;
+	}
+}
 
 html, body, #app {
 	@apply h-full;
