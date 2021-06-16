@@ -21,6 +21,9 @@ import { defineProps } from 'vue'
 import type { CivData } from '@/assets/types'
 import { useStore } from '@/models/store'
 
+import CivIcon from '@/views/components/CivIcon.vue'
+import UIStack from '@/views/components/UIStack.vue'
+
 const props = defineProps<{
 	header: string
 	civs: CivData[]

@@ -14,6 +14,8 @@ import { computed, defineProps } from 'vue'
 import techs from '@/assets/generated/techs'
 import type { TechSummaryData } from '@/assets/types'
 
+import UIStack from '@/views/components/UIStack.vue'
+
 const props = defineProps<{
 	upgrades: number[]
 	disableTechIDs: number[]

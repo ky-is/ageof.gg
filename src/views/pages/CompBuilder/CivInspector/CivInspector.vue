@@ -71,6 +71,11 @@ import type { EffectDescription } from '@/assets/types'
 import units from '@/assets/generated/units'
 import unitCategoryLines from '@/assets/generated/unitLines'
 
+import UIStack from '@/views/components/UIStack.vue'
+import CivIcon from '@/views/components/CivIcon.vue'
+import FocusRow from '@/views/pages/CompBuilder/CivInspector/FocusRow.vue'
+import LineUpgrades from '@/views/pages/CompBuilder/CivInspector/LineUpgrades.vue'
+
 const { commit, getters: { selectedCiv } } = useStore()
 
 const groupedBonuses = computed(() => {

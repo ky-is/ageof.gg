@@ -103,6 +103,9 @@ import type { CivData } from '@/assets/types'
 
 import { useKeydown } from '@/helpers/keyboard'
 
+import CivIcon from '@/views/components/CivIcon.vue'
+import UIStack from '@/views/components/UIStack.vue'
+
 const { state, commit } = useStore()
 
 const highScores = computed(() => state.games.civIcons.highScore)

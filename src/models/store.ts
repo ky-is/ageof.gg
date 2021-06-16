@@ -1,6 +1,6 @@
 import { computed, reactive, readonly } from 'vue'
 
-import type { CivData } from '@/assets/types'
+import type { CivData, TeamIndex } from '@/assets/types'
 
 import storage from '@/helpers/storage'
 
@@ -51,7 +51,7 @@ const store = {
 				}
 			}
 		},
-		setTeamCivAt (index: 0 | 1 | 2 | 3, teamCiv: CivData) {
+		setTeamCivAt (index: TeamIndex, teamCiv: CivData) {
 			store.commit.removeTeamCiv(teamCiv)
 			state.teamCivs[index] = teamCiv
 		},

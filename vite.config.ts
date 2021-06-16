@@ -1,5 +1,4 @@
 import path from 'path'
-import ViteComponentsImport from 'vite-plugin-components'
 import vue from '@vitejs/plugin-vue'
 
 export default {
@@ -13,8 +12,5 @@ export default {
 	},
 	plugins: [
 		vue(),
-		ViteComponentsImport({
-			dirs: ['src/views'],
-		}),
 	],
 }

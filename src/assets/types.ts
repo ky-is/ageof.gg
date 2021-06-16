@@ -369,6 +369,8 @@ export const UnitFocuses: {[id: number]: Focus[] | undefined} = {
 	153: [ Focus.Cavalry ],
 }
 
+export type TeamIndex = 0 | 1 | 2 | 3
+
 interface UnitClass {
 	name: string
 	focuses: Focus[]

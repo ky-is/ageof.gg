@@ -21,13 +21,15 @@
 <script setup lang="ts">
 import { ref, watch, defineProps } from 'vue'
 
-import type { CivData } from '@/assets/types'
+import type { CivData, TeamIndex } from '@/assets/types'
 import civEntries from '@/assets/generated/civs'
 
 import { useStore } from '@/models/store'
 
+import CivIcon from '@/views/components/CivIcon.vue'
+
 const props = defineProps<{
-	index: 0 | 1 | 2 | 3
+	index: number //TODO TeamIndex
 	civ?: CivData //TODO vite doesn't allow `CivData | null`
 }>()
 
@@ -44,7 +46,7 @@ function onDrop (event: DragEvent) {
 	if (!civ) {
 		return console.error('drop', civName, event)
 	}
-	commit.setTeamCivAt(props.index, civ)
+	commit.setTeamCivAt(props.index as TeamIndex, civ)
 	return false
 }
 </script>

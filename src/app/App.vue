@@ -23,3 +23,9 @@
 		</UIStack>
 	</UIStack>
 </template>
+
+<script setup lang="ts">
+import { RouterLink, RouterView } from 'vue-router'
+
+import UIStack from '@/views/components/UIStack.vue'
+</script>

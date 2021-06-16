@@ -2,8 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import RouterParent from '@/views/components/RouterParent.vue'
 
-import CompBuilder from '@/views/pages/CompBuilder/index.vue'
-import GamesPage from '@/views/pages/Games/index.vue'
+import CompBuilder from '@/views/pages/CompBuilder/CompBuilder.vue'
+import GamesPage from '@/views/pages/Games/GamesPage.vue'
 import GameCivIcons from '@/views/pages/Games/CivIcons.vue'
 
 const router = createRouter({

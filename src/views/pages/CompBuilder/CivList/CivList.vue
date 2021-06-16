@@ -19,6 +19,10 @@ import type { CivData } from '@/assets/types'
 import { Focus } from '@/assets/types'
 import civEntries from '@/assets/generated/civs'
 
+import UIStack from '@/views/components/UIStack.vue'
+import FilterFocus from '@/views/pages/CompBuilder/CivList/FilterFocus.vue'
+import FilterList from '@/views/pages/CompBuilder/CivList/FilterList.vue'
+
 const filterFocus = ref<keyof typeof Focus | ''>('')
 
 // function sortByName (a: {name: string}, b: {name: string}): number {

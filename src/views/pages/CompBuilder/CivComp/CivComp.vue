@@ -70,15 +70,19 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
-import type { Focus, EffectDescription, CivData } from '@/assets/types'
+import type { Focus, EffectDescription, CivData, TeamIndex } from '@/assets/types'
 
 import { useStore } from '@/models/store'
 
+import CivIcon from '@/views/components/CivIcon.vue'
+import UIStack from '@/views/components/UIStack.vue'
+import TeamCivEntry from '@/views/pages/CompBuilder/CivComp/TeamCivEntry.vue'
+
 const { state } = useStore()
-const teamCivs = state.teamCivs as (CivData | null)[]
+const teamCivs = state.teamCivs as (CivData | undefined)[]
 
 const maxTeamSize = 4
-const teamSize = ref(maxTeamSize - 1)
+const teamSize = ref<TeamIndex>(maxTeamSize - 1 as TeamIndex)
 
 const mapStyles = ['open', 'closed', 'water', 'hybrid']
 const mapStyle = ref('hybrid')

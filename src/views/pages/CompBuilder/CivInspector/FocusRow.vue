@@ -12,6 +12,8 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 
+import UIStack from '@/views/components/UIStack.vue'
+
 const props = defineProps<{
 	title: string
 	color: string
